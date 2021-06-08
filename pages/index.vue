@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">
+      <h1 class="text-red-600 text-6xl">
         sims-projekat
       </h1>
       <div class="links">
