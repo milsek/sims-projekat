@@ -24,11 +24,16 @@
         </a>
       </div>
     </div>
+
   </div>
 </template>
 
 <script>
-export default {}
+export default {};
+console.log("Fetching");
+import axios from 'axios';
+axios.get("/api/hello")
+  .then(response => console.log(response.data))
 </script>
 
 <style>
