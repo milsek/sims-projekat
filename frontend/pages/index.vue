@@ -1,39 +1,15 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="text-red-600 text-6xl">
-        sims-projekat
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div class="bg-gradient-to-bl from-blue-100 to-blue-200 h-screen w-full">
 
   </div>
 </template>
 
 <script>
 export default {};
-console.log("Fetching");
-import axios from 'axios';
-axios.get("/api/hello")
-  .then(response => console.log(response.data))
+// console.log("Fetching");
+// import axios from 'axios';
+// axios.get("/api/hello")
+//   .then(response => console.log(response.data))
 </script>
 
 <style>

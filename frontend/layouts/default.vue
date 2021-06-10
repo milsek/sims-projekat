@@ -1,8 +1,18 @@
 <template>
   <div>
+    <Navbar class="shadow-md z-50"/>
     <Nuxt />
   </div>
 </template>
+
+<script>
+import Navbar from '../components/Navbar'
+
+export default {
+  components: {Navbar, },
+};
+</script>
+
 
 <style>
 html {
