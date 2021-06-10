@@ -1,11 +1,16 @@
 <template>
   <div class="bg-gradient-to-bl from-blue-100 to-blue-200 h-screen w-full">
-
+    <div class="pt-20">
+      <Search />
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+import Search from "../components/home/Search"
+export default {
+  components: { Search }
+};
 // console.log("Fetching");
 // import axios from 'axios';
 // axios.get("/api/hello")
@@ -28,16 +33,8 @@ export default {};
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;

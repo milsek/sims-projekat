@@ -37,7 +37,7 @@
           <BellIcon class="h-6 w-6" aria-hidden="true" />
         </button> -->
        
-      <div class="flex justify-center items-center col-start-7">
+      <div class="flex justify-center items-center col-start-7 mr-4 md:mr-0">
         <div x-data="{ profileOpen: false }" class="flex justify-center items-center">
             <div @click="handleProfileDropdown()" class="relative border-b-4 border-transparent py-2" :class="{'border-indigo-300 transform transition duration-300 ': profileOpen}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
               <div class="flex justify-center items-center space-x-3 cursor-pointer">
@@ -75,7 +75,7 @@
     <div v-if="navbarOpen && !profileOpen" class="absolute w-full z-50 sm:hidden p-1">
       <div class="bg-white rounded-lg shadow p-2">
         <nuxt-link v-for="item in navigation" :key="item.name" :to="item.route" @click="navbarOpen=false" class="space-y-10">
-          <span :class="[item.route === $route.path ? 'bg-white text-gray-900' : 'bg-white text-gray-900 bg-opacity-75', 
+          <span :class="[item.route === $route.path ? 'bg-white text-indigo-400' : 'bg-white text-gray-900 bg-opacity-75', 
           'block mx-3 pl-1 py-3 font-medium transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-300']"
           :aria-current="item.current ? 'page' : undefined">{{ item.name }}</span>
         </nuxt-link>
