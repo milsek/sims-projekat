@@ -54,13 +54,13 @@
                   </li>
                   <li class="font-medium">
                     <a href="#" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-300">
-                      Setting
+                      Settings
                     </a>
                   </li>
                   <hr class="dark:border-gray-700">
                   <li class="font-medium">
                     <a href="#" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600">
-                      Logout
+                      Sign Out
                     </a>
                   </li>
                 </ul>
@@ -73,10 +73,10 @@
     </div>
 
     <div v-if="navbarOpen && !profileOpen" class="absolute w-full z-50 sm:hidden p-1">
-      <div class="bg-white rounded-lg shadow">
+      <div class="bg-white rounded-lg shadow p-2">
         <nuxt-link v-for="item in navigation" :key="item.name" :to="item.route" @click="navbarOpen=false" class="space-y-10">
           <span :class="[item.route === $route.path ? 'bg-white text-gray-900' : 'bg-white text-gray-900 bg-opacity-75', 
-          'block mx-3 py-2 font-medium transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-300']"
+          'block mx-3 pl-1 py-3 font-medium transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-300']"
           :aria-current="item.current ? 'page' : undefined">{{ item.name }}</span>
         </nuxt-link>
       </div>
