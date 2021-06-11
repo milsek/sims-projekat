@@ -1,10 +1,10 @@
 <template>
-  <div class="px-20 py-16">
+  <div class="px-8 md:px-20 pt-16">
     <div class="flex justify-between">
-      <div class="text-lg font-medium tracking-wide text-blue-900 opacity-90">Popular books</div>
-      <div class="text-lg font-medium tracking-wide text-blue-900 opacity-90">[Filter]</div>
+      <div class="text-lg font-medium tracking-wide text-blue-800 opacity-70">Popular books</div>
+      <div class="text-lg font-medium tracking-wide text-blue-800 opacity-70">[Filter]</div>
     </div>
-    <div class="grid grid-cols-4 xl:grid-cols-5 pt-10 -mx-2 lg:-mx-3">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 pt-10 -mx-2 lg:-mx-3">
       <div v-for="book in suggested" :key="book.id">
         <BookCardSimple :data="book" />
       </div>
