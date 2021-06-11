@@ -4,13 +4,18 @@
     <div>
       <BookSuggestions />
     </div>
+    <div>
+      <PopularSection />
+    </div>
+    
   </div>
 </template>
 
 <script>
 import BookSuggestions from "./BookSuggestions"
+import PopularSection from "./PopularSection"
 export default {
-  components: { BookSuggestions }
+  components: { BookSuggestions, PopularSection }
 };
 </script>
 

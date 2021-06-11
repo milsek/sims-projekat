@@ -1,76 +1,21 @@
 <template>
-  <div class="px-6 sm:px-10 lg:px-14 border-b pb-4  border-gray-200 border-solid">
-    <div class="px-4 hidden lg:block">
-      <VueSlickCarousel :arrows="true" :dots="false" :slidesToShow="3">
-        <div  v-for="book in suggested" :key="book.title">
-          <BookCardDetailed :data="book" class="px-2"/>
-        </div>
-
-        <template #prevArrow="arrowOption">
-          <img :src="require('~/assets/icons/left-arrow.svg')" alt="">
-          <div class="custom-arrow">
-            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-          </div>
-        </template>
-        <template #nextArrow="arrowOption">
-          <img :src="require('~/assets/icons/right-arrow.svg')" alt="">
-          <div class="custom-arrow">
-            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-          </div>
-        </template>
-      </VueSlickCarousel>
+  <div class="px-20 py-16">
+    <div class="flex justify-between">
+      <div class="text-lg font-medium tracking-wide text-blue-900 opacity-90">Popular books</div>
+      <div class="text-lg font-medium tracking-wide text-blue-900 opacity-90">[Filter]</div>
     </div>
-    <div class="hidden sm:block lg:hidden px-4">
-      <VueSlickCarousel :arrows="true" :dots="false" :slidesToShow="2">
-        <div  v-for="book in suggested" :key="book.title">
-          <BookCardDetailed :data="book" class="px-2"/>
-        </div>
-
-        <template #prevArrow="arrowOption">
-          <img :src="require('~/assets/icons/left-arrow.svg')" alt="">
-          <div class="custom-arrow">
-            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-          </div>
-        </template>
-        <template #nextArrow="arrowOption">
-          <img :src="require('~/assets/icons/right-arrow.svg')" alt="">
-          <div class="custom-arrow">
-            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-          </div>
-        </template>
-      </VueSlickCarousel>
-    </div>
-    <div class="sm:hidden px-4">
-      <VueSlickCarousel :arrows="true" :dots="false" :slidesToShow="1">
-        <div  v-for="book in suggested" :key="book.title">
-          <BookCardDetailed :data="book" class="px-2"/>
-        </div>
-
-        <template #prevArrow="arrowOption">
-          <img :src="require('~/assets/icons/left-arrow.svg')" alt="">
-          <div class="custom-arrow">
-            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-          </div>
-        </template>
-        <template #nextArrow="arrowOption">
-          <img :src="require('~/assets/icons/right-arrow.svg')" alt="">
-          <div class="custom-arrow">
-            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-          </div>
-        </template>
-      </VueSlickCarousel>
+    <div class="grid grid-cols-4 xl:grid-cols-5 pt-10 -mx-2 lg:-mx-3">
+      <div v-for="book in suggested" :key="book.id">
+        <BookCardSimple :data="book" />
+      </div>
     </div>
   </div>
-  
 </template>
 
 <script>
-import VueSlickCarousel from 'vue-slick-carousel'
-import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
-import BookCardDetailed from './BookCardDetailed.vue'
+import BookCardSimple from "./BookCardSimple.vue"
 export default {
-  components: { VueSlickCarousel, BookCardDetailed },
+  components: {BookCardSimple},
   data () {
     return {
       suggested: [
@@ -120,8 +65,15 @@ export default {
         author: "Author Name",
         reads: 17000,
         rating: 4.3,
-        image: "book-placeholder.png",
+        image: "book-placeholder2.png",
         id: 7,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempor metus ex, sollicitudin sagittis nisi posuere nec. Phasellus pharetra, sapien vitae lacinia porta, lacus sem egestas sapien, non tempor odio orci at elit."},
+        {title: "Book Title 8",
+        author: "Author Name",
+        reads: 12623,
+        rating: 4.3,
+        image: "book-placeholder2.png",
+        id: 8,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempor metus ex, sollicitudin sagittis nisi posuere nec. Phasellus pharetra, sapien vitae lacinia porta, lacus sem egestas sapien, non tempor odio orci at elit."},
       ],
     }

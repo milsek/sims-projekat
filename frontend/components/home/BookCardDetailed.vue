@@ -5,7 +5,8 @@
         <img :src="require(`@/assets/images/${data.image}`)" alt="" class="rounded-md mx-auto" draggable="false">
       </div>
       <div class=" sm:col-start-4 md:col-start-3 lg:col-start-4 xl:col-start-3 col-span-2 md:col-span-3 lg:col-span-2 xl:col-span-3 w-full p-2">
-        <div class="font-sans font-medium text-gray-700 text-base md:text-sm lg:text-base tracking-wide line-clamp-2">{{data.title}}</div>
+        <!-- text-gray-700 -->
+        <div class="font-sans font-medium text-blue-900 opacity-75 text-base md:text-sm lg:text-base tracking-wide line-clamp-2">{{data.title}}</div>
         <div class="mb-2 font-sans text-sm font-thin text-gray-400 tracking-wider line-clamp-2">by {{data.author}}</div>
         <div class="pb-0 inline-block font-thin align-middle text-sm text-gray-400">Reads: {{readsInThousands}}k</div>
         <div class="flow">
