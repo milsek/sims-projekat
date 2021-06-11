@@ -38,7 +38,7 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/router',
-    ['@nuxtjs/proxy', { ws: false }]
+    ['@nuxtjs/proxy', { ws: false }],
   ],
 
   generate: {
