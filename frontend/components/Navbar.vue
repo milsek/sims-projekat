@@ -39,13 +39,13 @@
        
       <div class="flex justify-center items-center col-start-7 mr-4 md:mr-0">
         <div x-data="{ profileOpen: false }" class="flex justify-center items-center">
-            <div @click="handleProfileDropdown()" class="relative border-b-4 border-transparent py-2" :class="{'border-indigo-300 transform transition duration-300 ': profileOpen}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
-              <div class="flex justify-center items-center space-x-3 cursor-pointer">
+            <div class="relative border-b-4 border-transparent py-2" :class="{'border-indigo-300 transform transition duration-300 ': profileOpen}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
+              <div @click="handleProfileDropdown()" class="flex justify-center items-center space-x-3 cursor-pointer">
                 <div class="w-9 h-9 md:w-10 md:h-10 rounded-full overflow-hidden">
                   <img :src="require('~/assets/icons/user.png')" alt="" class="w-full h-full object-cover">
                 </div>
               </div>
-              <div v-show="profileOpen" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute w-60 px-5 py-3 right-0 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent mt-5">
+              <div v-if="profileOpen" v-click-outside="disableProfileDropdown" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute w-60 px-5 py-3 right-0 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent mt-5">
                 <ul class="space-y-3 dark:text-white">
                   <li class="font-medium">
                     <a href="#" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-300">
@@ -72,7 +72,7 @@
       </div>
     </div>
 
-    <div v-if="navbarOpen && !profileOpen" class="absolute w-full z-50 sm:hidden p-1">
+    <div v-if="navbarOpen && !profileOpen" v-click-outside="disableNavbarDropdown" class="absolute w-full z-50 sm:hidden p-1">
       <div class="bg-white rounded-lg shadow p-2">
         <nuxt-link v-for="item in navigation" :key="item.name" :to="item.route" @click="navbarOpen=false" class="space-y-10">
           <span :class="[item.route === $route.path ? 'bg-white text-indigo-400' : 'bg-white text-gray-900 bg-opacity-75', 
@@ -86,6 +86,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import vClickOutside from 'v-click-outside'
+ 
+Vue.use(vClickOutside)
 export default {
   data () {
     return {
@@ -104,7 +108,14 @@ export default {
     },
     handleProfileDropdown() {
       if (!this.navbarOpen) this.profileOpen=!this.profileOpen
-    }
+    },
+    disableProfileDropdown() {
+      this.profileOpen = false
+    },
+    disableNavbarDropdown() {
+      this.navbarOpen = false
+    },
+    
   }
 };
 </script>

@@ -1,15 +1,15 @@
 <template>
   <div class="bg-gradient-to-bl from-blue-100 to-blue-200 h-screen w-full">
     <div class="pt-20">
-      <Search />
+      <SearchBar />
     </div>
   </div>
 </template>
 
 <script>
-import Search from "../components/home/Search"
+import SearchBar from "../components/home/SearchBar"
 export default {
-  components: { Search }
+  components: { SearchBar }
 };
 // console.log("Fetching");
 // import axios from 'axios';
