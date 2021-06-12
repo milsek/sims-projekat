@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-gradient-to-bl from-blue-100 to-blue-300 w-full min-h-screen py-16">
-    <div v-if="dataLoaded">
+  <div class="w-full min-h-screen py-16" :class="[dataLoaded ? 'bg-gradient-to-bl from-blue-100 to-blue-300' : 'bg-white']">
+    <div v-if="dataLoaded" class="">
       <div v-if="isMounted">
         <BookContent :data="data"/>
       </div>

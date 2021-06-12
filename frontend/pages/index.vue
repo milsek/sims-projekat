@@ -6,16 +6,16 @@
       <SearchBar />
     </div>
     <div class="pt-44 pb-20">
-      <BookContent />
+      <HomeContent />
     </div>
   </div>
 </template>
 
 <script>
 import SearchBar from "../components/home/SearchBar"
-import BookContent from "../components/home/BookContent"
+import HomeContent from "../components/home/HomeContent"
 export default {
-  components: { SearchBar, BookContent }
+  components: { SearchBar, HomeContent }
 };
 // console.log("Fetching");
 // import axios from 'axios';

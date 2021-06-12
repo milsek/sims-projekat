@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import BookSuggestions from "./BookSuggestions"
-import PopularSection from "./PopularSection"
+import BookSuggestions from "./suggestions/BookSuggestions"
+import PopularSection from "./popular/PopularSection"
 export default {
   components: { BookSuggestions, PopularSection }
 };

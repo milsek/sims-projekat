@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex w-11/12 mx-auto">
-      <div class="block bg-white shadow-l w-full">
+      <div class="block bg-white shadow-lg w-full">
         <div class="block md:flex p-8 border-b border-solid border-gray-200">
           <div class="min-w-60 w-60 object-cover text-center md:text-left m-auto md:m-0">
             <img :src="require(`@/assets/images/${data.image}`)" alt="" class="w-full">

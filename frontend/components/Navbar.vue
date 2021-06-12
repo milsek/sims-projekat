@@ -41,7 +41,7 @@
         <div x-data="{ profileOpen: false }" class="flex justify-center items-center">
             <div class="relative border-b-4 border-transparent py-2" :class="{'border-indigo-300 transform transition duration-300 ': profileOpen}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
               <div @click="handleProfileDropdown()" class="flex justify-center items-center space-x-3 cursor-pointer">
-                <div class="w-9 h-9 md:w-10 md:h-10 rounded-full overflow-hidden">
+                <div class="w-8 h-8 md:w-9 md:h-9 rounded-full overflow-hidden">
                   <img :src="require('~/assets/icons/user.png')" alt="" class="w-full h-full object-cover">
                 </div>
               </div>

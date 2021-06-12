@@ -6,7 +6,11 @@
       </div>
       <div class="mt-8 md:mt-12 lg:mt-12 xl:mt-14 sm:col-start-7 xl:col-start-6 col-span-6 xl:col-span-7 w-full p-2 sm:h-40">
         <!-- text-gray-700 -->
-        <div class="font-sans font-medium text-blue-900 opacity-75 text-base md:text-sm lg:text-base tracking-wide line-clamp-2">{{data.title}}</div>
+        <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}"
+        class="hover:text-blue-800 w-auto font-sans font-medium text-blue-900 opacity-75 hover:opacity-90
+         text-base md:text-sm lg:text-base tracking-wide line-clamp-2">
+          {{ data.title }}
+        </NuxtLink>
         <div class="mb-2 font-sans text-sm font-thin text-gray-400 tracking-wider line-clamp-2">by {{data.author}}</div>
         <div class="pb-0 inline-block font-thin align-middle text-sm text-gray-400">Reads: {{readsInThousands}}k</div>
         <div class="flow">
