@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6 sm:-mt-20 md:-mt-24 sm:px-10 lg:px-14 border-b border-gray-200 border-solid">
+  <div class="px-6 pb-10 sm:-mt-20 md:-mt-24 sm:px-10 lg:px-14 border-b border-gray-200 border-solid">
     <div class="px-4 hidden lg:block">
       <VueSlickCarousel :arrows="true" :dots="false" :slidesToShow="3">
         <div  v-for="book in suggested" :key="book.title">

@@ -1,5 +1,5 @@
 <template>
-  <div class="px-8 md:px-20 pt-16">
+  <div class="md:pr-8">
     <div class="flex justify-between">
       <div class="text-lg font-medium tracking-wide text-blue-800 opacity-70">Popular books</div>
       <div class="text-lg font-medium tracking-wide text-blue-800 opacity-70">[Filter]</div>
