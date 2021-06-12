@@ -8,7 +8,7 @@
         </div>
         <div class="col-start-6 m-auto hidden md:flex">
           <!-- bg-gradient-to-tr from-blue-400 to-purple-600 -->
-          <button class="h-9 px-6 pb-1 rounded-full bg-gradient-to-tr from-red-400 to-purple-400 text-white
+          <button @click="doSearch" class="h-9 px-6 pb-1 rounded-full bg-gradient-to-tr from-red-400 to-purple-400 text-white
           text-center shadow-md focus:outline-none hover:text-gray-900">search</button>
         </div>
       </div>
@@ -16,7 +16,7 @@
 
     <div class="text-center mx-auto pt-6 md:hidden text-xl">
           <!-- bg-gradient-to-tr from-blue-400 to-purple-600 -->
-      <button class="h-10 px-8 pb-1 rounded-full bg-gradient-to-tr from-red-400 to-purple-400 text-gray-50
+      <button @click="doSearch" class="h-10 px-8 pb-1 rounded-full bg-gradient-to-tr from-red-400 to-purple-400 text-gray-50
         text-center shadow-md focus:outline-none">search</button>
     </div>
   </div>
@@ -28,6 +28,13 @@ export default {
   data() {
     return {
       query: ''
+    }
+  },
+  methods: {
+    doSearch () {
+      if (this.$route.path === '/') {
+        this.$router.push('/search')
+      }
     }
   }
 };

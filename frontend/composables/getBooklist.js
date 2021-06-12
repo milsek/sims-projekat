@@ -1,31 +1,14 @@
-<template>
-  <div class="md:pr-8">
-    <div class="flex justify-between">
-      <div class="text-lg font-medium tracking-wide text-blue-800 opacity-70">Popular books</div>
-      <div class="text-lg font-medium tracking-wide text-blue-800 opacity-70">[Filter]</div>
-    </div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 pt-10 -mx-2 lg:-mx-3">
-      <div v-for="book in suggested" :key="book.id">
-        <BookCardSimple :data="book" />
-      </div>
-    </div>
-  </div>
-</template>
 
-<script>
-import BookCardSimple from "./BookCardSimple.vue"
-export default {
-  components: {BookCardSimple},
-  data () {
-    return {
-      suggested: [
+
+const getBooklist = (start, finish) => {
+    let booklist = [
         {title: "Aion",
         author: "C.G. Jung",
         reads: 267400,
         rating: 4.7,
         image: "book-placeholder3.png",
         id: 1,
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempor metus ex, sollicitudin sagittis nisi posuere nec. Phasellus pharetra, sapien vitae lacinia porta, lacus sem egestas sapien, non tempor odio orci at elit. "},
+        description: "Aion is one of a number of major works that Jung wrote during his seventies that were concerned with the relations between psychology, alchemy and religion."},
         {title: "Thus Spoke Zarathustra",
         author: "Friedrich Nietzsche",
         reads: 352630,
@@ -39,7 +22,7 @@ export default {
         rating: 4.6,
         image: "book-placeholder3.png",
         id: 3,
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempor metus ex, sollicitudin sagittis nisi posuere nec. Phasellus pharetra, sapien vitae lacinia porta, lacus sem egestas sapien, non tempor odio orci at elit."},
+        description: "All human behaviors and traits, according to this 1923 study, derive from the complicated interactions of three elements of the psyche: the id, the ego, and the superego. The root of Sigmund Freud's approach to psychiatric treatment resides in bringing the id, the hidden source of human passion, to the surface."},
         {title: "Book Title 4",
         author: "Author Name",
         reads: 34000,
@@ -68,18 +51,11 @@ export default {
         image: "book-placeholder3.png",
         id: 7,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempor metus ex, sollicitudin sagittis nisi posuere nec. Phasellus pharetra, sapien vitae lacinia porta, lacus sem egestas sapien, non tempor odio orci at elit."},
-        {title: "Book Title 8",
-        author: "Author Name",
-        reads: 12623,
-        rating: 4.3,
-        image: "book-placeholder3.png",
-        id: 8,
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempor metus ex, sollicitudin sagittis nisi posuere nec. Phasellus pharetra, sapien vitae lacinia porta, lacus sem egestas sapien, non tempor odio orci at elit."},
-      ],
+      ]
+    if (booklist) {
+        return booklist.slice(start, finish)
     }
+    return []
   }
-};
-</script>
 
-<style>
-</style>
+  export default getBooklist

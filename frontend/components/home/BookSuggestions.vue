@@ -120,7 +120,7 @@ export default {
         author: "Author Name",
         reads: 17000,
         rating: 4.3,
-        image: "book-placeholder.png",
+        image: "book-placeholder2.png",
         id: 7,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempor metus ex, sollicitudin sagittis nisi posuere nec. Phasellus pharetra, sapien vitae lacinia porta, lacus sem egestas sapien, non tempor odio orci at elit."},
       ],

@@ -22,10 +22,10 @@ export default {
     return {
       popularGenres: [
         {name: 'Crime', id: 1},
-        {name: 'Thriller', id: 1},
-        {name: 'Cooking', id: 1},
-        {name: 'Kids', id: 1},
-        {name: 'Psychology', id: 1},
+        {name: 'Thriller', id: 2},
+        {name: 'Cooking', id: 3},
+        {name: 'Kids', id: 4},
+        {name: 'Psychology', id: 5},
       ]
     };
   },
