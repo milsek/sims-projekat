@@ -14,7 +14,7 @@ public class TestController {
     @Autowired
     private LibraryService libraryService;
 
-    @RequestMapping(path = "/hello")
+    @GetMapping(path = "/hello")
     @ResponseBody
     public String hello() {
         return "Hello:)";
