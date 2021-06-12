@@ -10,7 +10,7 @@
       </div>
       <div class="inline-block font-display pl-4 md:pl-6 w-5/6">
         <div class="flex justify-between text-base md:text-xl font-bold">
-          <NuxtLink :to="{ name: 'index', params: {id: data.id}}" class="hover:text-blue-800 hover:opacity-80 w-auto">
+          <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}" class="hover:text-blue-800 hover:opacity-80 w-auto">
               {{ data.title }}
           </NuxtLink>
         <div class="hidden sm:block -mt-1">
