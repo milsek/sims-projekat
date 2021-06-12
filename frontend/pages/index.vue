@@ -1,11 +1,11 @@
 <template>
 <!-- from-blue-100 to-blue-200  -->
 <!-- from-red-50 to-red-100 -->
-  <div class="bg-gradient-to-tr from-blue-100 to-blue-200 w-full">
+  <div class="bg-gradient-to-bl from-blue-100 to-blue-300 w-full">
     <div class="pt-20">
       <SearchBar />
     </div>
-    <div class="pt-20 pb-20">
+    <div class="pt-44 pb-20">
       <BookContent />
     </div>
   </div>

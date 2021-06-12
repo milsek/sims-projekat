@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white pt-10 w-11/12 lg:w-5/6 mx-auto">
+  <div class="bg-white pt-10 w-11/12 lg:w-5/6 mx-auto shadow-lg">
     <!-- suggestions -->
     <div>
       <BookSuggestions />
