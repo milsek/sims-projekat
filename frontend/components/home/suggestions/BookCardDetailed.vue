@@ -2,7 +2,9 @@
   <div class="p-4 text-center sm:text-left">
     <div class="block sm:grid grid-cols-12">
       <div class="col-span-6 xl:col-span-5 p-2 md:h-full">
-        <img :src="require(`@/assets/images/${data.image}`)" alt="" class="rounded-md mx-auto shadow-md" draggable="false">
+        <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}">
+          <img :src="require(`@/assets/images/${data.image}`)" alt="" class="rounded-md mx-auto shadow-md" draggable="false">
+        </NuxtLink>
       </div>
       <div class="mt-8 md:mt-12 lg:mt-12 xl:mt-14 sm:col-start-7 xl:col-start-6 col-span-6 xl:col-span-7 w-full p-2 sm:h-40">
         <!-- text-gray-700 -->

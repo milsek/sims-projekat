@@ -1,7 +1,9 @@
 <template>
   <div class="block mx-2 lg:mx-3 mb-6">
     <div>
-      <img :src="require(`@/assets/images/${data.image}`)" alt="" class="rounded-md mx-auto shadow-lg" draggable="false">
+      <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}">
+        <img :src="require(`@/assets/images/${data.image}`)" alt="" class="rounded-md mx-auto shadow-lg" draggable="false">
+      </NuxtLink>
     </div>
     <div class="py-4">
       <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}"

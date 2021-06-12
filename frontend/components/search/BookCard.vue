@@ -2,11 +2,13 @@
   <div class="mx-auto">
     <div class="flex pb-10 mx-auto">
       <div class="inline-block w-40 sm:w-36 md:w-32">
+        <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}">
           <img :src="require(`@/assets/images/${data.image}`)"  alt="" class="rounded-lg object-cover w-full">
-          <div class="block sm:hidden pt-2">
-            <button class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-gradient-to-tr from-red-400 to-purple-400 text-white
-            text-center text-lg md:text-base lg:text-lg shadow-md focus:outline-none hover:text-gray-900 rounded-lg">reservation</button>
-          </div>
+        </NuxtLink>
+        <div class="block sm:hidden pt-2">
+          <button class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-gradient-to-tr from-red-400 to-purple-400 text-white
+          text-center text-lg md:text-base lg:text-lg shadow-md focus:outline-none hover:text-gray-900 rounded-lg">reservation</button>
+        </div>
       </div>
       <div class="inline-block font-display pl-4 md:pl-6 w-5/6">
         <div class="flex justify-between text-base md:text-xl font-bold">
