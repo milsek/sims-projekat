@@ -19,10 +19,10 @@ export default {
   data () {
     return {
       suggested: [
-        {title: "Book Title 1 aaaaa",
-        author: "Author Name",
-        reads: 12000,
-        rating: 4.5,
+        {title: "Aion",
+        author: "C.G. Jung",
+        reads: 267400,
+        rating: 4.7,
         image: "book-placeholder2.png",
         id: 1,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempor metus ex, sollicitudin sagittis nisi posuere nec. Phasellus pharetra, sapien vitae lacinia porta, lacus sem egestas sapien, non tempor odio orci at elit. "},
@@ -33,9 +33,9 @@ export default {
         image: "book-placeholder2.png",
         id: 2,
         description: "Nietzsche was one of the most revolutionary and subversive thinkers in Western philosophy, and Thus Spoke Zarathustra remains his most famous and influential work. It describes how the ancient Persian prophet Zarathustra descends from his solitude in the mountains to tell the world that God is dead and that the Superman, the human embodiment of divinity, is his successor."},
-        {title: "Book Title 3",
-        author: "Author Name",
-        reads: 21000,
+        {title: "The Ego and the Id",
+        author: "Sigmund Freud",
+        reads: 268000,
         rating: 4.6,
         image: "book-placeholder2.png",
         id: 3,
