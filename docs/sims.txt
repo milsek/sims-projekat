@@ -1,0 +1,74 @@
+Godisnja clanarina
+Knjigu biblioteci su na policama poredjane su po PRAVILIMA nekim
+Broj slobodnih primeraka u biblioteci
+Rezervacija knjiga koja vazi 3 dana
+Clanovi
+
+Bibliotekari i clanovi koriste
+
+Clan moze da rezervise i da vidi sta je dostupno, svoju istoriju
+Administrator je jedan od bibliotekara sa najvecim stepenom prava
+Za clana -> ime prezime datum rodjenja mozda jmbg mail
+Tipovi korisnika imaju razlicit tretman ->
+Biblioteka moze da pravi clanove
+pocasni i penzioneri najcesce ne placaju
+Admin azurira cenovnik
+Godisnja clanarina najcesce -> 12 meseci
+Maksimalan broj knjiga
+Djaci 3
+Zaposleni 5
+Penzioneri 3 
+Pocasni clanovi 10
+Deca 3
+
+Slikovnice i klasicne knjige
+Za klasicne se vodi evidencija o stanju
+Slikovnice SAMO broj je bitan
+Izdanja koja se ne smeju iznositi iz biblioteke
+Broj dana je 15 za djake studente zaposlene
+Za penzionere 21 pocasni 30
+
+Mogucnost produzavanja JEDNOM online
+Tokom tih 15 dana zatrazim produzenje na jos 15 dana NIKO NE ODOBRAVA
+Upozorenje preko mejla ukoliko se ne vrati knjiga
+
+Klasifikacija po formatu (VISINA knjige)
+Klasifikacija po sadrzaju (beletristika, naucna literatura, referntna)
+Klasifikacija po zanru
+Naslov, autori, godina, izdanja, urednik, prevodilac, ilustrator
+
+Klasifikacija bibliotekara da li rade na pozajmnom odeljenju ili na obradi
+tj katalogizaciji jedna moze imati vise uloga
+Neegde je moguce vezati bibliotekara za odeljenje
+Bibliotekar obradjivac unosi podatke o novim knjigama
+Tagovanje knjiga
+MOZE se razmisljati o tome da se clanarina uplacuje online (rln ne)
+
+
+Moze menjanje kategorija korisnika ez
+Moze deaktivacija clanova ez
+AKO neko ne vrati knjigu saljemo mejl, 7 nakon isteka salje se opomena
+Djak si dok si djak i nema provere
+
+Bilo bi lepo da postoji rejting sistem gde je korisnik uzeo i vratio
+
+Izvestaj o citanosti, nabavci, moze za od datuma do datuma ili godisnje
+Izvestaj o radu u smenama
+
+Zahtev za rezervaciju je odobren onog trenutka kada bibliotekar dodje i uzme u ruke knjigu
+i kaze e sad je rezervisano i smesti je na policu
+Moze i da se ne vrati u fond nego na policu pa kao rezervisano
+Rezervacija se prenosi na sledeceg clana inace se vraca u fond
+Polica ima 3 nivoa, 3 dana za rezervacije
+AKO je bar jedan primerak ZAUZET ONDA se moze rezervisati i DOBICE ono sto BIVA VRACENO
+
+Knjiga moze imati status ostecena ili izgubljena
+Moze rezervacija da se ponisti
+IZDANJE i KNJIGA se razlikuju 
+Razlikujemo knjige po izdavacima isto
+Brakodovi identifikuju clanove ili primerke
+
+
+
+
+
