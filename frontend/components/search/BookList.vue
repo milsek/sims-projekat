@@ -18,7 +18,7 @@
 <script>
 import BookCard from "./BookCard"
 import Pagination from "./Pagination"
-import getBooklist from "~/composables/getBooklist"
+import getBooklist from "~/composables/getTopTenBooks"
 export default {
   components: { BookCard, Pagination },
   data() {

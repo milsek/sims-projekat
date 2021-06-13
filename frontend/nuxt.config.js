@@ -67,7 +67,7 @@ export default {
   },
 
   proxy: {
-    '/api': { target: 'http://localhost:8081/', changeOrigin: true }
+    '/api': { target: 'http://localhost:8080/', changeOrigin: true }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

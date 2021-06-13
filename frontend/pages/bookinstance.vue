@@ -16,7 +16,7 @@
 
 <script>
 import BookContent from "~/components/book/BookContent.vue"
-import getBookInstance from "~/composables/getBookInstance"
+import getBookInstance from "~/composables/getTopReads"
 export default {
   components: { BookContent },
   data () {

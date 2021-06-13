@@ -14,6 +14,8 @@
 <script>
 import SearchBar from "../components/home/SearchBar"
 import HomeContent from "../components/home/HomeContent"
+import getTopReads from "~/composables/getTopReads";
+import getTopTenBooks from "~/composables/getTopTenBooks";
 export default {
   components: { SearchBar, HomeContent }
 };
@@ -21,6 +23,8 @@ export default {
 // import axios from 'axios';
 // axios.get("/api/hello")
 //   .then(response => console.log(response.data))
+
+getTopReads();
 </script>
 
 <style>
