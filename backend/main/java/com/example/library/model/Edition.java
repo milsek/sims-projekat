@@ -1,10 +1,15 @@
 package com.example.library.model;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,
+        property = "@id")
 public class Edition extends BookType {
 
     @Column
@@ -69,4 +74,131 @@ public class Edition extends BookType {
     @ManyToOne
     private Author author;
 
+    public boolean isTakeOut() {
+        return takeOut;
+    }
+
+    public void setTakeOut(boolean takeOut) {
+        this.takeOut = takeOut;
+    }
+
+    public int getReads() {
+        return reads;
+    }
+
+    public void setReads(int reads) {
+        this.reads = reads;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public String getDimensions() {
+        return dimensions;
+    }
+
+    public void setDimensions(String dimensions) {
+        this.dimensions = dimensions;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public LocalDate getYear() {
+        return year;
+    }
+
+    public void setYear(LocalDate year) {
+        this.year = year;
+    }
+
+    public String getImageSmall() {
+        return imageSmall;
+    }
+
+    public void setImageSmall(String imageSmall) {
+        this.imageSmall = imageSmall;
+    }
+
+    public String getImageLarge() {
+        return imageLarge;
+    }
+
+    public void setImageLarge(String imageLarge) {
+        this.imageLarge = imageLarge;
+    }
+
+    public Set<Content> getContents() {
+        return contents;
+    }
+
+    public void setContents(Set<Content> contents) {
+        this.contents = contents;
+    }
+
+    @JsonIgnore
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    @JsonProperty("tags")
+    public Set<Long> getTagsId() {
+        Set<Long> set = new HashSet<>();
+        tags.stream().map(Tag::getId).forEachOrdered(set::add);
+        return set;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public Set<Contributor> getContributors() {
+        return contributors;
+    }
+
+    public void setContributors(Set<Contributor> contributors) {
+        this.contributors = contributors;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
 }
