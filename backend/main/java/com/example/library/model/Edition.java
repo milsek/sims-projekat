@@ -20,10 +20,22 @@ public class Edition extends BookType {
     private String dimensions;
 
     @Column
+    private int pageCount;
+
+    @Column
+    private String description;
+
+    @Column
     private String language;
 
     @Column
     private LocalDate year;
+
+    @Column
+    private String imageSmall;
+
+    @Column
+    private String imageLarge;
 
     @ManyToMany
     @JoinTable(

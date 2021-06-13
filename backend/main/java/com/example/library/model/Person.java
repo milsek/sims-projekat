@@ -11,7 +11,4 @@ public class Person {
 
     @Column
     protected String name;
-
-    @Column
-    protected String surname;
 }
