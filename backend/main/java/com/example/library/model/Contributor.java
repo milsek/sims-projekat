@@ -2,6 +2,7 @@ package com.example.library.model;
 
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.Set;
@@ -11,6 +12,6 @@ public class Contributor extends Person {
     @ManyToOne
     private ContributorType type;
 
-    @OneToMany(mappedBy = "contributor")
+    @ManyToMany(mappedBy = "contributors")
     private Set<Edition> editionSet;
 }
