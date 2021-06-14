@@ -11,7 +11,7 @@
             <div class="text-4xl text-gray-700 font-medium">{{data.title}}</div>
             <div class="text-xl text-gray-700 font-thin">by {{data.author}}</div>
             <div class="text-sm text-gray-400 font-thin">FTN SKRIPTARNICA</div>
-            <div class="pb-0 inline-block font-thin align-middle text-sm text-gray-400 pt-2">Reads: {{readsInThousands}}k</div>
+            <div class="pb-0 inline-block font-thin align-middle text-sm text-gray-400 pt-2">Reads: {{readsInThousands}}</div>
             <div class="flow">
               <img :src="require(`@/assets/icons/star.svg`)" alt="" class="inline-block align-middle w-4 h-4 my-0" draggable="false">
               <p class="inline-block align-middle text-gray-500 my-0">{{data.rating}}</p>
@@ -63,7 +63,9 @@ export default {
   props: ["data"],
   computed: {
     readsInThousands () {
-      return Math.round(this.data.reads/1000)
+      if (this.data.reads > 1000) {
+        return Math.round(this.data.reads/1000) + "k"
+      } else return this.data.reads
     }
   }
 };

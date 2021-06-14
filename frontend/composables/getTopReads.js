@@ -1,9 +1,13 @@
+// not used lmao
+
 import axios from 'axios';
 
-export default async function getTopReads() {
+const getTopReads = () => {
   axios.get("/api/topreads")
     .then(response => {
       console.log(response.data)
       return response.data;
     });
 }
+
+export default getTopReads

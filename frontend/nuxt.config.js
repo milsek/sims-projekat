@@ -38,13 +38,14 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/router',
-    ['@nuxtjs/proxy', { ws: false }],
+    ['@nuxtjs/proxy', { ws: false }]
   ],
 
   generate: {
     routes: [
       '/'
-    ]
+    ],
+    interval: 1500
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
