@@ -34,5 +34,11 @@ public class EditionController {
         return editionService.getAll();
     }
 
+    @GetMapping(path = "/edition/{id}")
+    @ResponseBody
+    public Edition getEdition(@PathVariable("id") long id) {
+        return editionService.getEdition(id);
+    }
+
 
 }

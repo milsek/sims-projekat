@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EditionService {
@@ -23,5 +24,10 @@ public class EditionService {
 
     public List<Edition> getAll() {
         return editionRepository.findAll();
+    }
+
+    public Edition getEdition(long id) {
+        Optional<Edition> result = editionRepository.findById(id);
+        return result.orElse(null);
     }
 }
