@@ -1,6 +1,10 @@
 package com.example.library.model;
 
 import com.fasterxml.jackson.annotation.*;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,6 +14,7 @@ import java.util.Set;
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,
         property = "@id")
+@Indexed
 public class Edition extends BookType {
 
     @Column
@@ -28,6 +33,7 @@ public class Edition extends BookType {
     private int pageCount;
 
     @Column
+    @Field
     private String description;
 
     @Column
@@ -48,6 +54,7 @@ public class Edition extends BookType {
             joinColumns = @JoinColumn(name = "edition_id"),
             inverseJoinColumns = @JoinColumn(name = "content_id")
     )
+    @IndexedEmbedded(depth = 1)
     private Set<Content> contents;
 
     @ManyToMany
@@ -56,11 +63,13 @@ public class Edition extends BookType {
             joinColumns = @JoinColumn(name = "edition_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
+    @IndexedEmbedded(depth = 1)
     private Set<Tag> tags;
 
 
     @ManyToOne
     @JoinColumn(name = "publisher_id", nullable = false)
+    @IndexedEmbedded(depth = 1)
     private Publisher publisher;
 
     @ManyToMany
@@ -69,9 +78,11 @@ public class Edition extends BookType {
             joinColumns = @JoinColumn(name = "edition_id"),
             inverseJoinColumns = @JoinColumn(name = "contributor_id")
     )
+    @IndexedEmbedded(depth = 1)
     private Set<Contributor> contributors;
 
     @ManyToOne
+    @IndexedEmbedded(depth = 1)
     private Author author;
 
     public boolean isTakeOut() {

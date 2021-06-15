@@ -1,9 +1,15 @@
 package com.example.library.model;
 
+
+
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@Indexed
 public abstract class BookType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,6 +19,7 @@ public abstract class BookType {
     private int availableCopies;
 
     @Column
+    @Field
     private String title;
 
     public long getId() {

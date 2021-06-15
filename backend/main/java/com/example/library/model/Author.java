@@ -2,6 +2,7 @@ package com.example.library.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -9,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Indexed
 public class Author extends Person {
     @OneToMany(mappedBy = "author")
     private Set<Edition> editionSet;

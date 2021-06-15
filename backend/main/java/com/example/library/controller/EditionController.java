@@ -40,5 +40,17 @@ public class EditionController {
         return editionService.getEdition(id);
     }
 
+    @GetMapping(path = "fullSearch")
+    @ResponseBody
+    public List<Edition> searchEditions(@RequestParam(name = "text") String text,
+                                        @RequestParam(name = "page") int page,
+                                        @RequestParam(name = "amount") int amount)
+    {
+        System.out.println(text);
+        System.out.println(page);
+        System.out.println(amount);
+       return editionService.searchEditions(text, page, amount);
+    }
+
 
 }

@@ -2,6 +2,8 @@ package com.example.library.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,12 +11,14 @@ import java.util.Set;
 
 @Entity
 @Table
+@Indexed
 public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column
+    @Field
     private String name;
 
     @OneToMany(mappedBy = "publisher")

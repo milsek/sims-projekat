@@ -2,6 +2,8 @@ package com.example.library.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,6 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table
+@Indexed
 public class Content {
 
     @Id
@@ -16,6 +19,7 @@ public class Content {
     private long id;
     
     @Column
+    @Field
     private String name;
 
     @ManyToMany(mappedBy = "contents")
