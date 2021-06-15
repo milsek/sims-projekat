@@ -4,12 +4,15 @@
       <div class="text-lg font-medium tracking-wide text-blue-800 opacity-70">Popular books</div>
       <div class="text-lg font-medium tracking-wide text-blue-800 opacity-70">[Filter]</div>
     </div>
-    <div id="grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 pt-10 -mx-2 lg:-mx-3" @change="booksToShow">
-      <div v-for="book in booksToShow" :key="book.id">
-        <BookCardSimple :data="book" />
-      </div>
-    </div>
     
+      
+    <transition-group id="grid" name="slide" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 
+      pt-10 -mx-2 lg:-mx-3" @change="booksToShow">
+      <div v-for="book in booksToShow" :key="book.id">
+          <BookCardSimple :data="book" />
+      </div>
+    </transition-group>
+
     <div class="text-center mx-auto -mt-1">
       <button @click="showMore = !showMore" class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 text-gray-400
       text-center text-lg md:text-base lg:text-lg focus:outline-none rounded-lg
@@ -70,4 +73,33 @@ export default {
 </script>
 
 <style>
+.slide-enter-active {
+  animation: slide-in .4s ease-out forwards;
+}
+
+.slide-leave-active {
+  animation: slide-out .4s ease-out forwards;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(50px);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+}
 </style>
