@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="h-screen flex flex-col">
     <Navbar class="shadow-md z-50"/>
-    <Nuxt />
+    <Nuxt class=""/>
   </div>
 </template>
 

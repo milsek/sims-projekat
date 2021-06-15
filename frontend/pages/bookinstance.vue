@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full py-16" :class="[dataLoaded && isMounted ? 'bg-gradient-to-bl from-blue-100 to-blue-300 min-h-screen' : 'bg-white']">
+  <div class="w-full py-16 flex flex-col flex-1 m-0" :class="[dataLoaded && isMounted ? 'bg-gradient-to-bl from-blue-100 to-blue-300' : 'bg-white']">
     <div v-if="dataLoaded" class="">
       <div v-if="isMounted">
         <BookContent :data="data"/>

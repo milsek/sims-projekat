@@ -18,7 +18,6 @@
 <script>
 import BookCard from "./BookCard"
 import Pagination from "./Pagination"
-import getBooklist from "~/composables/getTopTenBooks"
 export default {
   components: { BookCard, Pagination },
   data() {
@@ -40,10 +39,10 @@ export default {
   },
   methods: {
     getBooks() {
-      const bl = getBooklist(this.pageIndex * this.resultsPerPage, (this.pageIndex + 1) * this.resultsPerPage)
-      this.totalBooks = 8
-      this.totalPages = Math.ceil(this.totalBooks/this.resultsPerPage)
-      this.booklist = bl
+      // const bl = getBooklist(this.pageIndex * this.resultsPerPage, (this.pageIndex + 1) * this.resultsPerPage)
+      // this.totalBooks = 8
+      // this.totalPages = Math.ceil(this.totalBooks/this.resultsPerPage)
+      // this.booklist = bl
     },
     showMore(page) {
       this.pageIndex = page - 1

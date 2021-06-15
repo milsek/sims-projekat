@@ -1,7 +1,8 @@
 <template>
 <!-- from-blue-100 to-blue-200  -->
 <!-- from-red-50 to-red-100 -->
-  <div class="bg-gradient-to-bl from-blue-100 to-blue-300 w-full">
+<!-- from-red-200 to-purple-300 -->
+  <div class="bg-gradient-to-bl from-blue-100 to-blue-200 w-full">
     <div class="pt-20">
       <SearchBar />
     </div>
@@ -14,8 +15,6 @@
 <script>
 import SearchBar from "../components/home/SearchBar"
 import HomeContent from "../components/home/HomeContent"
-import getTopReads from "~/composables/getTopReads";
-import getTopTenBooks from "~/composables/getTopTenBooks";
 export default {
   components: { SearchBar, HomeContent }
 };
@@ -24,7 +23,6 @@ export default {
 // axios.get("/api/hello")
 //   .then(response => console.log(response.data))
 
-getTopReads();
 </script>
 
 <style>
