@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     getBooks() {
-      axios.get("/api/topreads")
+      axios.get("/api/topten")
     .then(response => {
       this.suggested = response.data;
     });
