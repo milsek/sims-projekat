@@ -5,18 +5,21 @@ import requests
 class EDITION:
     instances = []
 
-    def __init__(self, info):
+    def __init__(self, info, tag_names):
         self.valid = False
 
         self.id = len(EDITION.instances)
         self.available_copies = random.randint(5, 60)
-        self.title = info.get('title').replace("'", "''")
+        self.title = info.get('title')
+
+        if not info.get('authors'):
+            return
 
         author_name = info.get('authors')[0]
         publisher_name = info.get('publisher')
 
         self.contributor_names = info.get('authors')[1:]
-        self.tag_names = ['tagovi', 'idu', 'ovde']
+        self.tag_names = tag_names
         self.content_names = info.get('categories')
 
         self.description = info.get('description')
@@ -34,7 +37,7 @@ class EDITION:
         if len(requests.get(self.image_large).content) in [9103, 316]:
             return
         if self.description:
-            self.description = self.description.replace("'", "''")
+            self.description = self.description
         else:
             return
         if not self.content_names:
@@ -57,10 +60,11 @@ class EDITION:
 
         self.valid = True
         EDITION.instances.append(self)
+        print(f"[+] Faund {len(EDITION.instances)} buks")
 
     def toSql(self):
         sql = [f"INSERT INTO BOOK_TYPE VALUES({self.id}, {self.available_copies}, '{self.title}');",
-               f"INSERT INTO EDITION VALUES('{self.description}', '{self.dimensions}', '{self.image_large}', '{self.image_small}', "
+               f"INSERT INTO EDITION VALUES('{escape(self.description)}', '{self.dimensions}', '{self.image_large}', '{self.image_small}', "
                f"'{self.language}', {self.page_count}, {self.rating}, {self.reads}, {self.take_out}, PARSEDATETIME('{self.year}', 'yyyy'), "
                f"{self.id}, {self.author_id}, {self.publisher_id});"]
 
@@ -115,7 +119,7 @@ class PERSON:
             return new_person
 
     def toSql(self):
-        sql = [f"INSERT INTO PERSON VALUES({self.id}, '{self.name}');"]
+        sql = [f"INSERT INTO PERSON VALUES({self.id}, '{escape(self.name)}');"]
 
         if PERSON.contributor_map.get(self.name):
             sql.append(f"INSERT INTO CONTRIBUTORS VALUES({self.id}, 0);")
@@ -144,7 +148,7 @@ class PUBLISHER:
             return PUBLISHER(name)
 
     def toSql(self):
-        return f"INSERT INTO PUBLISHER VALUES({self.id}, {self.name});"
+        return f"INSERT INTO PUBLISHER VALUES({self.id}, '{escape(self.name)}');"
 
 
 class TAG:
@@ -166,7 +170,7 @@ class TAG:
             return TAG(name)
 
     def toSql(self):
-        return f"INSERT INTO TAG VALUES({self.id}, {self.name});"
+        return f"INSERT INTO TAG VALUES({self.id}, '{escape(self.name)}');"
 
 
 class CONTENT:
@@ -188,4 +192,8 @@ class CONTENT:
             return CONTENT(name)
 
     def toSql(self):
-        return f"INSERT INTO CONTENT VALUES({self.id}, {self.name});"
+        return f"INSERT INTO CONTENT VALUES({self.id}, '{escape(self.name)}');"
+
+
+def escape(string):
+    return string.replace("'", "''")

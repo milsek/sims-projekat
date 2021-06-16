@@ -17,22 +17,32 @@ def send_request(params):
     return response.json()['items']
 
 
-params = {'q': 'cryptography'}
-items = send_request(params)
-for item in items:
-    info = item['volumeInfo']
-    tables.EDITION(info)
+def run_api(params, tags):
+    items = send_request(params)
+    for item in items:
+        info = item['volumeInfo']
+        tables.EDITION(info, tags)
 
-print(len(tables.TAG.instances))
+
+run_api({'q': 'cryptography'}, ['cryptography', 'security', 'computers', 'communications'])
+run_api({'q': 'python'}, ['programming', 'python', 'computers'])
+run_api({'q': 'c++'}, ['programming', 'c++', 'computers'])
+run_api({'q': 'security'}, ['programming', 'hacking', 'security', 'cryptography', 'computers'])
+run_api({'q': 'java'}, ['programming', 'java', 'computers'])
+run_api({'q': 'ai'}, ['machine-learning', 'ai', 'computers'])
+run_api({'q': 'django'}, ['programming', 'web-development', 'python'])
+
+file = open('data.sql', 'w')
 
 for tag in tables.TAG.instances:
-    print(tag.toSql())
+    file.write(tag.toSql() + "\n")
 for content in tables.CONTENT.instances:
-    print(content.toSql())
+    file.write(content.toSql() + "\n")
 for person in tables.PERSON.instances:
-    print("\n".join(person.toSql()))
+    file.write("\n".join(person.toSql()))
 for publisher in tables.PUBLISHER.instances:
-    print(publisher.toSql())
+    file.write(publisher.toSql() + "\n")
 for edition in tables.EDITION.instances:
-    print("\n".join(edition.toSql()))
+    file.write("\n".join(edition.toSql()))
 
+file.close()
