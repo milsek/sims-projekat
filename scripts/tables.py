@@ -6,7 +6,7 @@ class EDITION:
     instances = []
 
     def __init__(self, info):
-        valid = False
+        self.valid = False
 
         self.id = len(EDITION.instances)
         self.available_copies = random.randint(5, 60)
@@ -48,10 +48,19 @@ class EDITION:
 
         self.author_id = PERSON.author_with_name(author_name).id
         self.publisher_id = PUBLISHER.with_name(publisher_name).id
+        for contrib_name in self.contributor_names:
+            PERSON.contributor_with_name(contrib_name)
+        for tag_name in self.tag_names:
+            TAG.with_name(tag_name)
+        for content_name in self.content_names:
+            CONTENT.with_name(content_name)
+
+        self.valid = True
+        EDITION.instances.append(self)
 
     def toSql(self):
-        sql = [f"INSERT INTO BOOK_TYPE VALUES ({self.id}, {self.available_copies}, '{self.title}');",
-               f"INSERT INTO EDITION VALUES ('{self.description}', '{self.dimensions}', '{self.image_large}', '{self.image_small}', "
+        sql = [f"INSERT INTO BOOK_TYPE VALUES({self.id}, {self.available_copies}, '{self.title}');",
+               f"INSERT INTO EDITION VALUES('{self.description}', '{self.dimensions}', '{self.image_large}', '{self.image_small}', "
                f"'{self.language}', {self.page_count}, {self.rating}, {self.reads}, {self.take_out}, PARSEDATETIME('{self.year}', 'yyyy'), "
                f"{self.id}, {self.author_id}, {self.publisher_id});"]
 
@@ -62,8 +71,8 @@ class EDITION:
             tag = TAG.with_name(tag_name)
             sql.append(f"INSERT INTO EDITION_TAGS VALUES({self.id}, {tag.id});")
         for content_name in self.content_names:
-            content_id = CONTENT.with_name(content_name).id
-            sql.append(f"INSERT INTO EDITION_CONTENT VALUES({self.id}, {content_id});")
+            content = CONTENT.with_name(content_name)
+            sql.append(f"INSERT INTO EDITION_CONTENT VALUES({self.id}, {content.id});")
 
         return sql
 
@@ -90,6 +99,7 @@ class PERSON:
         else:
             new_person = PERSON(name)
             PERSON.author_map[name] = new_person
+            return new_person
 
     @staticmethod
     def contributor_with_name(name):
@@ -102,6 +112,17 @@ class PERSON:
         else:
             new_person = PERSON(name)
             PERSON.contributor_map[name] = new_person
+            return new_person
+
+    def toSql(self):
+        sql = [f"INSERT INTO PERSON VALUES({self.id}, '{self.name}');"]
+
+        if PERSON.contributor_map.get(self.name):
+            sql.append(f"INSERT INTO CONTRIBUTORS VALUES({self.id}, 0);")
+        if PERSON.author_map.get(self.name):
+            sql.append(f"INSERT INTO AUTHOR VALUES({self.id});")
+
+        return sql
 
 
 class PUBLISHER:
@@ -122,6 +143,9 @@ class PUBLISHER:
         else:
             return PUBLISHER(name)
 
+    def toSql(self):
+        return f"INSERT INTO PUBLISHER VALUES({self.id}, {self.name});"
+
 
 class TAG:
     instances = []
@@ -141,6 +165,9 @@ class TAG:
         else:
             return TAG(name)
 
+    def toSql(self):
+        return f"INSERT INTO TAG VALUES({self.id}, {self.name});"
+
 
 class CONTENT:
     instances = []
@@ -159,3 +186,6 @@ class CONTENT:
             return CONTENT.map.get(name)
         else:
             return CONTENT(name)
+
+    def toSql(self):
+        return f"INSERT INTO CONTENT VALUES({self.id}, {self.name});"

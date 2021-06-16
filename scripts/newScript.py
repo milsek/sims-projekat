@@ -1,3 +1,4 @@
+import tables
 import requests
 
 req = requests.session()
@@ -17,4 +18,21 @@ def send_request(params):
 
 
 params = {'q': 'cryptography'}
-print(send_request(params))
+items = send_request(params)
+for item in items:
+    info = item['volumeInfo']
+    tables.EDITION(info)
+
+print(len(tables.TAG.instances))
+
+for tag in tables.TAG.instances:
+    print(tag.toSql())
+for content in tables.CONTENT.instances:
+    print(content.toSql())
+for person in tables.PERSON.instances:
+    print("\n".join(person.toSql()))
+for publisher in tables.PUBLISHER.instances:
+    print(publisher.toSql())
+for edition in tables.EDITION.instances:
+    print("\n".join(edition.toSql()))
+
