@@ -8,9 +8,17 @@ class EDITION:
     def __init__(self, info):
         valid = False
 
+        self.id = len(EDITION.instances)
+        self.available_copies = random.randint(5, 60)
+        self.title = info.get('title').replace("'","''")
+
         author_name = info.get('authors')[0]
-        contributor_names = info.get('authors')[1:]
         publisher_name = info.get('publisher')
+
+        contributor_names = info.get('authors')[1:]
+        tag_names = ['tagovi', 'idu', 'ovde']
+        content_names = info.get('categories')
+
 
         self.description = info.get('description')
         self.dimensions = random.randint(18, 22)
@@ -34,10 +42,73 @@ class EDITION:
             self.year = '2021'
         if self.description:
             self.description = self.description.replace("'", "''")
+        else:
+            return
 
-        # TODO: Book type class, author id, publisher id, content, contributors, tags
+        self.author_id = PERSON.author_with_name(author_name).id
+        self.publisher_id = PUBLISHER.with_name(publisher_name).id
+        # TODO: Book type class, publisher id, content, contributors, tags
 
     def toSql(self):
-        return None
+        sql = f"INSERT INTO BOOK_TYPE VALUES ({self.id}, {self.available_copies}, '{self.title}');\n" \
+              f"INSERT INTO EDITION VALUES ('{self.description}', '{self.dimensions}', '{self.image_large}', '{self.image_small}', " \ 
+              f"'{self.language}', {self.page_count}, {self.rating}, {self.reads}, {self.take_out}, PARSEDATETIME('{self.year}', 'yyyy'), " \
+              f"{self.id}, {self.author_id}, {self.publisher_id});\n"
 
 
+        return
+
+
+class PERSON:
+    instances = []
+    author_map = {}
+    contributor_map = {}
+
+    def __init__(self, name):
+        self.id = len(PERSON.instances)
+        self.name = name
+
+        PERSON.instances.append(self)
+
+    @staticmethod
+    def author_with_name(name):
+        if PERSON.author_map.get(name):
+            return PERSON.author_map.get(name)
+        elif PERSON.contributor_map.get(name):
+            person = PERSON.contributor_map.get(name)
+            PERSON.author_map[name] = person
+            return person
+        else:
+            new_person = PERSON(name)
+            PERSON.author_map[name] = new_person
+
+    @staticmethod
+    def contributor_with_name(name):
+        if PERSON.contributor_map.get(name):
+            return PERSON.contributor_map.get(name)
+        elif PERSON.author_map.get(name):
+            person = PERSON.author_map.get(name)
+            PERSON.contributor_map[name] = person
+            return person
+        else:
+            new_person = PERSON(name)
+            PERSON.contributor_map[name] = new_person
+
+
+class PUBLISHER:
+    instances = []
+    map = {}
+
+    def __init__(self, name):
+        self.id = len(PUBLISHER.instances)
+        self.name = name
+
+        PUBLISHER.instances.append(self)
+        PUBLISHER.map[name] = self
+
+    @staticmethod
+    def with_name(name):
+        if PUBLISHER.map.get(name):
+            return PUBLISHER.map.get(name)
+        else:
+            return PUBLISHER(name)
