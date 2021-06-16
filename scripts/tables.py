@@ -44,6 +44,8 @@ class EDITION:
             return
         if not self.rating:
             self.rating = random.randint(10, 50) / 10
+        if not self.page_count:
+            self.page_count = random.randint(100, 300)
         if self.year:
             self.year = info.get('publishedDate')[:4]
         else:
@@ -200,4 +202,4 @@ def escape(string):
 
 
 def trim(string):
-    return string[900:string.find(".", 900) + 1][:1000]
+    return string[:900] + string[900:string.find(".", 900) + 1][:100]
