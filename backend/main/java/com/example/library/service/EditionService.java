@@ -25,9 +25,24 @@ public class EditionService {
     @Autowired
     private EditionRepository editionRepository;
 
+//    @Autowired
+//    private PublisherRepository publisherRepository;
+
     public List<Edition> getTopTen() {
+        //addTestEdition();
         return editionRepository.findTop10ByOrderByRatingDesc();
     }
+
+//    public void addTestEdition() {
+//        Edition edition = new Edition();
+//        edition.setId(120L);
+//        edition.setTitle("Pavle");
+//        edition.setDescription("nesto");
+//        edition.setRating(0.0);
+//        edition.setPublisher(publisherRepository.getById(0L));
+//        editionRepository.save(edition);
+//    }
+
 
     public List<Edition> getTopReads() {
         return editionRepository.findTop16ByOrderByReadsDesc();
@@ -42,29 +57,7 @@ public class EditionService {
         return result.orElse(null);
     }
 
-    @Transactional
     public List<Edition> searchEditions(String text, int page, int amount) {
-
-        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-        QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
-                .buildQueryBuilder()
-                .forEntity(Edition.class)
-                .get();
-
-        org.apache.lucene.search.Query luceneQuery = queryBuilder
-                .keyword()
-                .fuzzy()
-                .onFields("title", "description", "tags.name",
-                        "author.name", "contributors.name", "publisher.name")
-                .boostedTo(5f)
-                .matching("*" + text + "*")
-                .createQuery();
-
-        FullTextQuery jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Edition.class)
-                .setFirstResult((page - 1) * amount)
-                .setMaxResults(amount);
-        List<Edition> result = jpaQuery.getResultList();
-
-        return result;
+        return editionRepository.searchEditions(text, page, amount);
     }
 }
