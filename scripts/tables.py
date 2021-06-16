@@ -12,7 +12,7 @@ class EDITION:
         self.available_copies = random.randint(5, 60)
         self.title = info.get('title')
 
-        if not info.get('authors'):
+        if not info.get('authors') or not info.get('publisher'):
             return
 
         author_name = info.get('authors')[0]
@@ -63,7 +63,7 @@ class EDITION:
         print(f"[+] Faund {len(EDITION.instances)} buks")
 
     def toSql(self):
-        sql = [f"INSERT INTO BOOK_TYPE VALUES({self.id}, {self.available_copies}, '{self.title}');",
+        sql = [f"INSERT INTO BOOK_TYPE VALUES({self.id}, {self.available_copies}, '{escape(self.title)}');",
                f"INSERT INTO EDITION VALUES('{escape(self.description)}', '{self.dimensions}', '{self.image_large}', '{self.image_small}', "
                f"'{self.language}', {self.page_count}, {self.rating}, {self.reads}, {self.take_out}, PARSEDATETIME('{self.year}', 'yyyy'), "
                f"{self.id}, {self.author_id}, {self.publisher_id});"]

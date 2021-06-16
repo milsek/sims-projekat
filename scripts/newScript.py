@@ -29,20 +29,20 @@ run_api({'q': 'python'}, ['programming', 'python', 'computers'])
 run_api({'q': 'c++'}, ['programming', 'c++', 'computers'])
 run_api({'q': 'security'}, ['programming', 'hacking', 'security', 'cryptography', 'computers'])
 run_api({'q': 'java'}, ['programming', 'java', 'computers'])
-run_api({'q': 'ai'}, ['machine-learning', 'ai', 'computers'])
+run_api({'q': 'artificial intelligence'}, ['machine-learning', 'ai', 'computers'])
 run_api({'q': 'django'}, ['programming', 'web-development', 'python'])
 
 file = open('data.sql', 'w')
 
 for tag in tables.TAG.instances:
-    file.write(tag.toSql() + "\n")
+    file.write(tag.toSql() + '\n')
 for content in tables.CONTENT.instances:
-    file.write(content.toSql() + "\n")
+    file.write(content.toSql() + '\n')
 for person in tables.PERSON.instances:
-    file.write("\n".join(person.toSql()))
+    file.write('\n'.join(person.toSql()) + '\n')
 for publisher in tables.PUBLISHER.instances:
-    file.write(publisher.toSql() + "\n")
+    file.write(publisher.toSql() + '\n')
 for edition in tables.EDITION.instances:
-    file.write("\n".join(edition.toSql()))
+    file.write('\n'.join(edition.toSql()) + '\n')
 
 file.close()
