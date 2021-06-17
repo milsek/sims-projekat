@@ -25,18 +25,25 @@
 
 <script>
 export default {
-  data() {
-    return {
-      query: ''
-    }
-  },
   methods: {
     doSearch () {
       if (this.$route.path === '/') {
         this.$router.push('/search')
+      } else {
+        this.$emit('refreshSearch')
       }
     }
-  }
+  },
+  computed:{
+    query:{
+        get: function(){ 
+            return this.$store.state.search.searchValue; 
+        }, 
+        set: function(newName){ 
+            this.$store.commit('search/update', newName); 
+        }
+    }
+} 
 };
 </script>
 

@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import BookCard from "./BookCard"
 import Pagination from "./Pagination"
 export default {
@@ -23,7 +24,7 @@ export default {
   data() {
     return {
       pageIndex: 0,
-      resultsPerPage: 6,
+      resultsPerPage: 10,
       showBooks: false,
       showPagination: false,
       totalPages: 1,
@@ -39,11 +40,13 @@ export default {
   },
   methods: {
     getBooks() {
-      // const bl = getBooklist(this.pageIndex * this.resultsPerPage, (this.pageIndex + 1) * this.resultsPerPage)
-      // this.totalBooks = 8
-      // this.totalPages = Math.ceil(this.totalBooks/this.resultsPerPage)
-      // this.booklist = bl
-    },
+      const text = this.$store.state.search.searchValue ? "text=" + this.$store.state.search.searchValue.trim() : ''
+      axios.get(`/api/fullSearch?${text}&page=${this.pageIndex + 1}&amount=${this.resultsPerPage}`)
+      .then(response => {
+        this.booklist = response.data;
+      });
+    }
+    ,
     showMore(page) {
       this.pageIndex = page - 1
       this.getBooks()

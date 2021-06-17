@@ -4,7 +4,7 @@
       <BookFilter />
     </div>
     <div class="p-4 md:p-8 md:pl-0 h-full">
-      <BookList />
+      <BookList ref="bookList"/>
     </div>
   </div>
 </template>
@@ -13,7 +13,12 @@
 import BookFilter from "./BookFilter.vue"
 import BookList from "./BookList.vue"
 export default {
-  components: { BookFilter, BookList }
+  components: { BookFilter, BookList },
+  methods: {
+    refreshSearch() {
+      this.$refs.bookList.getBooks()
+    }
+  }
 };
 </script>
 

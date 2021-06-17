@@ -3,7 +3,7 @@
     <div class="flex pb-10 mx-auto">
       <div class="inline-block w-40 sm:w-36 md:w-32">
         <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}">
-          <img :src="require(`@/assets/images/${data.image}`)"  alt="" class="rounded-lg object-cover w-full">
+          <img :src="data.imageLarge" alt="" class="rounded-lg object-cover w-full">
         </NuxtLink>
         <div class="block sm:hidden pt-2">
           <button class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-gradient-to-tr from-red-400 to-purple-400 text-white
@@ -22,7 +22,7 @@
         </div>
         </div>
         <div class="text-sm font-light pb-2 text-gray-500">
-          {{ data.author }}
+          {{ data.author.name }}
         </div>
         <div class="text-sm text-justify font-light md:tracking-wide mb-4 line-clamp-4 md:line-clamp-2 xl:line-clamp-3 text-gray-400">
           {{ data.description }}
