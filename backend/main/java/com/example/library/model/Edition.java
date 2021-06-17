@@ -32,7 +32,7 @@ public class Edition extends BookType {
     @Column
     private int pageCount;
 
-    @Column
+    @Column(length = 1000)
     @Field
     private String description;
 

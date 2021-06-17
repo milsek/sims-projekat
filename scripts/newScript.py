@@ -24,16 +24,21 @@ def run_api(params, tags):
         tables.EDITION(info, tags)
 
 
-run_api({'q': 'cryptography'}, ['cryptography', 'security', 'computers', 'communications'])
-run_api({'q': 'python'}, ['programming', 'python', 'computers'])
-run_api({'q': 'c++'}, ['programming', 'c++', 'computers'])
-run_api({'q': 'security'}, ['programming', 'hacking', 'security', 'cryptography', 'computers'])
-run_api({'q': 'java'}, ['programming', 'java', 'computers'])
-run_api({'q': 'artificial intelligence'}, ['machine-learning', 'ai', 'computers'])
-run_api({'q': 'django'}, ['programming', 'web-development', 'python'])
+run_api({'q': 'cryptography', 'maxResults': 30}, ['cryptography', 'security', 'computers', 'communications'])
+run_api({'q': 'python', 'maxResults': 30}, ['programming', 'python', 'computers'])
+run_api({'q': 'c++', 'maxResults': 30}, ['programming', 'c++', 'computers'])
+run_api({'q': 'security', 'maxResults': 30}, ['programming', 'hacking', 'security', 'cryptography', 'computers'])
+run_api({'q': 'java', 'maxResults': 30}, ['programming', 'java', 'computers'])
+run_api({'q': 'artificial intelligence', 'maxResults': 30}, ['machine-learning', 'ai', 'computers'])
+run_api({'q': 'django', 'maxResults': 30}, ['programming', 'web-development', 'python'])
+run_api({'q': 'guitar', 'maxResults': 30}, ['guitar', 'music', 'art'])
+run_api({'q': 'linux', 'maxResults': 30}, ['os', 'security', 'programming', 'computers'])
+run_api({'q': 'database', 'maxResults': 30}, ['database', 'sql', 'web-development', 'data'])
+
 
 file = open('data.sql', 'w')
 
+file.write("INSERT INTO CONTRIBUTOR_TYPE VALUES(0, 'Test role');\n")
 for tag in tables.TAG.instances:
     file.write(tag.toSql() + '\n')
 for content in tables.CONTENT.instances:

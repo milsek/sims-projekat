@@ -44,6 +44,8 @@ class EDITION:
             return
         if not self.rating:
             self.rating = random.randint(10, 50) / 10
+        if not self.page_count:
+            self.page_count = random.randint(100, 300)
         if self.year:
             self.year = info.get('publishedDate')[:4]
         else:
@@ -64,7 +66,7 @@ class EDITION:
 
     def toSql(self):
         sql = [f"INSERT INTO BOOK_TYPE VALUES({self.id}, {self.available_copies}, '{escape(self.title)}');",
-               f"INSERT INTO EDITION VALUES('{escape(self.description)}', '{self.dimensions}', '{self.image_large}', '{self.image_small}', "
+               f"INSERT INTO EDITION VALUES('{trim(escape(self.description))}', '{self.dimensions}', '{self.image_large}', '{self.image_small}', "
                f"'{self.language}', {self.page_count}, {self.rating}, {self.reads}, {self.take_out}, PARSEDATETIME('{self.year}', 'yyyy'), "
                f"{self.id}, {self.author_id}, {self.publisher_id});"]
 
@@ -122,7 +124,7 @@ class PERSON:
         sql = [f"INSERT INTO PERSON VALUES({self.id}, '{escape(self.name)}');"]
 
         if PERSON.contributor_map.get(self.name):
-            sql.append(f"INSERT INTO CONTRIBUTORS VALUES({self.id}, 0);")
+            sql.append(f"INSERT INTO CONTRIBUTOR VALUES({self.id}, 0);")
         if PERSON.author_map.get(self.name):
             sql.append(f"INSERT INTO AUTHOR VALUES({self.id});")
 
@@ -197,3 +199,7 @@ class CONTENT:
 
 def escape(string):
     return string.replace("'", "''")
+
+
+def trim(string):
+    return string[:900] + string[900:string.find(".", 900) + 1][:100]
