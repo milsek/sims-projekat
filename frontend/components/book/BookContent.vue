@@ -21,8 +21,13 @@
               <div class="block lg:hidden mt-12 md:mt-0 pt-2 border-t border-solid border-gray-200 md:border-none">
                 <div class="text-lg text-gray-700 font-medium tracking-wide font-base">Availability</div>
               </div>
-              <div class="hidden lg:block mt-4">
-                <div class="text-justify font-light md:tracking-wide mb-4 line-clamp-6 text-gray-500">{{ data.description }}</div>
+              <div class="hidden xl:block mt-4">
+                <div class="text-justify font-light md:tracking-wide mb-4 text-gray-500" :class="[showMore ? '' : 'line-clamp-3 xl:line-clamp-5']">{{ data.description }}</div>
+                <div class="text-center mx-auto -mt-1">
+                  <button @click="showMore = !showMore" class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 text-gray-400
+                  text-center text-lg md:text-base lg:text-lg focus:outline-none rounded-lg
+                  hover:transition duration-300 ease-in-out transform hover:-translate-y-1" v-text="showMore ? 'Show less' : 'Show more'"></button>
+                </div>
               </div>
             </div>
 
@@ -39,11 +44,16 @@
 
     </div>
 
-    <div class="block lg:hidden w-11/12 mt-6 mx-auto bg-white shadow-lg">
+    <div class="block xl:hidden w-11/12 mt-6 mx-auto bg-white shadow-lg">
       <div class="block p-8 w-full">
         <div class="text-xl text-gray-700 tracking-wide font-medium">Description</div>
-        <div class="text-justify font-light md:tracking-wide mb-4 text-gray-500 pt-4">
+        <div class="text-justify font-light md:tracking-wide mb-4 text-gray-500 pt-4" :class="[showMore ? '' : 'line-clamp-5']">
           {{ data.description }}
+        </div>
+        <div class="text-center mx-auto -mt-1">
+          <button @click="showMore = !showMore" class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 text-gray-400
+          text-center text-lg md:text-base lg:text-lg focus:outline-none rounded-lg
+          hover:transition duration-300 ease-in-out transform hover:-translate-y-1" v-text="showMore ? 'Show less' : 'Show more'"></button>
         </div>
       </div>
     </div>
@@ -68,6 +78,7 @@ export default {
   props: ["data"],
   data () {
     return {
+      showMore: false,
       attributes: [
         { name: 'language', text: 'Language' },
         { name: 'pageCount', text: 'Pages' },

@@ -36,6 +36,8 @@ export default {
       this.data = response.data
       if (Object.keys(this.data).length === 0) this.dataLoaded = false
       console.log(this.data)
+      // console.log(this.data.description.split(/\r\n|\r|\n/).length - 1)
+      // this.data.description = this.data.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
       this.isMounted = true
     });
     }

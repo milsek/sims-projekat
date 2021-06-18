@@ -1,17 +1,20 @@
 <template>
-  <div>
-    <div v-show="showBooks" class="block min-h-screen">
-      <div v-for="book in booklist" :key="book.id">
-        <BookCard :data="book" />
+  <div >
+    <div v-if="booklist.length">
+      <div class="block min-h-screen">
+        <div v-for="book in booklist" :key="book.id">
+          <BookCard :data="book" />
+        </div>
       </div>
+      <Pagination :maxVisibleButtons="maxVisibleButtons" :totalPages="totalPages" :total="totalBooks"
+      :perPage="resultsPerPage" :currentPage="pageIndex + 1" :hasMorePages="hasMorePages"
+        @pagechanged="showMore" class="pt-12 pb-16"/>
     </div>
-    <Pagination :maxVisibleButtons="maxVisibleButtons" :totalPages="totalPages" :total="totalBooks"
-    :perPage="resultsPerPage" :currentPage="pageIndex + 1" :hasMorePages="hasMorePages"
-      @pagechanged="showMore" class="pt-12 pb-16"/>
 
-    <div v-show="!showBooks" class="h-screen w-full bg-white">
-
+    <div v-else class="block w-full">
+      <div class="w-full text-4xl font-thin text-center mx-auto">Oops. No results.</div>
     </div>
+
   </div>
 </template>
 
@@ -43,7 +46,9 @@ export default {
       const text = this.$store.state.search.searchValue ? "text=" + this.$store.state.search.searchValue.trim() : ''
       axios.get(`/api/fullSearch?${text}&page=${this.pageIndex + 1}&amount=${this.resultsPerPage}`)
       .then(response => {
-        this.booklist = response.data;
+        this.totalBooks = Object.keys(response.data)[0]
+        this.totalPages = Math.ceil(this.totalBooks/this.resultsPerPage)
+        this.booklist = Object.values(response.data)[0]
       });
     }
     ,

@@ -2,9 +2,9 @@
   <div>
     <div class="w-11/12 md:w-4/5 lg:w-3/4 xl:w-1/2 mx-auto bg-white shadow px-6">
       <div class="grid grid-cols-6 text-lg lg:text-xl">
-        <div class="col-start-1 col-span-5 md:col-span-4 my-auto">
-          <input type="text" autocomplete="off" name="query" required v-model="query" placeholder="Search a book, an author, or a genre" 
-          class="inline-block mb-0 px-4 h-14 w-11/12 md:w-120 font-light focus:outline-none">
+        <div class="col-start-1 col-span-5 my-auto">
+          <input @keydown.enter="doSearch" type="text" autocomplete="off" name="query" required v-model="query" placeholder="Search a book, an author, or a genre" 
+          class="inline-block mb-0 px-2 h-14 w-11/12 md:w-120 font-light focus:outline-none">
         </div>
         <div class="col-start-6 m-auto hidden md:flex">
           <!-- bg-gradient-to-tr from-blue-400 to-purple-600 -->
