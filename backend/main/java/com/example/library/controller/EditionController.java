@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -42,14 +44,13 @@ public class EditionController {
 
     @GetMapping(path = "fullSearch")
     @ResponseBody
-    public List<Edition> searchEditions(@RequestParam(name = "text") String text,
-                                        @RequestParam(name = "page") int page,
-                                        @RequestParam(name = "amount") int amount)
+    public Map<Long, List<Edition>> searchEditions(@RequestParam(name = "text", required = false) String text,
+                                                   @RequestParam(name = "page") int page,
+                                                   @RequestParam(name = "amount") int amount)
     {
-        System.out.println(text);
-        System.out.println(page);
-        System.out.println(amount);
-       return editionService.searchEditions(text, page, amount);
+        if(text == null)
+            text = "";
+       return new HashMap<Long, List<Edition>>(editionService.searchEditions(text, page, amount));
     }
 
 

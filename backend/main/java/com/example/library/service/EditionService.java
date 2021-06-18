@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -57,7 +58,7 @@ public class EditionService {
         return result.orElse(null);
     }
 
-    public List<Edition> searchEditions(String text, int page, int amount) {
+    public Map<Long, List<Edition>> searchEditions(String text, int page, int amount) {
         return editionRepository.searchEditions(text, page, amount);
     }
 }
