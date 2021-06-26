@@ -52,7 +52,6 @@ public class Edition {
     @Column
     private String imageLarge;
 
-    @Column
     @ManyToOne
     private BookTitle title;
 
