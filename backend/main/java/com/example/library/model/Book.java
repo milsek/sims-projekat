@@ -9,8 +9,10 @@ import java.util.Set;
 
 @Entity
 public class Book {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "BOOK_ID")
     private long id;
 
     @Column
@@ -19,8 +21,13 @@ public class Book {
     @Column
     private BookCondition condition;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Edition.class)
+    @JoinColumn(name = "EDITION_ID")
     private Edition edition;
+
+    public Book() {
+    }
+
 
     public long getId() {
         return id;
@@ -38,17 +45,25 @@ public class Book {
         this.status = status;
     }
 
-    public void setEdition(Edition edition) {
-        this.edition = edition;
+    public BookCondition getCondition() {
+        return condition;
     }
 
-    @JsonIgnore
-    public Edition getEdition() {
-        return edition;
+    public void setCondition(BookCondition condition) {
+        this.condition = condition;
     }
 
-    @JsonProperty("edition")
-    public Long getEditionId() {
-        return edition.getId();
-    }
+    //    public void setEdition(Edition edition) {
+//        this.edition = edition;
+//    }
+//
+//    @JsonIgnore
+//    public Edition getEdition() {
+//        return edition;
+//    }
+//
+//    @JsonProperty("edition")
+//    public Long getEditionId() {
+//        return edition.getId();
+//    }
 }

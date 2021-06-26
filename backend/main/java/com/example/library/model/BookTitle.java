@@ -10,7 +10,6 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Indexed
 public abstract class BookTitle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
