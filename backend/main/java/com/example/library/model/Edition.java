@@ -84,12 +84,12 @@ public class Edition {
 
     @ManyToMany
     @JoinTable(
-            name = "edition_contributors",
+            name = "edition_contributions",
             joinColumns = @JoinColumn(name = "edition_id"),
-            inverseJoinColumns = @JoinColumn(name = "contributor_id")
+            inverseJoinColumns = @JoinColumn(name = "contribution_id")
     )
     @IndexedEmbedded(depth = 1)
-    private Set<Contributor> contributors;
+    private Set<Contribution> contributions;
 
     @OneToMany
     private Set<Book> copies;
@@ -211,12 +211,12 @@ public class Edition {
         this.publisher = publisher;
     }
 
-    public Set<Contributor> getContributors() {
-        return contributors;
+    public Set<Contribution> getContributions() {
+        return contributions;
     }
 
-    public void setContributors(Set<Contributor> contributors) {
-        this.contributors = contributors;
+    public void setContributions(Set<Contribution> contributions) {
+        this.contributions = contributions;
     }
 
     public void setId(Long id) {

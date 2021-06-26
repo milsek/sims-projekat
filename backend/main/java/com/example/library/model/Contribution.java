@@ -13,4 +13,7 @@ public class Contribution {
 
     @ManyToOne
     private Contributor contributor;
+
+    @Column
+    private String contributorType;
 }
