@@ -6,22 +6,9 @@ class EDITION:
     instances = []
 
     def __init__(self, info, tag_names):
-        self.valid = False
-
+        # fill fields with obtained or randomly generated values
         self.id = len(EDITION.instances)
         self.available_copies = random.randint(5, 60)
-        self.title = info.get('title')
-
-        if not info.get('authors') or not info.get('publisher'):
-            return
-
-        author_name = info.get('authors')[0]
-        publisher_name = info.get('publisher')
-
-        self.contributor_names = info.get('authors')[1:]
-        self.tag_names = tag_names
-        self.content_names = info.get('categories')
-
         self.description = info.get('description')
         self.dimensions = random.randint(18, 22)
         self.image_large = info.get('imageLinks').get('thumbnail').replace('edge=curl&', '').replace('zoom=1&', '')
@@ -32,16 +19,22 @@ class EDITION:
         self.reads = random.randint(50, 600)
         self.take_out = random.choice(['true']*5 + ['false'])
         self.year = info.get('publishedDate')
-        self.id = len(EDITION.instances)
 
-        if len(requests.get(self.image_large).content) in [9103, 316]:
+        # collect data for supplying other tables
+        self.author_names = info.get('authors')
+        self.genre_names = info.get('categories')
+        self.publisher_name = info.get('publisher')
+        self.tag_names = tag_names
+
+        # check if any cruical data is missing
+        if None in [self.description, self.genre_names, self.author_names, self.publisher_name]:
             return
-        if self.description:
-            self.description = self.description
-        else:
+
+        # detect placeholder cover picture
+        if len(requests.get(self.image_large).content) in [9103, 316]: 
             return
-        if not self.content_names:
-            return
+
+        # fill missing data with randomly generated values
         if not self.rating:
             self.rating = random.randint(10, 50) / 10
         if not self.page_count:
@@ -51,34 +44,16 @@ class EDITION:
         else:
             self.year = '2021'
 
-        self.author_id = PERSON.author_with_name(author_name).id
-        self.publisher_id = PUBLISHER.with_name(publisher_name).id
-        for contrib_name in self.contributor_names:
-            PERSON.contributor_with_name(contrib_name)
-        for tag_name in self.tag_names:
-            TAG.with_name(tag_name)
-        for content_name in self.content_names:
-            CONTENT.with_name(content_name)
-
-        self.valid = True
         EDITION.instances.append(self)
         print(f"[+] Faund {len(EDITION.instances)} buks")
 
     def toSql(self):
-        sql = [f"INSERT INTO BOOK_TYPE VALUES({self.id}, {self.available_copies}, '{escape(self.title)}');",
-               f"INSERT INTO EDITION VALUES('{trim(escape(self.description))}', '{self.dimensions}', '{self.image_large}', '{self.image_small}', "
-               f"'{self.language}', {self.page_count}, {self.rating}, {self.reads}, {self.take_out}, PARSEDATETIME('{self.year}', 'yyyy'), "
-               f"{self.id}, {self.author_id}, {self.publisher_id});"]
+        sql = [f"INSERT INTO BOOK_TITLE VALUES({self.id}, '{escape(self.title)}');",
+               f"INSERT INTO EDITION VALUES({self.id}, {self.available_copies}, '{trim(escape(self.description))}', '{self.dimensions}', '{self.image_large}', "
+               f"'{self.image_small}', '{self.language}', {self.page_count}, {self.rating}, {self.reads}, {self.take_out}, PARSEDATETIME('{self.year}', 'yyyy'), "
+               f"{self.publisher_id});"]
 
-        for contrib_name in self.contributor_names:
-            contrib = PERSON.contributor_with_name(contrib_name)
-            sql.append(f"INSERT INTO EDITION_CONTRIBUTORS VALUES({self.id}, {contrib.id});")
-        for tag_name in self.tag_names:
-            tag = TAG.with_name(tag_name)
-            sql.append(f"INSERT INTO EDITION_TAGS VALUES({self.id}, {tag.id});")
-        for content_name in self.content_names:
-            content = CONTENT.with_name(content_name)
-            sql.append(f"INSERT INTO EDITION_CONTENT VALUES({self.id}, {content.id});")
+        # TODO: Other tables
 
         return sql
 
