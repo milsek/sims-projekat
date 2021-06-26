@@ -63,7 +63,8 @@ class EDITION:
         sql = [f"INSERT INTO BOOK_TITLE VALUES({self.id}, '{escape(self.title)}');",
                f"INSERT INTO EDITION VALUES({self.id}, {self.available_copies}, '{trim(escape(self.description))}', '{self.dimensions}', '{self.image_large}', "
                f"'{self.image_small}', '{self.language}', {self.page_count}, {self.rating}, {self.reads}, {self.take_out}, PARSEDATETIME('{self.year}', 'yyyy'), "
-               f"{self.publisher_id});"]
+               f"{self.publisher_id}, {self.id});"
+               f"INSERT INTO BOOK_TITLE_EDITIONS VALUES({self.id}, {self.id});"]
 
         for name in self.author_names:
             contributor = CONTRIBUTOR.with_name(name)
@@ -97,7 +98,7 @@ class CONTRIBUTION:
         return CONTRIBUTION(contributor, ctype)
 
     def toSql(self):
-        return f"INSERT INTO CONTRIBUTION VALUES({self.id}, {self.contributor.id}, '{self.ctype}'"
+        return f"INSERT INTO CONTRIBUTION VALUES({self.id}, '{self.ctype}', {self.contributor.id});"
 
 
 
@@ -186,7 +187,7 @@ class CONTENT:
             return CONTENT(name)
 
     def toSql(self):
-        return f"INSERT INTO CONTENT VALUES({self.id}, '{escape(self.name)}');"
+        return f"INSERT INTO GENRE VALUES({self.id}, '{escape(self.name)}');"
 
 
 def escape(string):
