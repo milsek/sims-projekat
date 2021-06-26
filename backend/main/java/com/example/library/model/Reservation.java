@@ -1,5 +1,8 @@
 package com.example.library.model;
 
+import org.springframework.context.annotation.Bean;
+
+import javax.annotation.Resource;
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -15,6 +18,9 @@ public abstract class Reservation {
 
     @Column
     private LocalDate dateReturned;
+
+    @Resource
+    private transient ReservationState reservationState;
 
     public void setId(Long id) {
         this.id = id;
