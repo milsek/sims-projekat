@@ -20,11 +20,12 @@ class EDITION:
         self.take_out = random.choice(['true']*5 + ['false'])
         self.year = info.get('publishedDate')
 
-        # collect data for supplying other tables
+        # collect data for supplying other tables and fields
         self.author_names = info.get('authors')
         self.genre_names = info.get('categories')
         self.publisher_name = info.get('publisher')
         self.tag_names = tag_names
+        self.title = info.get('title')
 
         # check if any cruical data is missing
         if None in [self.description, self.genre_names, self.author_names, self.publisher_name]:
@@ -44,6 +45,17 @@ class EDITION:
         else:
             self.year = '2021'
 
+        # get other ids
+        self.publisher_id = PUBLISHER.with_name(self.publisher_name).id
+
+        # generate related instances if they do not exist
+        for name in self.author_names:
+            CONTRIBUTION.with_contrib_and_type(CONTRIBUTOR.with_name(name), 'author')
+        for name in self.genre_names:
+            CONTENT.with_name(name)
+        for name in self.tag_names:
+            TAG.with_name(name)
+
         EDITION.instances.append(self)
         print(f"[+] Faund {len(EDITION.instances)} buks")
 
@@ -53,57 +65,62 @@ class EDITION:
                f"'{self.image_small}', '{self.language}', {self.page_count}, {self.rating}, {self.reads}, {self.take_out}, PARSEDATETIME('{self.year}', 'yyyy'), "
                f"{self.publisher_id});"]
 
-        # TODO: Other tables
+        for name in self.author_names:
+            contributor = CONTRIBUTOR.with_name(name)
+            contribution = CONTRIBUTION.with_contrib_and_type(contributor, 'author')
+            sql.append(f"INSERT INTO EDITION_CONTRIBUTIONS VALUES({self.id}, {contributor.id});")
+        for name in self.genre_names:
+            genre = CONTENT.with_name(name)
+            sql.append(f"INSERT INTO EDITION_CONTENT VALUES({self.id}, {genre.id});")
+        for name in self.tag_names:
+            tag = TAG.with_name(name)
+            sql.append(f"INSERT INTO EDITION_TAGS VALUES({self.id}, {tag.id});")
+
 
         return sql
 
 
-class PERSON:
+class CONTRIBUTION:
     instances = []
-    author_map = {}
-    contributor_map = {}
 
-    def __init__(self, name):
-        self.id = len(PERSON.instances)
-        self.name = name
+    def __init__(self, contributor, ctype):
+        self.id = len(CONTRIBUTION.instances)
+        self.contributor = contributor
+        self.ctype = ctype
 
-        PERSON.instances.append(self)
+        CONTRIBUTION.instances.append(self)
 
-    @staticmethod
-    def author_with_name(name):
-        if PERSON.author_map.get(name):
-            return PERSON.author_map.get(name)
-        elif PERSON.contributor_map.get(name):
-            person = PERSON.contributor_map.get(name)
-            PERSON.author_map[name] = person
-            return person
-        else:
-            new_person = PERSON(name)
-            PERSON.author_map[name] = new_person
-            return new_person
-
-    @staticmethod
-    def contributor_with_name(name):
-        if PERSON.contributor_map.get(name):
-            return PERSON.contributor_map.get(name)
-        elif PERSON.author_map.get(name):
-            person = PERSON.author_map.get(name)
-            PERSON.contributor_map[name] = person
-            return person
-        else:
-            new_person = PERSON(name)
-            PERSON.contributor_map[name] = new_person
-            return new_person
+    def with_contrib_and_type(contributor, ctype):
+        for contribution in CONTRIBUTION.instances:
+            if contribution.contributor.id == contributor.id and contribution.ctype == ctype:
+                return contribution
+        return CONTRIBUTION(contributor, ctype)
 
     def toSql(self):
-        sql = [f"INSERT INTO PERSON VALUES({self.id}, '{escape(self.name)}');"]
+        return f"INSERT INTO CONTRIBUTION VALUES({self.id}, {self.contributor.id}, '{self.ctype}'"
 
-        if PERSON.contributor_map.get(self.name):
-            sql.append(f"INSERT INTO CONTRIBUTOR VALUES({self.id}, 0);")
-        if PERSON.author_map.get(self.name):
-            sql.append(f"INSERT INTO AUTHOR VALUES({self.id});")
 
-        return sql
+
+class CONTRIBUTOR:
+    instances = []
+    map = {}
+
+    def __init__(self, name):
+        self.id = len(CONTRIBUTOR.instances)
+        self.name = name
+
+        CONTRIBUTOR.instances.append(self)
+        CONTRIBUTOR.map[name] = self
+
+    @staticmethod
+    def with_name(name):
+        if CONTRIBUTOR.map.get(name):
+            return CONTRIBUTOR.map.get(name)
+        else:
+            return CONTRIBUTOR(name)
+
+    def toSql(self):
+        return f"INSERT INTO CONTRIBUTOR VALUES({self.id}, '{escape(self.name)}');"
 
 
 class PUBLISHER:
