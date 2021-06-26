@@ -12,7 +12,7 @@ import java.util.Set;
 @Entity
 @Table
 @Indexed
-public class Content {
+public class Genre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,9 +21,6 @@ public class Content {
     @Column
     @Field
     private String name;
-
-    @ManyToMany(mappedBy = "contents")
-    private Set<Edition> editionSet;
 
     public long getId() {
         return id;
@@ -41,19 +38,19 @@ public class Content {
         this.name = name;
     }
 
-    @JsonIgnore
-    public Set<Edition> getEditionSet() {
-        return editionSet;
-    }
-
-    @JsonProperty("editions")
-    public Set<Long> getEditionsId() {
-        Set<Long> set = new HashSet<>();
-        editionSet.stream().map(Edition::getId).forEachOrdered(set::add);
-        return set;
-    }
-
-    public void setEditionSet(Set<Edition> editionSet) {
-        this.editionSet = editionSet;
-    }
+//    @JsonIgnore
+//    public Set<Edition> getEditionSet() {
+//        return editionSet;
+//    }
+//
+//    @JsonProperty("editions")
+//    public Set<Long> getEditionsId() {
+//        Set<Long> set = new HashSet<>();
+//        editionSet.stream().map(Edition::getId).forEachOrdered(set::add);
+//        return set;
+//    }
+//
+//    public void setEditionSet(Set<Edition> editionSet) {
+//        this.editionSet = editionSet;
+//    }
 }

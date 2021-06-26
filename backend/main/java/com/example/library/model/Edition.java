@@ -15,7 +15,11 @@ import java.util.Set;
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,
         property = "@id")
 @Indexed
-public class Edition extends BookType {
+public class Edition {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column
     private boolean takeOut;
@@ -48,6 +52,13 @@ public class Edition extends BookType {
     @Column
     private String imageLarge;
 
+    @Column
+    @ManyToOne
+    private BookTitle title;
+
+    @Column
+    private int availableCopies;
+
     @ManyToMany
     @JoinTable(
             name = "edition_content",
@@ -55,7 +66,7 @@ public class Edition extends BookType {
             inverseJoinColumns = @JoinColumn(name = "content_id")
     )
     @IndexedEmbedded(depth = 1)
-    private Set<Content> contents;
+    private Set<Genre> genres;
 
     @ManyToMany
     @JoinTable(
@@ -81,9 +92,13 @@ public class Edition extends BookType {
     @IndexedEmbedded(depth = 1)
     private Set<Contributor> contributors;
 
-    @ManyToOne
-    @IndexedEmbedded(depth = 1)
-    private Author author;
+    @OneToMany
+    private Set<Book> copies;
+
+
+//    @ManyToOne
+//    @IndexedEmbedded(depth = 1)
+//    private Author author;
 
     public boolean isTakeOut() {
         return takeOut;
@@ -165,12 +180,12 @@ public class Edition extends BookType {
         this.imageLarge = imageLarge;
     }
 
-    public Set<Content> getContents() {
-        return contents;
+    public Set<Genre> getContents() {
+        return genres;
     }
 
-    public void setContents(Set<Content> contents) {
-        this.contents = contents;
+    public void setContents(Set<Genre> contents) {
+        this.genres = contents;
     }
 
     @JsonIgnore
@@ -205,11 +220,35 @@ public class Edition extends BookType {
         this.contributors = contributors;
     }
 
-    public Author getAuthor() {
-        return author;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public Long getId() {
+        return id;
+    }
+
+    public BookTitle getTitle() {
+        return title;
+    }
+
+    public void setTitle(BookTitle title) {
+        this.title = title;
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public int getAvailableCopies() {
+        return availableCopies;
+    }
+
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
     }
 }

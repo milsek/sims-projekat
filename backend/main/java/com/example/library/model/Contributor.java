@@ -1,41 +1,35 @@
 package com.example.library.model;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.*;
 
 @Entity
-public class Contributor extends Person {
-    @ManyToOne
-    private ContributorType type;
+@Inheritance(strategy = InheritanceType.JOINED)
+@Indexed
+public class Contributor {
+    @Id
+    @GeneratedValue
+    protected long id;
 
-    @ManyToMany(mappedBy = "contributors")
-    private Set<Edition> editionSet;
+    @Column
+    @Field
+    protected String name;
 
-    public ContributorType getType() {
-        return type;
+    public long getId() {
+        return id;
     }
 
-    public void setType(ContributorType type) {
-        this.type = type;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    @JsonIgnore
-    public void setEditionSet(Set<Edition> editionSet) {
-        this.editionSet = editionSet;
+    public String getName() {
+        return name;
     }
 
-    @JsonProperty("editions")
-    public Set<Long> getEditionsId() {
-        Set<Long> set = new HashSet<>();
-        editionSet.stream().map(Edition::getId).forEachOrdered(set::add);
-        return set;
+    public void setName(String name) {
+        this.name = name;
     }
 }

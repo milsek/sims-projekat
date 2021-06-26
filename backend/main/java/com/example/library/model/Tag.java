@@ -20,10 +20,6 @@ public class Tag {
     @Field
     private String name;
 
-    @ManyToMany(mappedBy = "tags")
-    @JsonView(Tag.class)
-    private Set<Edition> editionSet;
-
     public long getId() {
         return id;
     }
@@ -40,11 +36,4 @@ public class Tag {
         this.name = name;
     }
 
-    public void setEditionSet(Set<Edition> editionSet) {
-        this.editionSet = editionSet;
-    }
-
-    public Set<Edition> getEditionSet() {
-        return editionSet;
-    }
 }

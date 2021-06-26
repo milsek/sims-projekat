@@ -21,9 +21,6 @@ public class Publisher {
     @Field
     private String name;
 
-    @OneToMany(mappedBy = "publisher")
-    private Set<Edition> editionSet;
-
     public long getId() {
         return id;
     }
@@ -40,20 +37,20 @@ public class Publisher {
         this.name = name;
     }
 
-    public void setEditionSet(Set<Edition> editionSet) {
-        this.editionSet = editionSet;
-    }
-
-    @JsonIgnore
-    public Set<Edition> getEditionSet() {
-        return editionSet;
-    }
-
-    @JsonProperty("editions")
-    public Set<Long> getEditionsId() {
-        Set<Long> set = new HashSet<>();
-        editionSet.stream().map(Edition::getId).forEachOrdered(set::add);
-        return set;
-    }
+//    public void setEditionSet(Set<Edition> editionSet) {
+//        this.editionSet = editionSet;
+//    }
+//
+//    @JsonIgnore
+//    public Set<Edition> getEditionSet() {
+//        return editionSet;
+//    }
+//
+//    @JsonProperty("editions")
+//    public Set<Long> getEditionsId() {
+//        Set<Long> set = new HashSet<>();
+//        editionSet.stream().map(Edition::getId).forEachOrdered(set::add);
+//        return set;
+//    }
 
 }

@@ -8,13 +8,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class SingleBook {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column
     private BookStatus status;
+
+    @Column
+    private BookCondition condition;
 
     @ManyToOne
     private Edition edition;
