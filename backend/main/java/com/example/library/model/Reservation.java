@@ -19,8 +19,15 @@ public abstract class Reservation {
     @Column
     private LocalDate dateReturned;
 
-    @Resource
+    @Column
+    private String stateName;
+
     private transient ReservationState reservationState;
+
+    public void action() {
+        reservationState = reservationState.action();
+        stateName = reservationState.getStateName();
+    }
 
     public void setId(Long id) {
         this.id = id;

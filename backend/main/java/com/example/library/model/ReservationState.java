@@ -1,6 +1,8 @@
 package com.example.library.model;
 
+import com.example.library.model.states.New;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import org.mapstruct.InheritConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.EnableStateMachine;
@@ -11,13 +13,26 @@ import org.springframework.statemachine.config.builders.StateMachineTransitionCo
 import org.springframework.statemachine.listener.StateMachineListener;
 import org.springframework.statemachine.listener.StateMachineListenerAdapter;
 import org.springframework.statemachine.state.State;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.EnumSet;
+import java.util.Set;
 
 public abstract class ReservationState {
+
+    protected String stateName;
+
+    static void entry() {
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    ReservationState action() {
+        return new New();
+    }
+
 
 }
