@@ -18,6 +18,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.EnumSet;
 
+@Entity
 public abstract class ReservationState {
+    @Id
+    String stateName;
 
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
+
+    public ReservationState() {
+    }
 }
