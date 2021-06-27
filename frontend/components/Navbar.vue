@@ -37,7 +37,7 @@
           <BellIcon class="h-6 w-6" aria-hidden="true" />
         </button> -->
        
-      <div class="flex justify-center items-center col-start-7 mr-4 md:mr-0">
+      <div v-if="sessionActive()" class="flex justify-center items-center col-start-7 mr-4 md:mr-0">
         <div x-data="{ profileOpen: false }" class="flex justify-center items-center">
             <div class="relative border-b-4 border-transparent py-2" :class="{'border-indigo-300 transform transition duration-300 ': profileOpen}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
               <div @click="handleProfileDropdown()" class="flex justify-center items-center space-x-3 cursor-pointer">
@@ -59,13 +59,20 @@
                   </li>
                   <hr class="dark:border-gray-700">
                   <li class="font-medium">
-                    <a href="#" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600">
+                    <a @click="signOut" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600">
                       Sign Out
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
+        </div>
+      </div>
+      <div v-else class="flex items-center col-start-6 col-span-2 justify-end mr-4 md:mr-0">
+        <div>
+          <button @click="showLoginModal = !showLoginModal" 
+          class="text-gray-400 hover:text-indigo-500 rounded-md align-middle px-6 lg:px-8 py-2
+          text-xs lg:text-sm font-medium tracking-wider font-sans focus:outline-none">Sign In</button>
         </div>
       </div>
 
@@ -82,15 +89,21 @@
       </div>
     </div>
 
+    <div v-if="showLoginModal">
+      <Login v-on:close-modal="closeLogin"/>
+    </div>
+
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import Login from '~/components/modals/Login'
 import vClickOutside from 'v-click-outside'
  
 Vue.use(vClickOutside)
 export default {
+  components: { Login },
   data () {
     return {
       navigation: [
@@ -99,7 +112,8 @@ export default {
         { name: 'Contact', route: '/contact'},
       ],
       navbarOpen: false,
-      profileOpen: false
+      profileOpen: false,
+      showLoginModal: false
     }
   },
   methods: {
@@ -115,7 +129,20 @@ export default {
     disableNavbarDropdown() {
       this.navbarOpen = false
     },
-    
+    sessionActive() {
+      if (this.$store.state.session.username) {
+        return true
+      }
+      return false
+    },
+    closeLogin () {
+      this.showLoginModal = false
+    },
+    signOut () {
+      
+      // simulates logout
+      this.$store.commit('session/update', '');
+    }
   }
 };
 </script>
