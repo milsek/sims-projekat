@@ -9,11 +9,12 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
 public class Returned extends ReservationState {
     private static Returned obj;
 
-    private Returned(){};
+    private Returned() {
+        super.setStateName(this.getClass().getSimpleName());
+    };
 
     public static Returned getInstance(){
         if(obj == null){

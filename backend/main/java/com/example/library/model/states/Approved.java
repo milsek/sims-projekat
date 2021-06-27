@@ -9,12 +9,13 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
 public class Approved extends ReservationState {
 
     private static Approved obj;
 
-    private Approved(){};
+    private Approved() {
+        super.setStateName(this.getClass().getSimpleName());
+    };
 
     public static Approved getInstance(){
         if(obj == null){

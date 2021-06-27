@@ -5,11 +5,12 @@ import com.example.library.model.ReservationState;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
 public class Seized extends ReservationState {
     private static Seized obj;
 
-    private Seized(){};
+    private Seized() {
+        super.setStateName(this.getClass().getSimpleName());
+    };
 
     public static Seized getInstance(){
         if(obj == null){

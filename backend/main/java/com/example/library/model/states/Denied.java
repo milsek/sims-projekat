@@ -9,11 +9,12 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
 public class Denied extends ReservationState {
     private static Denied obj;
 
-    private Denied(){};
+    private Denied() {
+        super.setStateName(this.getClass().getSimpleName());
+    };
 
     public static Denied getInstance(){
         if(obj == null){

@@ -22,7 +22,9 @@ import java.util.Set;
 @Entity
 public abstract class ReservationState {
     @Id
-    String stateName;
+    protected String stateName;
+
+    private transient Reservation context;
 
     public String getStateName() {
         return stateName;
@@ -32,6 +34,9 @@ public abstract class ReservationState {
         this.stateName = stateName;
     }
 
-    public ReservationState() {
+    public void setContext(Reservation context) {
+        this.context = context;
     }
+
+    public abstract void entry();
 }

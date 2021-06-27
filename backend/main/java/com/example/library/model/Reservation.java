@@ -1,5 +1,6 @@
 package com.example.library.model;
 
+import com.example.library.model.states.New;
 import org.springframework.context.annotation.Bean;
 
 import javax.annotation.Resource;
@@ -24,9 +25,13 @@ public abstract class Reservation {
 
     private transient ReservationState reservationState;
 
+    public Reservation() {
+        reservationState = New.getInstance();
+        reservationState.setContext(this);
+    }
+
     public void action() {
-        reservationState = reservationState.action();
-        stateName = reservationState.getStateName();
+
     }
 
     public void setId(Long id) {
