@@ -19,20 +19,19 @@ import javax.persistence.*;
 import java.util.EnumSet;
 import java.util.Set;
 
+@Entity
 public abstract class ReservationState {
-
-    protected String stateName;
-
-    static void entry() {
-    }
+    @Id
+    String stateName;
 
     public String getStateName() {
         return stateName;
     }
 
-    ReservationState action() {
-        return new New();
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 
-
+    public ReservationState() {
+    }
 }
