@@ -1,6 +1,10 @@
 package com.example.library.controller;
 
+import com.example.library.model.Book;
+import com.example.library.model.BookReservation;
 import com.example.library.model.Library;
+import com.example.library.model.Reservation;
+import com.example.library.repository.BookReservationRepo;
 import com.example.library.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +18,14 @@ public class TestController {
     @Autowired
     private LibraryService libraryService;
 
+    @Autowired
+    private BookReservationRepo reservationRepo;
+
     @GetMapping(path = "/hello")
     @ResponseBody
     public String hello() {
+        BookReservation br = reservationRepo.findById(1L).get();
+        br.action();
         return "Hello:)";
     }
 

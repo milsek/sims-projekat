@@ -31,6 +31,6 @@ public class New extends ReservationState {
     };
 
     public void doo(){
-
+        System.out.println("Doodoo");
     };
 }

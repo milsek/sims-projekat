@@ -1,10 +1,11 @@
 package com.example.library.model;
 
-import com.example.library.model.states.New;
+import com.example.library.model.states.*;
 import org.springframework.context.annotation.Bean;
 
 import javax.annotation.Resource;
 import javax.persistence.*;
+import java.lang.reflect.Method;
 import java.time.LocalDate;
 
 @Entity
@@ -25,12 +26,38 @@ public abstract class Reservation {
 
     private transient ReservationState reservationState;
 
+    public Reservation(Long id, LocalDate dateTaken, LocalDate dateReturned, String stateName) {
+        System.out.println("Konstruktor 1");
+        this.id = id;
+        this.dateTaken = dateTaken;
+        this.dateReturned = dateReturned;
+        this.stateName = stateName;
+    }
+
     public Reservation() {
+        System.out.println("Konstruktor 2");
         reservationState = New.getInstance();
         reservationState.setContext(this);
     }
 
     public void action() {
+        reservationState.doo();
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+        try {
+            Class<?> st = Class.forName("com.example.library.model.states." + stateName);
+            Method ins = st.getMethod("getInstance");
+            reservationState = (ReservationState) ins.invoke(ins);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
