@@ -198,14 +198,16 @@ class BOOK:
         self.condition = random.choice([0,0,0,1,1,1,1,2,2,3])
         self.state_name = 'inStock' # TODO: Other states
         self.edition_id = edition.id
+        self.line_id = random.choice(LINE.instances).id
 
         BOOK.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO BOOK VALUES({self.id}, {self.condition}, '{escape(self.name)}', {self.edition_id});"
+        # TODO: Check order of values
+        return f"INSERT INTO BOOK VALUES({self.id}, {self.condition}, '{escape(self.name)}', {self.edition_id}, {self.line_id});"
 
 
-class LINE:
+class LINE:   
     instances = []
 
     def __init__(self, name, isle):
