@@ -29,6 +29,10 @@ public class Book {
     @JoinColumn(name = "EDITION_ID")
     private Edition edition;
 
+    @ManyToOne
+    @JoinColumn(name = "LINE_ID")
+    private Line line;
+
     private transient BookState bookState;
 
     public Book() {
