@@ -20,7 +20,7 @@ public abstract class BookTitle {
     private String title;
 
     @OneToMany
-    @JoinColumn(name = "edition_id")
+    @JoinColumn(name = "title_id")
     private Set<Edition> editions;
 
     @ManyToMany
