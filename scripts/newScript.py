@@ -37,6 +37,7 @@ run_api({'q': 'c++', 'maxResults': 10}, ['programming', 'c++', 'computers'])
 
 file = open('data.sql', 'w')
 
+
 for tag in tables.TAG.instances:
     file.write(tag.toSql() + '\n')
 for genre in tables.GENRE.instances:
