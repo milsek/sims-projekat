@@ -1,356 +1,321 @@
-INSERT INTO PLACE VALUES(0, 'Novi Sad', 21000)
-INSERT INTO PLACE VALUES(1, 'Zrenjanin', 23000)
-INSERT INTO BUILDING VALUES(0, 'Developerska', 'Main library', 16, 0)
-INSERT INTO BUILDING VALUES(1, 'Inženjerska', 'Library II', 25, 0)
-INSERT INTO BUILDING VALUES(2, 'Stefana Đurića Raste', 'Library III', 29, 0)
-INSERT INTO BUILDING VALUES(3, 'Lignjoslavljeva', 'Main library', 11, 1)
-INSERT INTO BUILDING VALUES(4, 'Kanjea Zapadnog', 'Library II', 22, 1)
-INSERT INTO BUILDING VALUES(5, 'Trg Gvida van Rosuma', 'Library III', 13, 1)
-INSERT INTO SECTION VALUES(0, 'A', 0)
-INSERT INTO SECTION VALUES(1, 'B', 0)
-INSERT INTO SECTION VALUES(2, 'C', 0)
-INSERT INTO SECTION VALUES(3, 'D', 0)
-INSERT INTO SECTION VALUES(4, 'A', 1)
-INSERT INTO SECTION VALUES(5, 'B', 1)
-INSERT INTO SECTION VALUES(6, 'C', 1)
-INSERT INTO SECTION VALUES(7, 'D', 1)
-INSERT INTO SECTION VALUES(8, 'A', 2)
-INSERT INTO SECTION VALUES(9, 'B', 2)
-INSERT INTO SECTION VALUES(10, 'C', 2)
-INSERT INTO SECTION VALUES(11, 'D', 2)
-INSERT INTO SECTION VALUES(12, 'A', 3)
-INSERT INTO SECTION VALUES(13, 'B', 3)
-INSERT INTO SECTION VALUES(14, 'C', 3)
-INSERT INTO SECTION VALUES(15, 'D', 3)
-INSERT INTO SECTION VALUES(16, 'A', 4)
-INSERT INTO SECTION VALUES(17, 'B', 4)
-INSERT INTO SECTION VALUES(18, 'C', 4)
-INSERT INTO SECTION VALUES(19, 'D', 4)
-INSERT INTO SECTION VALUES(20, 'A', 5)
-INSERT INTO SECTION VALUES(21, 'B', 5)
-INSERT INTO SECTION VALUES(22, 'C', 5)
-INSERT INTO SECTION VALUES(23, 'D', 5)
-INSERT INTO ISLE VALUES(0, 'A', 0)
-INSERT INTO ISLE VALUES(1, 'B', 0)
-INSERT INTO ISLE VALUES(2, 'C', 0)
-INSERT INTO ISLE VALUES(3, 'A', 1)
-INSERT INTO ISLE VALUES(4, 'A', 3)
-INSERT INTO ISLE VALUES(5, 'A', 4)
-INSERT INTO ISLE VALUES(6, 'B', 4)
-INSERT INTO ISLE VALUES(7, 'C', 4)
-INSERT INTO ISLE VALUES(8, 'D', 4)
-INSERT INTO ISLE VALUES(9, 'A', 7)
-INSERT INTO ISLE VALUES(10, 'B', 7)
-INSERT INTO ISLE VALUES(11, 'A', 8)
-INSERT INTO ISLE VALUES(12, 'B', 8)
-INSERT INTO ISLE VALUES(13, 'C', 8)
-INSERT INTO ISLE VALUES(14, 'A', 9)
-INSERT INTO ISLE VALUES(15, 'B', 9)
-INSERT INTO ISLE VALUES(16, 'A', 10)
-INSERT INTO ISLE VALUES(17, 'B', 10)
-INSERT INTO ISLE VALUES(18, 'A', 13)
-INSERT INTO ISLE VALUES(19, 'B', 13)
-INSERT INTO ISLE VALUES(20, 'C', 13)
-INSERT INTO ISLE VALUES(21, 'A', 14)
-INSERT INTO ISLE VALUES(22, 'B', 14)
-INSERT INTO ISLE VALUES(23, 'A', 15)
-INSERT INTO ISLE VALUES(24, 'A', 16)
-INSERT INTO ISLE VALUES(25, 'A', 17)
-INSERT INTO ISLE VALUES(26, 'A', 18)
-INSERT INTO ISLE VALUES(27, 'B', 18)
-INSERT INTO ISLE VALUES(28, 'C', 18)
-INSERT INTO ISLE VALUES(29, 'D', 18)
-INSERT INTO ISLE VALUES(30, 'A', 19)
-INSERT INTO ISLE VALUES(31, 'B', 19)
-INSERT INTO ISLE VALUES(32, 'A', 20)
-INSERT INTO ISLE VALUES(33, 'A', 21)
-INSERT INTO ISLE VALUES(34, 'B', 21)
-INSERT INTO ISLE VALUES(35, 'A', 22)
-INSERT INTO ISLE VALUES(36, 'B', 22)
-INSERT INTO ISLE VALUES(37, 'C', 22)
-INSERT INTO ISLE VALUES(38, 'D', 22)
-INSERT INTO ISLE VALUES(39, 'A', 23)
-INSERT INTO ISLE VALUES(40, 'B', 23)
-INSERT INTO ISLE VALUES(41, 'C', 23)
-INSERT INTO ISLE VALUES(42, 'D', 23)
-INSERT INTO LINE VALUES(0, '0', 0)
-INSERT INTO LINE VALUES(1, '1', 0)
-INSERT INTO LINE VALUES(2, '2', 0)
-INSERT INTO LINE VALUES(3, '3', 0)
-INSERT INTO LINE VALUES(4, '4', 0)
-INSERT INTO LINE VALUES(5, '5', 0)
-INSERT INTO LINE VALUES(6, '0', 1)
-INSERT INTO LINE VALUES(7, '1', 1)
-INSERT INTO LINE VALUES(8, '2', 1)
-INSERT INTO LINE VALUES(9, '3', 1)
-INSERT INTO LINE VALUES(10, '0', 2)
-INSERT INTO LINE VALUES(11, '1', 2)
-INSERT INTO LINE VALUES(12, '2', 2)
-INSERT INTO LINE VALUES(13, '3', 2)
-INSERT INTO LINE VALUES(14, '4', 2)
-INSERT INTO LINE VALUES(15, '5', 2)
-INSERT INTO LINE VALUES(16, '6', 2)
-INSERT INTO LINE VALUES(17, '7', 2)
-INSERT INTO LINE VALUES(18, '0', 3)
-INSERT INTO LINE VALUES(19, '1', 3)
-INSERT INTO LINE VALUES(20, '2', 3)
-INSERT INTO LINE VALUES(21, '3', 3)
-INSERT INTO LINE VALUES(22, '4', 3)
-INSERT INTO LINE VALUES(23, '0', 4)
-INSERT INTO LINE VALUES(24, '1', 4)
-INSERT INTO LINE VALUES(25, '2', 4)
-INSERT INTO LINE VALUES(26, '3', 4)
-INSERT INTO LINE VALUES(27, '4', 4)
-INSERT INTO LINE VALUES(28, '5', 4)
-INSERT INTO LINE VALUES(29, '6', 4)
-INSERT INTO LINE VALUES(30, '0', 5)
-INSERT INTO LINE VALUES(31, '1', 5)
-INSERT INTO LINE VALUES(32, '2', 5)
-INSERT INTO LINE VALUES(33, '3', 5)
-INSERT INTO LINE VALUES(34, '4', 5)
-INSERT INTO LINE VALUES(35, '5', 5)
-INSERT INTO LINE VALUES(36, '6', 5)
-INSERT INTO LINE VALUES(37, '0', 6)
-INSERT INTO LINE VALUES(38, '1', 6)
-INSERT INTO LINE VALUES(39, '2', 6)
-INSERT INTO LINE VALUES(40, '3', 6)
-INSERT INTO LINE VALUES(41, '0', 7)
-INSERT INTO LINE VALUES(42, '1', 7)
-INSERT INTO LINE VALUES(43, '2', 7)
-INSERT INTO LINE VALUES(44, '3', 7)
-INSERT INTO LINE VALUES(45, '4', 7)
-INSERT INTO LINE VALUES(46, '5', 7)
-INSERT INTO LINE VALUES(47, '6', 7)
-INSERT INTO LINE VALUES(48, '0', 8)
-INSERT INTO LINE VALUES(49, '1', 8)
-INSERT INTO LINE VALUES(50, '2', 8)
-INSERT INTO LINE VALUES(51, '3', 8)
-INSERT INTO LINE VALUES(52, '4', 8)
-INSERT INTO LINE VALUES(53, '5', 8)
-INSERT INTO LINE VALUES(54, '0', 9)
-INSERT INTO LINE VALUES(55, '1', 9)
-INSERT INTO LINE VALUES(56, '2', 9)
-INSERT INTO LINE VALUES(57, '3', 9)
-INSERT INTO LINE VALUES(58, '4', 9)
-INSERT INTO LINE VALUES(59, '5', 9)
-INSERT INTO LINE VALUES(60, '6', 9)
-INSERT INTO LINE VALUES(61, '7', 9)
-INSERT INTO LINE VALUES(62, '0', 10)
-INSERT INTO LINE VALUES(63, '1', 10)
-INSERT INTO LINE VALUES(64, '2', 10)
-INSERT INTO LINE VALUES(65, '3', 10)
-INSERT INTO LINE VALUES(66, '4', 10)
-INSERT INTO LINE VALUES(67, '5', 10)
-INSERT INTO LINE VALUES(68, '6', 10)
-INSERT INTO LINE VALUES(69, '7', 10)
-INSERT INTO LINE VALUES(70, '0', 11)
-INSERT INTO LINE VALUES(71, '1', 11)
-INSERT INTO LINE VALUES(72, '2', 11)
-INSERT INTO LINE VALUES(73, '3', 11)
-INSERT INTO LINE VALUES(74, '4', 11)
-INSERT INTO LINE VALUES(75, '5', 11)
-INSERT INTO LINE VALUES(76, '6', 11)
-INSERT INTO LINE VALUES(77, '7', 11)
-INSERT INTO LINE VALUES(78, '0', 12)
-INSERT INTO LINE VALUES(79, '1', 12)
-INSERT INTO LINE VALUES(80, '2', 12)
-INSERT INTO LINE VALUES(81, '3', 12)
-INSERT INTO LINE VALUES(82, '4', 12)
-INSERT INTO LINE VALUES(83, '5', 12)
-INSERT INTO LINE VALUES(84, '6', 12)
-INSERT INTO LINE VALUES(85, '0', 13)
-INSERT INTO LINE VALUES(86, '1', 13)
-INSERT INTO LINE VALUES(87, '2', 13)
-INSERT INTO LINE VALUES(88, '3', 13)
-INSERT INTO LINE VALUES(89, '4', 13)
-INSERT INTO LINE VALUES(90, '5', 13)
-INSERT INTO LINE VALUES(91, '0', 14)
-INSERT INTO LINE VALUES(92, '1', 14)
-INSERT INTO LINE VALUES(93, '2', 14)
-INSERT INTO LINE VALUES(94, '3', 14)
-INSERT INTO LINE VALUES(95, '4', 14)
-INSERT INTO LINE VALUES(96, '5', 14)
-INSERT INTO LINE VALUES(97, '6', 14)
-INSERT INTO LINE VALUES(98, '0', 15)
-INSERT INTO LINE VALUES(99, '1', 15)
-INSERT INTO LINE VALUES(100, '2', 15)
-INSERT INTO LINE VALUES(101, '3', 15)
-INSERT INTO LINE VALUES(102, '4', 15)
-INSERT INTO LINE VALUES(103, '5', 15)
-INSERT INTO LINE VALUES(104, '6', 15)
-INSERT INTO LINE VALUES(105, '7', 15)
-INSERT INTO LINE VALUES(106, '0', 16)
-INSERT INTO LINE VALUES(107, '1', 16)
-INSERT INTO LINE VALUES(108, '2', 16)
-INSERT INTO LINE VALUES(109, '3', 16)
-INSERT INTO LINE VALUES(110, '0', 17)
-INSERT INTO LINE VALUES(111, '1', 17)
-INSERT INTO LINE VALUES(112, '2', 17)
-INSERT INTO LINE VALUES(113, '3', 17)
-INSERT INTO LINE VALUES(114, '4', 17)
-INSERT INTO LINE VALUES(115, '5', 17)
-INSERT INTO LINE VALUES(116, '6', 17)
-INSERT INTO LINE VALUES(117, '0', 18)
-INSERT INTO LINE VALUES(118, '1', 18)
-INSERT INTO LINE VALUES(119, '2', 18)
-INSERT INTO LINE VALUES(120, '3', 18)
-INSERT INTO LINE VALUES(121, '4', 18)
-INSERT INTO LINE VALUES(122, '5', 18)
-INSERT INTO LINE VALUES(123, '6', 18)
-INSERT INTO LINE VALUES(124, '7', 18)
-INSERT INTO LINE VALUES(125, '0', 19)
-INSERT INTO LINE VALUES(126, '1', 19)
-INSERT INTO LINE VALUES(127, '2', 19)
-INSERT INTO LINE VALUES(128, '3', 19)
-INSERT INTO LINE VALUES(129, '4', 19)
-INSERT INTO LINE VALUES(130, '5', 19)
-INSERT INTO LINE VALUES(131, '6', 19)
-INSERT INTO LINE VALUES(132, '0', 20)
-INSERT INTO LINE VALUES(133, '1', 20)
-INSERT INTO LINE VALUES(134, '2', 20)
-INSERT INTO LINE VALUES(135, '3', 20)
-INSERT INTO LINE VALUES(136, '4', 20)
-INSERT INTO LINE VALUES(137, '0', 21)
-INSERT INTO LINE VALUES(138, '1', 21)
-INSERT INTO LINE VALUES(139, '2', 21)
-INSERT INTO LINE VALUES(140, '3', 21)
-INSERT INTO LINE VALUES(141, '4', 21)
-INSERT INTO LINE VALUES(142, '0', 22)
-INSERT INTO LINE VALUES(143, '1', 22)
-INSERT INTO LINE VALUES(144, '2', 22)
-INSERT INTO LINE VALUES(145, '3', 22)
-INSERT INTO LINE VALUES(146, '4', 22)
-INSERT INTO LINE VALUES(147, '5', 22)
-INSERT INTO LINE VALUES(148, '6', 22)
-INSERT INTO LINE VALUES(149, '7', 22)
-INSERT INTO LINE VALUES(150, '0', 23)
-INSERT INTO LINE VALUES(151, '1', 23)
-INSERT INTO LINE VALUES(152, '2', 23)
-INSERT INTO LINE VALUES(153, '3', 23)
-INSERT INTO LINE VALUES(154, '4', 23)
-INSERT INTO LINE VALUES(155, '5', 23)
-INSERT INTO LINE VALUES(156, '0', 24)
-INSERT INTO LINE VALUES(157, '1', 24)
-INSERT INTO LINE VALUES(158, '2', 24)
-INSERT INTO LINE VALUES(159, '3', 24)
-INSERT INTO LINE VALUES(160, '4', 24)
-INSERT INTO LINE VALUES(161, '5', 24)
-INSERT INTO LINE VALUES(162, '6', 24)
-INSERT INTO LINE VALUES(163, '7', 24)
-INSERT INTO LINE VALUES(164, '0', 25)
-INSERT INTO LINE VALUES(165, '1', 25)
-INSERT INTO LINE VALUES(166, '2', 25)
-INSERT INTO LINE VALUES(167, '3', 25)
-INSERT INTO LINE VALUES(168, '4', 25)
-INSERT INTO LINE VALUES(169, '5', 25)
-INSERT INTO LINE VALUES(170, '6', 25)
-INSERT INTO LINE VALUES(171, '0', 26)
-INSERT INTO LINE VALUES(172, '1', 26)
-INSERT INTO LINE VALUES(173, '2', 26)
-INSERT INTO LINE VALUES(174, '3', 26)
-INSERT INTO LINE VALUES(175, '4', 26)
-INSERT INTO LINE VALUES(176, '5', 26)
-INSERT INTO LINE VALUES(177, '6', 26)
-INSERT INTO LINE VALUES(178, '7', 26)
-INSERT INTO LINE VALUES(179, '0', 27)
-INSERT INTO LINE VALUES(180, '1', 27)
-INSERT INTO LINE VALUES(181, '2', 27)
-INSERT INTO LINE VALUES(182, '3', 27)
-INSERT INTO LINE VALUES(183, '0', 28)
-INSERT INTO LINE VALUES(184, '1', 28)
-INSERT INTO LINE VALUES(185, '2', 28)
-INSERT INTO LINE VALUES(186, '3', 28)
-INSERT INTO LINE VALUES(187, '4', 28)
-INSERT INTO LINE VALUES(188, '5', 28)
-INSERT INTO LINE VALUES(189, '6', 28)
-INSERT INTO LINE VALUES(190, '0', 29)
-INSERT INTO LINE VALUES(191, '1', 29)
-INSERT INTO LINE VALUES(192, '2', 29)
-INSERT INTO LINE VALUES(193, '3', 29)
-INSERT INTO LINE VALUES(194, '4', 29)
-INSERT INTO LINE VALUES(195, '5', 29)
-INSERT INTO LINE VALUES(196, '6', 29)
-INSERT INTO LINE VALUES(197, '0', 30)
-INSERT INTO LINE VALUES(198, '1', 30)
-INSERT INTO LINE VALUES(199, '2', 30)
-INSERT INTO LINE VALUES(200, '3', 30)
-INSERT INTO LINE VALUES(201, '4', 30)
-INSERT INTO LINE VALUES(202, '5', 30)
-INSERT INTO LINE VALUES(203, '6', 30)
-INSERT INTO LINE VALUES(204, '0', 31)
-INSERT INTO LINE VALUES(205, '1', 31)
-INSERT INTO LINE VALUES(206, '2', 31)
-INSERT INTO LINE VALUES(207, '3', 31)
-INSERT INTO LINE VALUES(208, '4', 31)
-INSERT INTO LINE VALUES(209, '5', 31)
-INSERT INTO LINE VALUES(210, '6', 31)
-INSERT INTO LINE VALUES(211, '0', 32)
-INSERT INTO LINE VALUES(212, '1', 32)
-INSERT INTO LINE VALUES(213, '2', 32)
-INSERT INTO LINE VALUES(214, '3', 32)
-INSERT INTO LINE VALUES(215, '4', 32)
-INSERT INTO LINE VALUES(216, '0', 33)
-INSERT INTO LINE VALUES(217, '1', 33)
-INSERT INTO LINE VALUES(218, '2', 33)
-INSERT INTO LINE VALUES(219, '3', 33)
-INSERT INTO LINE VALUES(220, '4', 33)
-INSERT INTO LINE VALUES(221, '0', 34)
-INSERT INTO LINE VALUES(222, '1', 34)
-INSERT INTO LINE VALUES(223, '2', 34)
-INSERT INTO LINE VALUES(224, '3', 34)
-INSERT INTO LINE VALUES(225, '4', 34)
-INSERT INTO LINE VALUES(226, '5', 34)
-INSERT INTO LINE VALUES(227, '0', 35)
-INSERT INTO LINE VALUES(228, '1', 35)
-INSERT INTO LINE VALUES(229, '2', 35)
-INSERT INTO LINE VALUES(230, '3', 35)
-INSERT INTO LINE VALUES(231, '4', 35)
-INSERT INTO LINE VALUES(232, '5', 35)
-INSERT INTO LINE VALUES(233, '6', 35)
-INSERT INTO LINE VALUES(234, '7', 35)
-INSERT INTO LINE VALUES(235, '0', 36)
-INSERT INTO LINE VALUES(236, '1', 36)
-INSERT INTO LINE VALUES(237, '2', 36)
-INSERT INTO LINE VALUES(238, '3', 36)
-INSERT INTO LINE VALUES(239, '4', 36)
-INSERT INTO LINE VALUES(240, '0', 37)
-INSERT INTO LINE VALUES(241, '1', 37)
-INSERT INTO LINE VALUES(242, '2', 37)
-INSERT INTO LINE VALUES(243, '3', 37)
-INSERT INTO LINE VALUES(244, '4', 37)
-INSERT INTO LINE VALUES(245, '5', 37)
-INSERT INTO LINE VALUES(246, '6', 37)
-INSERT INTO LINE VALUES(247, '0', 38)
-INSERT INTO LINE VALUES(248, '1', 38)
-INSERT INTO LINE VALUES(249, '2', 38)
-INSERT INTO LINE VALUES(250, '3', 38)
-INSERT INTO LINE VALUES(251, '4', 38)
-INSERT INTO LINE VALUES(252, '5', 38)
-INSERT INTO LINE VALUES(253, '6', 38)
-INSERT INTO LINE VALUES(254, '0', 39)
-INSERT INTO LINE VALUES(255, '1', 39)
-INSERT INTO LINE VALUES(256, '2', 39)
-INSERT INTO LINE VALUES(257, '3', 39)
-INSERT INTO LINE VALUES(258, '4', 39)
-INSERT INTO LINE VALUES(259, '0', 40)
-INSERT INTO LINE VALUES(260, '1', 40)
-INSERT INTO LINE VALUES(261, '2', 40)
-INSERT INTO LINE VALUES(262, '3', 40)
-INSERT INTO LINE VALUES(263, '0', 41)
-INSERT INTO LINE VALUES(264, '1', 41)
-INSERT INTO LINE VALUES(265, '2', 41)
-INSERT INTO LINE VALUES(266, '3', 41)
-INSERT INTO LINE VALUES(267, '4', 41)
-INSERT INTO LINE VALUES(268, '5', 41)
-INSERT INTO LINE VALUES(269, '6', 41)
-INSERT INTO LINE VALUES(270, '7', 41)
-INSERT INTO LINE VALUES(271, '0', 42)
-INSERT INTO LINE VALUES(272, '1', 42)
-INSERT INTO LINE VALUES(273, '2', 42)
-INSERT INTO LINE VALUES(274, '3', 42)
-INSERT INTO LINE VALUES(275, '4', 42)
-INSERT INTO LINE VALUES(276, '5', 42)
-INSERT INTO LINE VALUES(277, '6', 42)
+INSERT INTO PLACE VALUES(0, 'Novi Sad', 21000);
+INSERT INTO PLACE VALUES(1, 'Zrenjanin', 23000);
+INSERT INTO BUILDING VALUES(0, 'Lignjoslavljeva', 'Main library', 21, 0);
+INSERT INTO BUILDING VALUES(1, 'Sina Dragana', 'Library II', 28, 0);
+INSERT INTO BUILDING VALUES(2, 'Žrtava junskog roka', 'Library III', 30, 0);
+INSERT INTO BUILDING VALUES(3, 'Žrtava junskog roka', 'Main library', 18, 1);
+INSERT INTO BUILDING VALUES(4, 'Ozrena Soldatovića', 'Library II', 15, 1);
+INSERT INTO BUILDING VALUES(5, 'Žrtava junskog roka', 'Library III', 11, 1);
+INSERT INTO SECTION VALUES(0, 'A', 0);
+INSERT INTO SECTION VALUES(1, 'B', 0);
+INSERT INTO SECTION VALUES(2, 'C', 0);
+INSERT INTO SECTION VALUES(3, 'D', 0);
+INSERT INTO SECTION VALUES(4, 'A', 1);
+INSERT INTO SECTION VALUES(5, 'B', 1);
+INSERT INTO SECTION VALUES(6, 'C', 1);
+INSERT INTO SECTION VALUES(7, 'D', 1);
+INSERT INTO SECTION VALUES(8, 'A', 2);
+INSERT INTO SECTION VALUES(9, 'B', 2);
+INSERT INTO SECTION VALUES(10, 'C', 2);
+INSERT INTO SECTION VALUES(11, 'D', 2);
+INSERT INTO SECTION VALUES(12, 'A', 3);
+INSERT INTO SECTION VALUES(13, 'B', 3);
+INSERT INTO SECTION VALUES(14, 'C', 3);
+INSERT INTO SECTION VALUES(15, 'D', 3);
+INSERT INTO SECTION VALUES(16, 'A', 4);
+INSERT INTO SECTION VALUES(17, 'B', 4);
+INSERT INTO SECTION VALUES(18, 'C', 4);
+INSERT INTO SECTION VALUES(19, 'D', 4);
+INSERT INTO SECTION VALUES(20, 'A', 5);
+INSERT INTO SECTION VALUES(21, 'B', 5);
+INSERT INTO SECTION VALUES(22, 'C', 5);
+INSERT INTO SECTION VALUES(23, 'D', 5);
+INSERT INTO ISLE VALUES(0, 'A', 0);
+INSERT INTO ISLE VALUES(1, 'A', 3);
+INSERT INTO ISLE VALUES(2, 'B', 3);
+INSERT INTO ISLE VALUES(3, 'A', 6);
+INSERT INTO ISLE VALUES(4, 'B', 6);
+INSERT INTO ISLE VALUES(5, 'A', 7);
+INSERT INTO ISLE VALUES(6, 'B', 7);
+INSERT INTO ISLE VALUES(7, 'C', 7);
+INSERT INTO ISLE VALUES(8, 'D', 7);
+INSERT INTO ISLE VALUES(9, 'A', 8);
+INSERT INTO ISLE VALUES(10, 'B', 8);
+INSERT INTO ISLE VALUES(11, 'C', 8);
+INSERT INTO ISLE VALUES(12, 'D', 8);
+INSERT INTO ISLE VALUES(13, 'A', 9);
+INSERT INTO ISLE VALUES(14, 'B', 9);
+INSERT INTO ISLE VALUES(15, 'C', 9);
+INSERT INTO ISLE VALUES(16, 'A', 10);
+INSERT INTO ISLE VALUES(17, 'A', 12);
+INSERT INTO ISLE VALUES(18, 'B', 12);
+INSERT INTO ISLE VALUES(19, 'C', 12);
+INSERT INTO ISLE VALUES(20, 'D', 12);
+INSERT INTO ISLE VALUES(21, 'A', 13);
+INSERT INTO ISLE VALUES(22, 'B', 13);
+INSERT INTO ISLE VALUES(23, 'A', 14);
+INSERT INTO ISLE VALUES(24, 'B', 14);
+INSERT INTO ISLE VALUES(25, 'C', 14);
+INSERT INTO ISLE VALUES(26, 'D', 14);
+INSERT INTO ISLE VALUES(27, 'A', 15);
+INSERT INTO ISLE VALUES(28, 'B', 15);
+INSERT INTO ISLE VALUES(29, 'A', 17);
+INSERT INTO ISLE VALUES(30, 'B', 17);
+INSERT INTO ISLE VALUES(31, 'C', 17);
+INSERT INTO ISLE VALUES(32, 'A', 20);
+INSERT INTO ISLE VALUES(33, 'B', 20);
+INSERT INTO ISLE VALUES(34, 'C', 20);
+INSERT INTO ISLE VALUES(35, 'D', 20);
+INSERT INTO ISLE VALUES(36, 'A', 21);
+INSERT INTO ISLE VALUES(37, 'B', 21);
+INSERT INTO ISLE VALUES(38, 'A', 22);
+INSERT INTO ISLE VALUES(39, 'A', 23);
+INSERT INTO ISLE VALUES(40, 'B', 23);
+INSERT INTO ISLE VALUES(41, 'C', 23);
+INSERT INTO ISLE VALUES(42, 'D', 23);
+INSERT INTO LINE VALUES(0, '0', 0);
+INSERT INTO LINE VALUES(1, '1', 0);
+INSERT INTO LINE VALUES(2, '2', 0);
+INSERT INTO LINE VALUES(3, '3', 0);
+INSERT INTO LINE VALUES(4, '4', 0);
+INSERT INTO LINE VALUES(5, '5', 0);
+INSERT INTO LINE VALUES(6, '6', 0);
+INSERT INTO LINE VALUES(7, '0', 1);
+INSERT INTO LINE VALUES(8, '1', 1);
+INSERT INTO LINE VALUES(9, '2', 1);
+INSERT INTO LINE VALUES(10, '3', 1);
+INSERT INTO LINE VALUES(11, '0', 2);
+INSERT INTO LINE VALUES(12, '1', 2);
+INSERT INTO LINE VALUES(13, '2', 2);
+INSERT INTO LINE VALUES(14, '3', 2);
+INSERT INTO LINE VALUES(15, '4', 2);
+INSERT INTO LINE VALUES(16, '5', 2);
+INSERT INTO LINE VALUES(17, '6', 2);
+INSERT INTO LINE VALUES(18, '0', 3);
+INSERT INTO LINE VALUES(19, '1', 3);
+INSERT INTO LINE VALUES(20, '2', 3);
+INSERT INTO LINE VALUES(21, '3', 3);
+INSERT INTO LINE VALUES(22, '0', 4);
+INSERT INTO LINE VALUES(23, '1', 4);
+INSERT INTO LINE VALUES(24, '2', 4);
+INSERT INTO LINE VALUES(25, '3', 4);
+INSERT INTO LINE VALUES(26, '4', 4);
+INSERT INTO LINE VALUES(27, '0', 5);
+INSERT INTO LINE VALUES(28, '1', 5);
+INSERT INTO LINE VALUES(29, '2', 5);
+INSERT INTO LINE VALUES(30, '3', 5);
+INSERT INTO LINE VALUES(31, '4', 5);
+INSERT INTO LINE VALUES(32, '5', 5);
+INSERT INTO LINE VALUES(33, '0', 6);
+INSERT INTO LINE VALUES(34, '1', 6);
+INSERT INTO LINE VALUES(35, '2', 6);
+INSERT INTO LINE VALUES(36, '3', 6);
+INSERT INTO LINE VALUES(37, '0', 7);
+INSERT INTO LINE VALUES(38, '1', 7);
+INSERT INTO LINE VALUES(39, '2', 7);
+INSERT INTO LINE VALUES(40, '3', 7);
+INSERT INTO LINE VALUES(41, '4', 7);
+INSERT INTO LINE VALUES(42, '5', 7);
+INSERT INTO LINE VALUES(43, '6', 7);
+INSERT INTO LINE VALUES(44, '0', 8);
+INSERT INTO LINE VALUES(45, '1', 8);
+INSERT INTO LINE VALUES(46, '2', 8);
+INSERT INTO LINE VALUES(47, '3', 8);
+INSERT INTO LINE VALUES(48, '4', 8);
+INSERT INTO LINE VALUES(49, '5', 8);
+INSERT INTO LINE VALUES(50, '6', 8);
+INSERT INTO LINE VALUES(51, '0', 9);
+INSERT INTO LINE VALUES(52, '1', 9);
+INSERT INTO LINE VALUES(53, '2', 9);
+INSERT INTO LINE VALUES(54, '3', 9);
+INSERT INTO LINE VALUES(55, '4', 9);
+INSERT INTO LINE VALUES(56, '0', 10);
+INSERT INTO LINE VALUES(57, '1', 10);
+INSERT INTO LINE VALUES(58, '2', 10);
+INSERT INTO LINE VALUES(59, '3', 10);
+INSERT INTO LINE VALUES(60, '4', 10);
+INSERT INTO LINE VALUES(61, '0', 11);
+INSERT INTO LINE VALUES(62, '1', 11);
+INSERT INTO LINE VALUES(63, '2', 11);
+INSERT INTO LINE VALUES(64, '3', 11);
+INSERT INTO LINE VALUES(65, '0', 12);
+INSERT INTO LINE VALUES(66, '1', 12);
+INSERT INTO LINE VALUES(67, '2', 12);
+INSERT INTO LINE VALUES(68, '3', 12);
+INSERT INTO LINE VALUES(69, '4', 12);
+INSERT INTO LINE VALUES(70, '5', 12);
+INSERT INTO LINE VALUES(71, '6', 12);
+INSERT INTO LINE VALUES(72, '0', 13);
+INSERT INTO LINE VALUES(73, '1', 13);
+INSERT INTO LINE VALUES(74, '2', 13);
+INSERT INTO LINE VALUES(75, '3', 13);
+INSERT INTO LINE VALUES(76, '4', 13);
+INSERT INTO LINE VALUES(77, '5', 13);
+INSERT INTO LINE VALUES(78, '0', 14);
+INSERT INTO LINE VALUES(79, '1', 14);
+INSERT INTO LINE VALUES(80, '2', 14);
+INSERT INTO LINE VALUES(81, '3', 14);
+INSERT INTO LINE VALUES(82, '4', 14);
+INSERT INTO LINE VALUES(83, '5', 14);
+INSERT INTO LINE VALUES(84, '6', 14);
+INSERT INTO LINE VALUES(85, '0', 15);
+INSERT INTO LINE VALUES(86, '1', 15);
+INSERT INTO LINE VALUES(87, '2', 15);
+INSERT INTO LINE VALUES(88, '3', 15);
+INSERT INTO LINE VALUES(89, '4', 15);
+INSERT INTO LINE VALUES(90, '5', 15);
+INSERT INTO LINE VALUES(91, '6', 15);
+INSERT INTO LINE VALUES(92, '7', 15);
+INSERT INTO LINE VALUES(93, '0', 16);
+INSERT INTO LINE VALUES(94, '1', 16);
+INSERT INTO LINE VALUES(95, '2', 16);
+INSERT INTO LINE VALUES(96, '3', 16);
+INSERT INTO LINE VALUES(97, '4', 16);
+INSERT INTO LINE VALUES(98, '0', 17);
+INSERT INTO LINE VALUES(99, '1', 17);
+INSERT INTO LINE VALUES(100, '2', 17);
+INSERT INTO LINE VALUES(101, '3', 17);
+INSERT INTO LINE VALUES(102, '0', 18);
+INSERT INTO LINE VALUES(103, '1', 18);
+INSERT INTO LINE VALUES(104, '2', 18);
+INSERT INTO LINE VALUES(105, '3', 18);
+INSERT INTO LINE VALUES(106, '0', 19);
+INSERT INTO LINE VALUES(107, '1', 19);
+INSERT INTO LINE VALUES(108, '2', 19);
+INSERT INTO LINE VALUES(109, '3', 19);
+INSERT INTO LINE VALUES(110, '4', 19);
+INSERT INTO LINE VALUES(111, '5', 19);
+INSERT INTO LINE VALUES(112, '6', 19);
+INSERT INTO LINE VALUES(113, '7', 19);
+INSERT INTO LINE VALUES(114, '0', 20);
+INSERT INTO LINE VALUES(115, '1', 20);
+INSERT INTO LINE VALUES(116, '2', 20);
+INSERT INTO LINE VALUES(117, '3', 20);
+INSERT INTO LINE VALUES(118, '4', 20);
+INSERT INTO LINE VALUES(119, '5', 20);
+INSERT INTO LINE VALUES(120, '6', 20);
+INSERT INTO LINE VALUES(121, '0', 21);
+INSERT INTO LINE VALUES(122, '1', 21);
+INSERT INTO LINE VALUES(123, '2', 21);
+INSERT INTO LINE VALUES(124, '3', 21);
+INSERT INTO LINE VALUES(125, '4', 21);
+INSERT INTO LINE VALUES(126, '0', 22);
+INSERT INTO LINE VALUES(127, '1', 22);
+INSERT INTO LINE VALUES(128, '2', 22);
+INSERT INTO LINE VALUES(129, '3', 22);
+INSERT INTO LINE VALUES(130, '0', 23);
+INSERT INTO LINE VALUES(131, '1', 23);
+INSERT INTO LINE VALUES(132, '2', 23);
+INSERT INTO LINE VALUES(133, '3', 23);
+INSERT INTO LINE VALUES(134, '0', 24);
+INSERT INTO LINE VALUES(135, '1', 24);
+INSERT INTO LINE VALUES(136, '2', 24);
+INSERT INTO LINE VALUES(137, '3', 24);
+INSERT INTO LINE VALUES(138, '0', 25);
+INSERT INTO LINE VALUES(139, '1', 25);
+INSERT INTO LINE VALUES(140, '2', 25);
+INSERT INTO LINE VALUES(141, '3', 25);
+INSERT INTO LINE VALUES(142, '4', 25);
+INSERT INTO LINE VALUES(143, '5', 25);
+INSERT INTO LINE VALUES(144, '6', 25);
+INSERT INTO LINE VALUES(145, '7', 25);
+INSERT INTO LINE VALUES(146, '0', 26);
+INSERT INTO LINE VALUES(147, '1', 26);
+INSERT INTO LINE VALUES(148, '2', 26);
+INSERT INTO LINE VALUES(149, '3', 26);
+INSERT INTO LINE VALUES(150, '4', 26);
+INSERT INTO LINE VALUES(151, '5', 26);
+INSERT INTO LINE VALUES(152, '0', 27);
+INSERT INTO LINE VALUES(153, '1', 27);
+INSERT INTO LINE VALUES(154, '2', 27);
+INSERT INTO LINE VALUES(155, '3', 27);
+INSERT INTO LINE VALUES(156, '4', 27);
+INSERT INTO LINE VALUES(157, '5', 27);
+INSERT INTO LINE VALUES(158, '6', 27);
+INSERT INTO LINE VALUES(159, '0', 28);
+INSERT INTO LINE VALUES(160, '1', 28);
+INSERT INTO LINE VALUES(161, '2', 28);
+INSERT INTO LINE VALUES(162, '3', 28);
+INSERT INTO LINE VALUES(163, '4', 28);
+INSERT INTO LINE VALUES(164, '0', 29);
+INSERT INTO LINE VALUES(165, '1', 29);
+INSERT INTO LINE VALUES(166, '2', 29);
+INSERT INTO LINE VALUES(167, '3', 29);
+INSERT INTO LINE VALUES(168, '0', 30);
+INSERT INTO LINE VALUES(169, '1', 30);
+INSERT INTO LINE VALUES(170, '2', 30);
+INSERT INTO LINE VALUES(171, '3', 30);
+INSERT INTO LINE VALUES(172, '4', 30);
+INSERT INTO LINE VALUES(173, '5', 30);
+INSERT INTO LINE VALUES(174, '0', 31);
+INSERT INTO LINE VALUES(175, '1', 31);
+INSERT INTO LINE VALUES(176, '2', 31);
+INSERT INTO LINE VALUES(177, '3', 31);
+INSERT INTO LINE VALUES(178, '4', 31);
+INSERT INTO LINE VALUES(179, '5', 31);
+INSERT INTO LINE VALUES(180, '0', 32);
+INSERT INTO LINE VALUES(181, '1', 32);
+INSERT INTO LINE VALUES(182, '2', 32);
+INSERT INTO LINE VALUES(183, '3', 32);
+INSERT INTO LINE VALUES(184, '4', 32);
+INSERT INTO LINE VALUES(185, '5', 32);
+INSERT INTO LINE VALUES(186, '6', 32);
+INSERT INTO LINE VALUES(187, '7', 32);
+INSERT INTO LINE VALUES(188, '0', 33);
+INSERT INTO LINE VALUES(189, '1', 33);
+INSERT INTO LINE VALUES(190, '2', 33);
+INSERT INTO LINE VALUES(191, '3', 33);
+INSERT INTO LINE VALUES(192, '4', 33);
+INSERT INTO LINE VALUES(193, '0', 34);
+INSERT INTO LINE VALUES(194, '1', 34);
+INSERT INTO LINE VALUES(195, '2', 34);
+INSERT INTO LINE VALUES(196, '3', 34);
+INSERT INTO LINE VALUES(197, '4', 34);
+INSERT INTO LINE VALUES(198, '5', 34);
+INSERT INTO LINE VALUES(199, '6', 34);
+INSERT INTO LINE VALUES(200, '0', 35);
+INSERT INTO LINE VALUES(201, '1', 35);
+INSERT INTO LINE VALUES(202, '2', 35);
+INSERT INTO LINE VALUES(203, '3', 35);
+INSERT INTO LINE VALUES(204, '4', 35);
+INSERT INTO LINE VALUES(205, '0', 36);
+INSERT INTO LINE VALUES(206, '1', 36);
+INSERT INTO LINE VALUES(207, '2', 36);
+INSERT INTO LINE VALUES(208, '3', 36);
+INSERT INTO LINE VALUES(209, '4', 36);
+INSERT INTO LINE VALUES(210, '5', 36);
+INSERT INTO LINE VALUES(211, '0', 37);
+INSERT INTO LINE VALUES(212, '1', 37);
+INSERT INTO LINE VALUES(213, '2', 37);
+INSERT INTO LINE VALUES(214, '3', 37);
+INSERT INTO LINE VALUES(215, '4', 37);
+INSERT INTO LINE VALUES(216, '5', 37);
+INSERT INTO LINE VALUES(217, '0', 38);
+INSERT INTO LINE VALUES(218, '1', 38);
+INSERT INTO LINE VALUES(219, '2', 38);
+INSERT INTO LINE VALUES(220, '3', 38);
+INSERT INTO LINE VALUES(221, '4', 38);
+INSERT INTO LINE VALUES(222, '5', 38);
+INSERT INTO LINE VALUES(223, '0', 39);
+INSERT INTO LINE VALUES(224, '1', 39);
+INSERT INTO LINE VALUES(225, '2', 39);
+INSERT INTO LINE VALUES(226, '3', 39);
+INSERT INTO LINE VALUES(227, '4', 39);
+INSERT INTO LINE VALUES(228, '5', 39);
+INSERT INTO LINE VALUES(229, '0', 40);
+INSERT INTO LINE VALUES(230, '1', 40);
+INSERT INTO LINE VALUES(231, '2', 40);
+INSERT INTO LINE VALUES(232, '3', 40);
+INSERT INTO LINE VALUES(233, '0', 41);
+INSERT INTO LINE VALUES(234, '1', 41);
+INSERT INTO LINE VALUES(235, '2', 41);
+INSERT INTO LINE VALUES(236, '3', 41);
+INSERT INTO LINE VALUES(237, '4', 41);
+INSERT INTO LINE VALUES(238, '5', 41);
+INSERT INTO LINE VALUES(239, '0', 42);
+INSERT INTO LINE VALUES(240, '1', 42);
+INSERT INTO LINE VALUES(241, '2', 42);
+INSERT INTO LINE VALUES(242, '3', 42);
 INSERT INTO TAG VALUES(0, 'cryptography');
 INSERT INTO TAG VALUES(1, 'security');
 INSERT INTO TAG VALUES(2, 'computers');
@@ -382,7 +347,7 @@ INSERT INTO PUBLISHER VALUES(1, 'Oxford Paperbacks');
 INSERT INTO PUBLISHER VALUES(2, 'Springer Science & Business Media');
 INSERT INTO PUBLISHER VALUES(3, 'Oxford University Press');
 INSERT INTO BOOK_TITLE VALUES(0, 'Applied Cryptography');
-INSERT INTO EDITION VALUES(0, 49, '"This special Anniversary Edition celebrates 20 years for the most definitive reference on cryptography ever published." -- Book jacket. New introduction by the author.', '22', 'http://books.google.com/books/content?id=VjC9BgAAQBAJ&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=VjC9BgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 784, 2.0, 188, true, PARSEDATETIME('2015', 'yyyy'), 0, 0);
+INSERT INTO EDITION VALUES(0, 52, '"This special Anniversary Edition celebrates 20 years for the most definitive reference on cryptography ever published." -- Book jacket. New introduction by the author.', '18', 'http://books.google.com/books/content?id=VjC9BgAAQBAJ&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=VjC9BgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 784, 4.5, 76, false, PARSEDATETIME('2015', 'yyyy'), 0, 0);
 INSERT INTO BOOK_TITLE_EDITIONS VALUES(0, 0);
 INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES(0, 0);
 INSERT INTO BOOK_TITLE_GENRES VALUES(0, 0);
@@ -391,7 +356,7 @@ INSERT INTO EDITION_TAGS VALUES(0, 1);
 INSERT INTO EDITION_TAGS VALUES(0, 2);
 INSERT INTO EDITION_TAGS VALUES(0, 3);
 INSERT INTO BOOK_TITLE VALUES(1, 'Cryptography For Dummies');
-INSERT INTO EDITION VALUES(1, 50, 'Cryptography is the most effective way to achieve data securityand is essential to e-commerce activities such as online shopping,stock trading, and banking This invaluable introduction to the basics of encryption coverseverything from the terminology used in the field to specifictechnologies to the pros and cons of different implementations Discusses specific technologies that incorporate cryptographyin their design, such as authentication methods, wirelessencryption, e-commerce, and smart cards Based entirely on real-world issues and situations, thematerial provides instructions for already available technologiesthat readers can put to work immediately Expert author Chey Cobb is retired from the NRO, where she helda Top Secret security clearance, instructed employees of the CIAand NSA on computer security and helped develop the computersecurity policies used by all U.S. intelligence age', '19', 'http://books.google.com/books/content?id=b3pQDh7j5ogC&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=b3pQDh7j5ogC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 324, 2.8, 499, true, PARSEDATETIME('2004', 'yyyy'), 0, 1);
+INSERT INTO EDITION VALUES(1, 45, 'Cryptography is the most effective way to achieve data securityand is essential to e-commerce activities such as online shopping,stock trading, and banking This invaluable introduction to the basics of encryption coverseverything from the terminology used in the field to specifictechnologies to the pros and cons of different implementations Discusses specific technologies that incorporate cryptographyin their design, such as authentication methods, wirelessencryption, e-commerce, and smart cards Based entirely on real-world issues and situations, thematerial provides instructions for already available technologiesthat readers can put to work immediately Expert author Chey Cobb is retired from the NRO, where she helda Top Secret security clearance, instructed employees of the CIAand NSA on computer security and helped develop the computersecurity policies used by all U.S. intelligence age', '20', 'http://books.google.com/books/content?id=b3pQDh7j5ogC&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=b3pQDh7j5ogC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 324, 2.3, 600, true, PARSEDATETIME('2004', 'yyyy'), 0, 1);
 INSERT INTO BOOK_TITLE_EDITIONS VALUES(1, 1);
 INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES(1, 1);
 INSERT INTO BOOK_TITLE_GENRES VALUES(1, 0);
@@ -400,7 +365,7 @@ INSERT INTO EDITION_TAGS VALUES(1, 1);
 INSERT INTO EDITION_TAGS VALUES(1, 2);
 INSERT INTO EDITION_TAGS VALUES(1, 3);
 INSERT INTO BOOK_TITLE VALUES(2, 'Cryptography: A Very Short Introduction');
-INSERT INTO EDITION VALUES(2, 48, 'This Very Short Introduction provides a clear and informative introduction to the science of codebreaking, and its explosive impact on modern society. Taking the reader through the actual processes of developing codes and deciphering them, the book explains what algorithms do, how they are used, the risks associated with using them, and why governments should be concerned. Written in a fluid and lively style to appeal to the non-mathematical reader, this makes for fascinating reading.', '20', 'http://books.google.com/books/content?id=HvR0DgAAQBAJ&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=HvR0DgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 142, 2.9, 524, true, PARSEDATETIME('2002', 'yyyy'), 1, 2);
+INSERT INTO EDITION VALUES(2, 14, 'This Very Short Introduction provides a clear and informative introduction to the science of codebreaking, and its explosive impact on modern society. Taking the reader through the actual processes of developing codes and deciphering them, the book explains what algorithms do, how they are used, the risks associated with using them, and why governments should be concerned. Written in a fluid and lively style to appeal to the non-mathematical reader, this makes for fascinating reading.', '22', 'http://books.google.com/books/content?id=HvR0DgAAQBAJ&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=HvR0DgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 142, 1.2, 334, true, PARSEDATETIME('2002', 'yyyy'), 1, 2);
 INSERT INTO BOOK_TITLE_EDITIONS VALUES(2, 2);
 INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES(2, 2);
 INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES(2, 3);
@@ -410,7 +375,7 @@ INSERT INTO EDITION_TAGS VALUES(2, 1);
 INSERT INTO EDITION_TAGS VALUES(2, 2);
 INSERT INTO EDITION_TAGS VALUES(2, 3);
 INSERT INTO BOOK_TITLE VALUES(3, 'Introduction to Cryptography');
-INSERT INTO EDITION VALUES(3, 59, 'The opening section of this book covers key concepts of cryptography, from encryption and digital signatures to cryptographic protocols. Essential techniques are demonstrated in protocols for key exchange, user identification, electronic elections and digital cash. The second part addresses advanced topics, such as the bit security of one-way functions and computationally perfect pseudorandom bit generators. Examples of provably secure encryption and signature schemes and their security proofs are given. Though particular attention is given to the mathematical foundations, no special background in mathematics is presumed. The necessary algebra, number theory and probability theory are included in the appendix. Each chapter closes with a collection of exercises. The second edition presents new material, including a complete description of the AES, an extended section on cryptographic hash functions, a new section on random oracle proofs, and a new section on public-key encryption scheme', '21', 'http://books.google.com/books/content?id=Nnvhz_VqAS4C&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=Nnvhz_VqAS4C&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 367, 1.5, 273, true, PARSEDATETIME('2007', 'yyyy'), 2, 3);
+INSERT INTO EDITION VALUES(3, 59, 'The opening section of this book covers key concepts of cryptography, from encryption and digital signatures to cryptographic protocols. Essential techniques are demonstrated in protocols for key exchange, user identification, electronic elections and digital cash. The second part addresses advanced topics, such as the bit security of one-way functions and computationally perfect pseudorandom bit generators. Examples of provably secure encryption and signature schemes and their security proofs are given. Though particular attention is given to the mathematical foundations, no special background in mathematics is presumed. The necessary algebra, number theory and probability theory are included in the appendix. Each chapter closes with a collection of exercises. The second edition presents new material, including a complete description of the AES, an extended section on cryptographic hash functions, a new section on random oracle proofs, and a new section on public-key encryption scheme', '20', 'http://books.google.com/books/content?id=Nnvhz_VqAS4C&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=Nnvhz_VqAS4C&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 367, 2.3, 366, true, PARSEDATETIME('2007', 'yyyy'), 2, 3);
 INSERT INTO BOOK_TITLE_EDITIONS VALUES(3, 3);
 INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES(3, 4);
 INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES(3, 5);
@@ -420,7 +385,7 @@ INSERT INTO EDITION_TAGS VALUES(3, 1);
 INSERT INTO EDITION_TAGS VALUES(3, 2);
 INSERT INTO EDITION_TAGS VALUES(3, 3);
 INSERT INTO BOOK_TITLE VALUES(4, 'Everyday Cryptography');
-INSERT INTO EDITION VALUES(4, 29, 'Cryptography is a vital technology that underpins the security of information in computer networks. This book presents a comprehensive introduction to the role that cryptography plays in providing information security for everyday technologies such as the Internet, mobile phones, Wi-Fi networks, payment cards, Tor, and Bitcoin. This book is intended to be introductory, self-contained, and widely accessible. It is suitable as a first read on cryptography. Almost no prior knowledge of mathematics is required since the book deliberately avoids the details of the mathematics techniques underpinning cryptographic mechanisms. Instead our focus will be on what a normal user or practitioner of information security needs to know about cryptography in order to understand the design and use of everyday cryptographic applications. By focusing on the fundamental principles of modern cryptography rather than the technical details of current cryptographic technology, the main part this book is relati', '22', 'http://books.google.com/books/content?id=TS3VDgAAQBAJ&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=TS3VDgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 672, 3.6, 366, true, PARSEDATETIME('2017', 'yyyy'), 3, 4);
+INSERT INTO EDITION VALUES(4, 33, 'Cryptography is a vital technology that underpins the security of information in computer networks. This book presents a comprehensive introduction to the role that cryptography plays in providing information security for everyday technologies such as the Internet, mobile phones, Wi-Fi networks, payment cards, Tor, and Bitcoin. This book is intended to be introductory, self-contained, and widely accessible. It is suitable as a first read on cryptography. Almost no prior knowledge of mathematics is required since the book deliberately avoids the details of the mathematics techniques underpinning cryptographic mechanisms. Instead our focus will be on what a normal user or practitioner of information security needs to know about cryptography in order to understand the design and use of everyday cryptographic applications. By focusing on the fundamental principles of modern cryptography rather than the technical details of current cryptographic technology, the main part this book is relati', '19', 'http://books.google.com/books/content?id=TS3VDgAAQBAJ&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=TS3VDgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 672, 1.3, 81, true, PARSEDATETIME('2017', 'yyyy'), 3, 4);
 INSERT INTO BOOK_TITLE_EDITIONS VALUES(4, 4);
 INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES(4, 6);
 INSERT INTO BOOK_TITLE_GENRES VALUES(4, 0);
@@ -429,7 +394,7 @@ INSERT INTO EDITION_TAGS VALUES(4, 1);
 INSERT INTO EDITION_TAGS VALUES(4, 2);
 INSERT INTO EDITION_TAGS VALUES(4, 3);
 INSERT INTO BOOK_TITLE VALUES(5, 'Understanding Cryptography');
-INSERT INTO EDITION VALUES(5, 43, 'Cryptography is now ubiquitous – moving beyond the traditional environments, such as government communications and banking systems, we see cryptographic techniques realized in Web browsers, e-mail programs, cell phones, manufacturing systems, embedded software, smart buildings, cars, and even medical implants. Today''s designers need a comprehensive understanding of applied cryptography. After an introduction to cryptography and data security, the authors explain the main techniques in modern cryptography, with chapters addressing stream ciphers, the Data Encryption Standard (DES) and 3DES, the Advanced Encryption Standard (AES), block ciphers, the RSA cryptosystem, public-key cryptosystems based on the discrete logarithm problem, elliptic-curve cryptography (ECC), digital signatures, hash functions, Message Authentication Codes (MACs), and methods for key establishment, including certificates and public-key infrastructure (PKI).', '19', 'http://books.google.com/books/content?id=f24wFELSzkoC&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=f24wFELSzkoC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 372, 2.9, 160, true, PARSEDATETIME('2009', 'yyyy'), 2, 5);
+INSERT INTO EDITION VALUES(5, 8, 'Cryptography is now ubiquitous – moving beyond the traditional environments, such as government communications and banking systems, we see cryptographic techniques realized in Web browsers, e-mail programs, cell phones, manufacturing systems, embedded software, smart buildings, cars, and even medical implants. Today''s designers need a comprehensive understanding of applied cryptography. After an introduction to cryptography and data security, the authors explain the main techniques in modern cryptography, with chapters addressing stream ciphers, the Data Encryption Standard (DES) and 3DES, the Advanced Encryption Standard (AES), block ciphers, the RSA cryptosystem, public-key cryptosystems based on the discrete logarithm problem, elliptic-curve cryptography (ECC), digital signatures, hash functions, Message Authentication Codes (MACs), and methods for key establishment, including certificates and public-key infrastructure (PKI).', '22', 'http://books.google.com/books/content?id=f24wFELSzkoC&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=f24wFELSzkoC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 372, 3.7, 133, true, PARSEDATETIME('2009', 'yyyy'), 2, 5);
 INSERT INTO BOOK_TITLE_EDITIONS VALUES(5, 5);
 INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES(5, 7);
 INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES(5, 8);
@@ -439,7 +404,7 @@ INSERT INTO EDITION_TAGS VALUES(5, 1);
 INSERT INTO EDITION_TAGS VALUES(5, 2);
 INSERT INTO EDITION_TAGS VALUES(5, 3);
 INSERT INTO BOOK_TITLE VALUES(6, 'Theory of Cryptography');
-INSERT INTO EDITION VALUES(6, 45, 'This book constitutes the refereed proceedings of the Second Theory of Cryptography Conference, TCC 2005, held in Cambridge, MA, USA in February 2005. The 32 revised full papers presented were carefully reviewed and selected from 84 submissions. The papers are organized in topical sections on hardness amplification and error correction, graphs and groups, simulation and secure computation, security of encryption, steganography and zero knowledge, secure computation, quantum cryptography and universal composability, cryptographic primitives and security, encryption and signatures, and information theoretic cryptography.', '19', 'http://books.google.com/books/content?id=6g5nI71vgiIC&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=6g5nI71vgiIC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 619, 4.4, 226, true, PARSEDATETIME('2005', 'yyyy'), 2, 6);
+INSERT INTO EDITION VALUES(6, 17, 'This book constitutes the refereed proceedings of the Second Theory of Cryptography Conference, TCC 2005, held in Cambridge, MA, USA in February 2005. The 32 revised full papers presented were carefully reviewed and selected from 84 submissions. The papers are organized in topical sections on hardness amplification and error correction, graphs and groups, simulation and secure computation, security of encryption, steganography and zero knowledge, secure computation, quantum cryptography and universal composability, cryptographic primitives and security, encryption and signatures, and information theoretic cryptography.', '19', 'http://books.google.com/books/content?id=6g5nI71vgiIC&printsec=frontcover&img=1&source=gbs_api', 'http://books.google.com/books/content?id=6g5nI71vgiIC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'un', 619, 1.7, 293, false, PARSEDATETIME('2005', 'yyyy'), 2, 6);
 INSERT INTO BOOK_TITLE_EDITIONS VALUES(6, 6);
 INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES(6, 9);
 INSERT INTO BOOK_TITLE_GENRES VALUES(6, 1);
@@ -447,326 +412,231 @@ INSERT INTO EDITION_TAGS VALUES(6, 0);
 INSERT INTO EDITION_TAGS VALUES(6, 1);
 INSERT INTO EDITION_TAGS VALUES(6, 2);
 INSERT INTO EDITION_TAGS VALUES(6, 3);
-INSERT INTO BOOK VALUES(0, 1, 'inStock', 0, 231);
-INSERT INTO BOOK VALUES(1, 2, 'inStock', 0, 110);
-INSERT INTO BOOK VALUES(2, 2, 'inStock', 0, 104);
-INSERT INTO BOOK VALUES(3, 3, 'inStock', 0, 90);
-INSERT INTO BOOK VALUES(4, 0, 'inStock', 0, 110);
-INSERT INTO BOOK VALUES(5, 1, 'inStock', 0, 250);
-INSERT INTO BOOK VALUES(6, 2, 'inStock', 0, 249);
-INSERT INTO BOOK VALUES(7, 1, 'inStock', 0, 259);
-INSERT INTO BOOK VALUES(8, 0, 'inStock', 0, 148);
-INSERT INTO BOOK VALUES(9, 0, 'inStock', 0, 22);
-INSERT INTO BOOK VALUES(10, 2, 'inStock', 0, 182);
-INSERT INTO BOOK VALUES(11, 1, 'inStock', 0, 97);
-INSERT INTO BOOK VALUES(12, 2, 'inStock', 0, 144);
-INSERT INTO BOOK VALUES(13, 1, 'inStock', 0, 203);
-INSERT INTO BOOK VALUES(14, 1, 'inStock', 0, 195);
-INSERT INTO BOOK VALUES(15, 0, 'inStock', 0, 33);
-INSERT INTO BOOK VALUES(16, 1, 'inStock', 0, 45);
-INSERT INTO BOOK VALUES(17, 2, 'inStock', 0, 57);
-INSERT INTO BOOK VALUES(18, 1, 'inStock', 0, 15);
-INSERT INTO BOOK VALUES(19, 2, 'inStock', 0, 27);
-INSERT INTO BOOK VALUES(20, 1, 'inStock', 0, 16);
-INSERT INTO BOOK VALUES(21, 0, 'inStock', 0, 260);
-INSERT INTO BOOK VALUES(22, 0, 'inStock', 0, 21);
-INSERT INTO BOOK VALUES(23, 1, 'inStock', 0, 131);
-INSERT INTO BOOK VALUES(24, 0, 'inStock', 0, 156);
-INSERT INTO BOOK VALUES(25, 2, 'inStock', 0, 111);
-INSERT INTO BOOK VALUES(26, 2, 'inStock', 0, 9);
-INSERT INTO BOOK VALUES(27, 2, 'inStock', 0, 67);
-INSERT INTO BOOK VALUES(28, 1, 'inStock', 0, 234);
-INSERT INTO BOOK VALUES(29, 2, 'inStock', 0, 2);
-INSERT INTO BOOK VALUES(30, 1, 'inStock', 0, 0);
-INSERT INTO BOOK VALUES(31, 2, 'inStock', 0, 199);
-INSERT INTO BOOK VALUES(32, 1, 'inStock', 0, 73);
-INSERT INTO BOOK VALUES(33, 0, 'inStock', 0, 140);
-INSERT INTO BOOK VALUES(34, 1, 'inStock', 0, 219);
-INSERT INTO BOOK VALUES(35, 1, 'inStock', 0, 259);
-INSERT INTO BOOK VALUES(36, 1, 'inStock', 0, 182);
-INSERT INTO BOOK VALUES(37, 1, 'inStock', 0, 78);
-INSERT INTO BOOK VALUES(38, 3, 'inStock', 0, 52);
-INSERT INTO BOOK VALUES(39, 0, 'inStock', 0, 60);
-INSERT INTO BOOK VALUES(40, 1, 'inStock', 0, 185);
-INSERT INTO BOOK VALUES(41, 1, 'inStock', 0, 195);
-INSERT INTO BOOK VALUES(42, 2, 'inStock', 0, 153);
-INSERT INTO BOOK VALUES(43, 0, 'inStock', 0, 258);
-INSERT INTO BOOK VALUES(44, 3, 'inStock', 0, 45);
-INSERT INTO BOOK VALUES(45, 0, 'inStock', 0, 265);
-INSERT INTO BOOK VALUES(46, 3, 'inStock', 0, 21);
-INSERT INTO BOOK VALUES(47, 0, 'inStock', 0, 246);
-INSERT INTO BOOK VALUES(48, 1, 'inStock', 0, 102);
-INSERT INTO BOOK VALUES(49, 3, 'inStock', 1, 238);
-INSERT INTO BOOK VALUES(50, 1, 'inStock', 1, 45);
-INSERT INTO BOOK VALUES(51, 0, 'inStock', 1, 46);
-INSERT INTO BOOK VALUES(52, 2, 'inStock', 1, 232);
-INSERT INTO BOOK VALUES(53, 3, 'inStock', 1, 186);
-INSERT INTO BOOK VALUES(54, 0, 'inStock', 1, 177);
-INSERT INTO BOOK VALUES(55, 0, 'inStock', 1, 265);
-INSERT INTO BOOK VALUES(56, 0, 'inStock', 1, 274);
-INSERT INTO BOOK VALUES(57, 1, 'inStock', 1, 205);
-INSERT INTO BOOK VALUES(58, 1, 'inStock', 1, 152);
-INSERT INTO BOOK VALUES(59, 0, 'inStock', 1, 190);
-INSERT INTO BOOK VALUES(60, 2, 'inStock', 1, 154);
-INSERT INTO BOOK VALUES(61, 2, 'inStock', 1, 52);
-INSERT INTO BOOK VALUES(62, 1, 'inStock', 1, 175);
-INSERT INTO BOOK VALUES(63, 3, 'inStock', 1, 110);
-INSERT INTO BOOK VALUES(64, 0, 'inStock', 1, 267);
-INSERT INTO BOOK VALUES(65, 2, 'inStock', 1, 28);
-INSERT INTO BOOK VALUES(66, 0, 'inStock', 1, 120);
-INSERT INTO BOOK VALUES(67, 3, 'inStock', 1, 74);
-INSERT INTO BOOK VALUES(68, 2, 'inStock', 1, 186);
-INSERT INTO BOOK VALUES(69, 1, 'inStock', 1, 58);
-INSERT INTO BOOK VALUES(70, 3, 'inStock', 1, 38);
-INSERT INTO BOOK VALUES(71, 1, 'inStock', 1, 276);
-INSERT INTO BOOK VALUES(72, 2, 'inStock', 1, 7);
-INSERT INTO BOOK VALUES(73, 1, 'inStock', 1, 63);
-INSERT INTO BOOK VALUES(74, 1, 'inStock', 1, 121);
-INSERT INTO BOOK VALUES(75, 2, 'inStock', 1, 92);
-INSERT INTO BOOK VALUES(76, 0, 'inStock', 1, 258);
-INSERT INTO BOOK VALUES(77, 1, 'inStock', 1, 259);
-INSERT INTO BOOK VALUES(78, 1, 'inStock', 1, 49);
-INSERT INTO BOOK VALUES(79, 2, 'inStock', 1, 71);
-INSERT INTO BOOK VALUES(80, 1, 'inStock', 1, 52);
-INSERT INTO BOOK VALUES(81, 1, 'inStock', 1, 61);
-INSERT INTO BOOK VALUES(82, 0, 'inStock', 1, 277);
-INSERT INTO BOOK VALUES(83, 0, 'inStock', 1, 221);
-INSERT INTO BOOK VALUES(84, 1, 'inStock', 1, 228);
-INSERT INTO BOOK VALUES(85, 1, 'inStock', 1, 233);
-INSERT INTO BOOK VALUES(86, 1, 'inStock', 1, 118);
-INSERT INTO BOOK VALUES(87, 1, 'inStock', 1, 194);
-INSERT INTO BOOK VALUES(88, 0, 'inStock', 1, 170);
-INSERT INTO BOOK VALUES(89, 0, 'inStock', 1, 10);
-INSERT INTO BOOK VALUES(90, 2, 'inStock', 1, 236);
-INSERT INTO BOOK VALUES(91, 0, 'inStock', 1, 157);
-INSERT INTO BOOK VALUES(92, 1, 'inStock', 1, 91);
-INSERT INTO BOOK VALUES(93, 0, 'inStock', 1, 260);
-INSERT INTO BOOK VALUES(94, 1, 'inStock', 1, 256);
-INSERT INTO BOOK VALUES(95, 1, 'inStock', 1, 184);
-INSERT INTO BOOK VALUES(96, 0, 'inStock', 1, 124);
-INSERT INTO BOOK VALUES(97, 3, 'inStock', 1, 182);
-INSERT INTO BOOK VALUES(98, 2, 'inStock', 1, 229);
-INSERT INTO BOOK VALUES(99, 0, 'inStock', 2, 178);
-INSERT INTO BOOK VALUES(100, 0, 'inStock', 2, 203);
-INSERT INTO BOOK VALUES(101, 1, 'inStock', 2, 204);
-INSERT INTO BOOK VALUES(102, 1, 'inStock', 2, 231);
-INSERT INTO BOOK VALUES(103, 0, 'inStock', 2, 218);
-INSERT INTO BOOK VALUES(104, 2, 'inStock', 2, 166);
-INSERT INTO BOOK VALUES(105, 0, 'inStock', 2, 267);
-INSERT INTO BOOK VALUES(106, 0, 'inStock', 2, 208);
-INSERT INTO BOOK VALUES(107, 1, 'inStock', 2, 231);
-INSERT INTO BOOK VALUES(108, 2, 'inStock', 2, 185);
-INSERT INTO BOOK VALUES(109, 1, 'inStock', 2, 49);
-INSERT INTO BOOK VALUES(110, 1, 'inStock', 2, 258);
-INSERT INTO BOOK VALUES(111, 2, 'inStock', 2, 105);
-INSERT INTO BOOK VALUES(112, 0, 'inStock', 2, 16);
-INSERT INTO BOOK VALUES(113, 0, 'inStock', 2, 2);
-INSERT INTO BOOK VALUES(114, 1, 'inStock', 2, 219);
-INSERT INTO BOOK VALUES(115, 1, 'inStock', 2, 45);
-INSERT INTO BOOK VALUES(116, 2, 'inStock', 2, 83);
-INSERT INTO BOOK VALUES(117, 2, 'inStock', 2, 70);
-INSERT INTO BOOK VALUES(118, 1, 'inStock', 2, 4);
-INSERT INTO BOOK VALUES(119, 1, 'inStock', 2, 208);
-INSERT INTO BOOK VALUES(120, 1, 'inStock', 2, 165);
-INSERT INTO BOOK VALUES(121, 0, 'inStock', 2, 31);
-INSERT INTO BOOK VALUES(122, 1, 'inStock', 2, 22);
-INSERT INTO BOOK VALUES(123, 1, 'inStock', 2, 2);
-INSERT INTO BOOK VALUES(124, 3, 'inStock', 2, 261);
-INSERT INTO BOOK VALUES(125, 0, 'inStock', 2, 59);
-INSERT INTO BOOK VALUES(126, 2, 'inStock', 2, 150);
-INSERT INTO BOOK VALUES(127, 0, 'inStock', 2, 117);
-INSERT INTO BOOK VALUES(128, 0, 'inStock', 2, 43);
-INSERT INTO BOOK VALUES(129, 0, 'inStock', 2, 154);
-INSERT INTO BOOK VALUES(130, 3, 'inStock', 2, 134);
-INSERT INTO BOOK VALUES(131, 2, 'inStock', 2, 271);
-INSERT INTO BOOK VALUES(132, 0, 'inStock', 2, 35);
-INSERT INTO BOOK VALUES(133, 0, 'inStock', 2, 242);
-INSERT INTO BOOK VALUES(134, 0, 'inStock', 2, 273);
-INSERT INTO BOOK VALUES(135, 1, 'inStock', 2, 239);
-INSERT INTO BOOK VALUES(136, 2, 'inStock', 2, 221);
-INSERT INTO BOOK VALUES(137, 1, 'inStock', 2, 38);
-INSERT INTO BOOK VALUES(138, 0, 'inStock', 2, 255);
-INSERT INTO BOOK VALUES(139, 3, 'inStock', 2, 30);
-INSERT INTO BOOK VALUES(140, 2, 'inStock', 2, 25);
-INSERT INTO BOOK VALUES(141, 1, 'inStock', 2, 43);
-INSERT INTO BOOK VALUES(142, 1, 'inStock', 2, 39);
-INSERT INTO BOOK VALUES(143, 0, 'inStock', 2, 229);
-INSERT INTO BOOK VALUES(144, 0, 'inStock', 2, 222);
-INSERT INTO BOOK VALUES(145, 2, 'inStock', 2, 98);
-INSERT INTO BOOK VALUES(146, 0, 'inStock', 2, 118);
-INSERT INTO BOOK VALUES(147, 1, 'inStock', 3, 68);
-INSERT INTO BOOK VALUES(148, 2, 'inStock', 3, 71);
-INSERT INTO BOOK VALUES(149, 1, 'inStock', 3, 65);
-INSERT INTO BOOK VALUES(150, 0, 'inStock', 3, 162);
-INSERT INTO BOOK VALUES(151, 0, 'inStock', 3, 245);
-INSERT INTO BOOK VALUES(152, 1, 'inStock', 3, 240);
-INSERT INTO BOOK VALUES(153, 2, 'inStock', 3, 146);
-INSERT INTO BOOK VALUES(154, 0, 'inStock', 3, 109);
-INSERT INTO BOOK VALUES(155, 1, 'inStock', 3, 182);
-INSERT INTO BOOK VALUES(156, 1, 'inStock', 3, 54);
-INSERT INTO BOOK VALUES(157, 1, 'inStock', 3, 230);
-INSERT INTO BOOK VALUES(158, 1, 'inStock', 3, 47);
-INSERT INTO BOOK VALUES(159, 0, 'inStock', 3, 178);
-INSERT INTO BOOK VALUES(160, 0, 'inStock', 3, 172);
-INSERT INTO BOOK VALUES(161, 1, 'inStock', 3, 210);
-INSERT INTO BOOK VALUES(162, 1, 'inStock', 3, 158);
-INSERT INTO BOOK VALUES(163, 1, 'inStock', 3, 97);
-INSERT INTO BOOK VALUES(164, 1, 'inStock', 3, 191);
-INSERT INTO BOOK VALUES(165, 0, 'inStock', 3, 29);
-INSERT INTO BOOK VALUES(166, 1, 'inStock', 3, 153);
-INSERT INTO BOOK VALUES(167, 0, 'inStock', 3, 215);
-INSERT INTO BOOK VALUES(168, 3, 'inStock', 3, 130);
-INSERT INTO BOOK VALUES(169, 0, 'inStock', 3, 206);
-INSERT INTO BOOK VALUES(170, 0, 'inStock', 3, 86);
-INSERT INTO BOOK VALUES(171, 0, 'inStock', 3, 265);
-INSERT INTO BOOK VALUES(172, 2, 'inStock', 3, 50);
-INSERT INTO BOOK VALUES(173, 2, 'inStock', 3, 50);
-INSERT INTO BOOK VALUES(174, 0, 'inStock', 3, 238);
-INSERT INTO BOOK VALUES(175, 0, 'inStock', 3, 33);
-INSERT INTO BOOK VALUES(176, 1, 'inStock', 3, 61);
-INSERT INTO BOOK VALUES(177, 2, 'inStock', 3, 183);
-INSERT INTO BOOK VALUES(178, 2, 'inStock', 3, 119);
-INSERT INTO BOOK VALUES(179, 2, 'inStock', 3, 244);
-INSERT INTO BOOK VALUES(180, 3, 'inStock', 3, 50);
-INSERT INTO BOOK VALUES(181, 2, 'inStock', 3, 11);
-INSERT INTO BOOK VALUES(182, 3, 'inStock', 3, 108);
-INSERT INTO BOOK VALUES(183, 0, 'inStock', 3, 172);
-INSERT INTO BOOK VALUES(184, 1, 'inStock', 3, 235);
-INSERT INTO BOOK VALUES(185, 0, 'inStock', 3, 147);
-INSERT INTO BOOK VALUES(186, 1, 'inStock', 3, 257);
-INSERT INTO BOOK VALUES(187, 1, 'inStock', 3, 225);
-INSERT INTO BOOK VALUES(188, 0, 'inStock', 3, 10);
-INSERT INTO BOOK VALUES(189, 1, 'inStock', 3, 77);
-INSERT INTO BOOK VALUES(190, 1, 'inStock', 3, 67);
-INSERT INTO BOOK VALUES(191, 1, 'inStock', 3, 10);
-INSERT INTO BOOK VALUES(192, 1, 'inStock', 3, 276);
-INSERT INTO BOOK VALUES(193, 0, 'inStock', 3, 240);
-INSERT INTO BOOK VALUES(194, 1, 'inStock', 3, 184);
-INSERT INTO BOOK VALUES(195, 1, 'inStock', 3, 127);
-INSERT INTO BOOK VALUES(196, 2, 'inStock', 3, 112);
-INSERT INTO BOOK VALUES(197, 0, 'inStock', 3, 57);
-INSERT INTO BOOK VALUES(198, 1, 'inStock', 3, 40);
-INSERT INTO BOOK VALUES(199, 2, 'inStock', 3, 258);
-INSERT INTO BOOK VALUES(200, 2, 'inStock', 3, 252);
-INSERT INTO BOOK VALUES(201, 0, 'inStock', 3, 143);
-INSERT INTO BOOK VALUES(202, 1, 'inStock', 3, 116);
-INSERT INTO BOOK VALUES(203, 1, 'inStock', 3, 226);
-INSERT INTO BOOK VALUES(204, 0, 'inStock', 3, 261);
-INSERT INTO BOOK VALUES(205, 1, 'inStock', 3, 221);
-INSERT INTO BOOK VALUES(206, 3, 'inStock', 4, 193);
-INSERT INTO BOOK VALUES(207, 1, 'inStock', 4, 37);
-INSERT INTO BOOK VALUES(208, 0, 'inStock', 4, 155);
-INSERT INTO BOOK VALUES(209, 0, 'inStock', 4, 176);
-INSERT INTO BOOK VALUES(210, 1, 'inStock', 4, 159);
-INSERT INTO BOOK VALUES(211, 0, 'inStock', 4, 192);
-INSERT INTO BOOK VALUES(212, 1, 'inStock', 4, 109);
-INSERT INTO BOOK VALUES(213, 1, 'inStock', 4, 248);
-INSERT INTO BOOK VALUES(214, 2, 'inStock', 4, 220);
-INSERT INTO BOOK VALUES(215, 0, 'inStock', 4, 201);
-INSERT INTO BOOK VALUES(216, 0, 'inStock', 4, 244);
-INSERT INTO BOOK VALUES(217, 1, 'inStock', 4, 140);
-INSERT INTO BOOK VALUES(218, 2, 'inStock', 4, 161);
-INSERT INTO BOOK VALUES(219, 3, 'inStock', 4, 211);
-INSERT INTO BOOK VALUES(220, 3, 'inStock', 4, 207);
-INSERT INTO BOOK VALUES(221, 2, 'inStock', 4, 256);
-INSERT INTO BOOK VALUES(222, 2, 'inStock', 4, 15);
-INSERT INTO BOOK VALUES(223, 1, 'inStock', 4, 36);
-INSERT INTO BOOK VALUES(224, 3, 'inStock', 4, 46);
-INSERT INTO BOOK VALUES(225, 0, 'inStock', 4, 83);
-INSERT INTO BOOK VALUES(226, 3, 'inStock', 4, 247);
-INSERT INTO BOOK VALUES(227, 0, 'inStock', 4, 257);
-INSERT INTO BOOK VALUES(228, 0, 'inStock', 4, 242);
-INSERT INTO BOOK VALUES(229, 3, 'inStock', 4, 97);
-INSERT INTO BOOK VALUES(230, 1, 'inStock', 4, 252);
-INSERT INTO BOOK VALUES(231, 2, 'inStock', 4, 174);
-INSERT INTO BOOK VALUES(232, 2, 'inStock', 4, 179);
-INSERT INTO BOOK VALUES(233, 1, 'inStock', 4, 13);
-INSERT INTO BOOK VALUES(234, 0, 'inStock', 4, 115);
-INSERT INTO BOOK VALUES(235, 2, 'inStock', 5, 276);
-INSERT INTO BOOK VALUES(236, 0, 'inStock', 5, 131);
-INSERT INTO BOOK VALUES(237, 1, 'inStock', 5, 108);
-INSERT INTO BOOK VALUES(238, 1, 'inStock', 5, 1);
-INSERT INTO BOOK VALUES(239, 2, 'inStock', 5, 257);
-INSERT INTO BOOK VALUES(240, 3, 'inStock', 5, 98);
-INSERT INTO BOOK VALUES(241, 1, 'inStock', 5, 229);
-INSERT INTO BOOK VALUES(242, 2, 'inStock', 5, 68);
-INSERT INTO BOOK VALUES(243, 1, 'inStock', 5, 98);
-INSERT INTO BOOK VALUES(244, 0, 'inStock', 5, 164);
-INSERT INTO BOOK VALUES(245, 1, 'inStock', 5, 260);
-INSERT INTO BOOK VALUES(246, 1, 'inStock', 5, 140);
-INSERT INTO BOOK VALUES(247, 2, 'inStock', 5, 60);
-INSERT INTO BOOK VALUES(248, 3, 'inStock', 5, 62);
-INSERT INTO BOOK VALUES(249, 2, 'inStock', 5, 110);
-INSERT INTO BOOK VALUES(250, 1, 'inStock', 5, 155);
-INSERT INTO BOOK VALUES(251, 0, 'inStock', 5, 5);
-INSERT INTO BOOK VALUES(252, 1, 'inStock', 5, 112);
-INSERT INTO BOOK VALUES(253, 0, 'inStock', 5, 129);
-INSERT INTO BOOK VALUES(254, 3, 'inStock', 5, 64);
-INSERT INTO BOOK VALUES(255, 3, 'inStock', 5, 192);
-INSERT INTO BOOK VALUES(256, 1, 'inStock', 5, 136);
-INSERT INTO BOOK VALUES(257, 0, 'inStock', 5, 115);
-INSERT INTO BOOK VALUES(258, 0, 'inStock', 5, 48);
-INSERT INTO BOOK VALUES(259, 1, 'inStock', 5, 155);
-INSERT INTO BOOK VALUES(260, 2, 'inStock', 5, 29);
-INSERT INTO BOOK VALUES(261, 1, 'inStock', 5, 165);
-INSERT INTO BOOK VALUES(262, 1, 'inStock', 5, 98);
-INSERT INTO BOOK VALUES(263, 0, 'inStock', 5, 110);
-INSERT INTO BOOK VALUES(264, 2, 'inStock', 5, 7);
-INSERT INTO BOOK VALUES(265, 3, 'inStock', 5, 241);
-INSERT INTO BOOK VALUES(266, 1, 'inStock', 5, 154);
-INSERT INTO BOOK VALUES(267, 0, 'inStock', 5, 235);
-INSERT INTO BOOK VALUES(268, 3, 'inStock', 5, 52);
-INSERT INTO BOOK VALUES(269, 1, 'inStock', 5, 160);
-INSERT INTO BOOK VALUES(270, 3, 'inStock', 5, 199);
-INSERT INTO BOOK VALUES(271, 0, 'inStock', 5, 38);
-INSERT INTO BOOK VALUES(272, 3, 'inStock', 5, 22);
-INSERT INTO BOOK VALUES(273, 2, 'inStock', 5, 124);
-INSERT INTO BOOK VALUES(274, 1, 'inStock', 5, 191);
-INSERT INTO BOOK VALUES(275, 1, 'inStock', 5, 60);
-INSERT INTO BOOK VALUES(276, 1, 'inStock', 5, 12);
-INSERT INTO BOOK VALUES(277, 2, 'inStock', 5, 116);
-INSERT INTO BOOK VALUES(278, 0, 'inStock', 6, 265);
-INSERT INTO BOOK VALUES(279, 0, 'inStock', 6, 234);
-INSERT INTO BOOK VALUES(280, 3, 'inStock', 6, 163);
-INSERT INTO BOOK VALUES(281, 1, 'inStock', 6, 74);
-INSERT INTO BOOK VALUES(282, 2, 'inStock', 6, 117);
-INSERT INTO BOOK VALUES(283, 0, 'inStock', 6, 213);
-INSERT INTO BOOK VALUES(284, 0, 'inStock', 6, 149);
-INSERT INTO BOOK VALUES(285, 2, 'inStock', 6, 48);
-INSERT INTO BOOK VALUES(286, 1, 'inStock', 6, 50);
-INSERT INTO BOOK VALUES(287, 0, 'inStock', 6, 270);
-INSERT INTO BOOK VALUES(288, 1, 'inStock', 6, 12);
-INSERT INTO BOOK VALUES(289, 1, 'inStock', 6, 188);
-INSERT INTO BOOK VALUES(290, 1, 'inStock', 6, 111);
-INSERT INTO BOOK VALUES(291, 0, 'inStock', 6, 54);
-INSERT INTO BOOK VALUES(292, 0, 'inStock', 6, 252);
-INSERT INTO BOOK VALUES(293, 2, 'inStock', 6, 81);
-INSERT INTO BOOK VALUES(294, 0, 'inStock', 6, 228);
-INSERT INTO BOOK VALUES(295, 3, 'inStock', 6, 169);
-INSERT INTO BOOK VALUES(296, 0, 'inStock', 6, 273);
-INSERT INTO BOOK VALUES(297, 1, 'inStock', 6, 89);
-INSERT INTO BOOK VALUES(298, 1, 'inStock', 6, 3);
-INSERT INTO BOOK VALUES(299, 2, 'inStock', 6, 162);
-INSERT INTO BOOK VALUES(300, 0, 'inStock', 6, 27);
-INSERT INTO BOOK VALUES(301, 1, 'inStock', 6, 133);
-INSERT INTO BOOK VALUES(302, 1, 'inStock', 6, 180);
-INSERT INTO BOOK VALUES(303, 1, 'inStock', 6, 100);
-INSERT INTO BOOK VALUES(304, 1, 'inStock', 6, 77);
-INSERT INTO BOOK VALUES(305, 1, 'inStock', 6, 26);
-INSERT INTO BOOK VALUES(306, 3, 'inStock', 6, 176);
-INSERT INTO BOOK VALUES(307, 3, 'inStock', 6, 189);
-INSERT INTO BOOK VALUES(308, 1, 'inStock', 6, 44);
-INSERT INTO BOOK VALUES(309, 0, 'inStock', 6, 60);
-INSERT INTO BOOK VALUES(310, 1, 'inStock', 6, 274);
-INSERT INTO BOOK VALUES(311, 3, 'inStock', 6, 242);
-INSERT INTO BOOK VALUES(312, 0, 'inStock', 6, 209);
-INSERT INTO BOOK VALUES(313, 1, 'inStock', 6, 49);
-INSERT INTO BOOK VALUES(314, 1, 'inStock', 6, 21);
-INSERT INTO BOOK VALUES(315, 0, 'inStock', 6, 144);
-INSERT INTO BOOK VALUES(316, 0, 'inStock', 6, 220);
-INSERT INTO BOOK VALUES(317, 1, 'inStock', 6, 185);
-INSERT INTO BOOK VALUES(318, 1, 'inStock', 6, 112);
-INSERT INTO BOOK VALUES(319, 0, 'inStock', 6, 42);
-INSERT INTO BOOK VALUES(320, 2, 'inStock', 6, 67);
-INSERT INTO BOOK VALUES(321, 1, 'inStock', 6, 150);
-INSERT INTO BOOK VALUES(322, 1, 'inStock', 6, 0);
+INSERT INTO BOOK VALUES(0, 1, 'inStock', 0, 183);
+INSERT INTO BOOK VALUES(1, 2, 'inStock', 0, 64);
+INSERT INTO BOOK VALUES(2, 1, 'inStock', 0, 127);
+INSERT INTO BOOK VALUES(3, 1, 'inStock', 0, 75);
+INSERT INTO BOOK VALUES(4, 0, 'inStock', 0, 138);
+INSERT INTO BOOK VALUES(5, 1, 'inStock', 0, 107);
+INSERT INTO BOOK VALUES(6, 0, 'inStock', 0, 232);
+INSERT INTO BOOK VALUES(7, 1, 'inStock', 0, 40);
+INSERT INTO BOOK VALUES(8, 2, 'inStock', 0, 135);
+INSERT INTO BOOK VALUES(9, 0, 'inStock', 0, 144);
+INSERT INTO BOOK VALUES(10, 0, 'inStock', 0, 143);
+INSERT INTO BOOK VALUES(11, 0, 'inStock', 0, 154);
+INSERT INTO BOOK VALUES(12, 0, 'inStock', 0, 9);
+INSERT INTO BOOK VALUES(13, 0, 'inStock', 0, 195);
+INSERT INTO BOOK VALUES(14, 0, 'inStock', 0, 96);
+INSERT INTO BOOK VALUES(15, 1, 'inStock', 0, 128);
+INSERT INTO BOOK VALUES(16, 2, 'inStock', 0, 225);
+INSERT INTO BOOK VALUES(17, 0, 'inStock', 0, 36);
+INSERT INTO BOOK VALUES(18, 1, 'inStock', 0, 178);
+INSERT INTO BOOK VALUES(19, 3, 'inStock', 0, 180);
+INSERT INTO BOOK VALUES(20, 0, 'inStock', 0, 117);
+INSERT INTO BOOK VALUES(21, 1, 'inStock', 0, 194);
+INSERT INTO BOOK VALUES(22, 3, 'inStock', 0, 112);
+INSERT INTO BOOK VALUES(23, 2, 'inStock', 0, 223);
+INSERT INTO BOOK VALUES(24, 2, 'inStock', 0, 58);
+INSERT INTO BOOK VALUES(25, 2, 'inStock', 0, 4);
+INSERT INTO BOOK VALUES(26, 2, 'inStock', 0, 147);
+INSERT INTO BOOK VALUES(27, 0, 'inStock', 0, 137);
+INSERT INTO BOOK VALUES(28, 1, 'inStock', 0, 100);
+INSERT INTO BOOK VALUES(29, 2, 'inStock', 0, 143);
+INSERT INTO BOOK VALUES(30, 0, 'inStock', 0, 135);
+INSERT INTO BOOK VALUES(31, 0, 'inStock', 0, 34);
+INSERT INTO BOOK VALUES(32, 1, 'inStock', 0, 156);
+INSERT INTO BOOK VALUES(33, 2, 'inStock', 0, 176);
+INSERT INTO BOOK VALUES(34, 2, 'inStock', 0, 179);
+INSERT INTO BOOK VALUES(35, 0, 'inStock', 0, 92);
+INSERT INTO BOOK VALUES(36, 2, 'inStock', 0, 7);
+INSERT INTO BOOK VALUES(37, 1, 'inStock', 0, 134);
+INSERT INTO BOOK VALUES(38, 1, 'inStock', 0, 86);
+INSERT INTO BOOK VALUES(39, 3, 'inStock', 0, 158);
+INSERT INTO BOOK VALUES(40, 2, 'inStock', 0, 182);
+INSERT INTO BOOK VALUES(41, 1, 'inStock', 0, 234);
+INSERT INTO BOOK VALUES(42, 0, 'inStock', 0, 197);
+INSERT INTO BOOK VALUES(43, 2, 'inStock', 0, 129);
+INSERT INTO BOOK VALUES(44, 0, 'inStock', 0, 107);
+INSERT INTO BOOK VALUES(45, 1, 'inStock', 0, 173);
+INSERT INTO BOOK VALUES(46, 0, 'inStock', 0, 159);
+INSERT INTO BOOK VALUES(47, 1, 'inStock', 0, 0);
+INSERT INTO BOOK VALUES(48, 1, 'inStock', 0, 87);
+INSERT INTO BOOK VALUES(49, 2, 'inStock', 0, 175);
+INSERT INTO BOOK VALUES(50, 2, 'inStock', 0, 165);
+INSERT INTO BOOK VALUES(51, 0, 'inStock', 0, 124);
+INSERT INTO BOOK VALUES(52, 0, 'inStock', 1, 34);
+INSERT INTO BOOK VALUES(53, 1, 'inStock', 1, 16);
+INSERT INTO BOOK VALUES(54, 1, 'inStock', 1, 113);
+INSERT INTO BOOK VALUES(55, 1, 'inStock', 1, 127);
+INSERT INTO BOOK VALUES(56, 3, 'inStock', 1, 38);
+INSERT INTO BOOK VALUES(57, 1, 'inStock', 1, 135);
+INSERT INTO BOOK VALUES(58, 1, 'inStock', 1, 175);
+INSERT INTO BOOK VALUES(59, 1, 'inStock', 1, 199);
+INSERT INTO BOOK VALUES(60, 2, 'inStock', 1, 234);
+INSERT INTO BOOK VALUES(61, 0, 'inStock', 1, 154);
+INSERT INTO BOOK VALUES(62, 1, 'inStock', 1, 112);
+INSERT INTO BOOK VALUES(63, 1, 'inStock', 1, 5);
+INSERT INTO BOOK VALUES(64, 0, 'inStock', 1, 73);
+INSERT INTO BOOK VALUES(65, 1, 'inStock', 1, 17);
+INSERT INTO BOOK VALUES(66, 2, 'inStock', 1, 135);
+INSERT INTO BOOK VALUES(67, 1, 'inStock', 1, 13);
+INSERT INTO BOOK VALUES(68, 0, 'inStock', 1, 93);
+INSERT INTO BOOK VALUES(69, 0, 'inStock', 1, 105);
+INSERT INTO BOOK VALUES(70, 0, 'inStock', 1, 174);
+INSERT INTO BOOK VALUES(71, 0, 'inStock', 1, 21);
+INSERT INTO BOOK VALUES(72, 3, 'inStock', 1, 35);
+INSERT INTO BOOK VALUES(73, 2, 'inStock', 1, 87);
+INSERT INTO BOOK VALUES(74, 0, 'inStock', 1, 113);
+INSERT INTO BOOK VALUES(75, 3, 'inStock', 1, 152);
+INSERT INTO BOOK VALUES(76, 1, 'inStock', 1, 104);
+INSERT INTO BOOK VALUES(77, 3, 'inStock', 1, 141);
+INSERT INTO BOOK VALUES(78, 1, 'inStock', 1, 218);
+INSERT INTO BOOK VALUES(79, 3, 'inStock', 1, 215);
+INSERT INTO BOOK VALUES(80, 1, 'inStock', 1, 31);
+INSERT INTO BOOK VALUES(81, 1, 'inStock', 1, 121);
+INSERT INTO BOOK VALUES(82, 2, 'inStock', 1, 28);
+INSERT INTO BOOK VALUES(83, 1, 'inStock', 1, 158);
+INSERT INTO BOOK VALUES(84, 3, 'inStock', 1, 126);
+INSERT INTO BOOK VALUES(85, 1, 'inStock', 1, 54);
+INSERT INTO BOOK VALUES(86, 0, 'inStock', 1, 13);
+INSERT INTO BOOK VALUES(87, 1, 'inStock', 1, 36);
+INSERT INTO BOOK VALUES(88, 0, 'inStock', 1, 136);
+INSERT INTO BOOK VALUES(89, 1, 'inStock', 1, 171);
+INSERT INTO BOOK VALUES(90, 1, 'inStock', 1, 149);
+INSERT INTO BOOK VALUES(91, 1, 'inStock', 1, 89);
+INSERT INTO BOOK VALUES(92, 0, 'inStock', 1, 4);
+INSERT INTO BOOK VALUES(93, 0, 'inStock', 1, 233);
+INSERT INTO BOOK VALUES(94, 2, 'inStock', 1, 200);
+INSERT INTO BOOK VALUES(95, 2, 'inStock', 1, 130);
+INSERT INTO BOOK VALUES(96, 1, 'inStock', 1, 213);
+INSERT INTO BOOK VALUES(97, 1, 'inStock', 2, 69);
+INSERT INTO BOOK VALUES(98, 1, 'inStock', 2, 218);
+INSERT INTO BOOK VALUES(99, 2, 'inStock', 2, 139);
+INSERT INTO BOOK VALUES(100, 2, 'inStock', 2, 214);
+INSERT INTO BOOK VALUES(101, 0, 'inStock', 2, 241);
+INSERT INTO BOOK VALUES(102, 1, 'inStock', 2, 188);
+INSERT INTO BOOK VALUES(103, 3, 'inStock', 2, 193);
+INSERT INTO BOOK VALUES(104, 1, 'inStock', 2, 139);
+INSERT INTO BOOK VALUES(105, 2, 'inStock', 2, 208);
+INSERT INTO BOOK VALUES(106, 1, 'inStock', 2, 119);
+INSERT INTO BOOK VALUES(107, 0, 'inStock', 2, 215);
+INSERT INTO BOOK VALUES(108, 1, 'inStock', 2, 155);
+INSERT INTO BOOK VALUES(109, 1, 'inStock', 2, 227);
+INSERT INTO BOOK VALUES(110, 0, 'inStock', 2, 59);
+INSERT INTO BOOK VALUES(111, 2, 'inStock', 3, 192);
+INSERT INTO BOOK VALUES(112, 0, 'inStock', 3, 88);
+INSERT INTO BOOK VALUES(113, 1, 'inStock', 3, 14);
+INSERT INTO BOOK VALUES(114, 3, 'inStock', 3, 169);
+INSERT INTO BOOK VALUES(115, 1, 'inStock', 3, 187);
+INSERT INTO BOOK VALUES(116, 1, 'inStock', 3, 15);
+INSERT INTO BOOK VALUES(117, 0, 'inStock', 3, 150);
+INSERT INTO BOOK VALUES(118, 1, 'inStock', 3, 142);
+INSERT INTO BOOK VALUES(119, 1, 'inStock', 3, 28);
+INSERT INTO BOOK VALUES(120, 1, 'inStock', 3, 41);
+INSERT INTO BOOK VALUES(121, 1, 'inStock', 3, 127);
+INSERT INTO BOOK VALUES(122, 2, 'inStock', 3, 2);
+INSERT INTO BOOK VALUES(123, 1, 'inStock', 3, 107);
+INSERT INTO BOOK VALUES(124, 1, 'inStock', 3, 226);
+INSERT INTO BOOK VALUES(125, 1, 'inStock', 3, 17);
+INSERT INTO BOOK VALUES(126, 2, 'inStock', 3, 34);
+INSERT INTO BOOK VALUES(127, 1, 'inStock', 3, 64);
+INSERT INTO BOOK VALUES(128, 1, 'inStock', 3, 187);
+INSERT INTO BOOK VALUES(129, 1, 'inStock', 3, 112);
+INSERT INTO BOOK VALUES(130, 2, 'inStock', 3, 149);
+INSERT INTO BOOK VALUES(131, 2, 'inStock', 3, 225);
+INSERT INTO BOOK VALUES(132, 1, 'inStock', 3, 74);
+INSERT INTO BOOK VALUES(133, 0, 'inStock', 3, 162);
+INSERT INTO BOOK VALUES(134, 0, 'inStock', 3, 11);
+INSERT INTO BOOK VALUES(135, 0, 'inStock', 3, 208);
+INSERT INTO BOOK VALUES(136, 1, 'inStock', 3, 113);
+INSERT INTO BOOK VALUES(137, 0, 'inStock', 3, 77);
+INSERT INTO BOOK VALUES(138, 1, 'inStock', 3, 131);
+INSERT INTO BOOK VALUES(139, 2, 'inStock', 3, 157);
+INSERT INTO BOOK VALUES(140, 1, 'inStock', 3, 135);
+INSERT INTO BOOK VALUES(141, 0, 'inStock', 3, 64);
+INSERT INTO BOOK VALUES(142, 0, 'inStock', 3, 199);
+INSERT INTO BOOK VALUES(143, 1, 'inStock', 3, 177);
+INSERT INTO BOOK VALUES(144, 2, 'inStock', 3, 217);
+INSERT INTO BOOK VALUES(145, 0, 'inStock', 3, 151);
+INSERT INTO BOOK VALUES(146, 1, 'inStock', 3, 86);
+INSERT INTO BOOK VALUES(147, 0, 'inStock', 3, 81);
+INSERT INTO BOOK VALUES(148, 2, 'inStock', 3, 182);
+INSERT INTO BOOK VALUES(149, 1, 'inStock', 3, 107);
+INSERT INTO BOOK VALUES(150, 2, 'inStock', 3, 148);
+INSERT INTO BOOK VALUES(151, 0, 'inStock', 3, 209);
+INSERT INTO BOOK VALUES(152, 2, 'inStock', 3, 239);
+INSERT INTO BOOK VALUES(153, 1, 'inStock', 3, 184);
+INSERT INTO BOOK VALUES(154, 1, 'inStock', 3, 126);
+INSERT INTO BOOK VALUES(155, 2, 'inStock', 3, 199);
+INSERT INTO BOOK VALUES(156, 3, 'inStock', 3, 119);
+INSERT INTO BOOK VALUES(157, 0, 'inStock', 3, 202);
+INSERT INTO BOOK VALUES(158, 0, 'inStock', 3, 97);
+INSERT INTO BOOK VALUES(159, 2, 'inStock', 3, 47);
+INSERT INTO BOOK VALUES(160, 1, 'inStock', 3, 16);
+INSERT INTO BOOK VALUES(161, 3, 'inStock', 3, 194);
+INSERT INTO BOOK VALUES(162, 0, 'inStock', 3, 70);
+INSERT INTO BOOK VALUES(163, 2, 'inStock', 3, 89);
+INSERT INTO BOOK VALUES(164, 2, 'inStock', 3, 144);
+INSERT INTO BOOK VALUES(165, 1, 'inStock', 3, 86);
+INSERT INTO BOOK VALUES(166, 2, 'inStock', 3, 180);
+INSERT INTO BOOK VALUES(167, 0, 'inStock', 3, 242);
+INSERT INTO BOOK VALUES(168, 1, 'inStock', 3, 62);
+INSERT INTO BOOK VALUES(169, 3, 'inStock', 3, 71);
+INSERT INTO BOOK VALUES(170, 1, 'inStock', 4, 184);
+INSERT INTO BOOK VALUES(171, 0, 'inStock', 4, 130);
+INSERT INTO BOOK VALUES(172, 0, 'inStock', 4, 58);
+INSERT INTO BOOK VALUES(173, 1, 'inStock', 4, 209);
+INSERT INTO BOOK VALUES(174, 2, 'inStock', 4, 109);
+INSERT INTO BOOK VALUES(175, 1, 'inStock', 4, 202);
+INSERT INTO BOOK VALUES(176, 1, 'inStock', 4, 225);
+INSERT INTO BOOK VALUES(177, 2, 'inStock', 4, 189);
+INSERT INTO BOOK VALUES(178, 0, 'inStock', 4, 173);
+INSERT INTO BOOK VALUES(179, 1, 'inStock', 4, 232);
+INSERT INTO BOOK VALUES(180, 0, 'inStock', 4, 4);
+INSERT INTO BOOK VALUES(181, 0, 'inStock', 4, 24);
+INSERT INTO BOOK VALUES(182, 0, 'inStock', 4, 212);
+INSERT INTO BOOK VALUES(183, 1, 'inStock', 4, 233);
+INSERT INTO BOOK VALUES(184, 1, 'inStock', 4, 186);
+INSERT INTO BOOK VALUES(185, 1, 'inStock', 4, 51);
+INSERT INTO BOOK VALUES(186, 1, 'inStock', 4, 128);
+INSERT INTO BOOK VALUES(187, 0, 'inStock', 4, 73);
+INSERT INTO BOOK VALUES(188, 0, 'inStock', 4, 45);
+INSERT INTO BOOK VALUES(189, 1, 'inStock', 4, 85);
+INSERT INTO BOOK VALUES(190, 1, 'inStock', 4, 212);
+INSERT INTO BOOK VALUES(191, 2, 'inStock', 4, 19);
+INSERT INTO BOOK VALUES(192, 0, 'inStock', 4, 225);
+INSERT INTO BOOK VALUES(193, 1, 'inStock', 4, 94);
+INSERT INTO BOOK VALUES(194, 1, 'inStock', 4, 193);
+INSERT INTO BOOK VALUES(195, 0, 'inStock', 4, 140);
+INSERT INTO BOOK VALUES(196, 1, 'inStock', 4, 235);
+INSERT INTO BOOK VALUES(197, 0, 'inStock', 4, 30);
+INSERT INTO BOOK VALUES(198, 1, 'inStock', 4, 115);
+INSERT INTO BOOK VALUES(199, 2, 'inStock', 4, 68);
+INSERT INTO BOOK VALUES(200, 1, 'inStock', 4, 235);
+INSERT INTO BOOK VALUES(201, 0, 'inStock', 4, 193);
+INSERT INTO BOOK VALUES(202, 1, 'inStock', 4, 16);
+INSERT INTO BOOK VALUES(203, 1, 'inStock', 5, 135);
+INSERT INTO BOOK VALUES(204, 0, 'inStock', 5, 234);
+INSERT INTO BOOK VALUES(205, 0, 'inStock', 5, 52);
+INSERT INTO BOOK VALUES(206, 1, 'inStock', 5, 130);
+INSERT INTO BOOK VALUES(207, 1, 'inStock', 5, 158);
+INSERT INTO BOOK VALUES(208, 0, 'inStock', 5, 141);
+INSERT INTO BOOK VALUES(209, 1, 'inStock', 5, 161);
+INSERT INTO BOOK VALUES(210, 0, 'inStock', 5, 92);
+INSERT INTO BOOK VALUES(211, 1, 'inStock', 6, 148);
+INSERT INTO BOOK VALUES(212, 1, 'inStock', 6, 120);
+INSERT INTO BOOK VALUES(213, 1, 'inStock', 6, 26);
+INSERT INTO BOOK VALUES(214, 1, 'inStock', 6, 124);
+INSERT INTO BOOK VALUES(215, 1, 'inStock', 6, 83);
+INSERT INTO BOOK VALUES(216, 0, 'inStock', 6, 197);
+INSERT INTO BOOK VALUES(217, 1, 'inStock', 6, 100);
+INSERT INTO BOOK VALUES(218, 1, 'inStock', 6, 132);
+INSERT INTO BOOK VALUES(219, 0, 'inStock', 6, 232);
+INSERT INTO BOOK VALUES(220, 1, 'inStock', 6, 159);
+INSERT INTO BOOK VALUES(221, 1, 'inStock', 6, 111);
+INSERT INTO BOOK VALUES(222, 1, 'inStock', 6, 184);
+INSERT INTO BOOK VALUES(223, 1, 'inStock', 6, 48);
+INSERT INTO BOOK VALUES(224, 0, 'inStock', 6, 56);
+INSERT INTO BOOK VALUES(225, 2, 'inStock', 6, 80);
+INSERT INTO BOOK VALUES(226, 0, 'inStock', 6, 135);
+INSERT INTO BOOK VALUES(227, 2, 'inStock', 6, 64);

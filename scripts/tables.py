@@ -316,7 +316,7 @@ class LINE:
         LINE.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO LINE VALUES({self.id}, '{self.number}', {self.isle_id})"
+        return f"INSERT INTO LINE VALUES({self.id}, '{self.number}', {self.isle_id});"
 
 
 class ISLE:
@@ -330,7 +330,7 @@ class ISLE:
         ISLE.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO ISLE VALUES({self.id}, '{self.name}', {self.section_id})"
+        return f"INSERT INTO ISLE VALUES({self.id}, '{self.name}', {self.section_id});"
 
 
 class SECTION:
@@ -344,7 +344,7 @@ class SECTION:
         SECTION.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO SECTION VALUES({self.id}, '{self.name}', {self.building_id})"
+        return f"INSERT INTO SECTION VALUES({self.id}, '{self.name}', {self.building_id});"
 
 
 class BUILDING:
@@ -360,7 +360,7 @@ class BUILDING:
         BUILDING.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO BUILDING VALUES({self.id}, '{self.address}', '{self.name}', {self.num_of_pb}, {self.place_id})"
+        return f"INSERT INTO BUILDING VALUES({self.id}, '{self.address}', '{self.name}', {self.num_of_pb}, {self.place_id});"
 
 
 class PLACE:
@@ -374,7 +374,7 @@ class PLACE:
         PLACE.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO PLACE VALUES({self.id}, '{self.name}', {self.postal})"
+        return f"INSERT INTO PLACE VALUES({self.id}, '{self.name}', {self.postal});"
 
 
 def escape(string):
