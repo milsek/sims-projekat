@@ -23,6 +23,7 @@ public class Genre {
     private String name;
 
     @OneToMany
+    @JoinColumn(name = "parent_id", nullable = false)
     private Set<Genre> genres;
 
     public Set<Genre> getGenres() {
