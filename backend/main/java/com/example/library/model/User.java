@@ -21,6 +21,10 @@ public abstract class User {
     @Column
     protected LocalDate birthdate;
 
+    @Transient
+    public abstract Integer getDiscriminatorValue();
+
+
     @OneToOne(targetEntity = Account.class)
     protected Account account;
 

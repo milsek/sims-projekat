@@ -33,4 +33,10 @@ public class Member extends User {
     public void setMemberships(List<Membership> memberships) {
         this.memberships = memberships;
     }
+
+    @Override
+    public Integer getDiscriminatorValue() {
+        DiscriminatorValue val = this.getClass().getAnnotation( DiscriminatorValue.class );
+        return val == null ? null : Integer.valueOf(val.value());
+    }
 }

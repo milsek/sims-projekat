@@ -10,4 +10,10 @@ public class Librarian extends User {
 
     @Column
     private Workplace workplace;
+
+    @Override
+    public Integer getDiscriminatorValue() {
+        DiscriminatorValue val = this.getClass().getAnnotation( DiscriminatorValue.class );
+        return val == null ? null : Integer.valueOf(val.value());
+    }
 }
