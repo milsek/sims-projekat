@@ -1,9 +1,7 @@
 package com.example.library.model;
 
-import com.example.library.model.states.*;
-import org.springframework.context.annotation.Bean;
+import com.example.library.model.reservation_states.*;
 
-import javax.annotation.Resource;
 import javax.persistence.*;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
@@ -51,7 +49,7 @@ public abstract class Reservation {
     public void setStateName(String stateName) {
         this.stateName = stateName;
         try {
-            Class<?> st = Class.forName("com.example.library.model.states." + stateName);
+            Class<?> st = Class.forName(stateName);
             Method ins = st.getMethod("getInstance");
             reservationState = (ReservationState) ins.invoke(ins);
         } catch (Exception e) {

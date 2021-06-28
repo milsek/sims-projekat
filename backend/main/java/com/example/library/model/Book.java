@@ -1,9 +1,13 @@
 package com.example.library.model;
 
+import com.example.library.model.book_states.InStock;
+import com.example.library.model.book_states.Missing;
+import com.example.library.model.reservation_states.New;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +20,7 @@ public class Book {
     private long id;
 
     @Column
-    private BookStatus status;
+    private String stateName;
 
     @Column
     private BookCondition condition;
@@ -25,9 +29,24 @@ public class Book {
     @JoinColumn(name = "EDITION_ID")
     private Edition edition;
 
+    private transient BookState bookState;
+
     public Book() {
+        bookState = InStock.getInstance();
+        bookState.setContext(this);
     }
 
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+        try {
+            Class<?> st = Class.forName(stateName);
+            Method ins = st.getMethod("getInstance");
+            bookState = (BookState) ins.invoke(ins);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public long getId() {
         return id;
@@ -37,12 +56,8 @@ public class Book {
         this.id = id;
     }
 
-    public BookStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(BookStatus status) {
-        this.status = status;
+    public String getStateName() {
+        return stateName;
     }
 
     public BookCondition getCondition() {

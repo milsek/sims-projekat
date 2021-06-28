@@ -1,15 +1,12 @@
-package com.example.library.model.states;
+package com.example.library.model.reservation_states;
 
 import com.example.library.model.ReservationState;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 public class Seized extends ReservationState {
     private static Seized obj;
 
     private Seized() {
-        super.setStateName(this.getClass().getSimpleName());
+        super.setStateName(this.getClass().getName());
     };
 
     public static Seized getInstance(){

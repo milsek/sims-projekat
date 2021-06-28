@@ -22,6 +22,17 @@ public class Genre {
     @Field
     private String name;
 
+    @OneToMany
+    private Set<Genre> genres;
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
+
     public long getId() {
         return id;
     }

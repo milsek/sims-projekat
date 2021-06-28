@@ -22,6 +22,36 @@ public abstract class BookTitle {
     @OneToMany
     private Set<Edition> editions;
 
+    @ManyToMany
+    private Set<Genre> genres;
+
+    @ManyToMany
+    private Set<Contribution> contributions;
+
+    public Set<Edition> getEditions() {
+        return editions;
+    }
+
+    public void setEditions(Set<Edition> editions) {
+        this.editions = editions;
+    }
+
+    public Set<Contribution> getContributions() {
+        return contributions;
+    }
+
+    public void setContributions(Set<Contribution> contributions) {
+        this.contributions = contributions;
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
+
     public long getId() {
         return id;
     }
