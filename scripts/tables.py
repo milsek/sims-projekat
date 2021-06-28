@@ -1,5 +1,4 @@
 import random
-from scripts.model import add
 import requests
 
 
@@ -78,6 +77,8 @@ class EDITION:
             tag = TAG.with_name(name)
             sql.append(f"INSERT INTO EDITION_TAGS VALUES({self.id}, {tag.id});")
 
+        for i in range(self.available_copies):
+            BOOK(self)
 
         return sql
 
@@ -301,21 +302,21 @@ class BOOK:
 
     def toSql(self):
         # TODO: Check order of values
-        return f"INSERT INTO BOOK VALUES({self.id}, {self.condition}, '{escape(self.name)}', {self.edition_id}, {self.line_id});"
+        return f"INSERT INTO BOOK VALUES({self.id}, {self.condition}, '{escape(self.state_name)}', {self.edition_id}, {self.line_id});"
 
 
 class LINE:   
     instances = []
 
-    def __init__(self, name, isle):
-        self.id = len(ISLE.instances)
-        self.name = name
+    def __init__(self, number, isle):
+        self.id = len(LINE.instances)
+        self.number = number
         self.isle_id = isle.id
         
         LINE.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO LINE VALUES({self.id}, '{self.name}', {self.isle_id})"
+        return f"INSERT INTO LINE VALUES({self.id}, '{self.number}', {self.isle_id})"
 
 
 class ISLE:
@@ -338,7 +339,7 @@ class SECTION:
     def __init__(self, name, building):
         self.id = len(SECTION.instances)
         self.name = name
-        self.buliding_id = building.id
+        self.building_id = building.id
         
         SECTION.instances.append(self)
 
