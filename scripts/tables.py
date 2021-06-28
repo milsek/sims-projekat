@@ -63,8 +63,7 @@ class EDITION:
         sql = [f"INSERT INTO BOOK_TITLE VALUES({self.id}, '{escape(self.title)}');",
                f"INSERT INTO EDITION VALUES({self.id}, {self.available_copies}, '{trim(escape(self.description))}', '{self.dimensions}', '{self.image_large}', "
                f"'{self.image_small}', '{self.language}', {self.page_count}, {self.rating}, {self.reads}, {self.take_out}, PARSEDATETIME('{self.year}', 'yyyy'), "
-               f"{self.publisher_id}, {self.id});",
-               f"INSERT INTO BOOK_TITLE_EDITIONS VALUES({self.id}, {self.id});"]
+               f"{self.publisher_id}, {self.id});"]
 
         for name in self.author_names:
             contributor = CONTRIBUTOR.with_name(name)
@@ -188,7 +187,7 @@ class GENRE:
             return GENRE(name)
 
     def toSql(self):
-        return f"INSERT INTO GENRE VALUES({self.id}, '{escape(self.name)}');"
+        return f"INSERT INTO GENRE VALUES({self.id}, '{escape(self.name)}', null);"
 
 
 class BOOK_RESERVATION:
@@ -248,32 +247,34 @@ class MEMBER:
 class USER:
     instances = []
 
-    def __init__(self, name, surname, account):
+    def __init__(self, name, surname, birthdate, library, account):
         self.id = len(USER.instances)
-        self.birthdate = '' # TODO: Generiši za sve tipove korisnika, npr penzioner 60+ itd
+        self.birthdate = birthdate
         self.name = name
         self.surname = surname
         self.account_id = account.id
+        self.library_id = library.id
 
         USER.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO USER VALUES({self.id}, PARSEDATETIME('{self.birthdate}', 'yyyy-mm-dd'), '{self.name}', '{self.surname}', {self.account_id});"
+        return f"INSERT INTO USER VALUES(0, {self.id}, PARSEDATETIME('{self.birthdate}', 'yyyy-mm-dd'), '{self.name}', '{self.surname}', {self.account_id}, {self.library_id});"
 
 
 class ACCOUNT:
     instances = []
 
-    def __init__(self, mail):
+    def __init__(self, mail, library):
         self.id = len(ACCOUNT.instances)
         self.mail = mail
         self.password = 'password1'
-        self.reference_number = 'VARCHAR' # TODO: Kako se ovo generise?
+        self.reference_number = str(self.id).zfill(10)
+        self.library_id = library.id
 
         ACCOUNT.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO ACCOUNT VALUES({self.id}, '{self.mail}', '{self.password}', '{self.reference_number}');"
+        return f"INSERT INTO ACCOUNT VALUES({self.id}, '{self.mail}', '{self.password}', '{self.reference_number}', {self.library_id});"
 
 
 class MEMBERSHIP:
@@ -350,17 +351,31 @@ class SECTION:
 class BUILDING:
     instances = []
 
-    def __init__(self, name, address, num_of_pb, place):
+    def __init__(self, name, address, num_of_pb, place, library):
         self.id = len(BUILDING.instances)
         self.name = name
         self.address = address
         self.num_of_pb = num_of_pb
         self.place_id = place.id
+        self.library_id = library.id
 
         BUILDING.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO BUILDING VALUES({self.id}, '{self.address}', '{self.name}', {self.num_of_pb}, {self.place_id});"
+        return f"INSERT INTO BUILDING VALUES({self.id}, '{self.address}', '{self.name}', {self.num_of_pb}, {self.place_id}, {self.library_id});"
+
+
+class LIBRARY:
+    instances = []
+
+    def __init__(self, name):
+        self.id = len(LIBRARY.instances)
+        self.name = name
+
+        LIBRARY.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO LIBRARY VALUES({self.id}, '{self.name}');"
 
 
 class PLACE:
