@@ -91,7 +91,7 @@ public class Edition {
     @IndexedEmbedded(depth = 1)
     private Set<Contribution> contributions;
 
-    @OneToMany
+    @OneToMany(mappedBy = "edition")
     private Set<Book> copies;
 
 

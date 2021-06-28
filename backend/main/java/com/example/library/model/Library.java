@@ -17,15 +17,19 @@ public class Library {
     private String name;
 
     @OneToMany
+    @JoinColumn(name = "library_id")
     private Set<User> users;
 
     @OneToMany
+    @JoinColumn(name = "library_id")
     private Set<Account> accounts;
 
     @OneToMany
+    @JoinColumn(name = "library_id")
     private Set<DailyTransaction> dailyTransactions;
 
     @OneToMany
+    @JoinColumn(name = "library_id")
     private Set<Building> buildings;
 
     public long getId() {

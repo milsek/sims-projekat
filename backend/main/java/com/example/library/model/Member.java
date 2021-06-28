@@ -2,6 +2,7 @@ package com.example.library.model;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -10,9 +11,11 @@ import java.util.List;
 public class Member extends User {
 
     @OneToMany
+    @JoinColumn(name = "user_id")
     private List<Reservation> reservations;
 
     @OneToMany
+    @JoinColumn(name = "user_id")
     private List<Membership> memberships;
 
     public List<Reservation> getReservations() {
