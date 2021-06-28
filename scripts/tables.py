@@ -1,4 +1,5 @@
 import random
+from scripts.model import add
 import requests
 
 
@@ -63,7 +64,7 @@ class EDITION:
         sql = [f"INSERT INTO BOOK_TITLE VALUES({self.id}, '{escape(self.title)}');",
                f"INSERT INTO EDITION VALUES({self.id}, {self.available_copies}, '{trim(escape(self.description))}', '{self.dimensions}', '{self.image_large}', "
                f"'{self.image_small}', '{self.language}', {self.page_count}, {self.rating}, {self.reads}, {self.take_out}, PARSEDATETIME('{self.year}', 'yyyy'), "
-               f"{self.publisher_id}, {self.id});"
+               f"{self.publisher_id}, {self.id});",
                f"INSERT INTO BOOK_TITLE_EDITIONS VALUES({self.id}, {self.id});"]
 
         for name in self.author_names:
@@ -99,7 +100,6 @@ class CONTRIBUTION:
 
     def toSql(self):
         return f"INSERT INTO CONTRIBUTION VALUES({self.id}, '{self.ctype}', {self.contributor.id});"
-
 
 
 class CONTRIBUTOR:
@@ -188,6 +188,93 @@ class GENRE:
 
     def toSql(self):
         return f"INSERT INTO GENRE VALUES({self.id}, '{escape(self.name)}');"
+
+
+class BOOK:
+    instances = []
+
+    def __init__(self, edition):
+        self.id = len(BOOK.instances)
+        self.condition = random.choice([0,0,0,1,1,1,1,2,2,3])
+        self.state_name = 'inStock' # TODO: Other states
+        self.edition_id = edition.id
+
+        BOOK.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO BOOK VALUES({self.id}, {self.condition}, '{escape(self.name)}', {self.edition_id});"
+
+
+class LINE:
+    instances = []
+
+    def __init__(self, name, isle):
+        self.id = len(ISLE.instances)
+        self.name = name
+        self.isle_id = isle.id
+        
+        LINE.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO LINE VALUES({self.id}, '{self.name}', {self.isle_id})"
+
+
+class ISLE:
+    instances = []
+
+    def __init__(self, name, section):
+        self.id = len(ISLE.instances)
+        self.name = name
+        self.section_id = section.id
+        
+        ISLE.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO ISLE VALUES({self.id}, '{self.name}', {self.section_id})"
+
+
+class SECTION:
+    instances = []
+
+    def __init__(self, name, building):
+        self.id = len(SECTION.instances)
+        self.name = name
+        self.buliding_id = building.id
+        
+        SECTION.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO SECTION VALUES({self.id}, '{self.name}', {self.building_id})"
+
+
+class BUILDING:
+    instances = []
+
+    def __init__(self, name, address, num_of_pb, place):
+        self.id = len(BUILDING.instances)
+        self.name = name
+        self.address = address
+        self.num_of_pb = num_of_pb
+        self.place_id = place.id
+
+        BUILDING.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO BUILDING VALUES({self.id}, '{self.address}', '{self.name}', {self.num_of_pb}, {self.place_id})"
+
+
+class PLACE:
+    instances = []
+
+    def __init__(self, name, postal):
+        self.id = len(PLACE.instances)
+        self.name = name
+        self.postal = postal
+
+        PLACE.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO PLACE VALUES({self.id}, '{self.name}', {self.postal})"
 
 
 def escape(string):
