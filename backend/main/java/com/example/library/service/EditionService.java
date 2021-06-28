@@ -1,6 +1,7 @@
 package com.example.library.service;
 
 import com.example.library.model.Edition;
+import com.example.library.repository.BookTitleRepository;
 import com.example.library.repository.EditionRepository;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.FullTextQuery;
@@ -16,6 +17,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class EditionService {
@@ -25,6 +27,9 @@ public class EditionService {
 
     @Autowired
     private EditionRepository editionRepository;
+
+    @Autowired
+    private BookTitleService titleService;
 
 //    @Autowired
 //    private PublisherRepository publisherRepository;
@@ -60,5 +65,12 @@ public class EditionService {
 
     public Map<Long, List<Edition>> searchEditions(String text, int page, int amount) {
         return editionRepository.searchEditions(text, page, amount);
+    }
+
+    public Set<Edition> getRelatedEditions(Long id) {
+        Edition edition = getEdition(id);
+        if (edition == null)
+            return null;
+        return titleService.getAllEditionsById(edition.getTitle().getId());
     }
 }

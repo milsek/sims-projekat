@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -40,6 +41,13 @@ public class EditionController {
     @ResponseBody
     public Edition getEdition(@PathVariable("id") long id) {
         return editionService.getEdition(id);
+    }
+
+    @GetMapping(path = "/edition/related_to={id}")
+    @ResponseBody
+    public Set<Edition> getRelatedEditions(@PathVariable("id") long id)
+    {
+        return editionService.getRelatedEditions(id);
     }
 
     @GetMapping(path = "fullSearch")
