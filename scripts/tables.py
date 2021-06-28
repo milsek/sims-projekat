@@ -190,6 +190,103 @@ class GENRE:
         return f"INSERT INTO GENRE VALUES({self.id}, '{escape(self.name)}');"
 
 
+class BOOK_RESERVATION:
+    instances = []
+
+    def __init__(self, book, date, reservation):
+        self.id = reservation.id
+        self.date = date
+        self.book_id = book.id
+
+        BOOK_RESERVATION.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO BOOK_RESERVATION VALUES(PARSEDATETIME('{self.date}', 'yyyy-mm-dd', {self.id}, {self.book_id});"
+
+
+class PICTURE_BOOK_RSERVATION:
+    instances = []
+
+    def __init__(self, reservation):
+        self.id = reservation.id
+        self.amount = random.randint(1,4)
+
+        PICTURE_BOOK_RSERVATION.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO PICTURE_BOOK_RESERVATION VALUES({self.amount}, {self.id});"
+
+
+class RESERVATION:
+    instances = []
+
+    def __init__(self, member):
+        self.id = len(RESERVATION.instances)
+        self.date_returned = ''     # TODO: Think of random generation mechanism
+        self.date_taken = ''        # TODO: Do the same
+        self.member_id = member.id
+
+        RESERVATION.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO RESERVATION VALUES({self.id}, PARSEDATETIME('{self.date_returned}', 'yyyy-mm-dd'), PARSEDATETIME('{self.date_taken}', 'yyyy-mm-dd'), '{self.state_name}');"
+
+
+class MEMBER:
+    instances = []
+
+    def __init__(self, user):
+        self.id = user.id
+
+        MEMBER.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO MEMBER VALUES({self.id});"
+
+
+class USER:
+    instances = []
+
+    def __init__(self, name, surname, account):
+        self.id = len(USER.instances)
+        self.birthdate = '' # TODO: Generiši za sve tipove korisnika, npr penzioner 60+ itd
+        self.name = name
+        self.surname = surname
+        self.account_id = account.id
+
+        USER.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO USER VALUES({self.id}, PARSEDATETIME('{self.birthdate}', 'yyyy-mm-dd'), '{self.name}', '{self.surname}', {self.account_id});"
+
+
+class ACCOUNT:
+    instances = []
+
+    def __init__(self, mail):
+        self.id = len(ACCOUNT.instances)
+        self.mail = mail
+        self.password = 'password1'
+        self.reference_number = 'VARCHAR' # TODO: Kako se ovo generise?
+
+        ACCOUNT.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO ACCOUNT VALUES({self.id}, '{self.mail}', '{self.password}', '{self.reference_number}');"
+
+
+class MEMBERSHIP:
+    instances = []
+
+    def __init__(self, start_date, end_date, price):
+        self.id = len(MEMBERSHIP.instances)
+        self.end_date = end_date # TODO: Generiši u prošlosti i u budućnosti
+        self.start_date = start_date
+        self.price = price
+
+        MEMBERSHIP.instances.append(self)
+
+
 class BOOK:
     instances = []
 
