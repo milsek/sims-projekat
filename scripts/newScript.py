@@ -24,23 +24,23 @@ def run_api(params, tags):
         tables.EDITION(info, tags)
 
 
-run_api({'q': 'cryptography', 'maxResults': 30}, ['cryptography', 'security', 'computers', 'communications'])
-run_api({'q': 'python', 'maxResults': 30}, ['programming', 'python', 'computers'])
-run_api({'q': 'c++', 'maxResults': 30}, ['programming', 'c++', 'computers'])
-run_api({'q': 'security', 'maxResults': 30}, ['programming', 'hacking', 'security', 'cryptography', 'computers'])
-run_api({'q': 'java', 'maxResults': 30}, ['programming', 'java', 'computers'])
-run_api({'q': 'artificial intelligence', 'maxResults': 30}, ['machine-learning', 'ai', 'computers'])
-run_api({'q': 'django', 'maxResults': 30}, ['programming', 'web-development', 'python', 'django'])
-run_api({'q': 'linux', 'maxResults': 30}, ['os', 'security', 'programming', 'computers'])
-run_api({'q': 'database', 'maxResults': 30}, ['database', 'sql', 'web-development', 'data'])
+run_api({'q': 'cryptography', 'maxResults': 10}, ['cryptography', 'security', 'computers', 'communications'])
+run_api({'q': 'python', 'maxResults': 10}, ['programming', 'python', 'computers'])
+run_api({'q': 'c++', 'maxResults': 10}, ['programming', 'c++', 'computers'])
+# run_api({'q': 'security', 'maxResults': 30}, ['programming', 'hacking', 'security', 'cryptography', 'computers'])
+# run_api({'q': 'java', 'maxResults': 30}, ['programming', 'java', 'computers'])
+# run_api({'q': 'artificial intelligence', 'maxResults': 30}, ['machine-learning', 'ai', 'computers'])
+# run_api({'q': 'django', 'maxResults': 30}, ['programming', 'web-development', 'python', 'django'])
+# run_api({'q': 'linux', 'maxResults': 30}, ['os', 'security', 'programming', 'computers'])
+# run_api({'q': 'database', 'maxResults': 30}, ['database', 'sql', 'web-development', 'data'])
 
 
 file = open('data.sql', 'w')
 
 for tag in tables.TAG.instances:
     file.write(tag.toSql() + '\n')
-for content in tables.CONTENT.instances:
-    file.write(content.toSql() + '\n')
+for genre in tables.GENRE.instances:
+    file.write(genre.toSql() + '\n')
 for contributor in tables.CONTRIBUTOR.instances:
     file.write(contributor.toSql() + '\n')
 for contribution in tables.CONTRIBUTION.instances:
