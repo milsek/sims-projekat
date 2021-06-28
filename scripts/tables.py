@@ -52,7 +52,7 @@ class EDITION:
         for name in self.author_names:
             CONTRIBUTION.with_contrib_and_type(CONTRIBUTOR.with_name(name), 'author')
         for name in self.genre_names:
-            CONTENT.with_name(name)
+            GENRE.with_name(name)
         for name in self.tag_names:
             TAG.with_name(name)
 
@@ -69,10 +69,10 @@ class EDITION:
         for name in self.author_names:
             contributor = CONTRIBUTOR.with_name(name)
             contribution = CONTRIBUTION.with_contrib_and_type(contributor, 'author')
-            sql.append(f"INSERT INTO EDITION_CONTRIBUTIONS VALUES({self.id}, {contributor.id});")
+            sql.append(f"INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES({self.id}, {contributor.id});")
         for name in self.genre_names:
-            genre = CONTENT.with_name(name)
-            sql.append(f"INSERT INTO EDITION_CONTENT VALUES({self.id}, {genre.id});")
+            genre = GENRE.with_name(name)
+            sql.append(f"INSERT INTO BOOK_TITLE_GENRES VALUES({self.id}, {genre.id});")
         for name in self.tag_names:
             tag = TAG.with_name(name)
             sql.append(f"INSERT INTO EDITION_TAGS VALUES({self.id}, {tag.id});")
@@ -168,23 +168,23 @@ class TAG:
         return f"INSERT INTO TAG VALUES({self.id}, '{escape(self.name)}');"
 
 
-class CONTENT:
+class GENRE:
     instances = []
     map = {}
 
     def __init__(self, name):
-        self.id = len(CONTENT.instances)
+        self.id = len(GENRE.instances)
         self.name = name
 
-        CONTENT.instances.append(self)
-        CONTENT.map[name] = self
+        GENRE.instances.append(self)
+        GENRE.map[name] = self
 
     @staticmethod
     def with_name(name):
-        if CONTENT.map.get(name):
-            return CONTENT.map.get(name)
+        if GENRE.map.get(name):
+            return GENRE.map.get(name)
         else:
-            return CONTENT(name)
+            return GENRE(name)
 
     def toSql(self):
         return f"INSERT INTO GENRE VALUES({self.id}, '{escape(self.name)}');"
