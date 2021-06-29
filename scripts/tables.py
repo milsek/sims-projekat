@@ -68,7 +68,7 @@ class EDITION:
         for name in self.author_names:
             contributor = CONTRIBUTOR.with_name(name)
             contribution = CONTRIBUTION.with_contrib_and_type(contributor, 'author')
-            sql.append(f"INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES({self.id}, {contributor.id});")
+            sql.append(f"INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES({self.id}, {contribution.id});")
         for name in self.genre_names:
             genre = GENRE.with_name(name)
             sql.append(f"INSERT INTO BOOK_TITLE_GENRES VALUES({self.id}, {genre.id});")
