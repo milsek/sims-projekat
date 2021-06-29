@@ -230,6 +230,7 @@ class RESERVATION:
         return f"INSERT INTO RESERVATION VALUES({self.id}, PARSEDATETIME('{self.date_returned}', 'yyyy-mm-dd'), PARSEDATETIME('{self.date_taken}', 'yyyy-mm-dd'), '{self.state_name}', {self.member_id});"
 
 
+
 class MEMBER:
     instances = []
 
@@ -278,13 +279,18 @@ class ACCOUNT:
 class MEMBERSHIP:
     instances = []
 
-    def __init__(self, start_date, end_date, price):
+    def __init__(self, start_date, end_date, price, user):
         self.id = len(MEMBERSHIP.instances)
-        self.end_date = end_date # TODO: Generiši u prošlosti i u budućnosti
-        self.start_date = start_date
-        self.price = price
+        self.end = end_date # TODO: Generiši u prošlosti i u budućnosti
+        self.start = start_date
+        self.price_id = price.id
+        self.user_id = user.id
 
         MEMBERSHIP.instances.append(self)
+    
+    def toSql(self):
+        return f"INSERT INTO MEMBERSHIP VALUES({self.id}, PARSEDATETIME('{self.end}', 'yyyy-mm-dd'), PARSEDATETIME('{self.start}', 'yyyy-mm-dd'), {self.price_id}, {self.user_id});"        
+
 
 
 class BOOK:
@@ -393,16 +399,16 @@ class PLACE:
 class CATEGORY_RULES:
     instances = []
 
-    def __init__(self, name, num_books, num_days):
+    def __init__(self, rule, num_books, num_days):
         self.id = len(CATEGORY_RULES.instances)
-        self.name = name
+        self.rule = rule
         self.num_books = num_books
         self.num_days = num_days
 
         CATEGORY_RULES.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO CATEGORY_RULES VALUES({self.id}, '{self.name}', {self.num_books}, {self.num_days});"
+        return f"INSERT INTO CATEGORY_RULES VALUES({self.id}, {self.rule}, {self.num_books}, {self.num_days});"
 
 
 class PRICE:
@@ -418,8 +424,35 @@ class PRICE:
         PRICE.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO PRICES VALUES({self.id}, PARSEDATETIME('{self.end}', 'yyyy-mm-dd'), {self.price}, PARSEDATETIME('{self.start}', 'yyyy-mm-dd'), {self.category_id})"
+        return f"INSERT INTO PRICE VALUES({self.id}, PARSEDATETIME('{self.end}', 'yyyy-mm-dd'), {self.price}, PARSEDATETIME('{self.start}', 'yyyy-mm-dd'), {self.category_id});"
 
+
+class LIBRARIAN:
+    instances = []
+
+    def __init__(self, user):
+        self.id = user.id
+        self.workplace = random.randint(1,3)
+
+        LIBRARIAN.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO LIBRARIAN VALUES({self.workplace}, {self.id});"
+
+class DAILY_TRANSACTION:
+    instances = []
+
+    def __init__(self, membership, librarian, library):
+        self.id = len(DAILY_TRANSACTION.instances)
+        self.date = membership.start
+        self.librarian_id = librarian.id
+        self.membership_id = membership.id
+        self.library_id = library.id
+
+        DAILY_TRANSACTION.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO DAILY_TRANSACTION VALUES({self.id}, PARSEDATETIME('{self.date}', 'yyyy-mm-dd'), {self.librarian_id}, {self.membership_id}, {self.library_id});"
 
 def escape(string):
     return string.replace("'", "''")
