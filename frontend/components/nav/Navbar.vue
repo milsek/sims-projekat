@@ -36,7 +36,17 @@
           <span class="sr-only">View notifications</span>
           <BellIcon class="h-6 w-6" aria-hidden="true" />
         </button> -->
-       
+      
+
+      <div v-if="$store.state.session.role == '1'" class="hidden col-start-5 col-span-2 justify-end items-center sm:flex">
+        <nuxt-link to="/admin">
+          <div class="text-gray-400 hover:text-red-700 rounded-md align-middle px-6 lg:px-8 py-2
+            text-xs lg:text-sm font-medium tracking-wider font-sans focus:outline-none cursor-pointer">
+          Admin panel
+          </div>
+        </nuxt-link>
+      </div>
+
       <div v-if="sessionActive()" class="flex justify-center items-center col-start-7 mr-4 md:mr-0">
         <div x-data="{ profileOpen: false }" class="flex justify-center items-center">
             <div class="relative border-b-4 border-transparent py-2" :class="{'border-indigo-300 transform transition duration-300 ': profileOpen}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
@@ -85,6 +95,11 @@
           <span :class="[item.route === $route.path ? 'bg-white text-indigo-400' : 'bg-white text-gray-900 bg-opacity-75', 
           'block mx-3 pl-1 py-3 font-medium transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-300']"
           :aria-current="item.current ? 'page' : undefined">{{ item.name }}</span>
+        </nuxt-link>
+        <nuxt-link v-if="$store.state.session.role == '1'" class="block sm:hidden" to="/admin">
+          <span class="bg-white text-red-700 bg-opacity-75 block mx-3 pl-1 py-3 font-medium transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-300">
+            Admin panel
+          </span>
         </nuxt-link>
       </div>
     </div>
