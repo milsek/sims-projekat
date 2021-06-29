@@ -7,6 +7,9 @@ import com.example.library.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class AccountService {
 
@@ -22,5 +25,11 @@ public class AccountService {
             return null;
         }
         return userRepository.findByAccount_Id(account.getId());
+    }
+
+    public Set<User> getAll() {
+        Set<User> set = new HashSet<>();
+        userRepository.findAll().addAll(set);
+        return set;
     }
 }
