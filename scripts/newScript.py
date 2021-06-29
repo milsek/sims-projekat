@@ -84,6 +84,21 @@ for i in range(30):
         tables.USER(choosen_name, choosen_surname, '1970-01-01', library,
             tables.ACCOUNT(email_address, library)))
 
+for i in range(3):
+    choosen_name = random.choice(names)
+    choosen_surname = random.choice(surnames)
+    choosen_number = str(random.randint(0, 999))[:random.choice([0,0,0,0,0,0,0,1,1,2,2,3,3])]
+    
+    email_address = f"{choosen_name}{choosen_surname}{choosen_number}@gmail.com"
+    email_address = email_address.lower()
+    for c in 'žščć':
+        email_address = email_address.replace(c, 'zscc'['žščć'.find(c)])
+    email_address = email_address.replace('đ', 'dj')
+
+    tables.LIBRARIAN(
+        tables.USER(choosen_name, choosen_surname, '1970-01-01', library,
+            tables.ACCOUNT(email_address, library)))
+
 
 for edition in tables.EDITION.instances:
     for i in range(edition.available_copies):
@@ -98,24 +113,31 @@ for reservation in tables.RESERVATION.instances[:-3]:
 for reservation in tables.RESERVATION.instances[-3:]:
     tables.PICTURE_BOOK_RESRVATION(reservation)
 
-tables.CATEGORY_RULES('', 1, 1) # TODO: Realni podaci imaš ih
+tables.PRICE('2021-06-01', '2022-09-01', 200, tables.CATEGORY_RULES(1, 3, 15)) # child
+tables.PRICE('2021-06-01', '2022-09-01', 300, tables.CATEGORY_RULES(2, 3, 15)) # student
+tables.PRICE('2021-06-01', '2022-09-01', 500, tables.CATEGORY_RULES(3, 5, 15)) # employee
+tables.PRICE('2021-06-01', '2022-09-01', 200, tables.CATEGORY_RULES(4, 3, 21)) # senior
+tables.PRICE('2021-06-01', '2022-09-01', 500, tables.CATEGORY_RULES(5, 10, 30)) #honorary
 
-for category in tables.CATEGORY_RULES.instances:
-    tables.PRICE('2021-01-01', '2022-01-01', 500, category) # smisli za svaku kategoriju, ni ne mora for loop
-
-
-
+for member in tables.MEMBER.instances:
+    
+    tables.DAILY_TRANSACTION(
+        tables.MEMBERSHIP('2021-06-15', '2021-08-15', random.choice(tables.PRICE.instances), member),
+        random.choice(tables.LIBRARIAN.instances),
+        library
+    )
 
 file = open('data.sql', 'w')
 
 file.write(library.toSql() + '\n')
-
 for account in tables.ACCOUNT.instances:
     file.write(account.toSql() + '\n')
 for user in tables.USER.instances:
     file.write(user.toSql() + '\n')
 for member in tables.MEMBER.instances:
     file.write(member.toSql() + '\n')
+for librarian in tables.LIBRARIAN.instances:
+    file.write(librarian.toSql() + '\n')
 
 for place in tables.PLACE.instances:
     file.write(place.toSql() + '\n')
@@ -149,5 +171,15 @@ for book_reservation in tables.BOOK_RESERVATION.instances:
     file.write(book_reservation.toSql() + '\n')
 for picture_book_reservation in tables.PICTURE_BOOK_RESRVATION.instances:
     file.write(picture_book_reservation.toSql() + '\n')
+
+for category in tables.CATEGORY_RULES.instances:
+    file.write(category.toSql() + '\n')
+for price in tables.PRICE.instances:
+    file.write(price.toSql() + '\n')
+for membership in tables.MEMBERSHIP.instances:
+    file.write(membership.toSql() + '\n')
+for transaction in tables.DAILY_TRANSACTION.instances:
+    file.write(transaction.toSql() + '\n')
+
 
 file.close()
