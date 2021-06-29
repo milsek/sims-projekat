@@ -76,9 +76,6 @@ class EDITION:
             tag = TAG.with_name(name)
             sql.append(f"INSERT INTO EDITION_TAGS VALUES({self.id}, {tag.id});")
 
-        for i in range(self.available_copies):
-            BOOK(self)
-
         return sql
 
 
@@ -201,17 +198,17 @@ class BOOK_RESERVATION:
         BOOK_RESERVATION.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO BOOK_RESERVATION VALUES(PARSEDATETIME('{self.date}', 'yyyy-mm-dd', {self.id}, {self.book_id});"
+        return f"INSERT INTO BOOK_RESERVATION VALUES(PARSEDATETIME('{self.date}', 'yyyy-mm-dd'), {self.id}, {self.book_id});"
 
 
-class PICTURE_BOOK_RSERVATION:
+class PICTURE_BOOK_RESRVATION:
     instances = []
 
     def __init__(self, reservation):
         self.id = reservation.id
         self.amount = random.randint(1,4)
 
-        PICTURE_BOOK_RSERVATION.instances.append(self)
+        PICTURE_BOOK_RESRVATION.instances.append(self)
 
     def toSql(self):
         return f"INSERT INTO PICTURE_BOOK_RESERVATION VALUES({self.amount}, {self.id});"
@@ -222,14 +219,15 @@ class RESERVATION:
 
     def __init__(self, member):
         self.id = len(RESERVATION.instances)
-        self.date_returned = ''     # TODO: Think of random generation mechanism
-        self.date_taken = ''        # TODO: Do the same
+        self.date_returned = '2021-01-01'               # TODO: Think of random generation mechanism
+        self.date_taken = '2021-01-02'        # TODO: Do the same
         self.member_id = member.id
+        self.state_name = 'new'               # TODO: Make something up
 
         RESERVATION.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO RESERVATION VALUES({self.id}, PARSEDATETIME('{self.date_returned}', 'yyyy-mm-dd'), PARSEDATETIME('{self.date_taken}', 'yyyy-mm-dd'), '{self.state_name}');"
+        return f"INSERT INTO RESERVATION VALUES({self.id}, PARSEDATETIME('{self.date_returned}', 'yyyy-mm-dd'), PARSEDATETIME('{self.date_taken}', 'yyyy-mm-dd'), '{self.state_name}', {self.member_id});"
 
 
 class MEMBER:
