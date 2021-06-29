@@ -84,9 +84,27 @@ for i in range(30):
         tables.USER(choosen_name, choosen_surname, '1970-01-01', library,
             tables.ACCOUNT(email_address, library)))
 
-for i in range(30):
-    # TODO: Napravi membera
+
+for edition in tables.EDITION.instances:
+    for i in range(edition.available_copies):
+        tables.BOOK(edition)
+
+for i in range(150):
     tables.RESERVATION(random.choice(tables.MEMBER.instances))
+
+for reservation in tables.RESERVATION.instances[:-3]:
+    tables.BOOK_RESERVATION(random.choice(tables.BOOK.instances), '2021-01-01', reservation)
+
+for reservation in tables.RESERVATION.instances[-3:]:
+    tables.PICTURE_BOOK_RESRVATION(reservation)
+
+tables.CATEGORY_RULES('', 1, 1) # TODO: Realni podaci imaš ih
+
+for category in tables.CATEGORY_RULES.instances:
+    tables.PRICE('2021-01-01', '2022-01-01', 500, category) # smisli za svaku kategoriju, ni ne mora for loop
+
+
+
 
 file = open('data.sql', 'w')
 
@@ -124,5 +142,12 @@ for edition in tables.EDITION.instances:
     file.write('\n'.join(edition.toSql()) + '\n')
 for book in tables.BOOK.instances:
     file.write(book.toSql() + '\n')
+
+for reservation in tables.RESERVATION.instances:
+    file.write(reservation.toSql() + '\n')
+for book_reservation in tables.BOOK_RESERVATION.instances:
+    file.write(book_reservation.toSql() + '\n')
+for picture_book_reservation in tables.PICTURE_BOOK_RESRVATION.instances:
+    file.write(picture_book_reservation.toSql() + '\n')
 
 file.close()

@@ -16,4 +16,28 @@ public class Contribution {
 
     @Column
     private String contributorType;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Contributor getContributor() {
+        return contributor;
+    }
+
+    public void setContributor(Contributor contributor) {
+        this.contributor = contributor;
+    }
+
+    public String getContributorType() {
+        return contributorType;
+    }
+
+    public void setContributorType(String contributorType) {
+        this.contributorType = contributorType;
+    }
 }
