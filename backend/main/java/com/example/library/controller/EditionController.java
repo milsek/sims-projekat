@@ -1,5 +1,6 @@
 package com.example.library.controller;
 
+import com.example.library.model.Contribution;
 import com.example.library.model.Edition;
 import com.example.library.service.EditionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,13 @@ public class EditionController {
     @GetMapping(path = "/topten")
     @ResponseBody
     public List<Edition> getTopTen() {
+//        List<Edition> lista = editionService.getTopTen();
+//        for (Edition ed: lista) {
+//            Set<Contribution> contributions = ed.getContributions();
+//            for (Contribution con: contributions) {
+//                System.out.println(con.g);
+//            }
+//        }
         return editionService.getTopTen();
     }
 
