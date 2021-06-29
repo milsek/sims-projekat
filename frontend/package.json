@@ -18,6 +18,9 @@
     "vue-slick-carousel": "^1.0.6"
   },
   "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/router": "^1.6.1",
     "@nuxtjs/tailwindcss": "^4.0.1",
     "nuxt-purgecss": "^1.0.0",
