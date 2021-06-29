@@ -9,7 +9,10 @@
 import Navbar from '../components/Navbar'
 
 export default {
-  components: { Navbar }
+  components: { Navbar },
+  beforeCreate () {
+    this.$store.commit('session/update')
+  }
 };
 </script>
 
