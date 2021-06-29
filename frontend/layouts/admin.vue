@@ -5,9 +5,7 @@
 </template>
 
 <script>
-
 export default {
-  components: {  },
   beforeCreate () {
     this.$store.commit('session/update')
   }
