@@ -20,8 +20,19 @@ export default {
 };
 // console.log("Fetching");
 // import axios from 'axios';
-// axios.get("/api/hello")
-//   .then(response => console.log(response.data))
+// axios.get("/api/login/?mail=pavleg.20&password=pavle", {
+//   withCredentials: true,
+//   credentials: "include",
+//   headers: {
+//     'Content-Type': 'application/json',
+//     'API-Key': 'secret'
+//   }
+// })
+//  .then(response => {
+//    console.log(response);
+//    console.log(response.headers['set-cookie']);
+//    console.log(document.cookie);
+//  });
 
 </script>
 

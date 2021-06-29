@@ -7,7 +7,7 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("1")
+@DiscriminatorValue("0")
 public class Member extends User {
 
     @OneToMany

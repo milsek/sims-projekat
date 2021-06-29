@@ -13,7 +13,7 @@
       </div>
     </transition-group>
 
-    <div class="text-center mx-auto -mt-1">
+    <div v-if="suggested.length" class="text-center mx-auto -mt-1">
       <button @click="showMore = !showMore" class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 text-gray-400
       text-center text-lg md:text-base lg:text-lg focus:outline-none rounded-lg
       hover:transition duration-300 ease-in-out transform hover:-translate-y-1" v-text="showMore ? 'Show less' : 'Show more'"></button>
