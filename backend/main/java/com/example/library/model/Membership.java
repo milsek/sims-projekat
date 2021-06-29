@@ -17,7 +17,7 @@ public class Membership {
     private LocalDate endDate;
 
     @ManyToOne
-    @JoinColumn(name = "price")
+    @JoinColumn(name = "price_id")
     private Price price;
 
     public long getId() {

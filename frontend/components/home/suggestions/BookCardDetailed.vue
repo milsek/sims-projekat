@@ -11,9 +11,9 @@
         <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}"
         class="hover:text-blue-800 w-auto font-sans font-medium text-blue-900 opacity-75 hover:opacity-90
          text-base md:text-sm lg:text-base tracking-wide line-clamp-2">
-          {{ data.title }}
+          {{ data.title.title }}
         </NuxtLink>
-        <div class="mb-2 font-sans text-sm font-thin text-gray-400 tracking-wider line-clamp-2">by {{data.author.name}}</div>
+        <div class="mb-2 font-sans text-sm font-thin text-gray-400 tracking-wider line-clamp-2">by {{data.title.contributions[0].contributor.name}}</div>
         <div class="pb-0 inline-block font-thin align-middle text-sm text-gray-400">Reads: {{readsInThousands}}</div>
         <div class="flow">
           <img :src="require(`@/assets/icons/star.svg`)" alt="" class="inline-block align-middle w-3 h-3 my-0" draggable="false">
@@ -37,8 +37,11 @@ export default {
         return Math.round(this.data.reads/1000) + "k"
       } else return this.data.reads
     }
+  },
+  mounted() {
   }
 };
+
 </script>
 
 <style>

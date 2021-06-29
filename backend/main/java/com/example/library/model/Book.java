@@ -1,8 +1,5 @@
 package com.example.library.model;
 
-import com.example.library.model.book_states.InStock;
-import com.example.library.model.book_states.Missing;
-import com.example.library.model.reservation_states.New;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,7 +16,7 @@ public class Book {
     @Column(name = "BOOK_ID")
     private long id;
 
-    @Column
+    @Column(name = "state")
     private String stateName;
 
     @Column
@@ -36,20 +33,13 @@ public class Book {
     private transient BookState bookState;
 
     public Book() {
-        bookState = InStock.getInstance();
-        bookState.setContext(this);
+        bookState = BookState.IN_STOCK;
+        stateName = bookState.name();
     }
 
     public void setStateName(String stateName) {
         this.stateName = stateName;
-        try {
-            Class<?> st = Class.forName(stateName);
-            Method ins = st.getMethod("getInstance");
-            bookState = (BookState) ins.invoke(ins);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        this.bookState = BookState.valueOf(stateName);
     }
 
     public long getId() {
@@ -61,6 +51,7 @@ public class Book {
     }
 
     public String getStateName() {
+        stateName = bookState.name();
         return stateName;
     }
 

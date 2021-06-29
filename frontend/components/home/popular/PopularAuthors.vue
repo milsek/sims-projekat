@@ -12,18 +12,36 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   // getPopularAuthors
   data () {
+
     return {
-      popularAuthors: [
-        {name: 'Friedrich Nietzsche', id: 1},
-        {name: 'C.G. Jung', id: 2},
-        {name: 'Sigmund Freud', id: 3},
-        {name: 'Firstname Lastname', id: 4},
-        {name: 'Firstname Lastname', id: 5},
-        ]
+      popularAuthors: []
     }
+  },
+  mounted() {
+    this.getAuthors();
+  },
+  methods: {
+    getAuthors() {
+      axios.get("/api/topreads")
+        .then(response => {
+          response.data.forEach((x) =>
+          {
+            this.popularAuthors.push
+            (
+              {
+                name: x.title.contributions[0].contributor.name,
+                id: x.title.contributions[0].contributor.id
+              }
+            );
+          }
+          );
+        });
+      }
   }
 }
 </script>

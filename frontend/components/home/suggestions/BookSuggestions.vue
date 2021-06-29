@@ -64,7 +64,7 @@
     </div>
 
   </div>
-  
+
 </template>
 
 <script>
@@ -88,6 +88,8 @@ export default {
       axios.get("/api/topten")
     .then(response => {
       this.suggested = response.data;
+      this.suggested.forEach((x) => { console.log("HELLO"); console.log(); });
+      console.log(this.suggested);
     });
     }
   },

@@ -1,15 +1,12 @@
 package com.example.library.controller;
 
 import com.example.library.model.Book;
-import com.example.library.model.BookReservation;
 import com.example.library.model.Library;
-import com.example.library.model.Reservation;
 import com.example.library.repository.BookRepository;
-import com.example.library.repository.BookReservationRepo;
+import com.example.library.repository.BookReservationRepository;
 import com.example.library.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 
 @RestController
 @RequestMapping("/api")
@@ -20,7 +17,7 @@ public class TestController {
     private LibraryService libraryService;
 
     @Autowired
-    private BookReservationRepo reservationRepo;
+    private BookReservationRepository reservationRepo;
 
     @Autowired
     private BookRepository bookRepository;

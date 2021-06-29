@@ -1,9 +1,13 @@
 package com.example.library.model;
 
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Indexed
 public class BookReservation extends Reservation {
 
     @Column
@@ -11,6 +15,7 @@ public class BookReservation extends Reservation {
 
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = Book.class)
     @JoinColumn(name = "BOOK_ID")
+    @IndexedEmbedded(depth = 1)
     private Book book;
 
     public LocalDate getReservationDate() {
