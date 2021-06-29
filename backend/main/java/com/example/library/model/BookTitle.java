@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class BookTitle {
+public class BookTitle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
