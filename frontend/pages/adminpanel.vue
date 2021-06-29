@@ -20,6 +20,11 @@ export default {
       currentComponent: 'exchange'
     }
   },
+  beforeCreate () {
+    if (this.$store.state.session.role != '1') {
+      this.$router.push('/404')
+    }
+  },
   methods: {
     updateComponent (componentName) {
       this.currentComponent = componentName
