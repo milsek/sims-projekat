@@ -390,6 +390,37 @@ class PLACE:
         return f"INSERT INTO PLACE VALUES({self.id}, '{self.name}', {self.postal});"
 
 
+class CATEGORY_RULES:
+    instances = []
+
+    def __init__(self, name, num_books, num_days):
+        self.id = len(CATEGORY_RULES.instances)
+        self.name = name
+        self.num_books = num_books
+        self.num_days = num_days
+
+        CATEGORY_RULES.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO CATEGORY_RULES VALUES({self.id}, '{self.name}', {self.num_books}, {self.num_days});"
+
+
+class PRICE:
+    instances = []
+
+    def __init__(self, start_date, end_date, price, category):
+        self.id = len(PRICE.instances)
+        self.start = start_date
+        self.end = end_date
+        self.price = price
+        self.category_id = category.id
+
+        PRICE.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO PRICES VALUES({self.id}, PARSEDATETIME('{self.end}', 'yyyy-mm-dd'), {self.price}, PARSEDATETIME('{self.start}', 'yyyy-mm-dd'), {self.category_id})"
+
+
 def escape(string):
     return string.replace("'", "''")
 

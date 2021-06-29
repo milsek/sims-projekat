@@ -98,6 +98,13 @@ for reservation in tables.RESERVATION.instances[:-3]:
 for reservation in tables.RESERVATION.instances[-3:]:
     tables.PICTURE_BOOK_RESRVATION(reservation)
 
+tables.CATEGORY_RULES('', 1, 1) # TODO: Realni podaci imaš ih
+
+for category in tables.CATEGORY_RULES.instances:
+    tables.PRICE('2021-01-01', '2022-01-01', 500, category) # smisli za svaku kategoriju, ni ne mora for loop
+
+
+
 
 file = open('data.sql', 'w')
 
