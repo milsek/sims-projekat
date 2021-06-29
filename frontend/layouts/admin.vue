@@ -1,15 +1,13 @@
 <template>
   <div class="h-screen flex flex-col">
-    <Navbar class="shadow-md z-50"/>
-    <Nuxt class=""/>
+    <Nuxt/>
   </div>
 </template>
 
 <script>
-import Navbar from '../components/nav/Navbar'
 
 export default {
-  components: { Navbar },
+  components: {  },
   beforeCreate () {
     this.$store.commit('session/update')
   }

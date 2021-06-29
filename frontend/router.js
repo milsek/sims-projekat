@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import index from '~/pages/index'
 import search from '~/pages/search'
 import bookinstance from '~/pages/bookinstance'
+import adminpanel from '~/pages/adminpanel'
 import notfound from '~/pages/notfound'
 
 Vue.use(Router)
@@ -27,7 +28,11 @@ export function createRouter() {
         component: bookinstance,
         name: 'bookinstance',
       },
-
+      {
+        path: '/admin',
+        component: adminpanel,
+        name: 'adminpanel'
+      },
 
 
       // catchall 404
