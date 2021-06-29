@@ -59,7 +59,7 @@
                   </li>
                   <hr class="dark:border-gray-700">
                   <li class="font-medium">
-                    <a @click="signOut" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600">
+                    <a @click="signOut" class="flex cursor-pointer items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600">
                       Sign Out
                     </a>
                   </li>
@@ -130,7 +130,7 @@ export default {
       this.navbarOpen = false
     },
     sessionActive() {
-      if (this.$store.state.session.username) {
+      if (this.$store.state.session.role != '') {
         return true
       }
       return false
@@ -139,9 +139,17 @@ export default {
       this.showLoginModal = false
     },
     signOut () {
-      
-      // simulates logout
-      this.$store.commit('session/update', '');
+      // clears cookies
+      document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+      this.$store.commit('session/update')
+
+      let that = this
+      setTimeout(function(){
+        if (that.$route.path != '/')
+          that.$router.push({name:'index'})
+        else
+          that.$forceUpdate()
+      }, 1000)
     }
   }
 };

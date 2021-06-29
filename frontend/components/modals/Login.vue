@@ -32,13 +32,16 @@
         <div class="block px-6 sm:px-12 sm:p-6">
           <div class="block">
             <div class="text-sm text-gray-600 font-bold">Email Address: </div>
-            <input @keydown.enter="tryLogin" type="email" required v-model="email" placeholder="Email Address"
+            <input @keydown.enter="tryLogin" type="email" v-model="email" placeholder="Email Address"
             class="block border-b text-gray-700 border-solid border-gray-300 text-xl py-1 focus:outline-none w-full"/>
           </div>
           <div class="mt-6">
             <div class="text-sm text-gray-600 font-bold">Password: </div>
-            <input @keydown.enter="tryLogin" type="password" required v-model="password" placeholder="Password"
+            <input @keydown.enter="tryLogin" type="password" v-model="password" placeholder="Password"
             class="block border-b text-gray-700 border-solid border-gray-300 text-xl py-1 focus:outline-none w-full"/>
+          </div>
+          <div class="mt-6">
+            <div class="text-sm text-red-500 tracking-wide">{{ error }}</div>
           </div>
         </div>
 
@@ -57,23 +60,50 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   },
   methods: {
     closeModal () {
+      this.error = ''
       this.$emit('close-modal')
     },
     tryLogin () {
       // simulates login
-      this.$store.commit('session/update', this.email);
+      let userdata = {}
+      axios.get("/api/login/?mail=" + this.email + '&password=' + this.password)
+      .then(response => {
+        console.log(document.cookie)
+        if (document.cookie)
+        {
+          this.$store.commit('session/update')
+          this.$emit('close-modal')
+        }
+        else {
+          console.log('Wrong credentials')
+          this.error = 'Wrong credentials!'
+        }
+      })
+      .catch(error => {
+        console.log(error);
+          console.log('Wrong credentials w/error')
+          this.error = 'Wrong credentials w/error!'
+      });
 
-      //success?
-      this.$emit('close-modal')
+
+      var that = this
+      setTimeout(function(){
+        if (that.$route.path != '/')
+          that.$router.push({name:'index'})
+        else
+          that.$forceUpdate()
+      }, 1000)
     }
   }
 }
