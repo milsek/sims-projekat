@@ -30,8 +30,8 @@
         <div class="text-sm font-light pb-2 text-gray-500">
           {{ data.title.contributions[0].contributor.name }}
         </div>
-        <div class="text-sm text-justify font-light md:tracking-wide mb-4 line-clamp-4 md:line-clamp-2 xl:line-clamp-3 text-gray-400">
-          {{ data.description }}
+        <div class="text-sm text-justify font-light md:tracking-wide mb-4 
+        line-clamp-4 md:line-clamp-2 xl:line-clamp-3 text-gray-400" v-html="data.description">
         </div>
         <div class="pb-0 inline-block font-thin align-middle text-sm text-gray-400">Reads: {{readsInThousands}}k</div>
         <div class="flow">
