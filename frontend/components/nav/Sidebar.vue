@@ -8,7 +8,7 @@
         </div>
         <!-- -------------------------------------------------------------------------------- -->
         <div class="mt-6 space-y-1">
-          <div v-for="option in menuOptions" :key="option.text" @click="handleChoice(option.name)" 
+          <div v-for="option in menuOptions" :key="option.text" @click="handleChoice(option.name)"
           :class="[currentActive == option.name ? 'bg-gray-200 text-gray-800' : 'text-gray-500',
           'flex text-lg px-4 py-2 tracking-wide rounded-lg cursor-pointer hover:bg-gray-300 hover:text-gray-800']">
             <span class='icon is-left w-8'>
@@ -27,7 +27,7 @@
             </span>
             <div>Account Settings</div>
           </div>
-          
+
           <div @click="$router.push('/') " class="flex text-gray-500 text-lg px-4 py-2
           tracking-wide rounded-lg cursor-pointer hover:bg-gray-300 hover:text-gray-800">
             <span class='icon is-left w-8'>
@@ -36,7 +36,7 @@
             <div>Main Website</div>
           </div>
 
-          <div @click="handleLogout()" class="flex text-gray-500 text-lg px-4 py-2 tracking-wide 
+          <div @click="handleLogout()" class="flex text-gray-500 text-lg px-4 py-2 tracking-wide
           rounded-lg cursor-pointer hover:bg-gray-300 hover:text-gray-800 w-full">
             <span class='icon is-left w-8'>
               <font-awesome-icon :icon="['fas', 'sign-out-alt']"/>
@@ -53,10 +53,10 @@
     <!-- MOBILE NAVBAR -->
     <div class="z-40 h-screen absolute bg-gray-100 shadow md:h-full flex-col
      justify-between md:hidden transition duration-150 ease-in-out" id="mobile-nav">
-        <div v-if="!sidebarOpen" class="h-10 w-10 bg-gray-800 absolute 
-        right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br 
+        <div v-if="!sidebarOpen" class="h-10 w-10 bg-gray-800 absolute
+        right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br
         justify-center cursor-pointer" @click="handleSidebar(true)">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler 
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler
             icon-tabler-adjustments" width="20" height="20" viewBox="0 0 24 24"
             stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" />
@@ -72,7 +72,7 @@
             </svg>
         </div>
         <div v-if="sidebarOpen" id="closeSideBar" class="md:hidden h-10 w-10 bg-gray-800 absolute
-         right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br 
+         right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br
          justify-center cursor-pointer text-white" @click="handleSidebar(false)">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x"
             width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -90,7 +90,7 @@
           </div>
         <!-- -------------------------------------------------------------------------------- -->
           <div class="mt-6 space-y-1">
-            <div v-for="option in menuOptions" :key="option.text" @click="handleChoice(option.name)" 
+            <div v-for="option in menuOptions" :key="option.text" @click="handleChoice(option.name)"
             :class="[currentActive == option.name ? 'bg-gray-200 text-gray-800' : 'text-gray-500',
             'flex text-lg px-4 py-2 tracking-wide rounded-lg cursor-pointer hover:bg-gray-300 hover:text-gray-800']">
               <span class='icon is-left w-8'>
@@ -109,7 +109,7 @@
               </span>
               <div>Account Settings</div>
             </div>
-            
+
             <div @click="$router.push('/') " class="flex text-gray-500 text-lg px-4 py-2
             tracking-wide rounded-lg cursor-pointer hover:bg-gray-300 hover:text-gray-800">
               <span class='icon is-left w-8'>
@@ -118,7 +118,7 @@
               <div>Main Website</div>
             </div>
 
-            <div @click="handleLogout()" class="flex text-gray-500 text-lg px-4 py-2 tracking-wide 
+            <div @click="handleLogout()" class="flex text-gray-500 text-lg px-4 py-2 tracking-wide
             rounded-lg cursor-pointer hover:bg-gray-300 hover:text-gray-800 w-full">
               <span class='icon is-left w-8'>
                 <font-awesome-icon :icon="['fas', 'sign-out-alt']"/>
@@ -138,6 +138,7 @@ export default {
     return {
       menuOptions: [
         {text: 'Book Exchange', icon: 'quran', name: 'exchange'},
+        {text: 'Reservations', icon: 'atlas', name: 'reservations'},
         {text: 'Register New Members', icon: 'user-plus', name: 'register'},
         {text: 'Search Books N Stuff', icon: 'search',  name: 'search'},
       ],

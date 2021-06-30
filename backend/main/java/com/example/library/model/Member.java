@@ -1,5 +1,8 @@
 package com.example.library.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.search.annotations.Indexed;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -8,6 +11,7 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("0")
+@Indexed
 public class Member extends User {
 
     @OneToMany
@@ -16,6 +20,7 @@ public class Member extends User {
 
     @OneToMany
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private List<Membership> memberships;
 
     public List<Reservation> getReservations() {

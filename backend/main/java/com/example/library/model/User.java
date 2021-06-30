@@ -1,5 +1,10 @@
 package com.example.library.model;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.FieldBridge;
+import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.bridge.builtin.LongBridge;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -10,12 +15,16 @@ public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Field(name = "member_id")
+    @FieldBridge(impl = LongBridge.class)
     protected long id;
 
     @Column
+    @Field(name = "member_name")
     protected String name;
 
     @Column
+    @Field(name = "member_surname")
     protected String surname;
 
     @Column

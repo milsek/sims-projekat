@@ -2,6 +2,7 @@
   <div class="flex">
     <Sidebar v-on:component-change="updateComponent" />
     <BookExchange v-if="currentComponent=='exchange'"/>
+    <BookReservations v-if="currentComponent=='reservations'" />
     <RegisterNew v-if="currentComponent=='register'"/>
     <AccountSettings v-if="currentComponent=='settings'"/>
   </div>
@@ -12,9 +13,10 @@ import Sidebar from '~/components/nav/Sidebar'
 import BookExchange from '~/components/admin/BookExchange'
 import RegisterNew from '~/components/admin/RegisterNew'
 import AccountSettings from '~/components/admin/AccountSettings'
+import BookReservations from "~/components/admin/BookReservations";
 export default {
   layout: "admin",
-  components: { Sidebar, BookExchange, RegisterNew, AccountSettings },
+  components: { Sidebar, BookExchange, BookReservations, RegisterNew, AccountSettings },
   data () {
     return {
       currentComponent: 'exchange'
