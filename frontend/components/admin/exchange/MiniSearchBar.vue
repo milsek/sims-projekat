@@ -13,7 +13,7 @@
           <li v-show="how == 'search_book'" v-for="item in suggestions" :key="'a' + item.id">
             <BookSuggestion @book-is-selected="selected($event)" v-bind:title="item.title" v-bind:id="item.id" />
           </li>
-          <li v-if="suggestions.length===0 && query.length != 0">Item not found</li>
+          <li v-if="suggestions.length===0 && query.length != 0 && !isSelected">Item not found</li>
         </ul>
       </div>
     </div>
@@ -32,7 +32,8 @@ export default {
   data() {
     return {
       suggestions : [],
-      query: ""
+      query: "",
+      isSelected: false
     }
   },
   methods:{
@@ -44,20 +45,15 @@ export default {
         }
         axios.get("/api/admin/" + this.how + "/?query=" + this.query)
         .then(response => {
-          console.log("AAAAAAAAAAAAA");
-          console.log(response.data);
           this.suggestions = response.data;
-          for(let item in this.suggestions)
-            console.log(item.id);
         });
     },
     selected(data) {
             console.log("MSB");
             console.log(data);
             this.suggestions = [];
-            console.log(this.how);
+            this.isSelected = true;
             if(this.how == "search_book") {
-              console.log("Hello");
               this.$emit('book-is-selected', data);
             } else {
               this.$emit('userIsSelected', data);
