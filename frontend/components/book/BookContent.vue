@@ -2,7 +2,7 @@
   <div>
     <div class="flex w-11/12 mx-auto">
       <div class="block bg-white shadow-lg w-full">
-        <div class="block md:flex p-8 pt-12 md:pt-8 border-b border-solid border-gray-200">
+        <div class="inline-block md:flex p-8 pt-12 md:pt-8 border-b border-solid border-gray-200">
           <div class="min-w-64 w-64 object-cover text-center md:text-left m-auto md:m-0">
             <img :src="data.imageLarge" alt="" class="w-full">
           </div>
@@ -20,6 +20,15 @@
             <div>
               <div class="block lg:hidden mt-12 md:mt-0 pt-2 border-t border-solid border-gray-200 md:border-none">
                 <div class="text-lg text-gray-700 font-medium tracking-wide font-base">Availability</div>
+                <div :class="[booksAvailable > 0 ? 'text-green-700' : 'text-red-600', 'mt-1']">
+                  Books available: {{booksAvailable}}
+                </div>
+                <div class="pt-2">
+                  <button class="h-8 mt-4 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-indigo-800 hover:bg-indigo-900 text-white text-center text-lg md:text-base
+                  lg:text-lg shadow-md focus:outline-none rounded-lg">
+                    reservation
+                  </button>
+                </div>
               </div>
               <div class="hidden xl:block mt-4">
                 <div class="text-justify font-light md:tracking-wide mb-4 text-gray-500" :class="[showMore ? '' : 'line-clamp-3 xl:line-clamp-5']">{{ data.description }}</div>
@@ -36,9 +45,18 @@
         </div>
       </div>
 
-      <div class="hidden lg:block flex-shrink-0 lg:w-64 xl:w-72 bg-white shadow-lg ml-6">
+      <div class="hidden lg:inline-block flex-shrink-0 lg:w-64 xl:w-72 bg-white shadow-lg ml-6 h-full align-bottom">
         <div class="block p-8">
           <div class="text-xl text-gray-700 tracking-wide font-medium">Availability</div>
+          <div :class="[booksAvailable > 0 ? 'text-green-700' : 'text-red-600', 'mt-1']">
+            Books available: {{booksAvailable}}
+          </div>
+          <div class="pt-2">
+            <button class="h-8 mt-4 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-indigo-800 text-white text-center text-lg md:text-base
+            lg:text-lg shadow-md focus:outline-none hover:text-gray-900 rounded-lg">
+              reservation
+            </button>
+        </div>
         </div>
       </div>
 
@@ -96,7 +114,8 @@ export default {
         { name: 'publisher', text: 'Publisher' },
         { name: 'id', text: 'MySBN' },
         { name: 'takeOut', text: 'Can be taken out' },
-      ]
+      ],
+      booksAvailable: Math.random() > 0.5 ? 169 : 0
     }
   },
   computed: {
