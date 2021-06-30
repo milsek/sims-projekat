@@ -1,6 +1,7 @@
 package com.example.library.model;
 
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 
 import javax.persistence.*;
 
@@ -12,6 +13,7 @@ public class Contribution {
     protected long id;
 
     @ManyToOne
+    @IndexedEmbedded(depth = 2)
     private Contributor contributor;
 
     @Column

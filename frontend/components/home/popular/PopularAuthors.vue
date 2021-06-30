@@ -5,7 +5,7 @@
     </div>
     <div class="pt-6 md:pt-8">
       <div v-for="author in popularAuthors" :key="author.id">
-        <div class="text-lg md:text-sm lg:text-base xl:text-lg font-light md:font-normal lg:font-light tracking-wide pb-1 text-blue-800 opacity-70 truncate">{{author.name}}</div>
+        <div @click="searchAuthor(author.name)" class="text-lg md:text-sm lg:text-base xl:text-lg font-light md:font-normal lg:font-light tracking-wide pb-1 text-blue-800 opacity-70 truncate">{{author.name}}</div>
       </div>
     </div>
   </div>
@@ -41,7 +41,12 @@ export default {
           }
           );
         });
-      }
+      },
+    searchAuthor(name) {
+      this.$store.commit('search/update', name);
+      this.$router.push('/search');
+      this.$emit('refreshSearch');
+    }
   }
 }
 </script>

@@ -4,6 +4,7 @@ package com.example.library.model;
 
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -27,6 +28,7 @@ public class BookTitle {
     private Set<Genre> genres;
 
     @ManyToMany
+    @IndexedEmbedded(depth = 3)
     private Set<Contribution> contributions;
 
     public Set<Edition> getEditions() {

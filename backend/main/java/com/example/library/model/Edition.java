@@ -53,6 +53,7 @@ public class Edition {
     private String imageLarge;
 
     @ManyToOne
+    @IndexedEmbedded(depth = 4)
     private BookTitle title;
 
     @Column
@@ -88,7 +89,7 @@ public class Edition {
             joinColumns = @JoinColumn(name = "edition_id"),
             inverseJoinColumns = @JoinColumn(name = "contribution_id")
     )
-    @IndexedEmbedded(depth = 1)
+    @IndexedEmbedded(depth = 3)
     private Set<Contribution> contributions;
 
     @OneToMany(mappedBy = "edition")

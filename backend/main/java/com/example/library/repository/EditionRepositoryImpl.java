@@ -38,8 +38,8 @@ public class EditionRepositoryImpl {
             luceneQuery = queryBuilder
                     .keyword()
                     .fuzzy()
-                    .onFields("title", "description", "tags.name",
-                            "author.name", "contributors.name", "publisher.name")
+                    .onFields("title.title", "description", "tags.name", "contributions.contributor.name",
+                            "title.contributions.contributor.name", "publisher.name")
                     .boostedTo(5f)
                     .matching(text)
                     .createQuery();
