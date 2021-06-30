@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="w-full">
     <div class="mx-auto bg-white shadow px-6">
       <div class="text-lg lg:text-xl">
-        <div class="">
+        <div>
           <input @keyup="doSearch" type="text" autocomplete="off" v-model="query" :placeholder="'Search ' + what"
-                 class="inline-block mb-0 px-2 h-14 w-80 font-light focus:outline-none">
+                 class="inline-block mb-0 px-2 py-2 font-light focus:outline-none">
         </div>
-        <ul class="options">
+        <ul v-if="suggestions.length" class="options pb-2">
           <li v-show="how == 'search_user'" v-for="item in suggestions" :key="item.id">
             <UserSuggestion @userIsSelected="selected($event)" v-bind:name="item.name" v-bind:id="item.id" v-bind:surname="item.surname" />
           </li>
@@ -23,8 +23,8 @@
 
 <script>
 import axios from "axios";
-import UserSuggestion from "~/components/admin/UserSuggestion";
-import BookSuggestion from "~/components/admin/BookSuggestion";
+import UserSuggestion from "~/components/admin/exchange/UserSuggestion";
+import BookSuggestion from "~/components/admin/exchange/BookSuggestion";
 export default {
   name: "MiniSearchBar",
   components: {UserSuggestion, BookSuggestion},
@@ -53,8 +53,15 @@ export default {
     },
     selected(data) {
             console.log("MSB");
+            console.log(data);
             this.suggestions = [];
-            this.$emit('userIsSelected', data);
+            console.log(this.how);
+            if(this.how == "search_book") {
+              console.log("Hello");
+              this.$emit('book-is-selected', data);
+            } else {
+              this.$emit('userIsSelected', data);
+            }
     }
   },
   computed: {
