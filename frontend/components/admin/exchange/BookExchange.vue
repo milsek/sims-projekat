@@ -6,7 +6,7 @@
         what="by book id" how="search_book" class=""/>
     </div>
 
-    <div class="block text-center mx-auto mt-12 w-4/5 lg:w-3/5">
+    <div class="block text-center mx-auto mt-12 w-4/5 lg:w-3/5 xl:w-1/2">
       <div class=" md:flex flex-wrap">
         <SelectedUser v-show="user_selected" :id=user_id :name=user_name :surname=user_surname />
       </div>
