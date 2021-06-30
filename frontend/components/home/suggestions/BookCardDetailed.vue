@@ -3,7 +3,7 @@
     <div class="block sm:grid grid-cols-12">
       <div class="col-span-6 xl:col-span-5 p-2 md:h-full">
         <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}">
-          <img :src="data.imageSmall" alt="" class="rounded-md mx-auto shadow-md sm:w-32 xl:w-full h-64 sm:h-40 md:h-44 xl:h-48 object-fill" draggable="false">
+          <img :src="data.imageLarge" alt="" class="rounded-md mx-auto shadow-md sm:w-32 xl:w-full h-64 sm:h-40 md:h-44 xl:h-48 object-fill" draggable="false">
         </NuxtLink>
       </div>
       <div class="mt-8 md:mt-12 lg:mt-12 xl:mt-14 sm:col-start-7 xl:col-start-6 col-span-6 xl:col-span-7 w-full p-2 sm:h-40">

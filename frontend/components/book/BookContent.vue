@@ -2,7 +2,7 @@
   <div>
     <div class="flex w-11/12 mx-auto">
       <div class="block bg-white shadow-lg w-full">
-        <div class="inline-block md:flex p-8 pt-12 md:pt-8 border-b border-solid border-gray-200">
+        <div class="block md:flex p-8 pt-12 md:pt-8 border-b border-solid border-gray-200">
           <div class="min-w-64 w-64 object-cover text-center md:text-left m-auto md:m-0">
             <img :src="data.imageLarge" alt="" class="w-full">
           </div>
@@ -31,7 +31,7 @@
                 </div>
               </div>
               <div class="hidden xl:block mt-4">
-                <div class="text-justify font-light md:tracking-wide mb-4 text-gray-500" :class="[showMore ? '' : 'line-clamp-3 xl:line-clamp-5']">{{ data.description }}</div>
+                <div class="text-justify font-light md:tracking-wide mb-4 text-gray-500" :class="[showMore ? '' : 'line-clamp-3 xl:line-clamp-5']" v-html="data.description"></div>
                 <div class="text-center mx-auto -mt-1">
                   <button @click="showMore = !showMore" class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 text-gray-400
                   text-center text-lg md:text-base lg:text-lg focus:outline-none rounded-lg
@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <div class="hidden lg:inline-block flex-shrink-0 lg:w-64 xl:w-72 bg-white shadow-lg ml-6 h-full align-bottom">
+      <div class="hidden lg:block flex-shrink-0 lg:w-64 xl:w-72 bg-white shadow-lg ml-6 h-full align-bottom">
         <div class="block p-8">
           <div class="text-xl text-gray-700 tracking-wide font-medium">Availability</div>
           <div :class="[booksAvailable > 0 ? 'text-green-700' : 'text-red-600', 'mt-1']">
@@ -65,9 +65,12 @@
     <div class="block xl:hidden w-11/12 mt-6 mx-auto bg-white shadow-lg">
       <div class="block p-8 w-full">
         <div class="text-xl text-gray-700 tracking-wide font-medium">Description</div>
-        <div class="text-justify font-light md:tracking-wide mb-4 text-gray-500 pt-4" :class="[showMore ? '' : 'line-clamp-5']">
-          {{ data.description }}
+
+        <div class="text-justify font-light md:tracking-wide mb-4 text-gray-500 pt-4"
+        :class="[showMore ? '' : 'line-clamp-5']"
+        v-html="data.description">
         </div>
+
         <div class="text-center mx-auto -mt-1">
           <button @click="showMore = !showMore" class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 text-gray-400
           text-center text-lg md:text-base lg:text-lg focus:outline-none rounded-lg
