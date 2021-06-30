@@ -3,7 +3,7 @@
     <div class="flex pb-10 mx-auto">
       <div class="inline-block w-40 sm:w-36 md:w-32">
         <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}">
-          <img :src="data.imageLarge" alt="" class="rounded-lg object-cover w-full">
+          <img :src="data.imageSmall" alt="" class="rounded-lg object-cover w-full">
         </NuxtLink>
         <div class="block sm:hidden pt-2">
           <button class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-gradient-to-tr from-red-400 to-purple-400 text-white
