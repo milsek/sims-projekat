@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="w-11/12 md:w-4/5 lg:w-3/4 xl:w-1/2 mx-auto bg-white shadow px-6">
+    <div class="w-11/12 md:w-4/5 lg:w-3/4 xl:w-1/2 mx-auto bg-white shadow px-6 rounded-full">
       <div class="grid grid-cols-6 text-lg lg:text-xl">
         <div class="col-start-1 col-span-5 my-auto">
           <input @keydown.enter="doSearch" type="text" autocomplete="off" name="query" required v-model="query"

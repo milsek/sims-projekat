@@ -22,7 +22,7 @@
       </div>
       <div class="hidden sm:block p-2 mt-4 col-span-full">
         <div class="text-lg text-gray-700 tracking-wide font-medium py-2">Description</div>
-        <div class="text-sm text-justify font-light tracking-wide text-gray-400 mb-2 line-clamp-4">{{data.description}}</div>
+        <div class="text-sm text-justify font-light tracking-wide text-gray-400 mb-2 line-clamp-4" v-html="data.description"></div>
       </div>
     </div>
   </div>
