@@ -12,7 +12,7 @@
     </div>
 
     <div v-else class="block w-full">
-      <div class="w-full text-4xl font-thin text-center mx-auto">Oops. No results.</div>
+      <div class="w-full text-4xl font-thin text-center mx-auto">{{loadMessage}}</div>
     </div>
 
   </div>
@@ -33,7 +33,8 @@ export default {
       totalPages: 1,
       totalBooks: 1,
       maxVisibleButtons: 3,
-      booklist: []
+      booklist: [],
+      loadMessage: 'Loading...'
     };
   },
   mounted () {
@@ -49,7 +50,18 @@ export default {
         this.totalBooks = Object.keys(response.data)[0]
         this.totalPages = Math.ceil(this.totalBooks/this.resultsPerPage)
         this.booklist = Object.values(response.data)[0]
-      });
+        
+        let that = this
+        setTimeout(function() {
+          if (that.booklist) {
+            if (!that.booklist.length) {
+              that.loadMessage = 'No results.'
+            }
+          }
+        }, 1500)
+
+      })
+      
     }
     ,
     showMore(page) {
