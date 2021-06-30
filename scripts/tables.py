@@ -11,8 +11,8 @@ class EDITION:
         self.available_copies = random.randint(5, 60)
         self.description = info.get('description')
         self.dimensions = random.randint(18, 22)
-        self.image_large = info.get('imageLinks').get('thumbnail').replace('edge=curl&', '').replace('zoom=1&', '')
-        self.image_small = info.get('imageLinks').get('thumbnail').replace('edge=curl&', '')
+        self.image_large = f"http://covers.openlibrary.org/b/isbn/{info['industryIdentifiers'][1]['identifier']}-L.jpg"
+        self.image_small = f"http://covers.openlibrary.org/b/isbn/{info['industryIdentifiers'][1]['identifier']}-S.jpg"
         self.language = info.get('language')
         self.page_count = info.get('pageCount')
         self.rating = info.get('rating')
@@ -32,8 +32,11 @@ class EDITION:
             return
 
         # detect placeholder cover picture
-        if len(requests.get(self.image_large).content) in [9103, 316]: 
-            return
+        # size = len(requests.get(self.image_large).content)
+        # if size == 807: 
+        #     return
+        # else:
+        #     print(size, self.image_large)
 
         # fill missing data with randomly generated values
         if not self.rating:

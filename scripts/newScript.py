@@ -6,7 +6,7 @@ req = requests.session()
 url = 'https://www.googleapis.com/books/v1/volumes'
 
 
-def send_request(params):
+def run_api(params, tags):
     response = req.get(url=url, params=params)
 
     if response.status_code == 200:
@@ -15,20 +15,18 @@ def send_request(params):
         print(f"[{response.status_code}] No buks tudej :(")
         return None
 
-    return response.json()['items']
-
-
-def run_api(params, tags):
-    items = send_request(params)
+    items = response.json()['items']
     for item in items:
-        info = item['volumeInfo']
-        tables.EDITION(info, tags)
+        response = req.get(url=item['selfLink'])
+        if response.status_code == 200:
+            info = response.json()['volumeInfo']
+            tables.EDITION(info, tags)
 
 
 run_api({'q': 'cryptography', 'maxResults': 10}, [
         'cryptography', 'security', 'computers', 'communications'])
 run_api({'q': 'python', 'maxResults': 10}, ['programming', 'python', 'computers'])
-run_api({'q': 'c++', 'maxResults': 10}, ['programming', 'c++', 'computers'])
+run_api({'q': 'c++', 'maxResults': 30}, ['programming', 'c++', 'computers'])
 run_api({'q': 'security', 'maxResults': 30}, ['programming', 'hacking', 'security', 'cryptography', 'computers'])
 run_api({'q': 'java', 'maxResults': 30}, ['programming', 'java', 'computers'])
 run_api({'q': 'artificial intelligence', 'maxResults': 30}, ['machine-learning', 'ai', 'computers'])
