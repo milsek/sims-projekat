@@ -3,14 +3,13 @@
   
     <div class="w-7/12 mt-4  text-lg lg:text-xl gap-6 md:flex justify-around mx-auto">
       <div class="w-80 my-aut ">
-        <MiniSearchBar v-on:userIsSelected="userIsSelected($event)" what="user" how="search_user"/>
+        <MiniSearchBar v-on:userIsSelected="userIsSelected($event)" what="by book id" how="search_book"/>
       </div>
-      <div class="w-80 my-aut">
-        <MiniSearchBar what="book" how="search_book" />
-      </div>
+      
     </div>
   
-    <div class="lg:text-xl  md:flex mt-4 mx-2 flex-wrap">
+    
+    <div class=" lg:text-xl  md:flex mt-4 mx-2 flex-wrap">
       <div class="my-aut md:flex flex-wrap">
         <SelectedUser v-show="user_selected" v-bind:id=user_id v-bind:name=user_name v-bind:surname=user_surname />
       </div>

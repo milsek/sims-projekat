@@ -7,8 +7,11 @@
                  class="inline-block mb-0 px-2 h-14 w-80 font-light focus:outline-none">
         </div>
         <ul class="options">
-          <li v-for="item in suggestions" :key="item.id">
+          <li v-show="how == 'search_user'" v-for="item in suggestions" :key="item.id">
             <UserSuggestion @userIsSelected="selected($event)" v-bind:name="item.name" v-bind:id="item.id" v-bind:surname="item.surname" />
+          </li>
+          <li v-show="how == 'search_book'" v-for="item in suggestions" :key="item.id">
+            <BookSuggestion @userIsSelected="selected($event)" v-bind:name="item.name" v-bind:id="item.id" v-bind:surname="item.surname" />
           </li>
           <li v-if="suggestions.length===0 && query.length != 0">Item not found</li>
         </ul>
@@ -21,9 +24,10 @@
 <script>
 import axios from "axios";
 import UserSuggestion from "~/components/admin/UserSuggestion";
+import BookSuggestion from "~/components/admin/BookSuggestion";
 export default {
   name: "MiniSearchBar",
-  components: {UserSuggestion},
+  components: {UserSuggestion, BookSuggestion},
   props: ['what', 'how'],
   data() {
     return {
@@ -33,7 +37,7 @@ export default {
   },
   methods:{
     doSearch() {
-        axios.get("/api/admin/user_search/?query=" + this.query)
+        axios.get("/api/admin/" + how + "/?query=" + this.query)
         .then(response => {
           console.log("AAAAAAAAAAAAA");
           console.log(response.data);
