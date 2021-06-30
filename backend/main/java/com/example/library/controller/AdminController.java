@@ -40,4 +40,12 @@ public class AdminController {
         return bookService.findBookId(id + "%");
     }
 
+    @GetMapping(path="/get_book/")
+    @ResponseBody
+    public Book findBookById(@RequestParam(name = "query", required = false) String id) {
+        System.out.println(id);
+        if(id.isEmpty()) return null;
+        return bookService.findBookById(id);
+    }
+
 }

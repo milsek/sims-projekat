@@ -53,8 +53,15 @@ export default {
     },
     selected(data) {
             console.log("MSB");
+            console.log(data);
             this.suggestions = [];
-            this.$emit('userIsSelected', data);
+            console.log(this.how);
+            if(this.how == "search_book") {
+              console.log("Hello");
+              this.$emit('book-is-selected', data);
+            } else {
+              this.$emit('userIsSelected', data);
+            }
     }
   },
   computed: {

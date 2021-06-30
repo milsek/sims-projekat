@@ -23,6 +23,12 @@ public class BookService {
         return bookRepository.findLikeID(id);
     }
 
+    public Book findBookById(String id) {
+        System.out.println(id);
+        System.out.println(Long.valueOf(id));
+        return bookRepository.findById(Long.valueOf(id)).get();
+    }
+
     public Set<Book> findBookId(String id) {
         Set<Book> books =  bookRepository.findLikeID(id);
         for (Book book: books) {
