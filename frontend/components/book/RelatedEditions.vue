@@ -1,9 +1,9 @@
 <template>
-  <div v-if="suggested.length" class="px-6 pb-10 sm:-mt-20 md:-mt-24 sm:px-10 lg:px-14 border-b border-gray-200 border-solid">
+  <div v-if="related.length" class="pb-10 mt-6 px-6 lg:px-8">
     <div class="px-4 hidden lg:block">
       <VueSlickCarousel :arrows="true" :dots="false" :slidesToShow="3">
-        <div v-for="book in suggested" :key="book.title.title">
-          <BookCardDetailed :data="book" class="px-2"/>
+        <div v-for="book in related" :key="book.title.title">
+          <RelatedEditionCard :data="book" class="px-2"/>
         </div>
 
         <template #prevArrow="arrowOption">
@@ -23,8 +23,8 @@
 
     <div class="hidden sm:block lg:hidden px-4">
       <VueSlickCarousel :arrows="true" :dots="false" :slidesToShow="2">
-        <div  v-for="book in suggested" :key="book.title.title">
-          <BookCardDetailed :data="book" class="px-2"/>
+        <div  v-for="book in related" :key="book.title.title">
+          <RelatedEditionCard :data="book" class="px-2"/>
         </div>
 
         <template #prevArrow="arrowOption">
@@ -44,8 +44,8 @@
 
     <div class="sm:hidden px-4">
       <VueSlickCarousel :arrows="true" :dots="false" :slidesToShow="1">
-        <div  v-for="book in suggested" :key="book.title.title">
-          <BookCardDetailed :data="book" class="px-2"/>
+        <div  v-for="book in related" :key="book.title.title">
+          <RelatedEditionCard :data="book" class="px-2"/>
         </div>
 
         <template #prevArrow="arrowOption">
@@ -69,15 +69,15 @@
 
 <script>
 import axios from 'axios';
-import BookCardDetailed from './BookCardDetailed.vue'
+import RelatedEditionCard from './RelatedEditionCard.vue'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 export default {
-  components: { VueSlickCarousel, BookCardDetailed },
+  components: { VueSlickCarousel, RelatedEditionCard },
   data () {
     return {
-      suggested: [],
+      related: [],
     }
   },
   mounted () {
@@ -87,8 +87,8 @@ export default {
     getBooks() {
       axios.get("/api/topten")
     .then(response => {
-      this.suggested = response.data;
-      // this.suggested.forEach((x) => { console.log("HELLO"); console.log(); });
+      this.related = response.data;
+      // this.related.forEach((x) => { console.log("HELLO"); console.log(); });
     });
     }
   },

@@ -69,13 +69,22 @@
       </div>
     </div>
 
+    <div class="block w-11/12 mt-6 mx-auto bg-white shadow-lg">
+      <div class="block p-8 w-full">
+        <div class="text-xl text-gray-700 tracking-wide font-medium">Related editions</div>
+        <RelatedEditions />
+      </div>
+    </div>
+
   </div>
 
 </template>
 
 <script>
+import RelatedEditions from './RelatedEditions'
 export default {
   props: ["data"],
+  components: { RelatedEditions },
   data () {
     return {
       showMore: false,
