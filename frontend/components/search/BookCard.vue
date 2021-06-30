@@ -3,7 +3,7 @@
     <div class="flex pb-10 mx-auto">
       <div class="inline-block w-40 sm:w-36 md:w-32">
         <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}">
-          <img :src="data.imageSmall" alt="" class="rounded-lg object-cover w-full h-52 md:h-44 lg:h-48">
+          <img :src="data.imageLarge" alt="" class="rounded-lg object-cover w-full h-52 md:h-44 lg:h-48">
         </NuxtLink>
         
         <!-- reservation button

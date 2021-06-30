@@ -2,7 +2,7 @@
   <div class="block mx-2 lg:mx-3 mb-6 ">
     <div>
       <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}">
-        <img :src="data.imageSmall" alt=""
+        <img :src="data.imageLarge" alt=""
         class="text-center sm:text-left m-auto sm:m-0 rounded-md shadow-lg w-40 sm:w-36 h-56 sm:h-48 lg:h-48 object-fill" draggable="false">
       </NuxtLink>
     </div>
