@@ -3,23 +3,29 @@
     <div class="flex pb-10 mx-auto">
       <div class="inline-block w-40 sm:w-36 md:w-32">
         <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}">
-          <img :src="data.imageSmall" alt="" class="rounded-lg object-cover w-full">
+          <img :src="data.imageSmall" alt="" class="rounded-lg object-cover w-full h-52 md:h-44 lg:h-48">
         </NuxtLink>
+        
+        <!-- reservation button
         <div class="block sm:hidden pt-2">
           <button class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-gradient-to-tr from-red-400 to-purple-400 text-white
           text-center text-lg md:text-base lg:text-lg shadow-md focus:outline-none hover:text-gray-900 rounded-lg">reservation</button>
         </div>
+        -->
+
       </div>
       <div class="inline-block font-display pl-4 md:pl-6 w-5/6">
         <div class="flex justify-between text-base md:text-xl font-bold">
           <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}" class="hover:text-blue-800 hover:opacity-80 w-auto">
               {{ data.title.title }}
           </NuxtLink>
-        <div class="hidden sm:block -mt-1">
-          <button class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-gradient-to-tr from-red-400 to-purple-400 text-white
-          text-center text-lg md:text-base lg:text-lg shadow-md focus:outline-none rounded-lg
-          hover:transition duration-300 ease-in-out transform hover:-translate-y-1">reservation</button>
-        </div>
+          <!-- reservation button
+          <div class="hidden sm:block -mt-1">
+            <button class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-gradient-to-tr from-red-400 to-purple-400 text-white
+            text-center text-lg md:text-base lg:text-lg shadow-md focus:outline-none rounded-lg
+            hover:transition duration-300 ease-in-out transform hover:-translate-y-1">reservation</button>
+          </div>
+          -->
         </div>
         <div class="text-sm font-light pb-2 text-gray-500">
           {{ data.title.contributions[0].contributor.name }}
