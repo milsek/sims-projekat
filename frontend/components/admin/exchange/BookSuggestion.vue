@@ -1,8 +1,8 @@
 <template>
-    <div class="block w-11/12" @click="selected">
-        <div class="grid grid-cols-12">
-            <div class="col-start-1 col-span-3 my-aut">{{ id }}</div>
-            <div class="col-start-4 col-span-3 my-aut">{{ title }}</div>
+    <div class="block cursor-pointer hover:bg-gray-100 px-2 py-2" @click="selected">
+        <div class="flex">
+            <div class="my-auto w-14">{{ id }}</div>
+            <div class="my-auto">{{ title }}</div>
         </div>
     </div>
 </template>
