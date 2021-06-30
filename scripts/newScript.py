@@ -1,6 +1,7 @@
 import tables
 import requests
 import random
+import time
 
 req = requests.session()
 url = 'https://www.googleapis.com/books/v1/volumes'
@@ -26,13 +27,13 @@ def run_api(params, tags):
 run_api({'q': 'cryptography', 'maxResults': 10}, [
         'cryptography', 'security', 'computers', 'communications'])
 run_api({'q': 'python', 'maxResults': 10}, ['programming', 'python', 'computers'])
-run_api({'q': 'c++', 'maxResults': 30}, ['programming', 'c++', 'computers'])
-run_api({'q': 'security', 'maxResults': 30}, ['programming', 'hacking', 'security', 'cryptography', 'computers'])
-run_api({'q': 'java', 'maxResults': 30}, ['programming', 'java', 'computers'])
-run_api({'q': 'artificial intelligence', 'maxResults': 30}, ['machine-learning', 'ai', 'computers'])
-run_api({'q': 'django', 'maxResults': 30}, ['programming', 'web-development', 'python', 'django'])
-run_api({'q': 'linux', 'maxResults': 30}, ['os', 'security', 'programming', 'computers'])
-run_api({'q': 'database', 'maxResults': 30}, ['database', 'sql', 'web-development', 'data'])
+run_api({'q': 'c++', 'maxResults': 10}, ['programming', 'c++', 'computers'])
+run_api({'q': 'security', 'maxResults': 10}, ['programming', 'hacking', 'security', 'cryptography', 'computers'])
+run_api({'q': 'java', 'maxResults': 10}, ['programming', 'java', 'computers'])
+run_api({'q': 'artificial intelligence', 'maxResults': 10}, ['machine-learning', 'ai', 'computers'])
+run_api({'q': 'django', 'maxResults': 10}, ['programming', 'web-development', 'python', 'django'])
+run_api({'q': 'linux', 'maxResults': 10}, ['os', 'security', 'programming', 'computers'])
+run_api({'q': 'database', 'maxResults': 10}, ['database', 'sql', 'web-development', 'data'])
 
 streets = ['Teše Tešanovića', 'Developerska', '11. aprila', 'Satošijeva', 'Dajkstrina', 'Inženjerska', 'Trg Gvida van Rosuma', 'Kanjea Zapadnog', 'Ozrena Soldatovića',
            'Hari Poterova', 'Lignjoslavljeva', 'Rokija Balboe', 'Indijane Džonsa', 'Sina Dragana', 'Žrtava junskog roka', 'Stefana Đurića Raste', 'Žrtava junskog roka']

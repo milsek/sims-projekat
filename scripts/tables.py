@@ -11,8 +11,6 @@ class EDITION:
         self.available_copies = random.randint(5, 60)
         self.description = info.get('description')
         self.dimensions = random.randint(18, 22)
-        self.image_large = f"http://covers.openlibrary.org/b/isbn/{info['industryIdentifiers'][1]['identifier']}-L.jpg"
-        self.image_small = f"http://covers.openlibrary.org/b/isbn/{info['industryIdentifiers'][1]['identifier']}-S.jpg"
         self.language = info.get('language')
         self.page_count = info.get('pageCount')
         self.rating = info.get('rating')
@@ -31,12 +29,20 @@ class EDITION:
         if None in [self.description, self.genre_names, self.author_names, self.publisher_name]:
             return
 
-        # detect placeholder cover picture
-        # size = len(requests.get(self.image_large).content)
-        # if size == 807: 
-        #     return
-        # else:
-        #     print(size, self.image_large)
+        identifiers = info.get('industryIdentifiers')
+        if not identifiers:
+            return
+        else:
+            for ident in identifiers:
+                if ident.get('type') == 'ISBN_13':
+                    isbn = ident.get('identifier')
+                    self.image_large = f"http://covers.openlibrary.org/b/isbn/{isbn}-L.jpg"
+                    self.image_small = f"http://covers.openlibrary.org/b/isbn/{isbn}-M.jpg"
+                    break
+        
+        if len(requests.get(self.image_large).content) == 807:
+            print("[-] Nou kaver :(")
+            return
 
         # fill missing data with randomly generated values
         if not self.rating:
