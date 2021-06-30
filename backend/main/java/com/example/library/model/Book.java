@@ -32,6 +32,17 @@ public class Book {
 
     private transient BookState bookState;
 
+    @JsonProperty
+    private transient String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public Book() {
         bookState = BookState.IN_STOCK;
         stateName = bookState.name();
@@ -61,6 +72,14 @@ public class Book {
 
     public void setCondition(BookCondition condition) {
         this.condition = condition;
+    }
+
+    public Edition getEdition() {
+        return edition;
+    }
+
+    public void setEdition(Edition edition) {
+        this.edition = edition;
     }
 
     //    public void setEdition(Edition edition) {

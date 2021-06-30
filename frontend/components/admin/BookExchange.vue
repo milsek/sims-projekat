@@ -2,7 +2,7 @@
   <div class="w-11/12 mx-auto rounded-lg bg-white shadow-lg md:block">
   
     <div class="w-7/12 mt-4  text-lg lg:text-xl gap-6 md:flex justify-around mx-auto">
-      <div class="w-80 my-aut ">
+      <div class="w-96 my-aut ">
         <MiniSearchBar v-on:userIsSelected="userIsSelected($event)" what="by book id" how="search_book"/>
       </div>
       

@@ -63,6 +63,10 @@ public class EditionService {
         return result.orElse(null);
     }
 
+    public Edition getEditionByBookId(long id) {
+        return editionRepository.findEditonByCopyId(id);
+    }
+
     public Map<Long, List<Edition>> searchEditions(String text, int page, int amount) {
         return editionRepository.searchEditions(text, page, amount);
     }
