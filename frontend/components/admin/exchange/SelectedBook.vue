@@ -22,7 +22,7 @@
       </div>
         
       <div v-if="data.bookState === 'IN_STOCK'" class="mt-5">
-        <button @click="showUserModal = !showUserModal" class="h-9 mt-4 px-8 md:px-6 pb-1 bg-indigo-700 hover:bg-indigo-900
+        <button @click="showUserModal = !showUserModal" class="h-9 mt-4 px-8 md:px-6 bg-blue-700 hover:bg-blue-900
          opacity-90 text-white text-center text-lg shadow-md focus:outline-none rounded-lg">
           lend book
         </button>
@@ -57,7 +57,7 @@ export default {
   computed: {
     colorCondition () {
       if (this.data.condition === 'UNUSABLE') return "text-red-600"
-      if (this.data.condition === 'DAMAGED') return "orange-text"
+      if (this.data.condition === 'DAMAGED') return "text-damaged"
       if (this.data.condition === 'WORN_OUT') return "text-yellow-400"
       if (this.data.condition === 'PERFECT') return "text-green-600"
     },
@@ -66,7 +66,4 @@ export default {
 </script>
 
 <style>
-.orange-text {
-  color: #eb8052;
-}
 </style>

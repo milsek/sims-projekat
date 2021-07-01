@@ -13,6 +13,9 @@ module.exports = {
         '160': '40rem',
         '172': '43rem',
       },
+      colors: {
+        damaged: '#eb8052',
+      },
     },
   },
   variants: {

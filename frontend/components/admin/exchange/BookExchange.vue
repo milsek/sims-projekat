@@ -25,28 +25,16 @@ export default {
   components: {MiniSearchBar, SelectedUser, SelectedBook},
   data() {
     return {
-      user_selected : false,
       book_selected: false,
-      user_id : -1,
-      user_name : "",
-      user_surname: "",
       data_id: "",
       selected_book: ""
     }
   },
   methods: {
-    userIsSelected(data) {
-      this.user_selected = true;
-      this.user_id = data.id;
-      this.user_name = data.name;
-      this.user_surname = data.surname;
-    },
     bookIsSelected(data) {
       this.data_id = data.id;
       axios.get("/api/admin/get_book/?query=" + this.data_id)
         .then(response => {
-          console.log(response);
-          console.log(response.data);
           this.selected_book = response.data;
           this.book_selected = true;
         });

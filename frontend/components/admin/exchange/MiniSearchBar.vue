@@ -46,7 +46,6 @@ export default {
       axios.get("/api/admin/" + this.how + "/?query=" + this.query)
       .then(response => {
         this.suggestions = response.data;
-        console.log(this.suggestions)
       });
     },
     selected(data) {

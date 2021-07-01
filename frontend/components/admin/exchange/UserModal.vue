@@ -23,10 +23,10 @@
         <div class="block px-6 sm:px-12 sm:p-6">
           <!-- DROPDOWN THING -->
           <MiniSearchBar @user-is-selected="userIsSelected($event)"
-            what="by member name" how="user_search" class=""/>
+            what="members" how="user_search" class=""/>
         </div>
 
-        <div v-if="user_selected" class="block">
+        <div v-if="user_selected" class="block px-6 sm:px-12 sm:p-6">
           <SelectedUser :id=user_id :name=user_name :surname=user_surname />
         </div>
 
@@ -67,7 +67,6 @@ export default {
       this.$emit('close-modal')
     },
     userIsSelected(data) {
-      console.log("USER SELECTED")
       this.user_selected = true;
       this.user_id = data.id;
       this.user_name = data.name;
