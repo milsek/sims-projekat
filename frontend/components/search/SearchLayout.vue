@@ -16,6 +16,7 @@ export default {
   components: { BookFilter, BookList },
   methods: {
     refreshSearch() {
+      this.$refs.bookList.refreshPagination()
       this.$refs.bookList.getBooks()
     }
   }
