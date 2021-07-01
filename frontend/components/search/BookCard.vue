@@ -52,8 +52,10 @@ export default {
     },
   computed: {
     readsInThousands () {
-      return Math.round(this.data.reads/1000)
-    }
+      if (this.data.reads > 1000) {
+        return Math.round(this.data.reads/1000) + "k"
+      } else return this.data.reads
+    },
   }
   };
 </script>
