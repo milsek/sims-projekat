@@ -19,9 +19,9 @@ public class BookService {
     @Autowired
     private EditionRepository editionRepository;
 
-    public Set<Book> findLikeID(String id) {
-        return bookRepository.findLikeID(id);
-    }
+//    public Set<Book> findLikeID(String id) {
+//        return bookRepository.findLikeID(id);
+//    }
 
     public Book findBookById(String id) {
         System.out.println(id);
@@ -29,8 +29,8 @@ public class BookService {
         return bookRepository.findById(Long.valueOf(id)).get();
     }
 
-    public Set<Book> findBookId(String id) {
-        Set<Book> books =  bookRepository.findLikeID(id);
+    public Set<Book> autocompleteBookId(String id) {
+        Set<Book> books =  bookRepository.findByIdStartingWith(id + "%");
         for (Book book: books) {
             book.setTitle(book.getEdition().getTitle().getTitle());
         }

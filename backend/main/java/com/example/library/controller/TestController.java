@@ -39,7 +39,7 @@ public class TestController {
     @GetMapping(path = "/getLibrary")
     @ResponseBody
     public Library getLibrary(@RequestBody long id) {
-        return libraryService.findLibrary(id);
+        return libraryService.getLibraryById(id);
     }
 
 }
