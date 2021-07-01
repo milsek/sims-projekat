@@ -58,7 +58,7 @@ public class EditionService {
     }
 
     public Edition getEditionByBookId(long id) {
-        return editionRepository.findEditionByCopy_Id(id);
+        return editionRepository.findEditionByCopies_Id(id);
     }
 
     public Map<Long, List<Edition>> searchEditions(String text, int page, int amount) {

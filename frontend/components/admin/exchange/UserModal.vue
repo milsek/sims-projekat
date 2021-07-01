@@ -23,7 +23,7 @@
         <div class="block px-6 sm:px-12 sm:p-6">
           <!-- DROPDOWN THING -->
           <MiniSearchBar @user-is-selected="userIsSelected($event)"
-            what="members" how="user_search" class=""/>
+            what="members" how="autocomplete-user-id" class=""/>
         </div>
 
         <div v-if="user_selected" class="block px-6 sm:px-12 sm:p-6">

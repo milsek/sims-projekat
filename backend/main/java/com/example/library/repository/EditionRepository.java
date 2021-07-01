@@ -21,6 +21,6 @@ public interface EditionRepository extends JpaRepository<Edition, Long> {
 //    @Query(value = "select * from EDITION e where e.id = (select * from EDITION_COPIES where COPIES_ID = ?1)", nativeQuery = true)
 //    public Edition findEditonByCopyId(Long id);
 
-    public Edition findEditionByCopy_Id(Long id);
+    public Edition findEditionByCopies_Id(Long id);
 
 }

@@ -26,7 +26,7 @@ public class TestController {
     @ResponseBody
     public String hello() {
         Book book = bookRepository.findById(33L).get();
-        System.out.println(book.getStateName());
+        System.out.println(book);
         return "Hello:)";
     }
 

@@ -7,10 +7,10 @@
                  class="inline-block mb-0 px-2 py-2 font-light focus:outline-none w-full">
         </div>
         <ul v-if="suggestions.length" class="options pb-2">
-          <li v-show="how == 'user_search'" v-for="item in suggestions" :key="item.id">
+          <li v-show="how == 'autocomplete-user-id'" v-for="item in suggestions" :key="item.id">
             <UserSuggestion @user-is-selected="selected($event)" v-bind:name="item.name" v-bind:id="item.id" v-bind:surname="item.surname" />
           </li>
-          <li v-show="how == 'search_book'" v-for="item in suggestions" :key="'a' + item.id">
+          <li v-show="how == 'autocomplete-book-id'" v-for="item in suggestions" :key="'a' + item.id">
             <BookSuggestion @book-is-selected="selected($event)" v-bind:title="item.title" v-bind:id="item.id" />
           </li>
           <li v-if="suggestions.length===0 && query.length != 0 && !isSelected">Item not found</li>
@@ -38,12 +38,12 @@ export default {
   },
   methods:{
     doSearch() {
-      console.log("/api/admin/" + this.how + "/?query=" + this.query);
+      console.log("/api/admin/" + this.how + "/?id=" + this.query);
       if(this.query.length == 0){ 
         this.suggestions = [];
         return;
       }
-      axios.get("/api/admin/" + this.how + "/?query=" + this.query)
+      axios.get("/api/" + this.how + "/?id=" + this.query)
       .then(response => {
         this.suggestions = response.data;
       });
@@ -53,7 +53,7 @@ export default {
       console.log(data);
       this.suggestions = [];
       this.isSelected = true;
-      if(this.how == "search_book") {
+      if(this.how == "autocomplete-book-id") {
         this.$emit('book-is-selected', data);
       } else {
         this.$emit('user-is-selected', data);

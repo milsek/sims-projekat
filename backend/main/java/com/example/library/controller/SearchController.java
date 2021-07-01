@@ -42,15 +42,15 @@ public class SearchController {
         return new HashMap<Long, List<Edition>>(editionService.searchEditions(text, page, amount));
     }
 
-    @GetMapping(path = "/autocomplete_book_id/")
+    @GetMapping(path = "/autocomplete-book-id/")
     @ResponseBody
-    public Set<Book> autocompleteBookId(@RequestParam(name = "query") String id) {
+    public Set<Book> autocompleteBookId(@RequestParam(name = "id") String id) {
         return bookService.autocompleteBookId(id);
     }
 
-    @GetMapping(path = "/autocomplete_user_id/")
+    @GetMapping(path = "/autocomplete-user-id/")
     @ResponseBody
-    public List<Member> autocompleteUserId(@RequestParam(name = "query") String id) {
+    public List<Member> autocompleteUserId(@RequestParam(name = "id") String id) {
         return userService.autocompleteUserId(id);
     }
 }

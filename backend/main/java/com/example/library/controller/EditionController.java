@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/edition")
 @CrossOrigin(origins = "http://localhost:3000")
-public class    EditionController {
+public class EditionController {
 
     @Autowired
     private EditionService editionService;
@@ -22,15 +22,15 @@ public class    EditionController {
         return editionService.getAll();
     }
 
-    @GetMapping(path = "/edition/{id}")
+    @GetMapping(path = "/")
     @ResponseBody
-    public Edition getEdition(@PathVariable("id") long id) {
+    public Edition getEditionById(@RequestParam("id") long id) {
         return editionService.getEditionById(id);
     }
 
-    @GetMapping(path = "/edition/related_to={id}")
+    @GetMapping(path = "/related-to/")
     @ResponseBody
-    public Set<Edition> getRelatedEditions(@PathVariable("id") long id)
+    public Set<Edition> getRelatedEditions(@RequestParam("id") long id)
     {
         return editionService.getRelatedEditions(id);
     }
