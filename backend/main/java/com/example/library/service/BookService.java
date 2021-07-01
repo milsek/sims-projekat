@@ -42,9 +42,6 @@ public class BookService {
     }
 
     private SelectedBookDto entityToDto(Book book) {
-        modelMapper.typeMap(Book.class, SelectedBookDto.class)
-                .addMapping(src -> src.getEdition().getTitle().getContributions().get(0).getContributor().getName(), SelectedBookDto::setAuthorName);
-
         return modelMapper.map(book, SelectedBookDto.class);
     }
 }
