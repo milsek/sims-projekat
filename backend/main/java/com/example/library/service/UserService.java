@@ -3,9 +3,11 @@ package com.example.library.service;
 import com.example.library.model.Account;
 import com.example.library.model.Member;
 import com.example.library.model.User;
+import com.example.library.model.dto.UserLoginDto;
 import com.example.library.repository.AccountRepository;
 import com.example.library.repository.MemberRepository;
 import com.example.library.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ import java.util.*;
 
 @Service
 public class UserService {
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private UserRepository userRepository;
@@ -23,12 +28,13 @@ public class UserService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public User login(String mail, String password) {
+    public UserLoginDto login(String mail, String password) {
         Account account = accountRepository.findAccountByMailAndPassword(mail, password);
         if (account == null) {
             return null;
         }
-        return userRepository.findByAccount_Id(account.getId());
+        User user = userRepository.findByAccount_Id(account.getId());
+        return entityToDto(user);
     }
 
     public Set<User> getAll() {
@@ -42,4 +48,7 @@ public class UserService {
         return result.get(result.keySet().toArray()[0]);
     }
 
+    private UserLoginDto entityToDto(User user) {
+        return modelMapper.map(user, UserLoginDto.class);
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.library.controller;
 
 import com.example.library.model.User;
+import com.example.library.model.dto.UserLoginDto;
 import com.example.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +19,12 @@ public class SessionController {
 
     @GetMapping(path = "/login/")
     @ResponseBody
-    public User login(@RequestParam(name = "mail") String mail,
+    public UserLoginDto login(@RequestParam(name = "mail") String mail,
                       @RequestParam(name = "password") String password,
                       HttpServletResponse response) {
-        User user = userService.login(mail, password);
+        UserLoginDto userLoginDto = userService.login(mail, password);
 
-        if(user != null) {
+        if(userLoginDto != null) {
 
             Cookie nameCookie = new Cookie("mail", mail);
             nameCookie.setHttpOnly(false);
@@ -33,7 +34,7 @@ public class SessionController {
             nameCookie.setMaxAge(30*24*3600);
             response.addCookie(nameCookie);
 
-            Cookie roleCookie = new Cookie("role", String.valueOf(user.getDiscriminatorValue()));
+            Cookie roleCookie = new Cookie("role", String.valueOf(userLoginDto.getDiscriminatorValue()));
             roleCookie.setDomain("localhost");
             roleCookie.setHttpOnly(false);
             roleCookie.setSecure(false);
@@ -41,7 +42,7 @@ public class SessionController {
             roleCookie.setMaxAge(30*24*3600);
             response.addCookie(roleCookie);
         }
-        return user;
+        return userLoginDto;
     }
 
 }
