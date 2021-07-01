@@ -82,6 +82,22 @@ public class Book {
         this.edition = edition;
     }
 
+    public Line getLine() {
+        return line;
+    }
+
+    public void setLine(Line line) {
+        this.line = line;
+    }
+
+    public BookState getBookState() {
+        return bookState;
+    }
+
+    public void setBookState(BookState bookState) {
+        this.bookState = bookState;
+    }
+
     //    public void setEdition(Edition edition) {
 //        this.edition = edition;
 //    }
