@@ -1,6 +1,7 @@
 package com.example.library.controller;
 
 import com.example.library.model.Edition;
+import com.example.library.model.dto.EditionDisplayDto;
 import com.example.library.service.EditionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +18,13 @@ public class HomeController {
 
     @GetMapping(path = "/topreads")
     @ResponseBody
-    public List<Edition> getTopReads() {
+    public List<EditionDisplayDto> getTopReads() {
         return editionService.getTopReads();
     }
 
     @GetMapping(path = "/topten")
     @ResponseBody
-    public List<Edition> getTopTen() {
+    public List<EditionDisplayDto> getTopTen() {
         return editionService.getTopTen();
     }
 
