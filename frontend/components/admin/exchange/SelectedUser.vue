@@ -1,8 +1,8 @@
 <template>
-  <div class="">
-      <div class="inline"> {{id}} </div>
-      <div class="inline"> {{name}} </div>
-      <div class="inline"> {{surname}} </div>
+  <div class="px-14 flex text-lg font-medium bg-indigo-900">
+      <div> {{ id }} </div>
+      <div> {{ name }} </div>
+      <div> {{ surname }} </div>
   </div>
 </template>
 

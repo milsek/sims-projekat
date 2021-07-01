@@ -4,11 +4,11 @@
       <div class="text-lg lg:text-xl">
         <div>
           <input @keyup="doSearch" type="text" autocomplete="off" v-model="query" :placeholder="'Search ' + what"
-                 class="inline-block mb-0 px-2 py-2 font-light focus:outline-none">
+                 class="inline-block mb-0 px-2 py-2 font-light focus:outline-none w-full">
         </div>
         <ul v-if="suggestions.length" class="options pb-2">
-          <li v-show="how == 'search_user'" v-for="item in suggestions" :key="item.id">
-            <UserSuggestion @userIsSelected="selected($event)" v-bind:name="item.name" v-bind:id="item.id" v-bind:surname="item.surname" />
+          <li v-show="how == 'user_search'" v-for="item in suggestions" :key="item.id">
+            <UserSuggestion @user-is-selected="selected($event)" v-bind:name="item.name" v-bind:id="item.id" v-bind:surname="item.surname" />
           </li>
           <li v-show="how == 'search_book'" v-for="item in suggestions" :key="'a' + item.id">
             <BookSuggestion @book-is-selected="selected($event)" v-bind:title="item.title" v-bind:id="item.id" />
@@ -38,26 +38,27 @@ export default {
   },
   methods:{
     doSearch() {
-        console.log("/api/admin/" + this.how + "/?query=" + this.query);
-        if(this.query.length == 0){ 
-          this.suggestions = [];
-          return;
-        }
-        axios.get("/api/admin/" + this.how + "/?query=" + this.query)
-        .then(response => {
-          this.suggestions = response.data;
-        });
+      console.log("/api/admin/" + this.how + "/?query=" + this.query);
+      if(this.query.length == 0){ 
+        this.suggestions = [];
+        return;
+      }
+      axios.get("/api/admin/" + this.how + "/?query=" + this.query)
+      .then(response => {
+        this.suggestions = response.data;
+        console.log(this.suggestions)
+      });
     },
     selected(data) {
-            console.log("MSB");
-            console.log(data);
-            this.suggestions = [];
-            this.isSelected = true;
-            if(this.how == "search_book") {
-              this.$emit('book-is-selected', data);
-            } else {
-              this.$emit('userIsSelected', data);
-            }
+      console.log("MSB");
+      console.log(data);
+      this.suggestions = [];
+      this.isSelected = true;
+      if(this.how == "search_book") {
+        this.$emit('book-is-selected', data);
+      } else {
+        this.$emit('user-is-selected', data);
+      }
     }
   },
   computed: {
