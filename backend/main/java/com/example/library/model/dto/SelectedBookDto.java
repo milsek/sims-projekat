@@ -2,6 +2,8 @@ package com.example.library.model.dto;
 
 public class SelectedBookDto {
 
+    private Long id;
+
     private String editionImageLarge;
 
     private String editionTitleTitle;
@@ -13,6 +15,24 @@ public class SelectedBookDto {
     private Integer lineNumber;
 
     private String bookState;
+
+    private String condition;
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public SelectedBookDto(String editionImageLarge, String editionTitleTitle, String authorName, String lineIsleName, Integer lineNumber, String bookState) {
         this.editionImageLarge = editionImageLarge;
