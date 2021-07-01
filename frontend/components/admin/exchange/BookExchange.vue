@@ -1,7 +1,7 @@
 <template>
   <div class="w-11/12 mx-auto rounded-lg bg-white md:shadow-lg md:block">
   
-    <div class="mt-4 text-lg lg:text-xl gap-6 md:flex justify-around mx-auto w-full sm:w-4/5 md:w-3/5 lg:5/1 xl:w-2/5">
+    <div class="mt-10 text-lg lg:text-xl gap-6 md:flex justify-around mx-auto w-full sm:w-4/5 md:w-3/5 lg:5/1 xl:w-2/5">
       <MiniSearchBar v-on:userIsSelected="userIsSelected($event)" v-on:book-is-selected="bookIsSelected($event)"
         what="by book id" how="search_book" class=""/>
     </div>

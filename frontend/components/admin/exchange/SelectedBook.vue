@@ -21,7 +21,7 @@
         <div class="line-clamp-2">State: {{ data.bookState }}</div>
       </div>
         
-      <div class="mt-5">
+      <div v-if="data.bookState === 'IN_STOCK'" class="mt-5">
         <button class="h-9 mt-4 px-8 md:px-6 pb-1 bg-indigo-700 hover:bg-indigo-900
          opacity-90 text-white text-center text-lg shadow-md focus:outline-none rounded-lg">
           lend book
