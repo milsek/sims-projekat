@@ -7,6 +7,7 @@ import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,7 +30,7 @@ public class BookTitle {
 
     @ManyToMany
     @IndexedEmbedded(depth = 3)
-    private Set<Contribution> contributions;
+    private List<Contribution> contributions;
 
     public Set<Edition> getEditions() {
         return editions;
@@ -39,11 +40,11 @@ public class BookTitle {
         this.editions = editions;
     }
 
-    public Set<Contribution> getContributions() {
+    public List<Contribution> getContributions() {
         return contributions;
     }
 
-    public void setContributions(Set<Contribution> contributions) {
+    public void setContributions(List<Contribution> contributions) {
         this.contributions = contributions;
     }
 

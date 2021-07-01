@@ -1,15 +1,9 @@
 package com.example.library.service;
 
 import com.example.library.model.Edition;
-import com.example.library.repository.BookTitleRepository;
 import com.example.library.repository.EditionRepository;
-import org.hibernate.search.jpa.FullTextEntityManager;
-import org.hibernate.search.jpa.FullTextQuery;
-import org.hibernate.search.jpa.Search;
-import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 
 import javax.persistence.EntityManager;
@@ -58,13 +52,13 @@ public class EditionService {
         return editionRepository.findAll();
     }
 
-    public Edition getEdition(long id) {
+    public Edition getEditionById(long id) {
         Optional<Edition> result = editionRepository.findById(id);
         return result.orElse(null);
     }
 
     public Edition getEditionByBookId(long id) {
-        return editionRepository.findEditonByCopyId(id);
+        return editionRepository.findEditionByCopies_Id(id);
     }
 
     public Map<Long, List<Edition>> searchEditions(String text, int page, int amount) {
@@ -72,9 +66,9 @@ public class EditionService {
     }
 
     public Set<Edition> getRelatedEditions(Long id) {
-        Edition edition = getEdition(id);
+        Edition edition = getEditionById(id);
         if (edition == null)
             return null;
-        return titleService.getAllEditionsById(edition.getTitle().getId());
+        return titleService.getAllEditionsByTitleId(edition.getTitle().getId());
     }
 }

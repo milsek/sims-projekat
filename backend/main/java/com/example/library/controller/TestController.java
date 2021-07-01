@@ -26,7 +26,7 @@ public class TestController {
     @ResponseBody
     public String hello() {
         Book book = bookRepository.findById(33L).get();
-        System.out.println(book.getStateName());
+        System.out.println(book);
         return "Hello:)";
     }
 
@@ -39,7 +39,7 @@ public class TestController {
     @GetMapping(path = "/getLibrary")
     @ResponseBody
     public Library getLibrary(@RequestBody long id) {
-        return libraryService.findLibrary(id);
+        return libraryService.getLibraryById(id);
     }
 
 }

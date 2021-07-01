@@ -16,8 +16,17 @@ public class Book {
     @Column(name = "BOOK_ID")
     private long id;
 
-    @Column(name = "state")
-    private String stateName;
+    public Book() {
+    }
+
+    public Book(long id, BookCondition condition, Edition edition, Line line, BookState bookState, String title) {
+        this.id = id;
+        this.condition = condition;
+        this.edition = edition;
+        this.line = line;
+        this.bookState = bookState;
+        this.title = title;
+    }
 
     @Column
     private BookCondition condition;
@@ -30,7 +39,9 @@ public class Book {
     @JoinColumn(name = "LINE_ID")
     private Line line;
 
-    private transient BookState bookState;
+    @Column(name = "state")
+    @Enumerated(EnumType.ORDINAL)
+    private BookState bookState;
 
     @JsonProperty
     private transient String title;
@@ -43,27 +54,12 @@ public class Book {
         this.title = title;
     }
 
-    public Book() {
-        bookState = BookState.IN_STOCK;
-        stateName = bookState.name();
-    }
-
-    public void setStateName(String stateName) {
-        this.stateName = stateName;
-        this.bookState = BookState.valueOf(stateName);
-    }
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getStateName() {
-        stateName = bookState.name();
-        return stateName;
     }
 
     public BookCondition getCondition() {

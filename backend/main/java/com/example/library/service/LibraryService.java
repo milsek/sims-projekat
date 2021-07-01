@@ -15,7 +15,7 @@ public class LibraryService {
         libraryRepository.save(library);
     }
 
-    public Library findLibrary(long id) {
-        return libraryRepository.findById(id).get();
+    public Library getLibraryById(long id) {
+        return libraryRepository.findById(id).orElse(null);
     }
 }

@@ -14,7 +14,7 @@ public class BookTitleService {
     @Autowired
     private BookTitleRepository titleRepository;
 
-    public Set<Edition> getAllEditionsById(Long id) {
+    public Set<Edition> getAllEditionsByTitleId(Long id) {
         Optional<BookTitle> result = titleRepository.findById(id);
         if (result.isEmpty()) {
             return null;
