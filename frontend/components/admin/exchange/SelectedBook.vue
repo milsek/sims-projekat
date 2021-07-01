@@ -41,8 +41,8 @@ export default {
   computed: {
     colorCondition () {
       if (this.data.condition === 'UNUSABLE') return "text-red-600"
-      if (this.data.condition === 'DAMAGED') return "text-yellow-500"
-      if (this.data.condition === 'WORN_OUT') return "text-pink-800"
+      if (this.data.condition === 'DAMAGED') return "orange-text"
+      if (this.data.condition === 'WORN_OUT') return "text-yellow-400"
       if (this.data.condition === 'PERFECT') return "text-green-600"
     },
   }
@@ -50,4 +50,7 @@ export default {
 </script>
 
 <style>
+.orange-text {
+  color: #eb8052;
+}
 </style>
