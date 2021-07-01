@@ -1,16 +1,17 @@
 package com.example.library.service;
 
 import com.example.library.model.Book;
+import com.example.library.model.Contribution;
 import com.example.library.model.dto.SelectedBookDto;
 import com.example.library.repository.BookRepository;
 import com.example.library.repository.EditionRepository;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
+import org.modelmapper.*;
 import org.modelmapper.config.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 import java.util.Set;
 
 @Service
