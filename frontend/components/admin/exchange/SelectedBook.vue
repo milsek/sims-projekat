@@ -22,10 +22,14 @@
       </div>
         
       <div v-if="data.bookState === 'IN_STOCK'" class="mt-5">
-        <button class="h-9 mt-4 px-8 md:px-6 pb-1 bg-indigo-700 hover:bg-indigo-900
+        <button @click="showUserModal = !showUserModal" class="h-9 mt-4 px-8 md:px-6 pb-1 bg-indigo-700 hover:bg-indigo-900
          opacity-90 text-white text-center text-lg shadow-md focus:outline-none rounded-lg">
           lend book
         </button>
+      </div>
+
+      <div v-if="showUserModal">
+        <UserModal v-on:close-modal="closeModal"/>
       </div>
 
     </div>
@@ -33,8 +37,20 @@
 </template>
 
 <script>
+import UserModal from '~/components/admin/exchange/UserModal'
 export default {
   props: [ "data" ],
+  components: { UserModal },
+  data () {
+    return {
+      showUserModal: false,
+    }
+  },
+  methods: {
+    closeModal () {
+      this.showUserModal = false
+    }
+  },
   mounted() {
       console.log(this.data);
   },
