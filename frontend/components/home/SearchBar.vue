@@ -10,7 +10,7 @@
         <div class="col-start-6 m-auto hidden md:flex">
           <!-- bg-gradient-to-tr from-blue-400 to-purple-600 -->
           <button @click="doSearch" class="h-9 px-6 pb-1 rounded-full bg-gradient-to-tr from-red-400 to-purple-400 text-white
-          text-center shadow-md focus:outline-none hover:text-gray-900">search</button>
+          text-center shadow-md focus:outline-none transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105">search</button>
         </div>
       </div>
     </div>
