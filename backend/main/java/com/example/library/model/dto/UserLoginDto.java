@@ -14,6 +14,16 @@ public class UserLoginDto {
 
     private Integer discriminatorValue;
 
+    private String condition;
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
     public Long getId() {
         return id;
     }
