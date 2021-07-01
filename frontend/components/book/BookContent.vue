@@ -20,8 +20,8 @@
             <div>
               <div class="block lg:hidden mt-12 md:mt-0 pt-2 border-t border-solid border-gray-200 md:border-none">
                 <div class="text-lg text-gray-700 font-medium tracking-wide font-base">Availability</div>
-                <div :class="[booksAvailable > 0 ? 'text-green-700' : 'text-red-600', 'mt-1']">
-                  Books available: {{booksAvailable}}
+                <div :class="[data.availableCopies > 0 ? 'text-green-700' : 'text-red-600', 'mt-1']">
+                  Books available: {{data.availableCopies}}
                 </div>
                 <div class="pt-2">
                   <button class="h-8 mt-4 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-indigo-800 hover:bg-indigo-900 text-white text-center text-lg md:text-base
@@ -48,11 +48,11 @@
       <div class="hidden lg:block flex-shrink-0 lg:w-64 xl:w-72 bg-white shadow-lg ml-6 h-full align-bottom">
         <div class="block p-8">
           <div class="text-xl text-gray-700 tracking-wide font-medium">Availability</div>
-          <div :class="[booksAvailable > 0 ? 'text-green-700' : 'text-red-600', 'mt-1']">
-            Books available: {{booksAvailable}}
+          <div :class="[data.availableCopies > 0 ? 'text-green-700' : 'text-red-600', 'mt-1']">
+            Books available: {{data.availableCopies}}
           </div>
           <div class="pt-2">
-            <button class="h-8 mt-4 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-indigo-800 text-white text-center text-lg md:text-base
+            <button class="w-full h-8 mt-4 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-indigo-800 text-white text-center text-lg md:text-base
             lg:text-lg shadow-md focus:outline-none hover:text-gray-900 rounded-lg">
               reservation
             </button>
@@ -118,7 +118,6 @@ export default {
         { name: 'id', text: 'MySBN' },
         { name: 'takeOut', text: 'Can be taken out' },
       ],
-      booksAvailable: Math.random() > 0.5 ? 169 : 0
     }
   },
   computed: {

@@ -10,7 +10,12 @@
        line-clamp-2 mt-4 md:mt-0">
         {{ data.edition.title.title }}
       </div>
-      <div class="text-xs tracking-wide text-gray-400 line-clamp-2">{{data.edition.title.contributions[0].contributor.name}}</div>
+      <div class="text-xs tracking-wide text-gray-400 line-clamp-2">
+        {{data.edition.title.contributions[0].contributor.name}}
+      </div>
+
+      <div>Row {{}}</div>
+
     </div>
   </div>
 </template>
