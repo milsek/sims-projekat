@@ -16,6 +16,18 @@ public class Book {
     @Column(name = "BOOK_ID")
     private long id;
 
+    public Book() {
+    }
+
+    public Book(long id, BookCondition condition, Edition edition, Line line, BookState bookState, String title) {
+        this.id = id;
+        this.condition = condition;
+        this.edition = edition;
+        this.line = line;
+        this.bookState = bookState;
+        this.title = title;
+    }
+
     @Column
     private BookCondition condition;
 
@@ -41,8 +53,6 @@ public class Book {
     public void setTitle(String title) {
         this.title = title;
     }
-
-    public Book() { }
 
     public long getId() {
         return id;
