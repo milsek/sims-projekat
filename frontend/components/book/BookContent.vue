@@ -56,7 +56,7 @@
             lg:text-lg shadow-md focus:outline-none hover:text-gray-900 rounded-lg">
               reservation
             </button>
-        </div>
+          </div>
         </div>
       </div>
 
