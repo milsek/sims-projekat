@@ -140,11 +140,7 @@ export default {
         {text: 'Book Exchange', icon: 'quran', name: 'exchange'},
         {text: 'Reservations', icon: 'atlas', name: 'reservations'},
         {text: 'Register New Members', icon: 'user-plus', name: 'register'},
-        {text: 'Search Books N Stuff', icon: 'search',  name: 'search'},
-      ],
-      personalOptions: [
-        {text: 'Account Settings', icon: 'user-cog', name: 'settings'},
-        {text: 'Sign Out', icon: 'sign-out-alt', name: 'signout'},
+        {text: 'Search Books', icon: 'search',  name: 'search'},
       ],
       currentActive: 'exchange',
       sidebarOpen: false
