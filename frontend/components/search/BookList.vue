@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <div v-if="booklist.length">
       <div class="block min-h-screen">
         <div v-for="book in booklist" :key="book.id">
@@ -62,11 +62,13 @@ export default {
 
       })
       
-    }
-    ,
+    },
     showMore(page) {
       this.pageIndex = page - 1
       this.getBooks()
+    },
+    refreshPagination() {
+      this.pageIndex = 0
     }
   },
   computed: {
