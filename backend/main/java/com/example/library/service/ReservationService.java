@@ -13,7 +13,8 @@ import java.util.List;
 public class ReservationService {
 
     @Autowired
-    private BookReservationRepository reservationRepository;
+    private BookReservationRepository bookReservationRepository;
+
 
     @Autowired
     private MemberRepository memberRepository;
@@ -21,5 +22,21 @@ public class ReservationService {
     public List<Reservation> getReservationByMemberId(Long id) {
         Member member = memberRepository.findById(id).get();
         return member.getReservations();
+    }
+
+    public Boolean isReservationPossibleByMemberId(Long id){
+        int booksTakenOrReserved = 0;
+        Member member = memberRepository.findById(id).get();
+        List<Reservation> reservations = member.getReservations();
+        System.out.println(reservations.size()+"AAAAAAAAAAAAA");
+        for(Reservation reservation : reservations){
+            System.out.println(reservation.getReservationState().name());
+            if(reservation.getReservationState().name().equals("APPROVED") ||
+                    reservation.getReservationState().name().equals("SEIZED")){
+                booksTakenOrReserved++;
+            }
+        }
+
+        return booksTakenOrReserved > 2;
     }
 }

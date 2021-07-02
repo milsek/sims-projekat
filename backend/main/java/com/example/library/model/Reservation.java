@@ -1,10 +1,12 @@
 package com.example.library.model;
 
+import com.example.library.config.ReservationStateConverter;
 import org.hibernate.search.annotations.IndexedEmbedded;
 
 import javax.persistence.*;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
+import java.util.Locale;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -23,30 +25,18 @@ public abstract class Reservation {
     private LocalDate dateReturned;
 
     @Column(name = "state")
-    @IndexedEmbedded(depth = 1)
-    private String stateName;
+    @Convert(converter = ReservationStateConverter.class)
+    private ReservationState reservationState;
 
-    private transient ReservationState reservationState;
-
-    public Reservation(Long id, LocalDate dateTaken, LocalDate dateReturned, String stateName) {
+    public Reservation(Long id, LocalDate dateTaken, LocalDate dateReturned, ReservationState reservationState) {
         this.id = id;
         this.dateTaken = dateTaken;
         this.dateReturned = dateReturned;
-        this.stateName = stateName;
+        this.reservationState = reservationState;
     }
 
     public Reservation() {
-        reservationState = ReservationState.NEW;
-    }
 
-    public String getStateName() {
-        stateName = reservationState.name();
-        return stateName;
-    }
-
-    public void setStateName(String stateName) {
-        this.stateName = stateName;
-        this.reservationState = ReservationState.valueOf(stateName);
     }
 
 
@@ -57,6 +47,7 @@ public abstract class Reservation {
     public void setReservationState(ReservationState reservationState) {
         this.reservationState = reservationState;
     }
+
 
     public void setId(Long id) {
         this.id = id;
