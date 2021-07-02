@@ -8,7 +8,7 @@
 
     <div class="block text-center mx-auto mt-12 w-4/5 md:w-11/12 lg:w-3/5 xl:w-1/2">
       <div>
-        <SelectedBook v-if="book_selected" :data=selected_book />
+        <SelectedBook v-if="book_selected" :data="selected_book"/>
       </div>
     </div>
 
@@ -36,6 +36,7 @@ export default {
       axios.get("/api/book/?id=" + this.data_id)
         .then(response => {
           this.selected_book = response.data;
+          console.log(response.data)
           this.book_selected = true;
         });
     }

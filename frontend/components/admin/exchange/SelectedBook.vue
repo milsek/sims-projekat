@@ -1,15 +1,11 @@
 <template>
   <div class="block md:flex mx-auto rounded-xl border border-dashed border-gray-300 p-6">
     <div class="flex-shrink-0">
-<<<<<<< HEAD
-      <img :src="data.edition.imageLarge" alt=""
-      class="text-center sm:text-left rounded-md  w-36 lg:w-40 h-56
-      lg:h-60 object-fill mx-auto" draggable="false">
-=======
+
       <img :src="data.editionImageLarge" alt=""
       class="text-center sm:text-left rounded-md
       w-36 lg:w-40 h-56 lg:h-60 object-fill mx-auto" draggable="false">
->>>>>>> 435dd0c58eef3e5701d71e32f0295feac77aefa6
+
     </div>
     <div class="md:pl-4 text-center md:text-left">
       <div class="text-xl md:text-base lg:text-xl font-bold text-blue-900 opacity-90
@@ -22,7 +18,7 @@
 
       <div class="mt-2 text-sm font-medium tracking-wide text-gray-500 ">
         <div class="line-clamp-2">ID: {{data.id}}</div>
-        <div class="line-clamp-2">Isle: {{data.lineIsleName}}   Row: {{data.lineNumber}}</div>
+        <div class="line-clamp-2">Isle: {{data.lineIsleName}} - Row: {{data.lineNumber}}</div>
         <div class="line-clamp-2">Condition: <span :class="[colorCondition]" class="font-bold">{{ data.condition }}</span></div>
         <div class="line-clamp-2">State: {{ data.bookState }}</div>
       </div>
@@ -31,6 +27,12 @@
         <button @click="showUserModal = !showUserModal" class="h-9 mt-4 px-8 md:px-6 bg-blue-700 hover:bg-blue-900
          opacity-90 text-white text-center text-lg shadow-md focus:outline-none rounded-lg">
           lend book
+        </button>
+      </div>
+      <div v-if="data.bookState === 'TAKEN'" class="mt-5">
+        <button @click="markBookReturned" class="h-9 mt-4 px-8 md:px-6 bg-green-600 hover:bg-green-800
+         opacity-90 text-white text-center text-lg shadow-md focus:outline-none rounded-lg">
+          mark returned
         </button>
       </div>
 
@@ -55,6 +57,9 @@ export default {
   methods: {
     closeModal () {
       this.showUserModal = false
+    },
+    markBookReturned () {
+      console.log("Book is returned.")
     }
   },
   computed: {
