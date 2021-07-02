@@ -56,4 +56,10 @@ public class SearchController {
     public List<AutocompleteUserDto> autocompleteUserId(@RequestParam(name = "id") String id) {
         return userService.autocompleteUserId(id);
     }
+
+    @GetMapping(path = "/genre/")
+    @ResponseBody
+    private Set<Edition> searchByGenre(@RequestParam(name = "id") String id) {
+        return bookTitleService.getEditionsByGenreId(Long.valueOf(id));
+    }
 }
