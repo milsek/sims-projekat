@@ -3,6 +3,8 @@ package com.example.library.controller;
 import com.example.library.model.Book;
 import com.example.library.model.Edition;
 import com.example.library.model.Member;
+import com.example.library.model.dto.AutocompleteBookDto;
+import com.example.library.model.dto.AutocompleteUserDto;
 import com.example.library.model.dto.SearchEditionDto;
 import com.example.library.service.BookService;
 import com.example.library.service.BookTitleService;
@@ -45,13 +47,13 @@ public class SearchController {
 
     @GetMapping(path = "/autocomplete-book-id/")
     @ResponseBody
-    public Set<Book> autocompleteBookId(@RequestParam(name = "id") String id) {
+    public Set<AutocompleteBookDto> autocompleteBookId(@RequestParam(name = "id") String id) {
         return bookService.autocompleteBookId(id);
     }
 
     @GetMapping(path = "/autocomplete-user-id/")
     @ResponseBody
-    public List<Member> autocompleteUserId(@RequestParam(name = "id") String id) {
+    public List<AutocompleteUserDto> autocompleteUserId(@RequestParam(name = "id") String id) {
         return userService.autocompleteUserId(id);
     }
 }
