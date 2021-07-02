@@ -1,13 +1,9 @@
 package com.example.library.service;
 
-import com.example.library.model.Account;
-import com.example.library.model.Edition;
-import com.example.library.model.Member;
-import com.example.library.model.User;
-import com.example.library.model.dto.AutocompleteUserDto;
-import com.example.library.model.dto.SearchEditionDto;
-import com.example.library.model.dto.UserLoginDto;
+import com.example.library.model.*;
+import com.example.library.model.dto.*;
 import com.example.library.repository.AccountRepository;
+import com.example.library.repository.LibrarianRepository;
 import com.example.library.repository.MemberRepository;
 import com.example.library.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -28,6 +24,9 @@ public class UserService {
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private LibrarianRepository librarianRepository;
 
     @Autowired
     private AccountRepository accountRepository;
@@ -52,6 +51,34 @@ public class UserService {
         Map<Long, List<Member>> result = memberRepository.searchMembers(query, 1, 5);
         List<Member> members = result.get(result.keySet().toArray()[0]);
         return members.stream().map(this::entityToDto).collect(Collectors.toList());
+    }
+
+    public String registerMember(MemberRegisterDto memberRegisterDto) {
+        try {
+            Account account = modelMapper.map(memberRegisterDto, Account.class);
+            Member member = modelMapper.map(memberRegisterDto, Member.class);
+            member.setAccount(account);
+
+            accountRepository.save(account);
+            memberRepository.save(member);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        return "Member registered.";
+    }
+
+    public String registerLibrarian(LibrarianRegisterDto librarianRegisterDto) {
+        try {
+            Account account = modelMapper.map(librarianRegisterDto, Account.class);
+            Librarian librarian = modelMapper.map(librarianRegisterDto, Librarian.class);
+            librarian.setAccount(account);
+
+            accountRepository.save(account);
+            librarianRepository.save(librarian);
+        } catch (Exception e) {
+            return "An error occurred.";
+        }
+        return "Librarian registered.";
     }
 
     private UserLoginDto entityToDto(User user) {

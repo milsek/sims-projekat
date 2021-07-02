@@ -33,7 +33,6 @@ public abstract class User {
     @Transient
     public abstract Integer getDiscriminatorValue();
 
-
     @OneToOne(targetEntity = Account.class)
     protected Account account;
 
@@ -67,5 +66,13 @@ public abstract class User {
 
     public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
