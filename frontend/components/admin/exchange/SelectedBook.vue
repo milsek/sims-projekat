@@ -5,7 +5,7 @@
       class="text-center sm:text-left rounded-md
       w-36 lg:w-40 h-56 lg:h-60 object-fill mx-auto" draggable="false">
     </div>
-    <div class="md:pl-4 text-center md:text-left">
+    <div class="md:pl-4 text-center md:text-left" v-if="data.bookState">
       <div class="text-xl md:text-base lg:text-xl font-bold text-blue-900 opacity-90
        line-clamp-2 mt-4 md:mt-0">
         {{ data.editionTitleTitle }}
@@ -28,14 +28,14 @@
         </button>
       </div>
       <div v-if="data.bookState === 'TAKEN'" class="mt-5">
-        <button @click="markBookReturned" class="h-9 mt-4 px-8 md:px-6 bg-green-600 hover:bg-green-800
+        <button @click="markBookReturned" class="h-9 mt-4 px-8 md:px-6 bg-gray-700 hover:bg-gray-800
          opacity-90 text-white text-center text-lg shadow-md focus:outline-none rounded-lg">
           mark returned
         </button>
       </div>
 
       <div v-if="showUserModal">
-        <UserModal v-on:close-modal="closeModal"/>
+        <UserModal @close-modal="closeModal" @lend-book="lendBook" ref="userModal"/>
       </div>
 
     </div>
@@ -44,6 +44,7 @@
 
 <script>
 import UserModal from '~/components/admin/exchange/UserModal'
+import axios from 'axios';
 export default {
   props: [ "data" ],
   components: { UserModal },
@@ -57,7 +58,20 @@ export default {
       this.showUserModal = false
     },
     markBookReturned () {
+      let that = this;
+      axios
+        .post("/api/return-book/?id=" + this.data.id)
+        .then(x => {that.data.bookState = 'IN_STOCK';})
+        .catch(error => {
+          console.log("Book is NOT returned.")
+        });
       console.log("Book is returned.")
+    },
+    lendBook(userId) {
+      console.log('lending book to ', userId)
+      
+      // success msg, true does closeModal, false shows an error msg 
+      this.$refs.userModal.successfulLending(false)
     }
   },
   computed: {

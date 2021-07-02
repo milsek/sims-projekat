@@ -39,6 +39,12 @@ public class Member extends User {
         this.memberships = memberships;
     }
 
+
+    public void addReservation(Reservation reservation) {
+        this.reservations.add(reservation);
+    }
+
+
     @Override
     public Integer getDiscriminatorValue() {
         DiscriminatorValue val = this.getClass().getAnnotation( DiscriminatorValue.class );

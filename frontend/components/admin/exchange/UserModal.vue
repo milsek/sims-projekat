@@ -13,8 +13,11 @@
             what="members" how="autocomplete-user-id" class=""/>
         </div>
 
-        <div v-if="user_selected" class="block px-6 sm:px-12 sm:p-6">
-          <SelectedUser :id=user_id :name=user_name :surname=user_surname />
+        <div v-if="userSelected" class="block px-6 sm:px-12 sm:p-6">
+          <SelectedUser :id=userId :name=userName :surname=userSurname />
+          <div v-if="errorMsg" class="text-lg font-medium text-red-600 text-center mx-auto">
+            {{errorMsg}}
+          </div>
         </div>
 
       <div class="bg-gray-100 px-4 py-5 mt-8 sm:px-6 flex justify-end">
@@ -23,8 +26,8 @@
         hover:bg-gray-300 focus:outline-none w-auto sm:text-sm">
           Cancel
           </button>
-          <button type="button" class="inline-flex justify-center rounded-md shadow-sm
-          px-6 py-2 bg-blue-700 text-base font-medium text-white hover:bg-blue-900
+          <button @click="lendBook" :disabled="!userSelected" :class="[!userSelected ? 'bg-gray-600' : 'bg-blue-700 hover:bg-blue-900']" type="button" class="inline-flex justify-center rounded-md shadow-sm
+          px-6 py-2 text-base font-medium text-white
           focus:outline-none ml-3 w-auto sm:text-sm">
           Lend
           </button>
@@ -42,11 +45,11 @@ export default {
   components: { MiniSearchBar, SelectedUser },
   data () {
     return {
-      user_selected : false,
-      user_id : -1,
-      user_name : "",
-      user_surname: "",
-      data_id: "",
+      userSelected : false,
+      userId : -1,
+      userName : "",
+      userSurname: "",
+      errorMsg: ''
     }
   },
   methods: {
@@ -54,11 +57,21 @@ export default {
       this.$emit('close-modal')
     },
     userIsSelected(data) {
-      this.user_selected = true;
-      this.user_id = data.id;
-      this.user_name = data.name;
-      this.user_surname = data.surname;
+      this.userSelected = true;
+      this.userId = data.id;
+      this.userName = data.name;
+      this.userSurname = data.surname;
     },
+    lendBook() {
+      this.$emit('lend-book', this.userId)
+    },
+    successfulLending(success) {
+      if (success) {
+        this.errorMsg = ''
+        this.closeModal()
+      }
+      else this.errorMsg='Lending failed'
+    }
   },
 }
 </script>

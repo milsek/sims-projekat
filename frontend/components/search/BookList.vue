@@ -49,9 +49,9 @@ export default {
       .then(response => {
         this.totalBooks = response.data.hitCount;
         this.totalPages = Math.ceil(this.totalBooks/this.resultsPerPage);
-        console.log("BRUH");
+        
         this.booklist = response.data.displayDtoList;
-        console.log(this.booklist);
+
         let that = this;
         setTimeout(function() {
             if (that.booklist.length == 0) {
@@ -73,11 +73,11 @@ export default {
   },
   computed: {
     hasMorePages () {
-      if (this.pageIndex === this.totalPages-1) {
+      if (this.pageIndex < this.totalPages-1) {
         return true
       }
       else {
-        false
+        return false
       }
     }
   }

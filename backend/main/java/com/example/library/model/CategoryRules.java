@@ -24,4 +24,28 @@ public class CategoryRules {
     public Long getId() {
         return id;
     }
+
+    public int getNumOfDays() {
+        return numOfDays;
+    }
+
+    public void setNumOfDays(int numOfDays) {
+        this.numOfDays = numOfDays;
+    }
+
+    public int getNumOfBooks() {
+        return numOfBooks;
+    }
+
+    public void setNumOfBooks(int numOfBooks) {
+        this.numOfBooks = numOfBooks;
+    }
+
+    public MemberType getCategory() {
+        return category;
+    }
+
+    public void setCategory(MemberType category) {
+        this.category = category;
+    }
 }

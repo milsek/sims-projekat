@@ -23,6 +23,24 @@ public class BookReservation extends Reservation {
     @IndexedEmbedded(depth = 1)
     private Edition edition;
 
+    public BookReservation() {
+        super();
+    }
+
+    public BookReservation(LocalDate dateTaken, LocalDate dateReturned, ReservationState reservationState, LocalDate reservationDate, Book book, Edition edition) {
+        super(dateTaken, dateReturned, reservationState);
+        this.reservationDate = reservationDate;
+        this.book = book;
+        this.edition = edition;
+    }
+
+    public BookReservation(long id, LocalDate dateTaken, LocalDate dateReturned, ReservationState reservationState, LocalDate reservationDate, Book book, Edition edition) {
+        super(id, dateTaken, dateReturned, reservationState);
+        this.reservationDate = reservationDate;
+        this.book = book;
+        this.edition = edition;
+    }
+
     public Edition getEdition() {
         return edition;
     }
