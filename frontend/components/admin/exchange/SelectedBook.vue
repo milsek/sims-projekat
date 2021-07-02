@@ -35,7 +35,7 @@
       </div>
 
       <div v-if="showUserModal">
-        <UserModal v-on:close-modal="closeModal"/>
+        <UserModal @close-modal="closeModal" @lend-book="lendBook" ref="userModal"/>
       </div>
 
     </div>
@@ -61,8 +61,17 @@ export default {
       let that = this;
       axios
         .post("/api/return-book/?id=" + this.data.id)
-        .then(x => {that.data.bookState = 'IN_STOCK';});
+        .then(x => {that.data.bookState = 'IN_STOCK';})
+        .catch(error => {
+          console.log("Book is NOT returned.")
+        });
       console.log("Book is returned.")
+    },
+    lendBook(userId) {
+      console.log('lending book to ', userId)
+      
+      // success msg, true does closeModal, false shows an error msg 
+      this.$refs.userModal.successfulLending(false)
     }
   },
   computed: {
