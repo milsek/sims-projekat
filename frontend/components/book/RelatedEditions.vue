@@ -2,7 +2,7 @@
   <div v-if="related.length" class="pb-10 mt-6 px-6 lg:px-8">
     <div class="px-4 hidden lg:block">
       <VueSlickCarousel :arrows="true" :dots="false" :slidesToShow="3">
-        <div v-for="book in related" :key="book.title.title">
+        <div v-for="book in related" :key="book.id">
           <RelatedEditionCard :data="book" class="px-2"/>
         </div>
 
@@ -23,7 +23,7 @@
 
     <div class="hidden sm:block lg:hidden px-4">
       <VueSlickCarousel :arrows="true" :dots="false" :slidesToShow="2">
-        <div  v-for="book in related" :key="book.title.title">
+        <div  v-for="book in related" :key="book.id">
           <RelatedEditionCard :data="book" class="px-2"/>
         </div>
 
@@ -44,7 +44,7 @@
 
     <div class="sm:hidden px-4">
       <VueSlickCarousel :arrows="true" :dots="false" :slidesToShow="1">
-        <div  v-for="book in related" :key="book.title.title">
+        <div  v-for="book in related" :key="book.id">
           <RelatedEditionCard :data="book" class="px-2"/>
         </div>
 
