@@ -141,6 +141,7 @@ export default {
         {text: 'Reservations', icon: 'atlas', name: 'reservations'},
         {text: 'Register New Members', icon: 'user-plus', name: 'register'},
         {text: 'Search Books', icon: 'search',  name: 'search'},
+        {text: 'Check reviews', icon: 'tasks', name: 'reviews'}
       ],
       currentActive: 'exchange',
       sidebarOpen: false

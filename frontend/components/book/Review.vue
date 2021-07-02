@@ -2,13 +2,13 @@
   <div class="block md:flex mx-auto rounded-xl border border-dashed border-gray-300 p-6 my-1">
 	<div class="flex-shrink-0">
 		<div class="text-center sm:text-left rounded-mdw-36
-					lg:w-48 h-56 lg:h-60 object-fill mx-auto">
+					lg:w-24 h-56 lg:h-60 object-fill mx-auto">
 			<img :src="'https://i.pravatar.cc/150?u=' + review.id" >
 		</div>
 		
 	</div>
 
-	<div class="md:pl-4 text-center md:text-left">
+	<div class="md:pl-3 text-center md:text-left">
 	  <div class="text-xl md:text-base lg:text-xl font-bold text-blue-900 opacity-90
 	   line-clamp-2 mt-4 md:mt-0">
 		Ime i prezime
