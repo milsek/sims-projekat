@@ -1,6 +1,8 @@
 package com.example.library.service;
 
+import com.example.library.model.Contributor;
 import com.example.library.model.Edition;
+import com.example.library.model.dto.AuthorDisplayDto;
 import com.example.library.model.dto.EditionDisplayDto;
 import com.example.library.repository.EditionRepository;
 import org.modelmapper.ModelMapper;
@@ -13,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -66,7 +69,19 @@ public class EditionService {
         return editions.stream().map(this::entityToDto).collect(Collectors.toSet());
     }
 
+
+
     private EditionDisplayDto entityToDto(Edition edition) {
         return modelMapper.map(edition, EditionDisplayDto.class);
+    }
+
+    private AuthorDisplayDto entityToDto(Contributor author) {
+        return modelMapper.map(author, AuthorDisplayDto.class);
+    }
+
+    public List<AuthorDisplayDto> getPopularAuthors() {
+        return editionRepository.findTop10ByOrderByRatingDesc()
+                .stream().map(x -> { return entityToDto(x.getTitle().getContributions().get(0).getContributor()); } )
+                .collect(Collectors.toList());
     }
 }

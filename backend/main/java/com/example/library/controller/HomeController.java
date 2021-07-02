@@ -1,6 +1,7 @@
 package com.example.library.controller;
 
 import com.example.library.model.Edition;
+import com.example.library.model.dto.AuthorDisplayDto;
 import com.example.library.model.dto.EditionDisplayDto;
 import com.example.library.service.EditionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +29,9 @@ public class HomeController {
         return editionService.getTopTen();
     }
 
+    @GetMapping(path = "/popular-authors")
+    @ResponseBody
+    public List<AuthorDisplayDto> getPopularAuthors() {
+        return editionService.getPopularAuthors();
+    }
 }

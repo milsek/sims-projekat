@@ -9,6 +9,7 @@ import org.hibernate.search.annotations.IndexedEmbedded;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -90,7 +91,7 @@ public class Edition {
             inverseJoinColumns = @JoinColumn(name = "contribution_id")
     )
     @IndexedEmbedded(depth = 3)
-    private Set<Contribution> contributions;
+    private List<Contribution> contributions;
 
     @OneToMany(mappedBy = "edition")
     private Set<Book> copies;
@@ -212,11 +213,11 @@ public class Edition {
         this.publisher = publisher;
     }
 
-    public Set<Contribution> getContributions() {
+    public List<Contribution> getContributions() {
         return contributions;
     }
 
-    public void setContributions(Set<Contribution> contributions) {
+    public void setContributions(List<Contribution> contributions) {
         this.contributions = contributions;
     }
 
