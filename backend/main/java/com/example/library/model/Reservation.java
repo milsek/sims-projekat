@@ -12,8 +12,7 @@ import java.util.Locale;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Reservation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="id",updatable = false,nullable = false)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @IndexedEmbedded(depth = 1)
     protected Long id;
 
