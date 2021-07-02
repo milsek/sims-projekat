@@ -12,7 +12,8 @@ import java.util.Locale;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Reservation {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="id",updatable = false,nullable = false)
     @IndexedEmbedded(depth = 1)
     protected Long id;
 
@@ -30,6 +31,12 @@ public abstract class Reservation {
 
     public Reservation(Long id, LocalDate dateTaken, LocalDate dateReturned, ReservationState reservationState) {
         this.id = id;
+        this.dateTaken = dateTaken;
+        this.dateReturned = dateReturned;
+        this.reservationState = reservationState;
+    }
+
+    public Reservation(LocalDate dateTaken, LocalDate dateReturned, ReservationState reservationState) {
         this.dateTaken = dateTaken;
         this.dateReturned = dateReturned;
         this.reservationState = reservationState;
