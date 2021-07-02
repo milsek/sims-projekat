@@ -54,7 +54,6 @@ public abstract class Reservation {
         this.reservationState = reservationState;
     }
 
-
     public void setId(Long id) {
         this.id = id;
     }

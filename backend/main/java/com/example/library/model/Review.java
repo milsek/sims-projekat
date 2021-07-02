@@ -15,14 +15,13 @@ public class Review {
     private double rating;
 
     @Column
-    private boolean allowed;
+    private boolean allowed = false;
 
     @ManyToOne
     private Edition edition;
 
-    @OneToOne
-    @Column(name = "book_reservation_id")
-    private Review review;
+    @OneToOne(mappedBy = "review")
+    private BookReservation bookReservation;
 
     public Edition getEdition() {
         return edition;
@@ -62,5 +61,13 @@ public class Review {
 
     public Long getId() {
         return id;
+    }
+
+    public BookReservation getBookReservation() {
+        return bookReservation;
+    }
+
+    public void setBookReservation(BookReservation bookReservation) {
+        this.bookReservation = bookReservation;
     }
 }

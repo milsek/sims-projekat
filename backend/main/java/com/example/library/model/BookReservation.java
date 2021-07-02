@@ -24,7 +24,7 @@ public class BookReservation extends Reservation {
     private Edition edition;
 
     @OneToOne
-    @Column(name = "review_id")
+    @JoinColumn(name = "REVIEW_ID")
     private Review review;
 
     public BookReservation() {
@@ -67,5 +67,13 @@ public class BookReservation extends Reservation {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public Review getReview() {
+        return review;
+    }
+
+    public void setReview(Review review) {
+        this.review = review;
     }
 }

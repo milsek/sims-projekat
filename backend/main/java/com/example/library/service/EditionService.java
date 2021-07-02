@@ -71,6 +71,10 @@ public class EditionService {
         return editions.stream().map(this::entityToDto).collect(Collectors.toSet());
     }
 
+    public boolean editionExistsById(Long id) {
+        return editionRepository.existsById(id);
+    }
+
     private EditionDisplayDto entityToDto(Edition edition) {
         return modelMapper.map(edition, EditionDisplayDto.class);
     }

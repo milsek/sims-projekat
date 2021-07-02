@@ -18,6 +18,7 @@ public class ReservationService {
 
     @Autowired
     private BookReservationRepository bookReservationRepository;
+
     @Autowired
     private ReservationRepository reservationRepository;
 
@@ -34,7 +35,7 @@ public class ReservationService {
     private BookRepository bookRepository;
 
 
-    public List<Reservation> getReservationByMemberId(Long id) {
+    public List<Reservation> getReservationsByMemberId(Long id) {
         Member member = memberRepository.findById(id).get();
         return member.getReservations();
     }
