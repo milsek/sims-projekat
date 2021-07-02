@@ -16,7 +16,7 @@
 
       <div class="mt-2 text-sm font-medium tracking-wide text-gray-500 ">
         <div class="line-clamp-2">ID: {{data.id}}</div>
-        <div class="line-clamp-2">Isle: {{data.lineIsleName}}   Row: {{data.lineNumber}}</div>
+        <div class="line-clamp-2">Isle: {{data.lineIsleName}} - Row: {{data.lineNumber}}</div>
         <div class="line-clamp-2">Condition: <span :class="[colorCondition]" class="font-bold">{{ data.condition }}</span></div>
         <div class="line-clamp-2">State: {{ data.bookState }}</div>
       </div>
@@ -25,6 +25,12 @@
         <button @click="showUserModal = !showUserModal" class="h-9 mt-4 px-8 md:px-6 bg-blue-700 hover:bg-blue-900
          opacity-90 text-white text-center text-lg shadow-md focus:outline-none rounded-lg">
           lend book
+        </button>
+      </div>
+      <div v-if="data.bookState === 'TAKEN'" class="mt-5">
+        <button @click="markBookReturned" class="h-9 mt-4 px-8 md:px-6 bg-green-600 hover:bg-green-800
+         opacity-90 text-white text-center text-lg shadow-md focus:outline-none rounded-lg">
+          mark returned
         </button>
       </div>
 
@@ -49,6 +55,9 @@ export default {
   methods: {
     closeModal () {
       this.showUserModal = false
+    },
+    markBookReturned () {
+      console.log("Book is returned.")
     }
   },
   computed: {
