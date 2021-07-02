@@ -3,6 +3,7 @@ package com.example.library.repository;
 import com.example.library.model.Edition;
 import com.example.library.model.Member;
 import com.example.library.model.User;
+import org.apache.lucene.search.Query;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.FullTextQuery;
 import org.hibernate.search.jpa.Search;
@@ -28,7 +29,7 @@ public class MemberRepositoryImpl {
                 .buildQueryBuilder()
                 .forEntity(Member.class)
                 .get();
-        org.apache.lucene.search.Query luceneQuery;
+        Query luceneQuery;
         if (text.isEmpty())
         {
             luceneQuery = queryBuilder.all().createQuery();
@@ -37,11 +38,8 @@ public class MemberRepositoryImpl {
             return retVal;
         }
         else {
-            text = text;
             luceneQuery = queryBuilder
                     .keyword()
-                    .fuzzy()
-                    .withEditDistanceUpTo(1)
                     .onFields("member_id", "member_name", "member_surname")
                     .matching(text)
                     .createQuery();
