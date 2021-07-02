@@ -1,8 +1,11 @@
 package com.example.library.service;
 
 import com.example.library.model.Account;
+import com.example.library.model.Edition;
 import com.example.library.model.Member;
 import com.example.library.model.User;
+import com.example.library.model.dto.AutocompleteUserDto;
+import com.example.library.model.dto.SearchEditionDto;
 import com.example.library.model.dto.UserLoginDto;
 import com.example.library.repository.AccountRepository;
 import com.example.library.repository.MemberRepository;
@@ -12,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -43,12 +47,18 @@ public class UserService {
         return set;
     }
 
-    public List<Member> autocompleteUserId(String query) {
+    public List<AutocompleteUserDto> autocompleteUserId(String query) {
+        AutocompleteUserDto dto = new AutocompleteUserDto();
         Map<Long, List<Member>> result = memberRepository.searchMembers(query, 1, 5);
-        return result.get(result.keySet().toArray()[0]);
+        List<Member> members = result.get(result.keySet().toArray()[0]);
+        return members.stream().map(this::entityToDto).collect(Collectors.toList());
     }
 
     private UserLoginDto entityToDto(User user) {
         return modelMapper.map(user, UserLoginDto.class);
+    }
+
+    private AutocompleteUserDto entityToDto(Member member) {
+        return modelMapper.map(member, AutocompleteUserDto.class);
     }
 }
