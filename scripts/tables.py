@@ -203,11 +203,12 @@ class BOOK_RESERVATION:
         self.id = reservation.id
         self.date = date
         self.book_id = book.id
+        self.edition_id = book.edition_id
 
         BOOK_RESERVATION.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO BOOK_RESERVATION VALUES(PARSEDATETIME('{self.date}', 'yyyy-mm-dd'), {self.id}, {self.book_id});"
+        return f"INSERT INTO BOOK_RESERVATION(reservation_date, id, book_id, edition_id) VALUES(PARSEDATETIME('{self.date}', 'yyyy-mm-dd'), {self.id}, {self.book_id}, {self.edition_id});"
 
 
 class PICTURE_BOOK_RESRVATION:
@@ -308,7 +309,7 @@ class BOOK:
     def __init__(self, edition):
         self.id = len(BOOK.instances)
         self.condition = random.choice([0,0,0,1,1,1,1,2,2,3])
-        self.state_name = 'inStock' # TODO: Other states
+        self.state_name = 0 # TODO: Other states
         self.edition_id = edition.id
         self.line_id = random.choice(LINE.instances).id
 
@@ -316,7 +317,7 @@ class BOOK:
 
     def toSql(self):
         # TODO: Check order of values
-        return f"INSERT INTO BOOK VALUES({self.id}, {self.condition}, '{escape(self.state_name)}', {self.edition_id}, {self.line_id});"
+        return f"INSERT INTO BOOK(book_id, condition, state, edition_id, line_id) VALUES({self.id}, {self.condition}, {self.state_name}, {self.edition_id}, {self.line_id});"
 
 
 class LINE:   

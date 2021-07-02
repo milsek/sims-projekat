@@ -11,7 +11,7 @@
             <UserSuggestion @user-is-selected="selected($event)" v-bind:name="item.name" v-bind:id="item.id" v-bind:surname="item.surname" />
           </li>
           <li v-show="how == 'autocomplete-book-id'" v-for="item in suggestions" :key="'a' + item.id">
-            <BookSuggestion @book-is-selected="selected($event)" v-bind:title="item.title" v-bind:id="item.id" />
+            <BookSuggestion @book-is-selected="selected($event)" v-bind:title="item.editionTitleTitle" v-bind:id="item.id" />
           </li>
           <li v-if="suggestions.length===0 && query.length != 0 && !isSelected">Item not found</li>
         </ul>
@@ -49,8 +49,6 @@ export default {
       });
     },
     selected(data) {
-      console.log("MSB");
-      console.log(data);
       this.suggestions = [];
       this.isSelected = true;
       if(this.how == "autocomplete-book-id") {

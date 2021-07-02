@@ -18,6 +18,19 @@ public class BookReservation extends Reservation {
     @IndexedEmbedded(depth = 1)
     private Book book;
 
+    @ManyToOne
+    @JoinColumn(name = "EDITION_ID")
+    @IndexedEmbedded(depth = 1)
+    private Edition edition;
+
+    public Edition getEdition() {
+        return edition;
+    }
+
+    public void setEdition(Edition edition) {
+        this.edition = edition;
+    }
+
     public LocalDate getReservationDate() {
         return reservationDate;
     }
