@@ -17,9 +17,7 @@
 import axios from "axios";
 
 export default {
-  // getPopularAuthors
   data () {
-
     return {
       popularAuthors: []
     }
@@ -42,6 +40,15 @@ export default {
             );
           }
           );
+          let ids = []
+          let newlist = []
+          for (let a of this.popularAuthors) {
+            if (!ids.includes(a.id)) {
+              newlist.push(a)
+              ids.push(a.id)
+            }
+          }
+          this.popularAuthors = newlist
         });
       },
     searchAuthor(name) {
