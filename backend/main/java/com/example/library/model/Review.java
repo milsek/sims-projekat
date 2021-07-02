@@ -17,6 +17,17 @@ public class Review {
     @Column
     private boolean allowed;
 
+    @ManyToOne
+    private Edition edition;
+
+    public Edition getEdition() {
+        return edition;
+    }
+
+    public void setEdition(Edition edition) {
+        this.edition = edition;
+    }
+
     public String getContent() {
         return content;
     }

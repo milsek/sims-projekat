@@ -60,6 +60,25 @@ public class Edition {
     @Column
     private int availableCopies;
 
+    @OneToMany(mappedBy = "edition")
+    private List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public Set<Book> getCopies() {
+        return copies;
+    }
+
+    public void setCopies(Set<Book> copies) {
+        this.copies = copies;
+    }
+
     @ManyToMany
     @JoinTable(
             name = "edition_content",
