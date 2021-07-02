@@ -13,7 +13,7 @@
          text-base md:text-sm lg:text-base tracking-wide line-clamp-2">
           {{ data.titleTitle }}
         </NuxtLink>
-        <div class="mb-2 font-sans text-sm font-thin text-gray-400 tracking-wider line-clamp-2">by {{data.author}}</div>
+        <div class="mb-2 font-sans text-sm font-thin text-gray-400 tracking-wider line-clamp-2">by {{data.authorName}}</div>
         <div class="pb-0 inline-block font-thin align-middle text-sm text-gray-400">Reads: {{readsInThousands}}</div>
         <div class="flow">
           <img :src="require(`@/assets/icons/star.svg`)" alt="" class="inline-block align-middle w-3 h-3 my-0" draggable="false">

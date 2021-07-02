@@ -10,9 +10,9 @@
       <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}"
       class="m-auto sm:m-0 text-sm font-bold text-blue-900 opacity-70
        line-clamp-2 hover:text-blue-800 hover:opacity-90 w-32">
-        {{ data.title }}
+        {{ data.titleTitle }}
       </NuxtLink>
-      <div class="m-auto sm:m-0 text-xs tracking-wide text-gray-400 line-clamp-2">{{data.author}}</div>
+      <div class="m-auto sm:m-0 text-xs tracking-wide text-gray-400 line-clamp-2">{{data.authorName}}</div>
     </div>
   </div>
 </template>

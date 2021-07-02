@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="booklist.length">
+    <div v-if="booklist.length > 0">
       <div class="block min-h-screen">
         <div v-for="book in booklist" :key="book.id">
           <BookCard :data="book" />
@@ -47,18 +47,18 @@ export default {
       const text = this.$store.state.search.searchValue ? "text=" + this.$store.state.search.searchValue.trim() : ''
       axios.get(`/api/fullSearch?${text}&page=${this.pageIndex + 1}&amount=${this.resultsPerPage}`)
       .then(response => {
-        this.totalBooks = Object.keys(response.data)[0]
-        this.totalPages = Math.ceil(this.totalBooks/this.resultsPerPage)
-        this.booklist = Object.values(response.data)[0]
-        
-        let that = this
+        this.totalBooks = response.data.hitCount;
+        this.totalPages = Math.ceil(this.totalBooks/this.resultsPerPage);
+        console.log("BRUH");
+        this.booklist = response.data.displayDtoList;
+        console.log(this.booklist);
+        let that = this;
         setTimeout(function() {
-          if (that.booklist) {
-            if (!that.booklist.length) {
-              that.loadMessage = 'No results.'
+            if (that.booklist.length == 0) {
+              that.loadMessage = 'No results.';
             }
-          }
-        }, 1500)
+          
+        }, 1500);
 
       })
       

@@ -3,6 +3,7 @@ package com.example.library.controller;
 import com.example.library.model.Book;
 import com.example.library.model.Edition;
 import com.example.library.model.Member;
+import com.example.library.model.dto.SearchEditionDto;
 import com.example.library.service.BookService;
 import com.example.library.service.BookTitleService;
 import com.example.library.service.EditionService;
@@ -34,12 +35,12 @@ public class SearchController {
 
     @GetMapping(path = "fullSearch")
     @ResponseBody
-    public Map<Long, List<Edition>> searchEditions(@RequestParam(name = "text", required = false) String text,
+    public SearchEditionDto searchEditions(@RequestParam(name = "text", required = false) String text,
                                                    @RequestParam(name = "page") int page,
                                                    @RequestParam(name = "amount") int amount) {
         if(text == null)
             text = "";
-        return new HashMap<Long, List<Edition>>(editionService.searchEditions(text, page, amount));
+        return editionService.searchEditions(text, page, amount);
     }
 
     @GetMapping(path = "/autocomplete-book-id/")

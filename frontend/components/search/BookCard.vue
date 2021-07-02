@@ -17,7 +17,7 @@
       <div class="inline-block font-display pl-4 md:pl-6 w-5/6">
         <div class="flex justify-between text-base md:text-xl font-bold">
           <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}" class="hover:text-blue-800 hover:opacity-80 w-auto">
-              {{ data.title.title }}
+              {{ data.titleTitle }}
           </NuxtLink>
           <!-- reservation button
           <div class="hidden sm:block -mt-1">
@@ -28,7 +28,7 @@
           -->
         </div>
         <div class="text-sm font-light pb-2 text-gray-500">
-          {{ data.title.contributions[0].contributor.name }}
+          {{ data.author }}
         </div>
         <div class="text-sm text-justify font-light md:tracking-wide mb-4 
         line-clamp-4 md:line-clamp-2 xl:line-clamp-3 text-gray-400" v-html="data.description">
