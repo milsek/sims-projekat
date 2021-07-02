@@ -29,15 +29,15 @@ export default {
   },
   methods: {
     getAuthors() {
-      axios.get("/api/topreads")
+      axios.get("/api/popular-authors")
         .then(response => {
           response.data.forEach((x) =>
           {
             this.popularAuthors.push
             (
               {
-                name: x.title.contributions[0].contributor.name,
-                id: x.title.contributions[0].contributor.id
+                name: x.name,
+                id: x.id
               }
             );
           }

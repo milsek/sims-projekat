@@ -1,6 +1,7 @@
 package com.example.library.controller;
 
 import com.example.library.model.Edition;
+import com.example.library.model.dto.EditionDisplayDto;
 import com.example.library.service.EditionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +31,8 @@ public class EditionController {
 
     @GetMapping(path = "/related-to/")
     @ResponseBody
-    public Set<Edition> getRelatedEditions(@RequestParam("id") long id)
+    public Set<EditionDisplayDto> getRelatedEditions(@RequestParam("id") long id)
     {
         return editionService.getRelatedEditions(id);
     }
-
 }
