@@ -11,7 +11,7 @@
         
         <div class="flex">
           <div v-for="n in 5" :key="n">
-            <span class='icon is-left w-2 h-2' :class="[rating > n ? 'text-yellow-300' : 'text-gray-300']">
+            <span class='icon is-left w-2 h-2' :class="[rating >= n ? 'text-yellow-300' : 'text-gray-300']">
               <font-awesome-icon :icon="['fas', 'star']"/>
             </span>
           </div>
