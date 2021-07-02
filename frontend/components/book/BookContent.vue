@@ -76,6 +76,7 @@
           text-center text-lg md:text-base lg:text-lg focus:outline-none rounded-lg
           hover:transition duration-300 ease-in-out transform hover:-translate-y-1" v-text="showMore ? 'Show less' : 'Show more'"></button>
         </div>
+
       </div>
     </div>
 
@@ -100,11 +101,11 @@
 	<div class="block w-11/12 mt-6 mx-auto bg-white shadow-lg">
       <div class="block p-8 w-full">
         <div class="text-xl text-gray-700 tracking-wide font-medium">Reviews</div>
-        <ul class="options pb-2">
-          <li v-for="item in data.reviews" :key="item.id">
-            <Review v-bind:review="item" />
-          </li>
-        </ul>
+        <div class="options pb-2 mt-4 space-y-4">
+          <div v-for="item in data.reviews" :key="item.id">
+            <Review v-bind:review="item"/>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -113,8 +114,8 @@
 </template>
 
 <script>
-import RelatedEditions from './RelatedEditions'
-import Review from './Review.vue'
+import RelatedEditions from '~/components/book/RelatedEditions'
+import Review from '~/components/book/Review'
 export default {
   props: ["data"],
   components: { RelatedEditions, Review },
