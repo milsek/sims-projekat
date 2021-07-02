@@ -22,7 +22,8 @@ public interface BookReservationRepository extends JpaRepository<BookReservation
     @Query(value = "select br.*, r.* from book_reservation as br join reservation as r on br.id = r.id where r.state = ?1 and br.book_id = ?2", nativeQuery = true)
     public List<BookReservation> findByReservationStateAndBookId(String reservationState, Long book_id);
 
-
+    @Query(value = "select r.user_id from reservation r where r.id=?1", nativeQuery = true)
+    public Long findUserIdForReservation(long reservationId);
 
     public Map<Long, List<BookReservation>> searchReservations(String text, int page, int amount);
 }

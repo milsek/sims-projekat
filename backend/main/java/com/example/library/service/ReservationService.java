@@ -48,17 +48,18 @@ public class ReservationService {
         bookReservationRepository.save(reservation.get(0));
     }
 
-    public Boolean reserveBook(long bookReservationId, long bookId, long userId){
+    public Boolean reserveBook(long bookReservationId, long bookId){
+        long userId = bookReservationRepository.findUserIdForReservation(bookReservationId);
+        BookReservation bookReservation = bookReservationRepository.findById(bookReservationId).get();
         boolean possible = isReservationPossibleByMemberId(userId);
         Book book = bookRepository.findById(bookId).get();
-        BookReservation bookReservation;
+        bookReservation.setBook(book);
         if(!possible){
-            bookReservation = new BookReservation(bookReservationId,null,null,
-                    ReservationState.DENIED,LocalDate.now(),book,book.getEdition());
+            bookReservation.setReservationState(ReservationState.DENIED);
         }
         else{
-            bookReservation = new BookReservation(bookReservationId,null,null,
-                    ReservationState.APPROVED,LocalDate.now(),book,book.getEdition());
+            bookReservation.setReservationState(ReservationState.APPROVED);
+            book.setBookState(BookState.RESERVED);
         }
         bookReservationRepository.save(bookReservation);
         return possible;
