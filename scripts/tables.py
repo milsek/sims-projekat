@@ -56,12 +56,28 @@ class EDITION:
 
         # get other ids
         self.publisher_id = PUBLISHER.with_name(self.publisher_name).id
+        self.genre_ids = []
 
         # generate related instances if they do not exist
         for name in self.author_names:
             CONTRIBUTION.with_contrib_and_type(CONTRIBUTOR.with_name(name), 'author')
-        for name in self.genre_names:
-            GENRE.with_name(name)
+        for names_string in self.genre_names[:3]:
+            genre_nodes = names_string.split(" / ")
+
+            parent_node = None
+            for name in genre_nodes:
+                if not GENRE.exists(name):
+                    current_node = GENRE.with_name(name)
+
+                    if parent_node:
+                        current_node.set_parent_id(parent_node.id)
+                else:
+                    current_node = GENRE.with_name(name)
+                
+                self.genre_ids.append(current_node.id)
+                parent_node = current_node
+
+
         for name in self.tag_names:
             TAG.with_name(name)
 
@@ -78,9 +94,8 @@ class EDITION:
             contributor = CONTRIBUTOR.with_name(name)
             contribution = CONTRIBUTION.with_contrib_and_type(contributor, 'author')
             sql.append(f"INSERT INTO BOOK_TITLE_CONTRIBUTIONS VALUES({self.id}, {contribution.id});")
-        for name in self.genre_names:
-            genre = GENRE.with_name(name)
-            sql.append(f"INSERT INTO BOOK_TITLE_GENRES VALUES({self.id}, {genre.id});")
+        for genre_id in set(self.genre_ids):
+            sql.append(f"INSERT INTO BOOK_TITLE_GENRES(book_title_id, genres_id) VALUES({self.id}, {genre_id});")
         for name in self.tag_names:
             tag = TAG.with_name(name)
             sql.append(f"INSERT INTO EDITION_TAGS VALUES({self.id}, {tag.id});")
@@ -181,9 +196,18 @@ class GENRE:
     def __init__(self, name):
         self.id = len(GENRE.instances)
         self.name = name
+        self.parent_id = 'null'
 
         GENRE.instances.append(self)
         GENRE.map[name] = self
+
+    def set_parent_id(self, parent_id):
+        self.parent_id = parent_id
+
+    def exists(name):
+        if GENRE.map.get(name):
+            return True
+        return False
 
     @staticmethod
     def with_name(name):
@@ -193,7 +217,8 @@ class GENRE:
             return GENRE(name)
 
     def toSql(self):
-        return f"INSERT INTO GENRE VALUES({self.id}, '{escape(self.name)}', null);"
+
+        return f"INSERT INTO GENRE VALUES({self.id}, '{escape(self.name)}', {self.parent_id});"
 
 
 class BOOK_RESERVATION:
