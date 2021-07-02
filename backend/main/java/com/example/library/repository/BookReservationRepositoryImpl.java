@@ -35,10 +35,8 @@ public class BookReservationRepositoryImpl{
             luceneQuery = queryBuilder.all().createQuery();
         }
         else {
-            text = "*" + text + "*";
             luceneQuery = queryBuilder
                     .keyword()
-                    .fuzzy()
                     .onFields("book.id", "book.edition.title.title", "dateTaken", "dateReturned")
                     .boostedTo(5f)
                     .matching(text)
