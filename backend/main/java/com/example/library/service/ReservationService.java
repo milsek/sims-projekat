@@ -28,6 +28,9 @@ public class ReservationService {
     private MemberRepository memberRepository;
 
     @Autowired
+    private MembershipRepository membershipRepository;
+
+    @Autowired
     private BookRepository bookRepository;
 
 
@@ -77,35 +80,16 @@ public class ReservationService {
     }
 
     public Boolean isReservationPossibleByMemberId(Long id){
-        int booksTakenOrReserved = 0;
-        Member member = memberRepository.findById(id).get();
-        booksTakenOrReserved = getBooksTakenOrReserved(member.getReservations());
-        CategoryRules categoryRules = getCategoryRulesForMembershipsNow(member.getMemberships());
-        if(categoryRules == null){
+        long booksTakenOrReserved = reservationRepository.countBooksTakenOrReservedByUserId(id);
+        Membership mem = membershipRepository.getMembershipIdByUserId(id, LocalDate.now().toString());
+        if(mem == null){
             return false;
         }
+        System.out.println(booksTakenOrReserved);
+        CategoryRules categoryRules = mem.getPrice().getCategory();
         int allowedNumberOfBooks = categoryRules.getNumOfBooks();
+        System.out.println(allowedNumberOfBooks);
         return booksTakenOrReserved < allowedNumberOfBooks;
     }
-
-    private CategoryRules getCategoryRulesForMembershipsNow(List<Membership> memberships) {
-        CategoryRules categoryRules = null;
-        for(Membership mem : memberships) {
-            if (mem.getEndDate().isAfter(LocalDate.now()) && mem.getStartDate().isBefore(LocalDate.now())) {
-                categoryRules = mem.getPrice().getCategory();
-            }
-        }
-        return categoryRules;
-    }
-
-    private int getBooksTakenOrReserved(List<Reservation> reservations) {
-        int booksTakenOrReserved = 0;
-        for(Reservation reservation : reservations){
-            if(reservation.getReservationState() == ReservationState.APPROVED ||
-                    reservation.getReservationState() == ReservationState.SEIZED){
-                booksTakenOrReserved++;
-            }
-        }
-        return booksTakenOrReserved;
-    }
 }
+
