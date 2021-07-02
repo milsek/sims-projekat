@@ -15,9 +15,24 @@ public class ReservationController {
     @Autowired
     private ReservationService reservationService;
 
-    @GetMapping(path = "/confirmReservation")
+    @GetMapping(path = "/confirm-reservation")
     @ResponseBody
     public Boolean isReservationPossibleByMemberId(@RequestParam(name = "id", required = false) Long id) {
         return reservationService.isReservationPossibleByMemberId(id);
+    }
+
+    @GetMapping(path = "/reserve-book")
+    @ResponseBody
+    public Boolean reserveBook(@RequestParam(name = "bookReservationId", required = false) Long bookReservationId,
+                               @RequestParam(name = "bookId", required = false) Long bookId,
+                               @RequestParam(name = "userId", required = false) Long userId) {
+        return reservationService.reserveBook(bookReservationId, bookId, userId);
+    }
+
+    @GetMapping(path = "/reserve-edition")
+    @ResponseBody
+    public Boolean reserveEdition(@RequestParam(name = "userId", required = false) Long userId,
+                                  @RequestParam(name = "editionId", required = false) Long editionId) {
+        return reservationService.reserveEdition(userId,editionId);
     }
 }

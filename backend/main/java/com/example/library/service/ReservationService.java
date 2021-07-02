@@ -4,6 +4,7 @@ import com.example.library.model.*;
 import com.example.library.repository.BookReservationRepository;
 import com.example.library.repository.MemberRepository;
 import com.example.library.repository.ReservationRepository;
+import com.example.library.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,14 @@ public class ReservationService {
     private ReservationRepository reservationRepository;
 
     @Autowired
+    private EditionRepository editionRepository;
+
+    @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
+
 
     public List<Reservation> getReservationByMemberId(Long id) {
         Member member = memberRepository.findById(id).get();
@@ -38,6 +46,33 @@ public class ReservationService {
         reservation.get(0).setReservationState(ReservationState.RETURNED);
         reservation.get(0).setDateReturned(LocalDate.now());
         bookReservationRepository.save(reservation.get(0));
+    }
+
+    public Boolean reserveBook(long bookReservationId, long bookId, long userId){
+        boolean possible = isReservationPossibleByMemberId(userId);
+        Book book = bookRepository.findById(bookId).get();
+        BookReservation bookReservation;
+        if(!possible){
+            bookReservation = new BookReservation(bookReservationId,null,null,
+                    ReservationState.DENIED,LocalDate.now(),book,book.getEdition());
+        }
+        else{
+            bookReservation = new BookReservation(bookReservationId,null,null,
+                    ReservationState.APPROVED,LocalDate.now(),book,book.getEdition());
+        }
+        bookReservationRepository.save(bookReservation);
+        return possible;
+    }
+
+    public Boolean reserveEdition(long userId, long editionId){
+        Edition edition = editionRepository.findById(editionId).get();
+        Member member = memberRepository.findById(userId).get();
+        BookReservation bookReservation = new BookReservation(null,null,
+                ReservationState.NEW,LocalDate.now(),null,edition);
+        member.addReservation(bookReservation);
+        bookReservationRepository.save(bookReservation);
+        memberRepository.save(member);
+        return true;
     }
 
     public Boolean isReservationPossibleByMemberId(Long id){
