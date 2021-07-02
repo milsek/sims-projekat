@@ -233,7 +233,7 @@ class BOOK_RESERVATION:
         BOOK_RESERVATION.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO BOOK_RESERVATION(reservation_date, id, book_id, edition_id) VALUES(PARSEDATETIME('{self.date}', 'yyyy-mm-dd'), {self.id}, {self.book_id}, {self.edition_id});"
+        return f"INSERT INTO BOOK_RESERVATION(reservation_date, id, book_id, edition_id, review_id) VALUES(PARSEDATETIME('{self.date}', 'yyyy-mm-dd'), {self.id}, {self.book_id}, {self.edition_id}, null);"
 
 
 class PICTURE_BOOK_RESRVATION:
