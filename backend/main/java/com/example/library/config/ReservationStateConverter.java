@@ -4,8 +4,9 @@ import com.example.library.model.ReservationState;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
+import java.util.Locale;
 
-@Converter
+@Converter(autoApply = true)
 public class ReservationStateConverter implements AttributeConverter<ReservationState, String> {
 
     @Override

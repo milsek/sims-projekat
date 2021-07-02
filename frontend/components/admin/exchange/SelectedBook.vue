@@ -5,7 +5,7 @@
       class="text-center sm:text-left rounded-md
       w-36 lg:w-40 h-56 lg:h-60 object-fill mx-auto" draggable="false">
     </div>
-    <div class="md:pl-4 text-center md:text-left">
+    <div class="md:pl-4 text-center md:text-left" v-if="data.bookState">
       <div class="text-xl md:text-base lg:text-xl font-bold text-blue-900 opacity-90
        line-clamp-2 mt-4 md:mt-0">
         {{ data.editionTitleTitle }}
@@ -44,6 +44,7 @@
 
 <script>
 import UserModal from '~/components/admin/exchange/UserModal'
+import axios from 'axios';
 export default {
   props: [ "data" ],
   components: { UserModal },
@@ -57,6 +58,10 @@ export default {
       this.showUserModal = false
     },
     markBookReturned () {
+      let that = this;
+      axios
+        .post("/api/return-book/?id=" + this.data.id)
+        .then(x => {that.data.bookState = 'IN_STOCK';});
       console.log("Book is returned.")
     }
   },
