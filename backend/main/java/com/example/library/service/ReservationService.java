@@ -27,24 +27,33 @@ public class ReservationService {
     public Boolean isReservationPossibleByMemberId(Long id){
         int booksTakenOrReserved = 0;
         Member member = memberRepository.findById(id).get();
-        List<Reservation> reservations = member.getReservations();
-        for(Reservation reservation : reservations){
-            if(reservation.getReservationState() == ReservationState.APPROVED ||
-                    reservation.getReservationState() == ReservationState.SEIZED){
-                booksTakenOrReserved++;
-            }
+        booksTakenOrReserved = getBooksTakenOrReserved(member.getReservations());
+        CategoryRules categoryRules = getCategoryRulesForMembershipsNow(member.getMemberships());
+        if(categoryRules == null){
+            return false;
         }
-        List<Membership> memberships = member.getMemberships();
+        int allowedNumberOfBooks = categoryRules.getNumOfBooks();
+        return booksTakenOrReserved < allowedNumberOfBooks;
+    }
+
+    private CategoryRules getCategoryRulesForMembershipsNow(List<Membership> memberships) {
         CategoryRules categoryRules = null;
         for(Membership mem : memberships) {
             if (mem.getEndDate().isAfter(LocalDate.now()) && mem.getStartDate().isBefore(LocalDate.now())) {
                 categoryRules = mem.getPrice().getCategory();
             }
         }
-        if(categoryRules == null){
-            return false;
+        return categoryRules;
+    }
+
+    private int getBooksTakenOrReserved(List<Reservation> reservations) {
+        int booksTakenOrReserved = 0;
+        for(Reservation reservation : reservations){
+            if(reservation.getReservationState() == ReservationState.APPROVED ||
+                    reservation.getReservationState() == ReservationState.SEIZED){
+                booksTakenOrReserved++;
+            }
         }
-        int allowedNumberOfBooks = categoryRules.getNumOfBooks();
-        return booksTakenOrReserved < allowedNumberOfBooks;
+        return booksTakenOrReserved;
     }
 }
