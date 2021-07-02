@@ -28,7 +28,7 @@
         </button>
       </div>
       <div v-if="data.bookState === 'TAKEN'" class="mt-5">
-        <button @click="markBookReturned" class="h-9 mt-4 px-8 md:px-6 bg-green-600 hover:bg-green-800
+        <button @click="markBookReturned" class="h-9 mt-4 px-8 md:px-6 bg-gray-700 hover:bg-gray-800
          opacity-90 text-white text-center text-lg shadow-md focus:outline-none rounded-lg">
           mark returned
         </button>

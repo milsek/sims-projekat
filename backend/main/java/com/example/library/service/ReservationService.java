@@ -43,16 +43,33 @@ public class ReservationService {
     public Boolean isReservationPossibleByMemberId(Long id){
         int booksTakenOrReserved = 0;
         Member member = memberRepository.findById(id).get();
-        List<Reservation> reservations = member.getReservations();
-        System.out.println(reservations.size()+"AAAAAAAAAAAAA");
+        booksTakenOrReserved = getBooksTakenOrReserved(member.getReservations());
+        CategoryRules categoryRules = getCategoryRulesForMembershipsNow(member.getMemberships());
+        if(categoryRules == null){
+            return false;
+        }
+        int allowedNumberOfBooks = categoryRules.getNumOfBooks();
+        return booksTakenOrReserved < allowedNumberOfBooks;
+    }
+
+    private CategoryRules getCategoryRulesForMembershipsNow(List<Membership> memberships) {
+        CategoryRules categoryRules = null;
+        for(Membership mem : memberships) {
+            if (mem.getEndDate().isAfter(LocalDate.now()) && mem.getStartDate().isBefore(LocalDate.now())) {
+                categoryRules = mem.getPrice().getCategory();
+            }
+        }
+        return categoryRules;
+    }
+
+    private int getBooksTakenOrReserved(List<Reservation> reservations) {
+        int booksTakenOrReserved = 0;
         for(Reservation reservation : reservations){
-            System.out.println(reservation.getReservationState().name());
-            if(reservation.getReservationState().name().equals("APPROVED") ||
-                    reservation.getReservationState().name().equals("SEIZED")){
+            if(reservation.getReservationState() == ReservationState.APPROVED ||
+                    reservation.getReservationState() == ReservationState.SEIZED){
                 booksTakenOrReserved++;
             }
         }
-
-        return booksTakenOrReserved > 2;
+        return booksTakenOrReserved;
     }
 }
