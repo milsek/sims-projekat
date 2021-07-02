@@ -24,9 +24,8 @@ public class ReservationController {
     @GetMapping(path = "/reserve-book")
     @ResponseBody
     public Boolean reserveBook(@RequestParam(name = "bookReservationId", required = false) Long bookReservationId,
-                               @RequestParam(name = "bookId", required = false) Long bookId,
-                               @RequestParam(name = "userId", required = false) Long userId) {
-        return reservationService.reserveBook(bookReservationId, bookId, userId);
+                               @RequestParam(name = "bookId", required = false) Long bookId) {
+        return reservationService.reserveBook(bookReservationId, bookId);
     }
 
     @GetMapping(path = "/reserve-edition")
