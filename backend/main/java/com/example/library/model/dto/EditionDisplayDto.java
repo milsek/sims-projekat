@@ -14,6 +14,10 @@ public class EditionDisplayDto {
 
     private String imageLarge;
 
+    private String description;
+
+    private String authorName;
+
     public Long getId() {
         return id;
     }
@@ -60,6 +64,22 @@ public class EditionDisplayDto {
 
     public void setImageLarge(String imageLarge) {
         this.imageLarge = imageLarge;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 }
 

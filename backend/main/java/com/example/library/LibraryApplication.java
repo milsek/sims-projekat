@@ -1,6 +1,8 @@
 package com.example.library;
 
 import com.example.library.model.Book;
+import com.example.library.model.Edition;
+import com.example.library.model.dto.EditionDisplayDto;
 import com.example.library.model.dto.SelectedBookDto;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
@@ -25,7 +27,14 @@ public class LibraryApplication {
             return dto;
         };
 
+        Converter<Edition, EditionDisplayDto> authorNameConverterDisplay = context -> {
+            EditionDisplayDto dto = new EditionDisplayDto();
+            dto.setAuthorName(context.getSource().getTitle().getContributions().get(0).getContributor().getName());
+            return dto;
+        };
+
         mm.createTypeMap(Book.class, SelectedBookDto.class).setPreConverter(authorNameConverter);
+        mm.createTypeMap(Edition.class, EditionDisplayDto.class).setPreConverter(authorNameConverterDisplay);
 
         return mm;
     }
