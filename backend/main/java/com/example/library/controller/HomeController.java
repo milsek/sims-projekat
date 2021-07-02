@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -31,7 +32,7 @@ public class HomeController {
 
     @GetMapping(path = "/popular-authors")
     @ResponseBody
-    public List<AuthorDisplayDto> getPopularAuthors() {
+    public Set<AuthorDisplayDto> getPopularAuthors() {
         return editionService.getPopularAuthors();
     }
 }

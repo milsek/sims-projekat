@@ -79,9 +79,9 @@ public class EditionService {
         return modelMapper.map(author, AuthorDisplayDto.class);
     }
 
-    public List<AuthorDisplayDto> getPopularAuthors() {
+    public Set<AuthorDisplayDto> getPopularAuthors() {
         return editionRepository.findTop10ByOrderByRatingDesc()
                 .stream().map(x -> { return entityToDto(x.getTitle().getContributions().get(0).getContributor()); } )
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 }
