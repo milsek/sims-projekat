@@ -26,7 +26,7 @@ public abstract class Reservation {
 
     @Column(name = "state")
     @Convert(converter = ReservationStateConverter.class)
-    private ReservationState reservationState;
+    protected ReservationState reservationState;
 
     public Reservation(Long id, LocalDate dateTaken, LocalDate dateReturned, ReservationState reservationState) {
         this.id = id;
