@@ -101,8 +101,8 @@
       <div class="block p-8 w-full">
         <div class="text-xl text-gray-700 tracking-wide font-medium">Reviews</div>
         <ul class="options pb-2">
-          <li v-show="how == 'autocomplete-user-id'" v-for="item in data.reviews" :key="item.id">
-            <Review v-bind:data="item" />
+          <li v-for="item in data.reviews" :key="item.id">
+            <Review v-bind:review="item" />
           </li>
         </ul>
       </div>
@@ -114,9 +114,20 @@
 
 <script>
 import RelatedEditions from './RelatedEditions'
+import Review from './Review.vue'
 export default {
   props: ["data"],
-  components: { RelatedEditions },
+  components: { RelatedEditions, Review },
+  mounted() {
+	  this.data.reviews = [
+		  {
+			  id: 1
+		  },
+		  {
+			  id: 2
+		  }
+	  ]
+  },
   data () {
     return {
       showMore: false,

@@ -20,6 +20,10 @@ public class Review {
     @ManyToOne
     private Edition edition;
 
+    @OneToOne
+    @Column(name = "book_reservation_id")
+    private Review review;
+
     public Edition getEdition() {
         return edition;
     }

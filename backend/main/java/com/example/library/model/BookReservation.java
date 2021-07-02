@@ -23,6 +23,10 @@ public class BookReservation extends Reservation {
     @IndexedEmbedded(depth = 1)
     private Edition edition;
 
+    @OneToOne
+    @Column(name = "review_id")
+    private Review review;
+
     public BookReservation() {
         super();
     }
