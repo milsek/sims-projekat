@@ -1,12 +1,12 @@
 package com.example.library.service;
 
-import com.example.library.model.Member;
-import com.example.library.model.Reservation;
+import com.example.library.model.*;
 import com.example.library.repository.BookReservationRepository;
 import com.example.library.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -28,15 +28,23 @@ public class ReservationService {
         int booksTakenOrReserved = 0;
         Member member = memberRepository.findById(id).get();
         List<Reservation> reservations = member.getReservations();
-        System.out.println(reservations.size()+"AAAAAAAAAAAAA");
         for(Reservation reservation : reservations){
-            System.out.println(reservation.getReservationState().name());
-            if(reservation.getReservationState().name().equals("APPROVED") ||
-                    reservation.getReservationState().name().equals("SEIZED")){
+            if(reservation.getReservationState() == ReservationState.APPROVED ||
+                    reservation.getReservationState() == ReservationState.SEIZED){
                 booksTakenOrReserved++;
             }
         }
-
-        return booksTakenOrReserved > 2;
+        List<Membership> memberships = member.getMemberships();
+        CategoryRules categoryRules = null;
+        for(Membership mem : memberships) {
+            if (mem.getEndDate().isAfter(LocalDate.now()) && mem.getStartDate().isBefore(LocalDate.now())) {
+                categoryRules = mem.getPrice().getCategory();
+            }
+        }
+        if(categoryRules == null){
+            return false;
+        }
+        int allowedNumberOfBooks = categoryRules.getNumOfBooks();
+        return booksTakenOrReserved < allowedNumberOfBooks;
     }
 }
