@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public abstract class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Field(name = "member_id")
     @FieldBridge(impl = LongBridge.class)
     protected long id;

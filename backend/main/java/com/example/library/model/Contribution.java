@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Indexed
 public class Contribution {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected long id;
 
     @ManyToOne

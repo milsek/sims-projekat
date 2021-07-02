@@ -14,7 +14,7 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class BookTitle {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column

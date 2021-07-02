@@ -48,9 +48,10 @@ public class UserService {
 
     public List<AutocompleteUserDto> autocompleteUserId(String query) {
         AutocompleteUserDto dto = new AutocompleteUserDto();
-        Map<Long, List<Member>> result = memberRepository.searchMembers(query, 1, 5);
-        List<Member> members = result.get(result.keySet().toArray()[0]);
-        return members.stream().map(this::entityToDto).collect(Collectors.toList());
+        List<Member> result = memberRepository.simpleSearch(query);
+        return  result.stream()
+                .map(x -> {return modelMapper.map(x, AutocompleteUserDto.class);})
+                .collect(Collectors.toList());
     }
 
     public String registerMember(MemberRegisterDto memberRegisterDto) {

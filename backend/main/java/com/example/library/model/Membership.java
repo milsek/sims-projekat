@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class Membership {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
