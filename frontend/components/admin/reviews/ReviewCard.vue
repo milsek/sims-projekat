@@ -54,7 +54,7 @@
     </div>
 
     <div v-if="modal">
-        <ReviewModal @values-changed="somethingChanged" v-bind:confirm="confirm" v-bind:id="review.id" @close-modal="closeModal" ref="userModal" />
+      <ReviewModal @values-changed="somethingChanged" v-bind:confirm="confirm" v-bind:id="review.id" @close-modal="closeModal" ref="userModal" />
     </div>
       
   </div>

@@ -7,10 +7,10 @@
       <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl
        transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-11/12 sm:w-full">
 
-      <div class="mx-auto my-auto text-center text-3xl pt-6 text-gray-600 font-medium ">
-        Are you sure?
-      </div>
-      <div class="bg-gray-100 px-4 py-5 mt-8 sm:px-6 flex justify-end">
+        <div class="mx-auto my-auto text-center text-3xl pt-6 text-gray-600 font-medium ">
+          Are you sure?
+        </div>
+        <div class="bg-gray-100 px-4 py-5 mt-8 sm:px-6 flex justify-end">
           <button @click="confirmAction" type="button" class="inline-flex justify-center
           rounded-md shadow-sm px-6 py-2 bg-green-500 hover:bg-green-600 text-base font-medium text-white
           focus:outline-none w-auto sm:text-sm">

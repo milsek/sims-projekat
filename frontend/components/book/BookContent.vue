@@ -99,6 +99,7 @@
     </div>
     
     <LeaveReview @send-review="sendReview" />
+    <ReviewConfirmationModal v-if="showReviewConfirmation" @close-modal="closeReviewConfirmationModal" />
 
 	  <div class="block w-11/12 mt-6 mx-auto bg-white shadow-lg">
       <div class="block p-8 w-full">
@@ -118,9 +119,10 @@
 import RelatedEditions from '~/components/book/RelatedEditions'
 import Review from '~/components/book/Review'
 import LeaveReview from '~/components/book/LeaveReview'
+import ReviewConfirmationModal from '~/components/book/ReviewConfirmationModal.vue'
 export default {
   props: ["data"],
-  components: { RelatedEditions, Review, LeaveReview },
+  components: { RelatedEditions, Review, LeaveReview, ReviewConfirmationModal },
   mounted() {
 	  this.data.reviews = [
 		  {
@@ -143,6 +145,7 @@ export default {
         { name: 'id', text: 'MySBN' },
         { name: 'takeOut', text: 'Can be taken out' },
       ],
+      showReviewConfirmation: false
     }
   },
   computed: {
@@ -167,8 +170,16 @@ export default {
     },
     sendReview (stars, text) {
       console.log('Stars: ', stars, '\nText: ', text)
+
+      //if success
+      this.showReviewConfirmation = true
+      
+
       // post request
-    }
+    },
+    closeReviewConfirmationModal() {
+      this.showReviewConfirmation = false
+    },
   }
 };
 </script>
