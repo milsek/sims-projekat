@@ -112,6 +112,11 @@ for reservation in tables.RESERVATION.instances[:-3]:
 for reservation in tables.RESERVATION.instances[-3:]:
     tables.PICTURE_BOOK_RESRVATION(reservation)
 
+for reservation in tables.BOOK_RESERVATION.instances:
+    if reservation.reservation.state_name != 'RETURNED':
+        continue
+    tables.REVIEW(reservation)
+
 tables.PRICE('2021-06-01', '2022-09-01', 200, tables.CATEGORY_RULES(1, 3, 15)) # child
 tables.PRICE('2021-06-01', '2022-09-01', 300, tables.CATEGORY_RULES(2, 3, 15)) # student
 tables.PRICE('2021-06-01', '2022-09-01', 500, tables.CATEGORY_RULES(3, 5, 15)) # employee
@@ -119,12 +124,10 @@ tables.PRICE('2021-06-01', '2022-09-01', 200, tables.CATEGORY_RULES(4, 3, 21)) #
 tables.PRICE('2021-06-01', '2022-09-01', 500, tables.CATEGORY_RULES(5, 10, 30)) #honorary
 
 for member in tables.MEMBER.instances:
-    
     tables.DAILY_TRANSACTION(
         tables.MEMBERSHIP('2021-06-15', '2021-08-15', random.choice(tables.PRICE.instances), member),
         random.choice(tables.LIBRARIAN.instances),
-        library
-    )
+        library)
 
 file = open('data.sql', 'w', encoding="utf-8")
 
@@ -170,6 +173,8 @@ for book_reservation in tables.BOOK_RESERVATION.instances:
     file.write(book_reservation.toSql() + '\n')
 for picture_book_reservation in tables.PICTURE_BOOK_RESRVATION.instances:
     file.write(picture_book_reservation.toSql() + '\n')
+for review in tables.REVIEW.instances:
+    file.write(review.toSql() + '\n')
 
 for category in tables.CATEGORY_RULES.instances:
     file.write(category.toSql() + '\n')

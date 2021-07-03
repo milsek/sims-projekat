@@ -2,6 +2,77 @@ import random
 import requests
 
 
+comments = """Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Vivamus non nunc non ligula volutpat laoreet consequat a diam.
+Suspendisse iaculis diam nec nunc volutpat, lacinia pulvinar augue venenatis.
+Nullam facilisis augue in lacinia aliquam.
+Integer cursus augue in laoreet gravida.
+Praesent at sem aliquet, dignissim enim in, molestie neque.
+Donec sodales purus ac metus vehicula placerat.
+Nulla varius velit sit amet diam facilisis iaculis.
+Praesent suscipit diam non nunc venenatis vestibulum.
+Nullam tristique urna ut nulla blandit, sed fringilla ex dapibus.
+Duis quis erat vitae nisi consectetur pulvinar at a lectus.
+Duis volutpat erat consequat facilisis consectetur.
+In elementum urna sed sodales dapibus.
+Nunc tristique neque at interdum viverra.
+Nulla consectetur nulla a efficitur scelerisque.
+Donec vitae neque faucibus, ultricies nisi ac, sollicitudin augue.
+Sed fringilla felis dignissim urna rutrum rhoncus.
+Sed non dolor id risus gravida dapibus.
+Cras vel lacus at erat venenatis pulvinar.
+Pellentesque ac dui congue, porttitor arcu vitae, aliquam diam.
+Fusce iaculis orci non magna vestibulum imperdiet.
+Curabitur suscipit erat a leo malesuada, a scelerisque turpis vehicula.
+Nunc ut sem a libero condimentum venenatis non et ligula.
+Praesent scelerisque magna a luctus tempor.
+Sed dictum nisl id quam vestibulum eleifend.
+Suspendisse aliquet neque vitae sem posuere sodales.
+Mauris pellentesque nisl sit amet facilisis tincidunt.
+Quisque convallis mauris quis elit semper, in finibus libero tincidunt.
+Sed fringilla purus at nunc eleifend semper.
+In quis justo luctus, lacinia lectus vitae, aliquam ligula.
+Duis semper lacus sit amet neque gravida, non interdum arcu volutpat.
+Nam aliquet sem ut libero elementum varius.
+Praesent aliquet lectus eget lacus bibendum, at ullamcorper velit fermentum.
+Donec facilisis elit sit amet enim pharetra, quis varius lacus vehicula.
+Morbi ut dolor maximus urna ornare auctor vitae sed enim.
+Sed vel justo ultricies, tempus dolor eu, maximus tortor.
+Nulla eget eros id urna tempor hendrerit.
+Donec ac nulla vitae dui efficitur cursus.
+Quisque pretium risus at facilisis efficitur.
+Ut pellentesque neque in scelerisque scelerisque.
+Nunc maximus velit at justo lobortis, vitae luctus enim molestie.
+Duis luctus purus blandit, malesuada erat vel, tincidunt magna.
+Integer a lorem non risus condimentum pharetra.
+Nullam a justo nec tellus vehicula tincidunt vitae at neque.
+Etiam eu metus vitae nisl volutpat efficitur.
+Pellentesque tempus sem ut semper malesuada.
+Suspendisse vel nisi in neque dapibus blandit.
+Phasellus blandit velit id suscipit ultrices.
+Fusce semper erat et diam molestie porta.
+Mauris sit amet eros eget magna dignissim auctor.
+Aliquam facilisis dui id odio eleifend, efficitur cursus arcu vestibulum.
+Phasellus gravida sem eu quam interdum, vehicula hendrerit leo tincidunt.
+Proin vitae quam eu est efficitur luctus.
+Nam quis turpis sed sem lacinia feugiat ut vitae nibh.
+Integer imperdiet mauris sed ante bibendum, sit amet consectetur tortor imperdiet.
+Nam tincidunt neque at neque aliquet lobortis nec sed ante.
+Sed lacinia tellus in turpis pulvinar, nec porta nibh auctor.
+Morbi id lacus ullamcorper, consequat turpis eget, vulputate tellus.
+Sed nec neque euismod, aliquet sem vel, porttitor eros.
+Suspendisse in dolor sit amet dui placerat pulvinar.
+Maecenas maximus augue non viverra ornare.
+Ut dapibus nisi non mauris viverra rhoncus.
+Nulla eu lectus et lorem pellentesque congue.
+Integer gravida erat egestas, porta risus ut, ultrices lorem.
+Aenean bibendum purus in lacus commodo lobortis.
+Suspendisse sed sem at nunc accumsan dignissim.
+Integer at dui vitae nunc pulvinar rhoncus eu at sem.
+Donec at lorem eu ex dictum consectetur eu sit amet mauris.""".split("\n")
+
+
+
 class EDITION:
     instances = []
 
@@ -230,6 +301,8 @@ class BOOK_RESERVATION:
         self.book_id = book.id
         self.edition_id = book.edition_id
 
+        self.reservation = reservation
+
         BOOK_RESERVATION.instances.append(self)
 
     def toSql(self):
@@ -257,7 +330,7 @@ class RESERVATION:
         self.date_returned = '2021-01-01'               # TODO: Think of random generation mechanism
         self.date_taken = '2021-01-02'        # TODO: Do the same
         self.member_id = member.id
-        self.state_name = 'new'               # TODO: Make something up
+        self.state_name = random.choice(['NEW', 'APPROVED', 'DENIED', 'SEIZED', 'RETURNED'])               # TODO: Make something up
 
         RESERVATION.instances.append(self)
 
@@ -488,6 +561,26 @@ class DAILY_TRANSACTION:
 
     def toSql(self):
         return f"INSERT INTO DAILY_TRANSACTION VALUES({self.id}, PARSEDATETIME('{self.date}', 'yyyy-mm-dd'), {self.librarian_id}, {self.membership_id}, {self.library_id});"
+
+class REVIEW:
+    instances = []
+
+    def __init__(self, book_reservation):
+        self.id = len(REVIEW.instances)
+        self.content = ""
+        for i in range(random.randint(1,4)):
+            self.content += random.choice(comments) + " "
+        self.content = self.content[:250]
+
+        self.rating = random.randint(10, 50) / 10
+        self.book_reservation_id = book_reservation.id
+        self.edition_id = book_reservation.edition_id
+
+        REVIEW.instances.append(self)
+
+    def toSql(self):
+        return f"INSERT INTO REVIEW VALUES({self.id}, false, '{self.content}', {self.rating}, {self.book_reservation_id}, {self.edition_id});"
+
 
 def escape(string):
     return string.replace("'", "''")
