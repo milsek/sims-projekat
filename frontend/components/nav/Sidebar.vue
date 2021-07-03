@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="block fixed">
     <div class="h-screen w-80 hidden md:block bg-gray-100">
       <div class="p-6 h-full">
         <div class="uppercase text-xs font-medium text-gray-400 tracking-wide pb-1
