@@ -40,7 +40,12 @@ export default {
       this.isMounted = true
     });
     }
-  }
+  },
+  head () {
+    return {
+      title: this.$route.meta.title
+    }
+  },
 };
 </script>
 

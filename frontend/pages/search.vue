@@ -18,7 +18,12 @@ export default {
     refreshSearch () {
       this.$refs.searchLayout.refreshSearch()
     }
-  }
+  },
+  head () {
+    return {
+      title: this.$route.meta.title
+    }
+  },
 };
 </script>
 
