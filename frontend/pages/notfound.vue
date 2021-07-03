@@ -15,7 +15,7 @@
 export default {
   head () {
     return {
-      // title: this.$route.meta.title
+      title: this.$route.meta.title
     }
   },
 };

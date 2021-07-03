@@ -16,32 +16,17 @@
 import SearchBar from "../components/home/SearchBar"
 import HomeContent from "../components/home/HomeContent"
 export default {
-  components: { SearchBar, HomeContent }
+  components: { SearchBar, HomeContent },
+  head () {
+    return {
+      title: this.$route.meta.title
+    }
+  },
 };
-// console.log("Fetching");
-// import axios from 'axios';
-// axios.get("/api/login/?mail=pavleg.20&password=pavle", {
-//   withCredentials: true,
-//   credentials: "include",
-//   headers: {
-//     'Content-Type': 'application/json',
-//     'API-Key': 'secret'
-//   }
-// })
-//  .then(response => {
-//    console.log(response);
-//    console.log(response.headers['set-cookie']);
-//    console.log(document.cookie);
-//  });
 
 </script>
-
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
+
 .container {
   margin: 0 auto;
   min-height: 100vh;

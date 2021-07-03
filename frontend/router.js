@@ -16,22 +16,26 @@ export function createRouter() {
       {
         path: '/',
         component: index,
-        name: 'index'
+        name: 'index',
+        meta: {title: "Library - Home"}
       },
       {
         path: '/search',
         component: search,
-        name: 'search'
+        name: 'search',
+        meta: {title: "Search"}
       },
       {
         path: '/book/:id',
         component: bookinstance,
         name: 'bookinstance',
+        meta: {title: "Library - Book"}
       },
       {
         path: '/admin',
         component: adminpanel,
-        name: 'adminpanel'
+        name: 'adminpanel',
+        meta: {title: "Admin panel"}
       },
 
 
@@ -40,7 +44,7 @@ export function createRouter() {
         path: '/:catchAll(.*)',
         component: notfound,
         name: 'notfound',
-        meta: {title: "404"}
+        meta: {title: "Library - 404"}
       }
     ]
   })

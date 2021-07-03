@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <div class="text-6xl font-extrabold tracking-widest">ACCOUNT SETTINGS</div>
+  <div class="block w-full">
+    <div class="justify-center w-full text-center mx-auto py-10 px-10">
+      <div class="text-4xl tracking-tight text-blue-900 opacity-70">Account Settings</div>
+      <div class="font-medium text-gray-500 mt-2">Change your account details</div>
+    </div>
   </div>
 </template>
 
