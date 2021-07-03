@@ -39,7 +39,7 @@
       </div>
 
       <div v-if="justReturned">
-        <BookReturnedModal />
+        <BookReturnedModal @close-modal="closeReturnedModal" v-bind:id="data.id"/>
       </div>
 
     </div>
@@ -56,18 +56,22 @@ export default {
   data () {
     return {
       showUserModal: false,
-      justReturned: true,
+      justReturned: false,
+      showReturnedModal: false
     }
   },
   methods: {
     closeModal () {
       this.showUserModal = false
     },
+    closeReturnedModal () {
+      this.justReturned = false
+    },
     markBookReturned () {
       let that = this;
       axios
         .post("/api/return-book/?id=" + this.data.id)
-        .then(x => {that.data.bookState = 'IN_STOCK'; justReturned = true; })
+        .then(x => {that.data.bookState = 'IN_STOCK'; that.justReturned = true; })
         .catch(error => {
           console.log("Book is NOT returned.")
         });
@@ -75,7 +79,7 @@ export default {
     },
     lendBook(userId) {
       console.log('lending book to ', userId);
-      justReturned = false;
+      this.justReturned = false;
       let that = this;
       axios
         .post("/api/take-book?bookId=" + this.data.id + "&userId=" + userId)

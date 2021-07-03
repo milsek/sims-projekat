@@ -7,9 +7,15 @@
       <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl
        transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-11/12 sm:w-full">
 
-      <div class="mx-auto my-auto text-center text-3xl pt-6 text-gray-600 font-medium ">
-        
-      </div>
+        <div class="flex space-x-2 justify-evenly my-4">
+            <div>
+                <InputField :what="rowWhat" />
+            </div>
+            <div>
+                <InputField :what="isleWhat" />
+            </div>
+        </div>
+      
       <div class="bg-gray-100 px-4 py-5 mt-8 sm:px-6 flex justify-end">
           <button @click="confirmAction" type="button" class="inline-flex justify-center
           rounded-md shadow-sm px-6 py-2 bg-green-500 hover:bg-green-600 text-base font-medium text-white
@@ -30,11 +36,14 @@
 
 <script>
 import axios from 'axios';
+import InputField from '../registration/InputField.vue';
 export default {
-  components: { },
+  components: { InputField },
   props: ["confirm", "id"],
   data () {
     return {
+        isleWhat : { name: "Isle name", text: "Isle name", placeholder: "Isle name", query: ''  },
+        rowWhat : { name: "Row number", text: "Row number", placeholder: "Row number", query: '' }
     }
   },
   methods: {
@@ -50,9 +59,12 @@ export default {
       let that = this;
       axios
       .get("/api/active-reservation/?bookId=" + this.id)
-      .then(x => { console.log(x); 
-        if(x.data) {
-            that.closeModal();
+      .then(x => { 
+        console.log(x);
+        console.log(x.data);
+        console.log(x.data.data);
+        if(x.data == false) {
+            
         }
       })
       .catch();
