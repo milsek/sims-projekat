@@ -19,6 +19,9 @@ export default {
     text: function (newText, oldText) {
       this.$emit('input-change', this.what.name, newText)
     }
+  },
+  mounted() {
+    console.log(this.what);
   }
 }
 </script>
