@@ -1,7 +1,7 @@
 <template>
   <div class="block justify-center w-full text-center mx-auto py-10 px-10">
     <div>
-      <div class="text-4xl tracking-tight text-blue-900 opacity-70">Register New Member</div>
+      <div class="text-4xl tracking-tight text-blue-900 opacity-70">Register New Members</div>
       <div class="font-medium text-gray-500 mt-2">Enter information about the new member</div>
     </div>
 
