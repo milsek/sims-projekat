@@ -41,4 +41,15 @@ public class ReservationController {
                          @RequestParam(name = "bookId", required = false) Long bookId) {
         return reservationService.takeBook(userId,bookId);
     }
+
+    @GetMapping(path = "/active-reservation")
+    @ResponseBody
+    public Boolean activeReservation(@RequestParam(name = "bookId") String bookId) {
+        try {
+            Long.valueOf(bookId);
+        } catch (Exception e) {
+            return false;
+        }
+        return reservationService.activeReservation(Long.valueOf(bookId));
+    }
 }

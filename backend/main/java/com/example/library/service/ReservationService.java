@@ -115,8 +115,23 @@ public class ReservationService {
         return true;
     }
 
+    public BookReservation getReservationByMemberIdAndEditionIdAndState(Long memberId, Long editionId, ReservationState state) {
+        return bookReservationRepository.findByUser_IdAndEdition_IdAndReservationState(memberId, editionId, state);
+    }
+
     public BookReservation getReservationByMemberIdAndEditionId(Long memberId, Long editionId) {
         return bookReservationRepository.findByUser_IdAndEdition_Id(memberId, editionId);
+    }
+
+    public Boolean activeReservation(Long bookId) {
+        Edition edition = bookRepository.findById(bookId).get().getEdition();
+        List<BookReservation> bookReservations = bookReservationRepository.findByEditionId(edition.getId());
+        for (BookReservation reservation: bookReservations) {
+            if (reservation.getReservationState() == ReservationState.APPROVED) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
