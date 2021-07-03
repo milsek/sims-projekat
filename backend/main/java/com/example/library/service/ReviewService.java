@@ -71,7 +71,10 @@ public class ReviewService {
     }
 
     public Boolean userCanReview(Long userId, Long editionId) {
-        return reservationService.getReservationByMemberIdAndEditionId(userId, editionId) != null;
+        boolean reservationExist = reservationService.getReservationByMemberIdAndEditionId(userId, editionId) != null;
+        boolean reviewExist = reviewRepository.findByMemberIdAndEditionId(userId, editionId) != null;
+
+        return (reservationExist && !reviewExist);
     }
 
     public List<ReviewDisplayDto> getReviewsByEditionId(Long editionId) {
