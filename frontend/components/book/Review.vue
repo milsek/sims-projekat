@@ -1,6 +1,7 @@
 <template>
   <div class="block rounded-xl border border-dashed border-gray-300 p-4 md:p-6">
     <div class="flex flex-shrink-0">
+      
       <div class="align-middle object-fill">
         <img :src="'https://i.pravatar.cc/150?u=' + review.id" class="w-12 h-12 rounded-md">
       </div>
