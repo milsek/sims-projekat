@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     updateInput (field, text) {
-      this.fields.filter((f) => {return f.name=field})[0]['query'] = text
+      this.fields.filter((f) => {if (f.name===field) return f})[0]['query'] = text
     },
     registerMember () {
       console.log('Member registered!')

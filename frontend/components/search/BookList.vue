@@ -28,7 +28,6 @@ export default {
     return {
       pageIndex: 0,
       resultsPerPage: 10,
-      showBooks: false,
       showPagination: false,
       totalPages: 1,
       totalBooks: 1,
@@ -40,7 +39,6 @@ export default {
   mounted () {
     this.getBooks()
     this.showPagination = true
-    this.showBooks = true
   },
   methods: {
     getBooks() {
@@ -51,7 +49,6 @@ export default {
         this.totalPages = Math.ceil(this.totalBooks/this.resultsPerPage);
         
         this.booklist = response.data.displayDtoList;
-
         let that = this;
         setTimeout(function() {
             if (that.booklist.length == 0) {

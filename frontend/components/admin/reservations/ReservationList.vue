@@ -1,0 +1,101 @@
+<template>
+  <div>
+    <div v-if="reservations.length > 0">
+      <div class="block min-h-screen">
+        <div v-for="reservation in reservations" :key="reservation.id">
+          <ReservationCard :data="reservation" />
+        </div>
+      </div>
+      <Pagination :maxVisibleButtons="maxVisibleButtons" :totalPages="totalPages" :total="totalReservations"
+      :perPage="resultsPerPage" :currentPage="pageIndex + 1" :hasMorePages="hasMorePages"
+        @pagechanged="showMore" class="pt-12 pb-16"/>
+    </div>
+
+    <div v-else class="block w-full">
+      <div class="w-full text-4xl font-thin text-center mx-auto">{{loadMessage}}</div>
+    </div>
+
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+import ReservationCard from "~/components/admin/reservations/ReservationCard"
+import Pagination from "~/components/search/Pagination"
+export default {
+  components: { ReservationCard, Pagination },
+  props: ['data'],
+  data() {
+    return {
+      pageIndex: 0,
+      resultsPerPage: 10,
+      showPagination: false,
+      totalPages: 1,
+      totalReservations: 1,
+      maxVisibleButtons: 3,
+      reservations: [],
+      loadMessage: 'Loading...'
+    };
+  },
+  mounted () {
+    console.log(this.data)
+    this.getReservations()
+    this.showPagination = true
+  },
+  methods: {
+    getReservations () {
+      console.log(this.getRequestText())
+      axios.post(this.getRequestText())
+      .then(response => {
+
+        // this.totalReservations = response.data.hitCount
+        // this.totalPages = Math.ceil(this.totalReservations/this.resultsPerPage)
+        
+        this.reservations = response.data
+        console.log(this.reservations)
+        let that = this;
+        setTimeout(function() {
+          if (that.reservations.length == 0) {
+            that.loadMessage = 'No results.'
+          }
+        }, 1500);
+      })
+    },
+    getRequestText() {
+      const userId = this.data.userId ? "userId=" + this.data.userId.trim() + '&': ''
+      const bookId = this.data.bookId ? "bookId=" + this.data.bookId.trim() + '&': ''
+      const bookTitle = this.data.bookTitle ? "bookTitle=" + this.data.bookTitle.trim() + '&': ''
+      const reservationState = this.data.reservationState ? "reservationState=" + this.data.reservationState.trim() + '&': ''
+      const requestText = `/api/request-reservation?${userId}${bookId}${bookTitle}${reservationState}`
+      return requestText.slice(0, -1)
+    },
+    showMore(page) {
+      this.pageIndex = page - 1
+      this.getBooks()
+    },
+    refreshPagination() {
+      this.pageIndex = 0
+    }
+  },
+  computed: {
+    hasMorePages () {
+      if (this.pageIndex < this.totalPages-1) {
+        return true
+      }
+      else {
+        return false
+      }
+    }
+  }
+};
+</script>
+
+<style>
+  .pagination {
+      list-style-type: none;
+    }
+
+  .pagination-item {
+    display: inline-block;
+  }
+</style>
