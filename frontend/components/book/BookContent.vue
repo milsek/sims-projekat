@@ -81,7 +81,7 @@
 
       </div>
     </div>
-    
+
     <Details :data="data" />
     <RelatedEditions />
 
@@ -112,19 +112,6 @@ export default {
     }
   },
   mounted() {
-    // axios
-    // .get("/api/edition-reviews?editionId=" + this.data.id)
-    // .then(x => {
-    //   console.log(x);
-    //   this.data.reviews = x.data;
-    //   this.reviews = true;
-    // })
-    // .catch()
-    // console.log("BRAAAAAAAAA");
-    // let user_id = document.cookie.split(";")[1].split("=")[1];
-    // axios
-    // .get("/api/user-can-review?editionId=" + this.data.id + "&userId=" + user_id)
-    // .then(x => { this.userCanReview = x.data; console.log(x.data); })
     this.checkUserCanReview()
   },
   computed: {
@@ -154,7 +141,6 @@ export default {
       })
       .then(x => { this.showReviewConfirmation = true; console.log(x); })
       .catch()
-      // post request
     },
     closeReviewConfirmationModal() {
       this.showReviewConfirmation = false
