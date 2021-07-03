@@ -5,7 +5,6 @@ export const state = () => ({
 
 export const mutations = {
     update(state) {
-      console.log('kolaciciii')
       let cookies = getCookies()
       state.email = cookies['mail'] ? cookies['mail'] : ''
       state.role = cookies['role'] ? cookies['role'] : ''

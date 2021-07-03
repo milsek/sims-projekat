@@ -149,7 +149,6 @@ export default {
   },
   methods: {
     handleChoice (opt) {
-      console.log(opt)
       this.currentActive = opt
       this.$emit('component-change', opt)
     },

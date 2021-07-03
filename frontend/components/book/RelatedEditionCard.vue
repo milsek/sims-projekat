@@ -5,7 +5,7 @@
       <div class="col-span-6 xl:col-span-5 p-2 md:h-full">
         <NuxtLink :to="{ name: 'bookinstance', params: {id: data.id}}">
           <img :src="data.imageLarge" alt="" class="rounded-md mx-auto
-          shadow-md sm:w-32 xl:w-full h-64 sm:h-40 md:h-44 lg:h-48 xl:h-52
+          shadow-md sm:w-32 h-64 sm:h-40 md:h-44 lg:h-48 xl:h-52 lg:w-32 xl:w-36
           object-fill" draggable="false">
         </NuxtLink>
       </div>
