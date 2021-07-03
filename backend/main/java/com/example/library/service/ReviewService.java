@@ -1,12 +1,14 @@
 package com.example.library.service;
 
 import com.example.library.model.*;
+import com.example.library.model.dto.ReviewDisplayDto;
 import com.example.library.model.dto.ReviewSubmissionDto;
 import com.example.library.repository.ReviewRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,9 +30,16 @@ public class ReviewService {
         try {
             if (!editionService.editionExistsById(editionId))
                 return "Edition doesn't exist.";
+
+            // TODO: Spreči ostavljanje reviewa kao drugi korisnik menjanjem parametra unutar requesta.
+
             Edition edition = editionService.getEditionById(editionId);
             Review review = modelMapper.map(reviewSubmissionDto, Review.class);
+            BookReservation bookReservation = reservationService.getReservationByMemberIdAndEditionId(reviewSubmissionDto.getMemberId(), editionId);
+
+
             review.setEdition(edition);
+            review.setBookReservation(bookReservation);
 
             reviewRepository.save(review);
         } catch (Exception e) {
@@ -67,5 +76,21 @@ public class ReviewService {
                 return true;
         }
         return false;
+    }
+
+    public List<ReviewDisplayDto> getReviewsByEditionId(Long editionId) {
+        List<Review> reviews = reviewRepository.findByEdition_Id(editionId);
+        List<ReviewDisplayDto> reviewDtos = new ArrayList<>();
+
+        for (Review r : reviews) {
+            ReviewDisplayDto dto = modelMapper.map(r, ReviewDisplayDto.class);
+
+            Member member = (Member) r.getBookReservation().getUser();
+            dto.setFullName(member.getName() + " " + member.getSurname());
+
+            reviewDtos.add(dto);
+        }
+
+        return reviewDtos;
     }
 }

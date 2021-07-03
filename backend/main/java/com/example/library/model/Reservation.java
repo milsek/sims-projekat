@@ -31,6 +31,10 @@ public abstract class Reservation {
     @Convert(converter = ReservationStateConverter.class)
     protected ReservationState reservationState;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    protected User user;
+
     public Reservation(Long id, LocalDate dateTaken, LocalDate dateReturned, ReservationState reservationState) {
         this.id = id;
         this.dateTaken = dateTaken;
@@ -79,5 +83,13 @@ public abstract class Reservation {
 
     public void setDateReturned(LocalDate dateReturned) {
         this.dateReturned = dateReturned;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -6,6 +6,8 @@ public class ReviewSubmissionDto {
 
     private Double rating;
 
+    private Long memberId;
+
     public String getContent() {
         return content;
     }
@@ -20,5 +22,13 @@ public class ReviewSubmissionDto {
 
     public void setRating(Double rating) {
         this.rating = rating;
+    }
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 }

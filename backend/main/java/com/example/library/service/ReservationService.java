@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class ReservationService {
@@ -115,6 +113,10 @@ public class ReservationService {
         bookRepository.save(book);
         bookReservationRepository.save(bookReservation);
         return true;
+    }
+
+    public BookReservation getReservationByMemberIdAndEditionId(Long memberId, Long editionId) {
+        return bookReservationRepository.findByUser_IdAndEdition_Id(memberId, editionId);
     }
 }
 

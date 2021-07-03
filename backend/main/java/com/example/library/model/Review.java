@@ -20,7 +20,7 @@ public class Review {
     @ManyToOne
     private Edition edition;
 
-    @OneToOne(mappedBy = "review")
+    @OneToOne
     private BookReservation bookReservation;
 
     public Edition getEdition() {
