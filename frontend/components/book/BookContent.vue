@@ -178,11 +178,17 @@ export default {
     },
     sendReview (stars, text) {
       console.log('Stars: ', stars, '\nText: ', text)
-
+      let user_id = document.cookie.split(";")[1].split("=")[1];
       //if success
-      this.showReviewConfirmation = true
       
-
+      axios
+      .post("/api/review?editionId=" + this.data.id, {
+        content: text.trim(),
+        bookReservationMemberId: user_id,
+        rating: stars
+      })
+      .then(x => { this.showReviewConfirmation = true; console.log(x); })
+      .catch()
       // post request
     },
     closeReviewConfirmationModal() {
