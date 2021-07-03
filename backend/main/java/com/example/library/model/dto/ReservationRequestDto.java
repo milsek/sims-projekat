@@ -7,4 +7,8 @@ public interface ReservationRequestDto {
     String getImageLarge();
     String getIsleName();
     Integer getLineNumber();
+    Long getBookReservationId();
+    Long getUserId();
+    String getName();
+    String getSurname();
 }
