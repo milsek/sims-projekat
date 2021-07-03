@@ -1,11 +1,11 @@
 <template>
-  <div class="flex">
+  <div class="flex min-h-screen">
     <Sidebar v-on:component-change="updateComponent" />
-    <BookExchange v-if="currentComponent=='exchange'"/>
-    <BookReservations v-if="currentComponent=='reservations'" />
-    <CheckReview v-if="currentComponent=='reviews'" />
-    <RegisterNew v-if="currentComponent=='register'"/>
-    <AccountSettings v-if="currentComponent=='settings'"/>
+    <BookExchange v-if="currentComponent=='exchange'" class="md:ml-80"/>
+    <BookReservations v-if="currentComponent=='reservations'" class="md:ml-80"/>
+    <CheckReview v-if="currentComponent=='reviews'" class="md:ml-80" />
+    <RegisterNew v-if="currentComponent=='register'" class="md:ml-80"/>
+    <AccountSettings v-if="currentComponent=='settings'" class="md:ml-80"/>
   </div>
 </template>
 
