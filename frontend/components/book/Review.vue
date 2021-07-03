@@ -1,6 +1,7 @@
 <template>
   <div class="block rounded-xl border border-dashed border-gray-300 p-4 md:p-6">
     <div class="flex flex-shrink-0">
+      
       <div class="align-middle object-fill">
         <img :src="'https://i.pravatar.cc/150?u=' + review.id" class="w-12 h-12 rounded-md">
       </div>
@@ -11,7 +12,7 @@
         
         <div class="flex">
           <div v-for="n in 5" :key="n">
-            <span class='icon is-left w-2 h-2' :class="[rating > n ? 'text-yellow-300' : 'text-gray-300']">
+            <span class='icon is-left w-2 h-2' :class="[rating >= n ? 'text-yellow-300' : 'text-gray-300']">
               <font-awesome-icon :icon="['fas', 'star']"/>
             </span>
           </div>
