@@ -42,15 +42,11 @@ export default {
       // TODO: axios
       let that = this;
       console.log("/api/mark-review?allowed=" + this.confirm + "&reviewId=" + this.id);
-      const options = {
-        method: 'POST',
-        headers: { 'content-type': 'application/x-www-form-urlencoded' },
-        data: qs.stringify(data),
-        url: "/api/mark-review?allowed=" + this.confirm + "&reviewID=" + this.id
-      }
+     
 
-      axios(options)
-      .then(x => { that.closeModal(); that.$emit('values-changed'); })
+      axios
+      .post("/api/mark-review?allowed=" + this.confirm + "&reviewId=" + this.id)
+      .then(x => { console.log(x); that.closeModal(); that.$emit('values-changed'); })
       .catch(x => { that.closeModal(); that.$emit('values-changed'); });
       
     },
