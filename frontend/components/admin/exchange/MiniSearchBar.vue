@@ -1,6 +1,7 @@
 <template>
   <div class="w-full">
-    <div class="mx-auto bg-white px-6 border-gray-400 border border-solid">
+    <div class="mx-auto bg-white px-6 rounded-lg focus:outline-none border
+    border-solid border-gray-200 hover:border-gray-300 ">
       <div class="text-lg lg:text-xl">
         <div>
           <input @keyup="doSearch" type="text" autocomplete="off" v-model="query" :placeholder="'Search ' + what"
