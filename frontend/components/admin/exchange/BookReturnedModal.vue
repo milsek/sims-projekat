@@ -15,22 +15,27 @@
 				<InputField :what="isleWhat" />
 			</div>
 		</div>
+
+		<div v-if="isReserved" class="text-gray-600 text-lg" >
+				Added to the reservation list!
+		</div>
+
 		<div v-if="reservationComponent" class="text-gray-600 text-lg ml-8 mt-8" >
 			<div class="text-gray-600 text-lg" >
-				There is a reservation for this edition!
+				There is a reservation waiting for this edition!
 			</div>
 			<div class="text-gray-600 text-base" >
-				Do you consent?
+				Do you want to add it to the reserved list?
 			</div>
-			<div class="text-center -ml-8">
-			<button @click="closeModal" type="button" class="inline-flex justify-center rounded-md shadow-sm 
-			px-3 py-2 text-base font-medium text-gray-800 bg-gray-300 hover:bg-gray-600 
+			<div class="text-center -ml-8 mt-2">
+			<button @click="markAsReserved" type="button" class="inline-flex justify-center rounded-md shadow-sm 
+			px-3 py-2 text-base font-medium text-gray-800 bg-gray-300 hover:bg-gray-500 
 			focus:outline-none w-16 sm:text-sm">
 			Yes
 		  	</button>
 
-			<button @click="closeModal" type="button" class="inline-flex justify-center rounded-md shadow-sm 
-			px-3 py-2 text-base font-medium text-gray-800 bg-gray-300 hover:bg-gray-600 
+			<button @click="hideReservation" type="button" class="inline-flex justify-center rounded-md shadow-sm 
+			px-3 py-2 text-base font-medium text-gray-800 bg-gray-300 hover:bg-gray-500 
 			focus:outline-none w-16 sm:text-sm">
 			No
 		  	</button>
@@ -66,7 +71,8 @@ export default {
 	return {
 		isleWhat : { name: "Isle name", text: "Isle name", placeholder: "Isle name", query: ''  },
 		rowWhat : { name: "Row number", text: "Row number", placeholder: "Row number", query: '' },
-		reservationComponent: true //!!!
+		reservationComponent: true, //!!!
+		isReserved: false
 	}
   },
   methods: {
@@ -74,23 +80,31 @@ export default {
 	  
 	},
 	closeModal () {
-	  this.$emit('close-modal')
+		this.$emit('close-modal')
 	},
+	markAsReserved () {
+		this.isReserved = true;
+		this.reservationComponent = false;
+	},
+	hideReservation () {
+		this.reservationComponent = false;
+	},
+
   
   },
   mounted() {
-	  let that = this;
-	  axios
-	  .get("/api/active-reservation/?bookId=" + this.id)
-	  .then(x => { 
-		console.log(x);
-		console.log(x.data);
-		console.log(x.data.data);
-		if(x.data == true) {
-			this.reservationComponent = true;
-		}
-	  })
-	  .catch();
+		let that = this;
+		axios
+		.get("/api/active-reservation/?bookId=" + this.id)
+		.then(x => { 
+			console.log(x);
+			console.log(x.data);
+			console.log(x.data.data);
+			if(x.data == true) {
+				this.reservationComponent = true;
+			}
+	  	})
+	  	.catch();
   }
 }
 </script>
