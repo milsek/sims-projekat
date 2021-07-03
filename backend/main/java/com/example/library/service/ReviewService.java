@@ -28,16 +28,15 @@ public class ReviewService {
 
     public String createReview(ReviewSubmissionDto reviewSubmissionDto, Long editionId) {
         try {
-            if (!editionService.editionExistsById(editionId))
+            Edition edition = editionService.getEditionById(editionId);
+            if (edition == null)
                 return "Edition doesn't exist.";
 
-            // TODO: Spreči ostavljanje reviewa kao drugi korisnik menjanjem parametra unutar requesta.
-
-            Edition edition = editionService.getEditionById(editionId);
-            Review review = modelMapper.map(reviewSubmissionDto, Review.class);
             BookReservation bookReservation = reservationService.getReservationByMemberIdAndEditionId(reviewSubmissionDto.getMemberId(), editionId);
+            if (bookReservation == null)
+                return "Reservation doesn't exist.";
 
-
+            Review review = modelMapper.map(reviewSubmissionDto, Review.class);
             review.setEdition(edition);
             review.setBookReservation(bookReservation);
 
@@ -67,15 +66,7 @@ public class ReviewService {
     }
 
     public Boolean userCanReview(Long userId, Long editionId) {
-        List<Reservation> reservations = reservationService.getReservationsByMemberId(userId);
-        for (Reservation r : reservations) {
-            if (!(r instanceof BookReservation))
-                continue;
-
-            if (((BookReservation) r).getEdition().getId().equals(editionId) && r.getReservationState() == ReservationState.RETURNED)
-                return true;
-        }
-        return false;
+        return reservationService.getReservationByMemberIdAndEditionId(userId, editionId) != null;
     }
 
     public List<ReviewDisplayDto> getReviewsByEditionId(Long editionId) {
