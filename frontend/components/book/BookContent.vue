@@ -8,9 +8,9 @@
           </div>
 
           <div class="text-center md:text-left w-full mt-6 md:mt-0 md:w-3/5 ml-0 md:ml-6">
-            <div class="text-4xl text-gray-700 font-medium">{{data.title.title}}</div>
-            <div class="text-xl text-gray-700 font-thin">by {{data.title.contributions[0].contributor.name}}</div>
-            <div class="text-sm text-gray-400 font-thin">{{data.publisher.name}}</div>
+            <div class="text-4xl text-gray-700 font-medium">{{data.title}}</div>
+            <div class="text-xl text-gray-700 font-thin">by {{data.authorName}}</div>
+            <div class="text-sm text-gray-400 font-thin">{{data.publisherName}}</div>
             <div class="pb-0 inline-block font-thin align-middle text-sm text-gray-400 pt-2">Reads: {{readsInThousands}}</div>
             <div class="flow">
               <img :src="require(`@/assets/icons/star.svg`)" alt="" class="inline-block align-middle w-4 h-4 my-0" draggable="false">
@@ -103,7 +103,7 @@
     <LeaveReview @send-review="sendReview" />
     <ReviewConfirmationModal v-if="showReviewConfirmation" @close-modal="closeReviewConfirmationModal" />
 
-	  <div class="block w-11/12 mt-6 mx-auto bg-white shadow-lg">
+	  <div v-if="reviews" class="block w-11/12 mt-6 mx-auto bg-white shadow-lg">
       <div class="block p-8 w-full">
         <div class="text-xl text-gray-700 tracking-wide font-medium">Reviews</div>
         <div class="options pb-2 mt-4 space-y-4">
@@ -122,18 +122,20 @@ import RelatedEditions from '~/components/book/RelatedEditions'
 import Review from '~/components/book/Review'
 import LeaveReview from '~/components/book/LeaveReview'
 import ReviewConfirmationModal from '~/components/book/ReviewConfirmationModal.vue'
+import axios from 'axios'
 export default {
   props: ["data"],
   components: { RelatedEditions, Review, LeaveReview, ReviewConfirmationModal },
   mounted() {
-	  this.data.reviews = [
-		  {
-			  id: 1
-		  },
-		  {
-			  id: 2
-		  }
-	  ]
+    console.log("AAAAAAAAAAAAA");
+    axios
+    .get("/api/edition-reviews?editionId=" + this.data.id)
+    .then(x => {
+      console.log(x);
+      this.data.reviews = x.data;
+      this.reviews = true;
+    })
+    .catch()
   },
   data () {
     return {
@@ -143,11 +145,12 @@ export default {
         { name: 'pageCount', text: 'Pages' },
         { name: 'dimensions', text: 'Dimensions' },
         { name: 'year', text: 'Publication date' },
-        { name: 'publisher', text: 'Publisher' },
+        { name: 'publisherName', text: 'Publisher' },
         { name: 'id', text: 'MySBN' },
         { name: 'takeOut', text: 'Can be taken out' },
       ],
-      showReviewConfirmation: false
+      showReviewConfirmation: false,
+      reviews: false
     }
   },
   computed: {

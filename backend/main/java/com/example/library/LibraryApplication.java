@@ -14,8 +14,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
@@ -44,6 +42,7 @@ public class LibraryApplication {
         Converter<Edition, EditionDto> reviewToDtoConverter = context -> {
             EditionDto dto = new EditionDto();
             dto.setReviews(context.getSource().getReviews().stream().map(x -> mm.map(x, ReviewDisplayDto.class)).collect(Collectors.toList()));
+            dto.setAuthorName(context.getSource().getTitle().getContributions().get(0).getContributor().getName());
             return dto;
         };
 

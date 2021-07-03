@@ -1,8 +1,6 @@
 package com.example.library.model.dto;
 
 import com.example.library.model.Genre;
-import com.example.library.model.Publisher;
-import com.example.library.model.Review;
 import com.example.library.model.Tag;
 
 import java.time.LocalDate;
@@ -35,7 +33,7 @@ public class EditionDto {
 
     private String titleTitle;
 
-    private String author;
+    private String authorName;
 
     private List<ReviewDisplayDto> reviews;
 
@@ -44,6 +42,16 @@ public class EditionDto {
     private Set<Tag> tags;
 
     private String publisherName;
+
+    private int availableCopies;
+
+    public int getAvailableCopies() {
+        return availableCopies;
+    }
+
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
+    }
 
     public Long getId() {
         return id;
@@ -141,12 +149,12 @@ public class EditionDto {
         this.titleTitle = titleTitle;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     public List<ReviewDisplayDto> getReviews() {
