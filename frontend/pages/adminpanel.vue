@@ -14,8 +14,8 @@ import Sidebar from '~/components/nav/Sidebar'
 import BookExchange from '~/components/admin/exchange/BookExchange'
 import RegisterNew from '~/components/admin/registration/RegisterNew'
 import AccountSettings from '~/components/admin/AccountSettings'
-import BookReservations from "~/components/admin/BookReservations";
-import CheckReview from "~/components/admin/CheckReview";
+import BookReservations from "~/components/admin/reservations/BookReservations";
+import CheckReview from "~/components/admin/reviews/CheckReview";
 
 export default {
   layout: "admin",

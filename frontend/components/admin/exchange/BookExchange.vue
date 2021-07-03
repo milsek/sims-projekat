@@ -1,6 +1,9 @@
 <template>
   <div class="w-11/12 mx-auto rounded-lg bg-white md:shadow-lg md:block">
-  
+    <div class="justify-center w-full text-center mx-auto py-10 px-10">
+      <div class="text-4xl tracking-tight text-blue-900 opacity-70">Book Exchange</div>
+      <div class="font-medium text-gray-500 mt-2">Book lending/return</div>
+    </div>
     <div class="mt-10 text-lg lg:text-xl gap-6 md:flex justify-around mx-auto w-full sm:w-4/5 md:w-3/5 lg:5/1 xl:w-2/5">
       <MiniSearchBar @user-is-selected="userIsSelected($event)" @book-is-selected="bookIsSelected($event)"
         what="by book id" how="autocomplete-book-id" class=""/>

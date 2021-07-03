@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import ReviewModal from "~/components/admin/ReviewModal";
+import ReviewModal from "~/components/admin/reviews/ReviewModal";
 export default {
 	props: ["review"],
   components : {ReviewModal},
