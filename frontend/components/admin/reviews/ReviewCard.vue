@@ -97,9 +97,6 @@ export default {
       somethingChanged() {
         this.$emit("values-changed");
       }
-	},
-	mounted() {
-		console.log(this.review);
 	}
 }
 </script>
