@@ -1,18 +1,24 @@
 package com.example.library.service;
 
 import com.example.library.model.*;
+import com.example.library.model.dto.ReservationRequestDto;
 import com.example.library.repository.BookReservationRepository;
 import com.example.library.repository.MemberRepository;
 import com.example.library.repository.ReservationRepository;
 import com.example.library.repository.*;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationService {
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private BookReservationRepository bookReservationRepository;
@@ -133,5 +139,12 @@ public class ReservationService {
         }
         return false;
     }
-}
 
+    public List<ReservationRequestDto> reservationsRequest(String userId, String bookId, String bookTitle, String reservationState){
+        List<Object[]> obj = bookReservationRepository.findBookReservationByUserIdAndBookIdAndBookTitleAndState(userId, bookId, bookTitle, reservationState);
+        System.out.println(obj.get(0)[0].toString());
+        return null;
+    }
+
+
+}

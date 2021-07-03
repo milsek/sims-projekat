@@ -1,6 +1,7 @@
 package com.example.library.controller;
 
 
+import com.example.library.model.dto.ReservationRequestDto;
 import com.example.library.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -51,5 +52,15 @@ public class ReservationController {
             return false;
         }
         return reservationService.activeReservation(Long.valueOf(bookId));
+    }
+
+    //String userId, String bookId, String bookTitle, String reservationState
+    @PostMapping(path = "/request-reservation")
+    @ResponseBody
+    public List<ReservationRequestDto> reservationsRequest(@RequestParam(name = "userId", required = false) String userId,
+                                                           @RequestParam(name = "bookId", required = false) String bookId,
+                                                           @RequestParam(name = "bookTitle", required = false) String bookTitle,
+                                                           @RequestParam(name = "reservationState", required = false) String reservationState) {
+        return reservationService.reservationsRequest(userId,bookId,bookTitle,reservationState);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.library.model;
 
+import com.example.library.model.dto.ReservationRequestDto;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.search.annotations.Indexed;
@@ -7,6 +8,7 @@ import org.hibernate.search.annotations.IndexedEmbedded;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+
 
 @Entity
 @Indexed
