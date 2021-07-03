@@ -1,11 +1,13 @@
 package com.example.library.service;
 
-import com.example.library.model.Book;
-import com.example.library.model.BookState;
+import com.example.library.model.*;
 import com.example.library.model.dto.AutocompleteBookDto;
+import com.example.library.model.dto.BookChangePlacementDto;
 import com.example.library.model.dto.SelectedBookDto;
 import com.example.library.repository.BookRepository;
 import com.example.library.repository.EditionRepository;
+import com.example.library.repository.IsleRepository;
+import com.example.library.repository.LineRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,12 @@ public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private LineRepository lineRepository;
+
+    @Autowired
+    private IsleRepository isleRepository;
 
     @Autowired
     private EditionRepository editionRepository;
@@ -57,5 +65,22 @@ public class BookService {
         reservationService.reservationReturned(b);
         b = bookRepository.findById(Long.valueOf(id)).get();
         return modelMapper.map(b, SelectedBookDto.class);
+    }
+
+    public String changeBookPlacement(BookChangePlacementDto dto, Long bookId) {
+        try {
+            Book book = bookRepository.getById(bookId);
+
+            Section section = book.getLine().getIsle().getSection();
+
+            Isle isle = isleRepository.findBySectionAndName(section, dto.getIsleName());
+            Line line = lineRepository.findByIsleAndNumber(isle, dto.getLineNumber());
+
+            book.setLine(line);
+            bookRepository.save(book);
+        } catch (Exception e) {
+            return "An error occurred.";
+        }
+        return "Book placement changed.";
     }
 }

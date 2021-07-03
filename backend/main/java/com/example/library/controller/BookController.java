@@ -2,6 +2,7 @@ package com.example.library.controller;
 
 
 import com.example.library.model.Book;
+import com.example.library.model.dto.BookChangePlacementDto;
 import com.example.library.model.dto.SelectedBookDto;
 import com.example.library.service.BookService;
 import com.example.library.service.UserService;
@@ -30,6 +31,11 @@ public class BookController {
         return bookService.returnBook(id);
     }
 
+    @PostMapping("/change-placement")
+    @ResponseBody
+    public String changeBookPlacement(@RequestBody BookChangePlacementDto dto, @RequestParam Long bookId) {
+        return bookService.changeBookPlacement(dto, bookId);
+    }
 
 
 }
