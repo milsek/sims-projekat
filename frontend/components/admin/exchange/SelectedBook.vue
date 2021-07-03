@@ -38,19 +38,25 @@
         <UserModal @close-modal="closeModal" @lend-book="lendBook" ref="userModal"/>
       </div>
 
+      <div v-if="justReturned">
+        <BookReturnedModal />
+      </div>
+
     </div>
   </div>
 </template>
 
 <script>
 import UserModal from '~/components/admin/exchange/UserModal'
+import BookReturnedModal from '~/components/admin/exchange/BookReturnedModal'
 import axios from 'axios';
 export default {
   props: [ "data" ],
-  components: { UserModal },
+  components: { UserModal, BookReturnedModal },
   data () {
     return {
       showUserModal: false,
+      justReturned: true,
     }
   },
   methods: {
@@ -61,7 +67,7 @@ export default {
       let that = this;
       axios
         .post("/api/return-book/?id=" + this.data.id)
-        .then(x => {that.data.bookState = 'IN_STOCK';})
+        .then(x => {that.data.bookState = 'IN_STOCK'; justReturned = true; })
         .catch(error => {
           console.log("Book is NOT returned.")
         });
@@ -69,6 +75,7 @@ export default {
     },
     lendBook(userId) {
       console.log('lending book to ', userId);
+      justReturned = false;
       let that = this;
       axios
         .post("/api/take-book?bookId=" + this.data.id + "&userId=" + userId)
