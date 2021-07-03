@@ -8,7 +8,7 @@
           </div>
       
           <div class="block pl-4">
-            <div class="-mt-1 text-lg md:text-xl font-bold text-blue-900 opacity-90
+            <div class="-mt-1 text-base sm:text-lg md:text-xl font-bold text-blue-900 opacity-90
             line-clamp-2 ">Name Surname
             </div>
       
@@ -23,14 +23,14 @@
       </div>
 
       <div class="flex space-x-2 justify-end">
-      <button @click="showModalYes" class="bg-green-500 hover:bg-green-700 w-14 text-white font-bold py-2 px-4 rounded-full h-10">
-        <span class="w-6 h-full text-white">
+      <button @click="showModalYes" class="bg-green-500 hover:bg-green-600 w-10 sm:w-14 text-white font-bold rounded-full h-10">
+        <span class="h-full text-white">
           <font-awesome-icon :icon="['fas', 'check']"/>
         </span>
       </button>
         
-      <button @click="showModalNo" class="bg-red-500 hover:bg-red-700 w-14 text-white font-bold py-2 px-4 rounded-full h-10">
-          <span class="w-6 h-full text-white">
+      <button @click="showModalNo" class="bg-red-500 hover:bg-red-600 w-10 sm:w-14 h-10 text-white font-bold rounded-full">
+          <span class="text-white">
            <font-awesome-icon :icon="['fas', 'times']"/>
         </span>
       </button>
@@ -48,11 +48,11 @@
       eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
       sunt in culpa qui officia deserunt mollit anim id est laborum.
     </div>
-    <div class="text-center mx-auto -mt-1 grid grid-cols-5 my-auto">
-      <div class="col-start-3">
+    <div class="text-center mx-auto -mt-1">
+      <div class="">
         <button @click="showMore = !showMore" class="h-8 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 text-gray-400
-      text-center text-base focus:outline-none rounded-lg
-      hover:transition duration-300 ease-in-out transform hover:-translate-y-1" v-text="showMore ? 'Show less' : 'Show more'"></button>
+        text-center text-base focus:outline-none rounded-lg
+        hover:transition duration-300 ease-in-out transform hover:-translate-y-1" v-text="showMore ? 'Show less' : 'Show more'"></button>
       </div>
     
     </div>

@@ -12,12 +12,12 @@
       </div>
       <div class="bg-gray-100 px-4 py-5 mt-8 sm:px-6 flex justify-end">
           <button @click="confirmAction" type="button" class="inline-flex justify-center
-          rounded-md shadow-sm px-6 py-2 bg-white text-base font-medium text-gray-700
-        hover:bg-gray-300 focus:outline-none w-auto sm:text-sm">
+          rounded-md shadow-sm px-6 py-2 bg-green-500 hover:bg-green-600 text-base font-medium text-white
+          focus:outline-none w-auto sm:text-sm">
           Yes
           </button>
           <button @click="closeModal" type="button" class="inline-flex justify-center rounded-md shadow-sm 
-          bg-blue-700 hover:bg-blue-900 px-6 py-2 text-base font-medium text-white
+          px-6 py-2 text-base font-medium text-white bg-red-500 hover:bg-red-600 
           focus:outline-none ml-3 w-auto sm:text-sm">
           No
           </button>
