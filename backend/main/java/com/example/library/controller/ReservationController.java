@@ -61,6 +61,6 @@ public class ReservationController {
                                                            @RequestParam(name = "bookId", required = false) String bookId,
                                                            @RequestParam(name = "bookTitle", required = false) String bookTitle,
                                                            @RequestParam(name = "reservationState", required = false) String reservationState) {
-        return reservationService.reservationsRequest(userId,bookId,bookTitle,reservationState);
+        return reservationService.reservationsRequest(userId, bookId, bookTitle, reservationState);
     }
 }
