@@ -6,7 +6,7 @@ public class ReviewSubmissionDto {
 
     private Double rating;
 
-    private Long memberId;
+    private Long bookReservationMemberId;
 
     public String getContent() {
         return content;
@@ -24,11 +24,11 @@ public class ReviewSubmissionDto {
         this.rating = rating;
     }
 
-    public Long getMemberId() {
-        return memberId;
+    public Long getBookReservationMemberId() {
+        return bookReservationMemberId;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setBookReservationMemberId(Long bookReservationMemberId) {
+        this.bookReservationMemberId = bookReservationMemberId;
     }
 }

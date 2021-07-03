@@ -33,15 +33,18 @@ public class ReviewService {
             if (edition == null)
                 return "Edition doesn't exist.";
 
-            BookReservation bookReservation = reservationService.getReservationByMemberIdAndEditionId(reviewSubmissionDto.getMemberId(), editionId);
+            System.out.println(reviewSubmissionDto.getBookReservationMemberId());
+            System.out.println(editionId);
+            BookReservation bookReservation = reservationService.getReservationByMemberIdAndEditionId(reviewSubmissionDto.getBookReservationMemberId(), editionId);
             if (bookReservation == null)
                 return "Reservation doesn't exist.";
 
             Review review = modelMapper.map(reviewSubmissionDto, Review.class);
             review.setEdition(edition);
             review.setBookReservation(bookReservation);
+            review.setId(null);
 
-            reviewRepository.save(review);
+            reviewRepository.saveAndFlush(review);
         } catch (Exception e) {
             return "An error occurred.";
         }

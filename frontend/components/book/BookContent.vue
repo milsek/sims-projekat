@@ -130,16 +130,14 @@ export default {
     axios
     .get("/api/edition-reviews?editionId=" + this.data.id)
     .then(x => {
-      console.log(x);
       this.data.reviews = x.data;
-      this.reviews = false;
+      this.reviews = true;
     })
     .catch()
-    console.log("BRAAAAAAAAA");
     let user_id = document.cookie.split(";")[1].split("=")[1];
     axios
     .get("/api/user-can-review?editionId=" + this.data.id + "&userId=" + user_id)
-    .then(x => { this.userCanReview = x.data; console.log(x.data); })
+    .then(x => { this.userCanReview = x.data; })
   },
   data () {
     return {
@@ -180,11 +178,17 @@ export default {
     },
     sendReview (stars, text) {
       console.log('Stars: ', stars, '\nText: ', text)
-
+      let user_id = document.cookie.split(";")[1].split("=")[1];
       //if success
-      this.showReviewConfirmation = true
       
-
+      axios
+      .post("/api/review?editionId=" + this.data.id, {
+        content: text,
+        bookReservationMemberId: user_id,
+        rating: stars
+      })
+      .then(x => { this.showReviewConfirmation = true; console.log(x); })
+      .catch()
       // post request
     },
     closeReviewConfirmationModal() {
