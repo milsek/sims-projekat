@@ -8,7 +8,7 @@
           </div>
 
           <div class="text-center md:text-left w-full mt-6 md:mt-0 md:w-3/5 ml-0 md:ml-6">
-            <div class="text-4xl text-gray-700 font-medium">{{data.title}}</div>
+            <div class="text-4xl text-gray-700 font-medium">{{data.titleTitle}}</div>
             <div class="text-xl text-gray-700 font-thin">by {{data.authorName}}</div>
             <div class="text-sm text-gray-400 font-thin">{{data.publisherName}}</div>
             <div class="pb-0 inline-block font-thin align-middle text-sm text-gray-400 pt-2">Reads: {{readsInThousands}}</div>
