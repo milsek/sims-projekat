@@ -34,6 +34,14 @@ public class SessionController {
             nameCookie.setMaxAge(30*24*3600);
             response.addCookie(nameCookie);
 
+            Cookie idCookie = new Cookie("id", String.valueOf(userLoginDto.getId()));
+            idCookie.setHttpOnly(false);
+            idCookie.setSecure(false);
+            idCookie.setDomain("localhost");
+            idCookie.setPath("/");
+            idCookie.setMaxAge(30*24*3600);
+            response.addCookie(idCookie);
+
             Cookie roleCookie = new Cookie("role", String.valueOf(userLoginDto.getDiscriminatorValue()));
             roleCookie.setDomain("localhost");
             roleCookie.setHttpOnly(false);

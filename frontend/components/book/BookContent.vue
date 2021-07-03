@@ -100,7 +100,7 @@
       </div>
     </div>
     
-    <LeaveReview @send-review="sendReview" />
+    <LeaveReview v-if="userCanReview" @send-review="sendReview" />
     <ReviewConfirmationModal v-if="showReviewConfirmation" @close-modal="closeReviewConfirmationModal" />
 
 	  <div v-if="reviews" class="block w-11/12 mt-6 mx-auto bg-white shadow-lg">
@@ -132,9 +132,14 @@ export default {
     .then(x => {
       console.log(x);
       this.data.reviews = x.data;
-      this.reviews = true;
+      this.reviews = false;
     })
     .catch()
+    console.log("BRAAAAAAAAA");
+    let user_id = document.cookie.split(";")[1].split("=")[1];
+    axios
+    .get("/api/user-can-review?editionId=" + this.data.id + "&userId=" + user_id)
+    .then(x => { this.userCanReview = x.data; console.log(x.data); })
   },
   data () {
     return {
@@ -149,8 +154,8 @@ export default {
         { name: 'takeOut', text: 'Can be taken out' },
       ],
       showReviewConfirmation: false,
-      reviewsData: [],
-      reviews: false
+      reviews: false,
+      userCanReview: false,
     }
   },
   computed: {
