@@ -33,9 +33,10 @@ public interface BookReservationRepository extends JpaRepository<BookReservation
 
     public List<BookReservation> findByEditionId(Long id);
 
-    @Query(value = "select b.book_id as id, bt.title as title, r.state, ed.image_large as imageLarge,line.number as lineNumber,isle.name as isleName from book_reservation as br join reservation as r on br.id = r.id " +
+    @Query(value = "select b.book_id as id, bt.title as title, r.state, ed.image_large as imageLarge,line.number as lineNumber," +
+            "isle.name as isleName, u.name as name, u.surname as surname, br.id as bookReservationId, r.user_id as userId from book_reservation as br join reservation as r on br.id = r.id " +
             "inner join book_title bt on br.edition_id=bt.id inner join edition ed on br.edition_id=ed.id " +
-            "inner join book b on b.book_id=br.book_id inner join line on b.line_id=line.id inner join isle on isle.id=line.isle_id where " +
+            "inner join book b on b.book_id=br.book_id inner join line on b.line_id=line.id inner join isle on isle.id=line.isle_id inner join user as u on r.user_id = u.id where " +
             "(user_Id=?1 or ?1 is null) and " +
             "(b.book_Id=?2 or ?2 is null) and " +
             "(title=?3 or ?3 is null) and " +
