@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 import ReservationCard from "~/components/admin/reservations/ReservationCard"
 import Pagination from "~/components/search/Pagination"
 export default {

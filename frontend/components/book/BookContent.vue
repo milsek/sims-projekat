@@ -103,44 +103,21 @@
     <LeaveReview v-if="userCanReview" @send-review="sendReview" />
     <ReviewConfirmationModal v-if="showReviewConfirmation" @close-modal="closeReviewConfirmationModal" />
 
-	  <div v-if="reviews" class="block w-11/12 mt-6 mx-auto bg-white shadow-lg">
-      <div class="block p-8 w-full">
-        <div class="text-xl text-gray-700 tracking-wide font-medium">Reviews</div>
-        <div class="options pb-2 mt-4 space-y-4">
-          <div v-for="item in data.reviews" :key="item.id">
-            <Review v-bind:review="item"/>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ReviewList :data="data"/>
+
   </div>
 
 </template>
 
 <script>
 import RelatedEditions from '~/components/book/RelatedEditions'
-import Review from '~/components/book/Review'
+import ReviewList from '~/components/book/ReviewList'
 import LeaveReview from '~/components/book/LeaveReview'
 import ReviewConfirmationModal from '~/components/book/ReviewConfirmationModal.vue'
 import axios from 'axios'
 export default {
   props: ["data"],
-  components: { RelatedEditions, Review, LeaveReview, ReviewConfirmationModal },
-  mounted() {
-    axios
-    .get("/api/edition-reviews?editionId=" + this.data.id)
-    .then(x => {
-      console.log(x);
-      this.data.reviews = x.data;
-      this.reviews = false;
-    })
-    .catch()
-    console.log("BRAAAAAAAAA");
-    let user_id = document.cookie.split(";")[1].split("=")[1];
-    axios
-    .get("/api/user-can-review?editionId=" + this.data.id + "&userId=" + user_id)
-    .then(x => { this.userCanReview = x.data; console.log(x.data); })
-  },
+  components: { RelatedEditions, ReviewList, LeaveReview, ReviewConfirmationModal },
   data () {
     return {
       showMore: false,
@@ -154,9 +131,24 @@ export default {
         { name: 'takeOut', text: 'Can be taken out' },
       ],
       showReviewConfirmation: false,
-      reviews: false,
       userCanReview: false,
     }
+  },
+  mounted() {
+    // axios
+    // .get("/api/edition-reviews?editionId=" + this.data.id)
+    // .then(x => {
+    //   console.log(x);
+    //   this.data.reviews = x.data;
+    //   this.reviews = true;
+    // })
+    // .catch()
+    // console.log("BRAAAAAAAAA");
+    // let user_id = document.cookie.split(";")[1].split("=")[1];
+    // axios
+    // .get("/api/user-can-review?editionId=" + this.data.id + "&userId=" + user_id)
+    // .then(x => { this.userCanReview = x.data; console.log(x.data); })
+    this.checkUserCanReview()
   },
   computed: {
     readsInThousands () {
@@ -177,6 +169,12 @@ export default {
         return h.toString() + ' x ' + w.toString() + ' x ' + g.toString() + 'mm'
       }
       else return this.data[att.name]
+    },
+    checkUserCanReview() {
+      let user_id = document.cookie.split(";")[1].split("=")[1];
+      axios
+      .get("/api/user-can-review?editionId=" + this.data.id + "&userId=" + user_id)
+      .then(response => { this.userCanReview = response.data; console.log(response.data); })
     },
     sendReview (stars, text) {
       console.log('Stars: ', stars, '\nText: ', text)

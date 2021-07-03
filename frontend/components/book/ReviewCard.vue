@@ -18,10 +18,9 @@
           </div>
         </div>
       </div>
-      
     </div>
 
-    <div class="text-justify font-light md:tracking-wide mb-4 text-gray-500 pt-4 whitespace-pre-line"
+    <div class="text-justify font-light md:tracking-wide mb-4 text-gray-500 pt-2 whitespace-pre-line"
         :class="[showMore ? '' : 'line-clamp-3']">
      {{review.content}}
     </div>
@@ -45,9 +44,6 @@ export default {
   },
 	methods: {
 
-	},
-	mounted() {
-		console.log(this.review);
 	}
 }
 </script>
