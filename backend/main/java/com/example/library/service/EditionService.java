@@ -4,6 +4,7 @@ import com.example.library.model.Contributor;
 import com.example.library.model.Edition;
 import com.example.library.model.dto.AuthorDisplayDto;
 import com.example.library.model.dto.EditionDisplayDto;
+import com.example.library.model.dto.EditionDto;
 import com.example.library.model.dto.SearchEditionDto;
 import com.example.library.repository.EditionRepository;
 import org.modelmapper.ModelMapper;
@@ -48,6 +49,14 @@ public class EditionService {
     public Edition getEditionById(long id) {
         Optional<Edition> result = editionRepository.findById(id);
         return result.orElse(null);
+    }
+
+    public EditionDto getEditionDtoById(long id) {
+        Optional<Edition> edition = editionRepository.findById(id);
+        if (edition.isEmpty())
+            return null;
+
+        return modelMapper.map(edition.get(), EditionDto.class);
     }
 
     public Edition getEditionByBookId(long id) {

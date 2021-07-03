@@ -2,6 +2,7 @@ package com.example.library.controller;
 
 import com.example.library.model.Edition;
 import com.example.library.model.dto.EditionDisplayDto;
+import com.example.library.model.dto.EditionDto;
 import com.example.library.service.EditionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,8 @@ public class EditionController {
 
     @GetMapping(path = "/")
     @ResponseBody
-    public Edition getEditionById(@RequestParam("id") long id) {
-        return editionService.getEditionById(id);
+    public EditionDto getEditionDtoById(@RequestParam("id") long id) {
+        return editionService.getEditionDtoById(id);
     }
 
     @GetMapping(path = "/related-to/")

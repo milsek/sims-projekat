@@ -1,5 +1,7 @@
 package com.example.library.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,7 @@ public class Review {
     @Column
     private boolean allowed = false;
 
+    @JsonIgnore
     @ManyToOne
     private Edition edition;
 
