@@ -30,8 +30,15 @@ public class ReservationController {
 
     @GetMapping(path = "/reserve-edition")
     @ResponseBody
-    public Boolean reserveEdition(@RequestParam(name = "userId", required = false) Long userId,
+    public long reserveEdition(@RequestParam(name = "userId", required = false) Long userId,
                                   @RequestParam(name = "editionId", required = false) Long editionId) {
         return reservationService.reserveEdition(userId,editionId);
+    }
+
+    @GetMapping(path = "/book-taking")
+    @ResponseBody
+    public void takeBook(@RequestParam(name = "userId", required = false) Long userId,
+                         @RequestParam(name = "bookId", required = false) Long bookId) {
+        reservationService.takeBook(userId,bookId);
     }
 }

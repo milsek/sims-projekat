@@ -26,4 +26,6 @@ public interface BookReservationRepository extends JpaRepository<BookReservation
     public Long findUserIdForReservation(long reservationId);
 
     public Map<Long, List<BookReservation>> searchReservations(String text, int page, int amount);
+
+
 }

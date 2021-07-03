@@ -66,10 +66,11 @@ public class ReservationService {
             book.setBookState(BookState.RESERVED);
         }
         bookReservationRepository.save(bookReservation);
+        bookRepository.save(book);
         return possible;
     }
 
-    public Boolean reserveEdition(long userId, long editionId){
+    public long reserveEdition(long userId, long editionId){
         Edition edition = editionRepository.findById(editionId).get();
         Member member = memberRepository.findById(userId).get();
         BookReservation bookReservation = new BookReservation(null,null,
@@ -77,7 +78,7 @@ public class ReservationService {
         member.addReservation(bookReservation);
         bookReservationRepository.save(bookReservation);
         memberRepository.save(member);
-        return true;
+        return bookReservation.getId();
     }
 
     public Boolean isReservationPossibleByMemberId(Long id){
@@ -91,6 +92,24 @@ public class ReservationService {
         int allowedNumberOfBooks = categoryRules.getNumOfBooks();
         System.out.println(allowedNumberOfBooks);
         return booksTakenOrReserved < allowedNumberOfBooks;
+    }
+
+    public void takeBook(long userId, long bookId){
+        Book book = bookRepository.findById(bookId).get();
+        Long reservationId = reservationRepository.findByUserIdAndStateAndBookId(userId,"APPROVED",bookId);
+        if(reservationId == null){
+            reservationId = reserveEdition(userId,book.getEdition().getId());
+            boolean possible = reserveBook(reservationId,bookId);
+            if(!possible){
+                return;
+            }
+        }
+        BookReservation bookReservation = bookReservationRepository.findById(reservationId).get();
+        bookReservation.setDateTaken(LocalDate.now());
+        bookReservation.setReservationState(ReservationState.SEIZED);
+        book.setBookState(BookState.TAKEN);
+        bookRepository.save(book);
+        bookReservationRepository.save(bookReservation);
     }
 }
 
