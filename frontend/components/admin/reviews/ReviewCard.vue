@@ -4,17 +4,28 @@
 
       <div class="flex  w-full">
           <div class="align-middle object-fill">
-            <img :src="'https://i.pravatar.cc/150?u=' + review.id" class="w-12 h-12 rounded-md">
+            <img :src="'https://i.pravatar.cc/150?u=' + review.fullName" class="w-12 h-12 rounded-md">
           </div>
       
           <div class="block pl-4">
             <div class="-mt-1 text-base sm:text-lg md:text-xl font-bold text-blue-900 opacity-90
-            line-clamp-2 ">Name Surname
+            line-clamp-2 ">
+            <span> 
+              {{review.fullName}} 
+            </span>
+            <span class="text-base text-gray-400">
+              on
+            </span>
+            <span class="text-lg text-gray-600">
+                {{review.editionTitleTitle}}
+            </span>
             </div>
+
+
       
             <div class="flex">
               <div v-for="n in 5" :key="n">
-                <span class='icon is-left w-2 h-2' :class="[rating > n ? 'text-yellow-300' : 'text-gray-300']">
+                <span class='icon is-left w-2 h-2' :class="[Math.round(review.rating) >= n ? 'text-yellow-300' : 'text-gray-300']">
                   <font-awesome-icon :icon="['fas', 'star']"/>
                 </span>
               </div>
@@ -41,8 +52,7 @@
 
     <div class="text-justify font-light md:tracking-wide mb-4 text-gray-500 pt-4 whitespace-pre-line"
         :class="[showMore ? '' : 'line-clamp-3']">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      {{review.content}}
     </div>
     <div class="text-center mx-auto -mt-1">
       <div class="">
@@ -69,7 +79,6 @@ export default {
     return {
       modal: false,
       showMore: false,
-      rating: Math.floor(Math.random()*5+1),
       confirm: false,
     }
   },

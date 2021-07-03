@@ -12,24 +12,27 @@
 
 <script>
 import ReviewCard from '~/components/admin/reviews/ReviewCard';
+import axios from 'axios';
 export default {
     components: {ReviewCard},
     data() {
         return {
-            reviews: [
-                {
-                    id: 1
-                },
-                {
-                    id: 2
-                }
-            ]
+            reviews: []
         }
     },
     methods: {
         getReviews() {
-            console.log("HELLO I GOT HERE");
+          axios
+          .get("/api/unchecked-reviews")
+          .then(x => {
+            console.log(x);
+            this.reviews = x.data;
+          })
+          .catch()
         }
+    },
+    mounted() {
+      this.getReviews();
     }
 
 }

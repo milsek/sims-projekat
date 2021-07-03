@@ -19,6 +19,9 @@ public class Review {
     @Column
     private boolean allowed = false;
 
+    @Column
+    private boolean checked = false;
+
     @JsonIgnore
     @ManyToOne
     private Edition edition;
@@ -72,5 +75,13 @@ public class Review {
 
     public void setBookReservation(BookReservation bookReservation) {
         this.bookReservation = bookReservation;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

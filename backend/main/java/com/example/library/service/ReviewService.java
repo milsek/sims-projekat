@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReviewService {
@@ -54,6 +55,7 @@ public class ReviewService {
 
             Review review = reviewRepository.getById(reviewId);
             review.setAllowed(allowed);
+            review.setChecked(true);
             reviewRepository.save(review);
         } catch (Exception e) {
             return "An error occurred.";
@@ -70,7 +72,7 @@ public class ReviewService {
     }
 
     public List<ReviewDisplayDto> getReviewsByEditionId(Long editionId) {
-        List<Review> reviews = reviewRepository.findByEdition_Id(editionId);
+        List<Review> reviews = reviewRepository.findByEdition_IdAndAllowedTrue(editionId);
         List<ReviewDisplayDto> reviewDtos = new ArrayList<>();
 
         for (Review r : reviews) {
@@ -83,5 +85,10 @@ public class ReviewService {
         }
 
         return reviewDtos;
+    }
+
+    public List<ReviewDisplayDto> getUncheckedReviews() {
+        //return new ArrayList<ReviewDisplayDto>();
+        return reviewRepository.findByCheckedFalse().stream().map(x -> modelMapper.map(x, ReviewDisplayDto.class)).collect(Collectors.toList());
     }
 }

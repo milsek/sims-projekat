@@ -127,7 +127,6 @@ export default {
   props: ["data"],
   components: { RelatedEditions, Review, LeaveReview, ReviewConfirmationModal },
   mounted() {
-    console.log("AAAAAAAAAAAAA");
     axios
     .get("/api/edition-reviews?editionId=" + this.data.id)
     .then(x => {
@@ -150,6 +149,7 @@ export default {
         { name: 'takeOut', text: 'Can be taken out' },
       ],
       showReviewConfirmation: false,
+      reviewsData: [],
       reviews: false
     }
   },

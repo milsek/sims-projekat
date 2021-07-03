@@ -575,11 +575,13 @@ class REVIEW:
         self.rating = random.randint(10, 50) / 10
         self.book_reservation_id = book_reservation.id
         self.edition_id = book_reservation.edition_id
+        self.checked = False
+        self.allowed = False
 
         REVIEW.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO REVIEW VALUES({self.id}, false, '{self.content}', {self.rating}, {self.book_reservation_id}, {self.edition_id});"
+        return f"INSERT INTO REVIEW(id, content, rating, book_reservation_id, edition_id, allowed, checked) VALUES({self.id}, '{self.content}', {self.rating}, {self.book_reservation_id}, {self.edition_id}, {self.allowed}, {self.checked});"
 
 
 def escape(string):

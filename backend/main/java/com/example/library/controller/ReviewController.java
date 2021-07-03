@@ -41,4 +41,9 @@ public class ReviewController {
     public String markReview(@RequestParam Boolean allowed, @RequestParam Long reviewId) {
         return reviewService.markReview(reviewId, allowed);
     }
+
+    @GetMapping("unchecked-reviews")
+    public List<ReviewDisplayDto> getUncheckedReviews() {
+        return reviewService.getUncheckedReviews();
+    }
 }
