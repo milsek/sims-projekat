@@ -25,7 +25,8 @@
                   Books available: {{data.availableCopies}}
                 </div>
                 <div v-if="$store.state.session.role === '0'" class="pt-2">
-                  <button class="h-8 mt-4 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-indigo-800 hover:bg-indigo-900 text-white text-center text-lg md:text-base
+                  <button @click="sendReservation" class="h-8 mt-4 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 
+                  bg-indigo-800 hover:bg-indigo-900 text-white text-center text-lg md:text-base
                   lg:text-lg shadow-md focus:outline-none rounded-lg">
                     reservation
                   </button>
@@ -54,8 +55,9 @@
             Books available: {{data.availableCopies}}
           </div>
           <div v-if="$store.state.session.role === '0'" class="pt-2">
-            <button class="w-full h-8 mt-4 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 bg-indigo-800 text-white text-center text-lg md:text-base
-            lg:text-lg shadow-md focus:outline-none hover:text-gray-900 rounded-lg">
+            <button @click="sendReservation" class="w-full h-8 mt-4 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 
+            bg-indigo-800 hover:bg-indigo-900 text-white  text-center text-lg md:text-base
+            lg:text-lg shadow-md focus:outline-nonerounded-lg">
               reservation
             </button>
           </div>
@@ -112,7 +114,7 @@ export default {
     }
   },
   mounted() {
-    this.checkUserCanReview()
+    if (this.userId) this.checkUserCanReview()
   },
   computed: {
     readsInThousands () {
@@ -120,25 +122,35 @@ export default {
         return Math.round(this.data.reads/1000) + "k"
       } else return this.data.reads
     },
+    userId () {
+      if (document.cookie) {
+        return document.cookie.split(";")[1].split("=")[1];
+      }
+      return ''
+    }
   },
   methods: {
     checkUserCanReview() {
-      let user_id = document.cookie.split(";")[1].split("=")[1];
       axios
-      .get("/api/user-can-review?editionId=" + this.data.id + "&userId=" + user_id)
+      .get("/api/user-can-review?editionId=" + this.data.id + "&userId=" + this.userId)
       .then(response => { this.userCanReview = response.data; console.log(response.data); })
     },
     sendReview (stars, text) {
       console.log('Stars: ', stars, '\nText: ', text)
-      let user_id = document.cookie.split(";")[1].split("=")[1];
       //if success
       
       axios
-      .post("/api/review?editionId=" + this.data.id, {
+      .post("/api/reserve-edition?editionId=" + this.data.id + "&userId=" + this.userId, {
         content: text.trim(),
         bookReservationMemberId: user_id,
         rating: stars
       })
+      .then(x => { this.showReviewConfirmation = true; console.log(x); })
+      .catch()
+    },
+    sendReservation () {
+      axios
+      .post("/api/reserve-edition?userId=" + this.userId + "&editionId=" + this.data.id)
       .then(x => { this.showReviewConfirmation = true; console.log(x); })
       .catch()
     },
