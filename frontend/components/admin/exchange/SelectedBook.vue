@@ -68,10 +68,24 @@ export default {
       console.log("Book is returned.")
     },
     lendBook(userId) {
-      console.log('lending book to ', userId)
+      console.log('lending book to ', userId);
+      let that = this;
+      axios
+        .post("/api/take-book?bookId=" + this.data.id + "&userId=" + userId)
+        .then(x => {
+          that.data.bookState = 'TAKEN';
+          console.log("Book is taken.");
+          this.$refs.userModal.successfulLending(true);
+        })
+        .catch(error => {
+          console.log(error);
+          console.log("Book is NOT taken");
+          this.$refs.userModal.successfulLending(false);
+        })
+
       
       // success msg, true does closeModal, false shows an error msg 
-      this.$refs.userModal.successfulLending(false)
+      
     }
   },
   computed: {

@@ -1,6 +1,8 @@
 package com.example.library.model;
 
 import com.example.library.config.ReservationStateConverter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.search.annotations.IndexedEmbedded;
 
 import javax.persistence.*;
@@ -10,6 +12,7 @@ import java.util.Locale;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@OnDelete(action = OnDeleteAction.CASCADE)
 public abstract class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

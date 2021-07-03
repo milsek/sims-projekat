@@ -1,5 +1,7 @@
 package com.example.library.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 
@@ -8,6 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Indexed
+@OnDelete(action = OnDeleteAction.CASCADE)
 public class BookReservation extends Reservation {
 
     @Column
