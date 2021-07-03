@@ -8,7 +8,7 @@
       <div class="flex space-x-1 mt-4">
         <div v-for="n in 5" :key="n">
           <span class='icon is-left w-2 h-2'
-          :class="[focusStars >= n ? 'text-yellow-300' : 'text-gray-300', 'cursor-pointer']"
+          :class="[focusStars >= n ? 'text-yellow-300 transition duration-300 ease-in-out transform -translate-y-2' : 'text-gray-300', 'cursor-pointer']"
           @click="selectedStars=n" @mouseover="hoveredStars=n" @mouseleave="hoveredStars=0">
             <font-awesome-icon :icon="['fas', 'star']"/>
           </span>
