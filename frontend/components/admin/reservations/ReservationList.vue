@@ -1,7 +1,8 @@
 <template>
   <div class="w-full">
     <div v-if="reservations.length > 0" class="w-full">
-      <div class="inline-grid w-full items-stretch grid-flow-row grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 min-h-screen gap-x-4 gap-y-4">
+      <div class="inline-grid w-full items-stretch grid-flow-row grid-cols-1 lg:grid-cols-2 xl:grid-cols-3
+      gap-x-4 gap-y-4">
         <div v-for="reservation in reservations" :key="reservation.id" class="h-full w-full">
           <ReservationCard :data="reservation" class="h-full w-full"/>
         </div>
