@@ -145,6 +145,17 @@ public class ReservationService {
         return false;
     }
 
+    public Boolean newReservation(Long bookId) {
+        Edition edition = bookRepository.findById(bookId).get().getEdition();
+        List<BookReservation> bookReservations = bookReservationRepository.findByEditionId(edition.getId());
+        for (BookReservation reservation: bookReservations) {
+            if (reservation.getReservationState() == ReservationState.NEW) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<ReservationRequestDto> reservationsRequest(String userId, String bookId, String bookTitle, String reservationState){
         return bookReservationRepository.findBookReservationByUserIdAndBookIdAndBookTitleAndState(userId, bookId, bookTitle, reservationState);
     }

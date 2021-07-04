@@ -59,7 +59,6 @@ public abstract class Reservation {
 
     }
 
-
     public ReservationState getReservationState() {
         return reservationState;
     }

@@ -60,6 +60,17 @@ public class ReservationController {
         return reservationService.activeReservation(Long.valueOf(bookId));
     }
 
+    @GetMapping(path = "/new-reservation")
+    @ResponseBody
+    public Boolean newReservation(@RequestParam(name = "bookId") String bookId) {
+        try {
+            Long.valueOf(bookId);
+        } catch (Exception e) {
+            return false;
+        }
+        return reservationService.newReservation(Long.valueOf(bookId));
+    }
+
     //String userId, String bookId, String bookTitle, String reservationState
     @PostMapping(path = "/request-reservation")
     @ResponseBody

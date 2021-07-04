@@ -71,7 +71,7 @@ export default {
 	return {
 		isleWhat : { name: "Isle name", text: "Isle name", placeholder: "Isle name", query: ''  },
 		rowWhat : { name: "Row number", text: "Row number", placeholder: "Row number", query: '' },
-		reservationComponent: true, //!!!
+		reservationComponent: false,
 		isReserved: false
 	}
   },
@@ -95,8 +95,9 @@ export default {
   mounted() {
 		let that = this;
 		axios
-		.get("/api/active-reservation/?bookId=" + this.id)
+		.get("/api/new-reservation/?bookId=" + this.id)
 		.then(x => { 
+			console.log(x.data);
 			if(x.data == true) {
 				this.reservationComponent = true;
 			}
