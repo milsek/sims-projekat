@@ -13,8 +13,8 @@ import java.util.Set;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-    @Query(value = "select * from book b where to_char(b.book_id) like ?1 limit 5", nativeQuery = true)
-    public Set<Book> findByIdStartingWith(String id);
+    @Query(value = "select * from book b where to_char(b.book_id) like ?1 order by b.book_id asc limit 5", nativeQuery = true)
+    public List<Book> findByIdStartingWith(String id);
 
 
     @Query(

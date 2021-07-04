@@ -47,9 +47,9 @@ public class BookService {
         return entityToSelectedBookDto(bookRepository.findById(Long.valueOf(id)).get());
     }
 
-    public Set<AutocompleteBookDto> autocompleteBookId(String id) {
-        Set<Book> books = bookRepository.findByIdStartingWith(id + "%");
-        return books.stream().map(this::entityToAutocompleteBookDto).collect(Collectors.toSet());
+    public List<AutocompleteBookDto> autocompleteBookId(String id) {
+        List<Book> books = bookRepository.findByIdStartingWith(id + "%");
+        return books.stream().map(this::entityToAutocompleteBookDto).collect(Collectors.toList());
     }
 
     private SelectedBookDto entityToSelectedBookDto(Book book) {

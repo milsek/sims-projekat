@@ -48,7 +48,7 @@ public class SearchController {
 
     @GetMapping(path = "/autocomplete-book-id/")
     @ResponseBody
-    public Set<AutocompleteBookDto> autocompleteBookId(@RequestParam(name = "id") String id) {
+    public List<AutocompleteBookDto> autocompleteBookId(@RequestParam(name = "id") String id) {
         return bookService.autocompleteBookId(id);
     }
 
