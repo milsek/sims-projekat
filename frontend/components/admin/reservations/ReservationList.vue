@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       pageIndex: 0,
-      resultsPerPage: 5,
+      resultsPerPage: 24,
       showPagination: false,
       totalPages: 1,
       totalReservations: 1,

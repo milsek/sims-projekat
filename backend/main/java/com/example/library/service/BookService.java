@@ -78,8 +78,7 @@ public class BookService {
     }
 
     public Page<SelectedBookDto> searchBook(String id, String title, String author, String status, Pageable paging) {
-        String stSearch = status == null ? null :  String.valueOf(BookState.valueOf(status).ordinal());
-        Page<Book> bookPage = bookRepository.searchBook(id, title, author, stSearch, paging);
+        Page<Book> bookPage = bookRepository.searchBook(id, title, author, status, paging);
         Page<SelectedBookDto> dtoPage = bookPage.map(new Function<Book, SelectedBookDto>() {
             @Override
             public SelectedBookDto apply(Book book) {
