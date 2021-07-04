@@ -148,7 +148,7 @@ export default {
         {text: 'Check reviews', icon: 'tasks', name: 'reviews'}
       ],
       currentActive: 'exchange',
-      sidebarOpen: false
+      sidebarOpen: true
     }
   },
   methods: {
@@ -170,6 +170,7 @@ export default {
       }, 200)
     },
     handleSidebar(b) {
+      console.log(b)
       this.sidebarOpen = b
 
       // 320px = 20rem = w-80 (tailwind)
