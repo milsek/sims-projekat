@@ -26,8 +26,13 @@ public class Review {
     @ManyToOne
     private Edition edition;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private BookReservation bookReservation;
+
+    @PreRemove
+    private void preRemove() {
+        bookReservation.setReview(null);
+    }
 
     public Edition getEdition() {
         return edition;
