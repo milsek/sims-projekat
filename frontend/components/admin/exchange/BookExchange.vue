@@ -39,7 +39,6 @@ export default {
       axios.get("/api/book/?id=" + this.data_id)
         .then(response => {
           this.selected_book = response.data;
-          console.log(response.data)
           this.book_selected = true;
         });
     }

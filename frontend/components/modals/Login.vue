@@ -76,24 +76,20 @@ export default {
     },
     tryLogin () {
       // simulates login
-      let userdata = {}
       axios.get("/api/login/?mail=" + this.email + '&password=' + this.password)
       .then(response => {
-        console.log(document.cookie)
         if (document.cookie)
         {
           this.$store.commit('session/update')
           this.$emit('close-modal')
         }
         else {
-          console.log('Wrong credentials')
           this.error = 'Wrong credentials!'
         }
       })
       .catch(error => {
         console.log(error);
-          console.log('Wrong credentials w/error')
-          this.error = 'Wrong credentials w/error!'
+        this.error = 'Wrong credentials w/error!'
       });
 
 

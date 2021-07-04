@@ -97,9 +97,6 @@ export default {
 		axios
 		.get("/api/active-reservation/?bookId=" + this.id)
 		.then(x => { 
-			console.log(x);
-			console.log(x.data);
-			console.log(x.data.data);
 			if(x.data == true) {
 				this.reservationComponent = true;
 			}

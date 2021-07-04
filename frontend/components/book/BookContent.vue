@@ -144,9 +144,6 @@ export default {
       this.userCanReserve = (this.$store.state.session.role === '0')
     },
     sendReview (stars, text) {
-      console.log('Stars: ', stars, '\nText: ', text)
-      //if success
-      console.log(this.userId)
       axios
       .post("/api/review?editionId=" + this.data.id, {
         content: text.trim(),
@@ -156,7 +153,6 @@ export default {
       .then(x => {
         this.showConfirmation = true;
         this.confirmationMsg = 'Your review has been sent for review *wink*';
-        console.log(x);
       })
       .catch()
     },
@@ -167,7 +163,6 @@ export default {
         this.showConfirmation = true;
         this.confirmationMsg = 'Reservation has been sent for review.';
         this.userCanReserve = false;
-        console.log(x);
       })
       .catch()
     },

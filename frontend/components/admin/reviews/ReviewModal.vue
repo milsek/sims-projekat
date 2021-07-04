@@ -40,7 +40,6 @@ export default {
   methods: {
     confirmAction() {
       let that = this;
-      console.log("/api/mark-review?allowed=" + this.confirm + "&reviewId=" + this.id);
       axios
       .post("/api/mark-review?allowed=" + this.confirm + "&reviewId=" + this.id)
       .then(x => { console.log(x); that.closeModal(); that.$emit('values-changed'); })
