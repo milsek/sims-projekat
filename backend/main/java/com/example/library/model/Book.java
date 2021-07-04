@@ -1,5 +1,8 @@
 package com.example.library.model;
 
+import com.example.library.config.BookConditionConverter;
+import com.example.library.config.BookStateConverter;
+import com.example.library.config.ReservationStateConverter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.search.annotations.Field;
@@ -36,6 +39,7 @@ public class Book {
     }
 
     @Column
+    @Convert(converter = BookConditionConverter.class)
     private BookCondition condition;
 
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = Edition.class)
@@ -47,7 +51,7 @@ public class Book {
     private Line line;
 
     @Column(name = "state")
-    @Enumerated(EnumType.ORDINAL)
+    @Convert(converter = BookStateConverter.class)
     private BookState bookState;
 
     @JsonProperty
