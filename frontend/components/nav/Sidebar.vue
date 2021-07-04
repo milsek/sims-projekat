@@ -1,26 +1,28 @@
 <template>
   <div class="block fixed z-50">
-    <div class="h-screen w-80 hidden md:block bg-gray-100">
+    <div class="h-screen w-80 top-0 bottom-0 overflow-y-scroll overflow-x-hidden no-scrollbar hidden md:block bg-gray-100">
       <div class="p-6 h-full">
-        <div class="uppercase text-xs font-medium text-gray-400 tracking-wide pb-1
-        border-b border-solid border-gray-300 truncate">
-          {{$store.state.session.email}}
-        </div>
-        <!-- -------------------------------------------------------------------------------- -->
-        <div class="mt-6 space-y-1">
-          <div v-for="option in menuOptions" :key="option.text" @click="handleChoice(option.name)"
-          :class="[currentActive == option.name ? 'bg-gray-200 text-gray-800' : 'text-gray-500',
-          'flex text-lg px-4 py-2 tracking-wide rounded-lg cursor-pointer hover:bg-gray-300 hover:text-gray-800']">
-            <span class='icon is-left w-8'>
-              <font-awesome-icon :icon="['fas', option.icon]"/>
-            </span>
-            <div>{{option.text}}</div>
+        <div class="pb-6 border-b border-solid border-gray-300">
+          <div class="uppercase text-xs font-medium text-gray-400 tracking-wide pb-1
+          border-b border-solid border-gray-300 truncate">
+            {{$store.state.session.email}}
+          </div>
+          <!-- -------------------------------------------------------------------------------- -->
+          <div class="mt-6 space-y-1">
+            <div v-for="option in menuOptions" :key="option.text" @click="handleChoice(option.name)"
+            :class="[currentActive == option.name ? 'bg-gray-200 text-gray-800' : 'text-gray-500',
+            'flex text-lg px-4 py-2 tracking-wide rounded-lg cursor-pointer hover:bg-gray-300 hover:text-gray-800']">
+              <span class='icon is-left w-8'>
+                <font-awesome-icon :icon="['fas', option.icon]"/>
+              </span>
+              <div>{{option.text}}</div>
+            </div>
           </div>
         </div>
         <!-- -------------------------------------------------------------------------------- -->
-        <div class="absolute bottom-6 space-y-1 ">
+        <div class="mt-6 space-y-1">
 
-          <div @click="handleChoice('settings')"  :class="[currentActive == 'settings' ? 'bg-gray-200 text-gray-800' : 'text-gray-500',
+          <div @click="handleChoice('settings')" :class="[currentActive == 'settings' ? 'bg-gray-200 text-gray-800' : 'text-gray-500',
           'flex text-lg px-4 py-2 tracking-wide rounded-lg cursor-pointer hover:bg-gray-300 hover:text-gray-800']">
             <span class='icon is-left w-8'>
               <font-awesome-icon :icon="['fas', 'user-cog']"/>
@@ -184,4 +186,17 @@ export default {
 </script>
 
 <style>
+/* Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
 </style>

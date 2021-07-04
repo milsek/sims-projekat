@@ -16,11 +16,11 @@
 			</div>
 		</div>
 
-		<div v-if="isReserved" class="text-gray-600 text-lg" >
-				Added to the reservation list!
+		<div v-if="isReserved" class="text-gray-600 text-lg ml-4" >
+			Added to the reservation list!
 		</div>
 
-		<div v-if="reservationComponent" class="text-gray-600 text-lg ml-8 mt-8" >
+		<div v-if="reservationComponent" class="text-gray-600 text-lg ml-4 mt-8" >
 			<div class="text-gray-600 text-lg" >
 				There is a reservation waiting for this edition!
 			</div>

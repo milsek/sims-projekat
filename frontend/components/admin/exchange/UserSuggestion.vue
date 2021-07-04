@@ -13,7 +13,6 @@ export default {
   props: ["name", "surname", "id"],
   methods: {
     selected() {
-      console.log("Emit");
       this.$emit('user-is-selected', { id : this.id, name: this.name, surname: this.surname });
       //
     }

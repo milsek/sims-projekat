@@ -108,7 +108,6 @@ export default {
       console.log("Book is returned.");
     },
     lendBook(userId) {
-      console.log("lending book to ", userId);
       this.justReturned = false;
       let that = this;
       axios
@@ -123,8 +122,6 @@ export default {
           console.log("Book is NOT taken");
           this.$refs.userModal.successfulLending(false);
         });
-
-      // success msg, true does closeModal, false shows an error msg
     }
   },
   computed: {

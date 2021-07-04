@@ -31,8 +31,9 @@ export default {
       .get("/api/edition-reviews?editionId=" + this.data.id)
       .then(response => {
         this.data.reviews = response.data;
-        this.showReviews = true;
-        console.log(response.data)
+        if (this.data.reviews.length) {
+          this.showReviews = true;
+        }
       })
       .catch()
     }
