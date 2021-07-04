@@ -158,4 +158,45 @@ public class ReservationService {
         mapaDto.put((Long)mapa.keySet().toArray()[0], listaDto);
         return mapaDto;
     }
+
+    public BookReservation getReservationByEditionAndStateOrderByDate(Edition edition, ReservationState state) {
+        List<BookReservation> reservations = bookReservationRepository.findByEdition_IdAndReservationStateOrderByReservationDateAsc(edition.getId(), state);
+        if (reservations.isEmpty())
+            return null;
+        return reservations.get(0);
+    }
+
+    public String returnBook(Long reservationId) {
+        String message;
+
+        try {
+            if (!bookReservationRepository.existsById(reservationId))
+                return "Reservation doesn't exist.";
+
+            BookReservation bookReservation = bookReservationRepository.getById(reservationId);
+            bookReservation.setReservationState(ReservationState.RETURNED);
+
+            Edition edition = bookReservation.getEdition();
+            Book book = bookReservation.getBook();
+
+            BookReservation queuedReservation = getReservationByEditionAndStateOrderByDate(edition, ReservationState.NEW);
+            if (queuedReservation != null) {
+                queuedReservation.setReservationState(ReservationState.APPROVED);
+                queuedReservation.setBook(book);
+                book.setBookState(BookState.RESERVED);
+
+                bookReservationRepository.save(queuedReservation);
+                message = "Book returned and first reservation in queue approved.";
+            } else {
+                book.setBookState(BookState.IN_STOCK);
+                message = "Book returned.";
+            }
+
+            bookRepository.save(book);
+            bookReservationRepository.save(bookReservation);
+        } catch (Exception e) {
+            return "An error occurred.";
+        }
+        return message;
+    }
 }

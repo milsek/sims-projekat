@@ -43,4 +43,5 @@ public interface BookReservationRepository extends JpaRepository<BookReservation
             "(r.state=?4 or ?4 is null)", nativeQuery = true)
     public List<ReservationRequestDto> findBookReservationByUserIdAndBookIdAndBookTitleAndState(String userId, String bookId, String bookTitle, String reservationState);
 
+    List<BookReservation> findByEdition_IdAndReservationStateOrderByReservationDateAsc(Long editionId, ReservationState state);
 }
