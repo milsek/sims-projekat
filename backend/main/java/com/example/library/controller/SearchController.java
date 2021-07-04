@@ -6,6 +6,9 @@ import com.example.library.model.Member;
 import com.example.library.model.dto.*;
 import com.example.library.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -45,7 +48,7 @@ public class SearchController {
 
     @GetMapping(path = "/autocomplete-book-id/")
     @ResponseBody
-    public Set<AutocompleteBookDto> autocompleteBookId(@RequestParam(name = "id") String id) {
+    public List<AutocompleteBookDto> autocompleteBookId(@RequestParam(name = "id") String id) {
         return bookService.autocompleteBookId(id);
     }
 
@@ -63,17 +66,20 @@ public class SearchController {
 
     @GetMapping("search-book")
     @ResponseBody
-    public List<SelectedBookDto> searchBook(
+    public Page<SelectedBookDto> searchBook(
             @RequestParam(name = "bookId", required = false) String id,
             @RequestParam(name = "title", required = false) String title,
             @RequestParam(name = "author", required = false) String author,
-            @RequestParam(name = "status", required = false) String status) {
-        return bookService.searchBook(id, title, author, status);
+            @RequestParam(name = "status", required = false) String status,
+            @RequestParam(name = "page") Integer page,
+            @RequestParam(name = "amount") Integer amount) {
+        Pageable paging = PageRequest.of(page, amount);
+        return bookService.searchBook(id, title, author, status, paging);
     }
 
     @GetMapping(path = "search-reservations")
     @ResponseBody
-    public Map<Long,List<BookReservationDto>> searchReservations(@RequestParam(name = "userId", required = false) String userId,
+    public Map<Long, List<BookReservationDto>> searchReservations(@RequestParam(name = "userId", required = false) String userId,
                                                                  @RequestParam(name = "bookId", required = false) String bookId,
                                                                  @RequestParam(name = "bookTitle", required = false) String bookTitle,
                                                                  @RequestParam(name = "status", required = false) String status,

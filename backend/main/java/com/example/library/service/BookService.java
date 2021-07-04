@@ -8,13 +8,18 @@ import com.example.library.repository.BookRepository;
 import com.example.library.repository.EditionRepository;
 import com.example.library.repository.IsleRepository;
 import com.example.library.repository.LineRepository;
+import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.spi.MappingContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,9 +47,9 @@ public class BookService {
         return entityToSelectedBookDto(bookRepository.findById(Long.valueOf(id)).get());
     }
 
-    public Set<AutocompleteBookDto> autocompleteBookId(String id) {
-        Set<Book> books = bookRepository.findByIdStartingWith(id + "%");
-        return books.stream().map(this::entityToAutocompleteBookDto).collect(Collectors.toSet());
+    public List<AutocompleteBookDto> autocompleteBookId(String id) {
+        List<Book> books = bookRepository.findByIdStartingWith(id + "%");
+        return books.stream().map(this::entityToAutocompleteBookDto).collect(Collectors.toList());
     }
 
     private SelectedBookDto entityToSelectedBookDto(Book book) {
@@ -72,11 +77,14 @@ public class BookService {
         return "Book placement changed.";
     }
 
-    public List<SelectedBookDto> searchBook(String id, String title, String author, String status) {
-        String stSearch = status == null ? null :  String.valueOf(BookState.valueOf(status).ordinal());
-        return bookRepository.searchBook(id, title, author, stSearch)
-                .stream()
-                .map(x -> modelMapper.map(x, SelectedBookDto.class))
-                .collect(Collectors.toList());
+    public Page<SelectedBookDto> searchBook(String id, String title, String author, String status, Pageable paging) {
+        Page<Book> bookPage = bookRepository.searchBook(id, title, author, status, paging);
+        Page<SelectedBookDto> dtoPage = bookPage.map(new Function<Book, SelectedBookDto>() {
+            @Override
+            public SelectedBookDto apply(Book book) {
+                return modelMapper.map(book, SelectedBookDto.class);
+            }
+        });
+        return dtoPage;
     }
 }

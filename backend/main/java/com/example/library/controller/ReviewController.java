@@ -5,6 +5,9 @@ import com.example.library.model.dto.ReviewDisplayDto;
 import com.example.library.model.dto.ReviewSubmissionDto;
 import com.example.library.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,7 +46,8 @@ public class ReviewController {
     }
 
     @GetMapping("unchecked-reviews")
-    public List<ReviewDisplayDto> getUncheckedReviews() {
-        return reviewService.getUncheckedReviews();
+    public Page<ReviewDisplayDto> getUncheckedReviews(@RequestParam Integer page, @RequestParam Integer amount) {
+        Pageable paging = PageRequest.of(page, amount);
+        return reviewService.getUncheckedReviews(paging);
     }
 }

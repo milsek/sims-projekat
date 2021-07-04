@@ -3,7 +3,7 @@
     <div class="flex-shrink-0">
       <img :src="data.editionImageLarge"
         alt=""
-        class="text-left rounded-md w-32 sm:w-36 lg:w-40 h-52 sm:h-56 lg:h-60 object-fill mx-auto"
+        class="text-left rounded-md w-28 h-40 object-fill mx-auto"
         draggable="false"
       />
     </div>
