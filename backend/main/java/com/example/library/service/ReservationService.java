@@ -130,7 +130,7 @@ public class ReservationService {
         return bookReservationRepository.findByUser_IdAndEdition_IdAndReservationState(memberId, editionId, state);
     }
 
-    public BookReservation getReservationByMemberIdAndEditionId(Long memberId, Long editionId) {
+    public List<BookReservation> getReservationByMemberIdAndEditionId(Long memberId, Long editionId) {
         return bookReservationRepository.findByUser_IdAndEdition_Id(memberId, editionId);
     }
 

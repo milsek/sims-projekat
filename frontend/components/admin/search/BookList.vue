@@ -31,10 +31,11 @@ export default {
     },
     methods : {
         searchBooks() {
+            console.log("RADIM PRETRAGU");
             axios
             .get(this.getRequestText())
-            .then( x => { books = x.data; console.log(x); })
-            .catch()
+            .then( x => { this.books = x.data; console.log(x); })
+            .catch( x => { console.log(x); })
         },
         getRequestText() {
             const bookId = this.data.bookId ? "bookId=" + this.data.bookId.trim() + '&': ''

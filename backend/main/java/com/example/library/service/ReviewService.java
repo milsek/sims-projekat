@@ -35,13 +35,13 @@ public class ReviewService {
 
             System.out.println(reviewSubmissionDto.getBookReservationMemberId());
             System.out.println(editionId);
-            BookReservation bookReservation = reservationService.getReservationByMemberIdAndEditionId(reviewSubmissionDto.getBookReservationMemberId(), editionId);
+            List<BookReservation> bookReservation = reservationService.getReservationByMemberIdAndEditionId(reviewSubmissionDto.getBookReservationMemberId(), editionId);
             if (bookReservation == null)
                 return "Reservation doesn't exist.";
 
             Review review = modelMapper.map(reviewSubmissionDto, Review.class);
             review.setEdition(edition);
-            review.setBookReservation(bookReservation);
+            review.setBookReservation(bookReservation.get(0));
             review.setId(null);
 
             reviewRepository.saveAndFlush(review);
