@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -54,19 +55,6 @@ public class BookService {
         return modelMapper.map(book, AutocompleteBookDto.class);
     }
 
-    public SelectedBookDto returnBook(String id) {
-        Optional<Book> book = bookRepository.findById(Long.valueOf(id));
-        if(book.isEmpty()) {
-            return null;
-        }
-        Book b = book.get();
-        b.setBookState(BookState.IN_STOCK);
-        bookRepository.saveAndFlush(b);
-        reservationService.reservationReturned(b);
-        b = bookRepository.findById(Long.valueOf(id)).get();
-        return modelMapper.map(b, SelectedBookDto.class);
-    }
-
     public String changeBookPlacement(BookChangePlacementDto dto, Long bookId) {
         try {
             Book book = bookRepository.getById(bookId);
@@ -82,5 +70,12 @@ public class BookService {
             return "An error occurred.";
         }
         return "Book placement changed.";
+    }
+
+    public List<SelectedBookDto> searchBook(String id, String title, String author) {
+        return bookRepository.searchBook(id, title, author)
+                .stream()
+                .map(x -> modelMapper.map(x, SelectedBookDto.class))
+                .collect(Collectors.toList());
     }
 }

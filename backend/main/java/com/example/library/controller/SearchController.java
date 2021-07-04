@@ -3,13 +3,8 @@ package com.example.library.controller;
 import com.example.library.model.Book;
 import com.example.library.model.Edition;
 import com.example.library.model.Member;
-import com.example.library.model.dto.AutocompleteBookDto;
-import com.example.library.model.dto.AutocompleteUserDto;
-import com.example.library.model.dto.SearchEditionDto;
-import com.example.library.service.BookService;
-import com.example.library.service.BookTitleService;
-import com.example.library.service.EditionService;
-import com.example.library.service.UserService;
+import com.example.library.model.dto.*;
+import com.example.library.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +29,9 @@ public class SearchController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ReservationService reservationService;
 
     @GetMapping(path = "fullSearch")
     @ResponseBody
@@ -62,4 +60,25 @@ public class SearchController {
     private Set<Edition> searchByGenre(@RequestParam(name = "id") String id) {
         return bookTitleService.getEditionsByGenreId(Long.valueOf(id));
     }
+
+    @GetMapping("search-book")
+    @ResponseBody
+    public List<SelectedBookDto> searchBook(
+            @RequestParam(name = "id", required = false) String id,
+            @RequestParam(name = "title", required = false) String title,
+            @RequestParam(name = "author", required = false) String author) {
+        return bookService.searchBook(id, title, author);
+    }
+
+    @GetMapping(path = "search-reservations")
+    @ResponseBody
+    public Map<Long,List<BookReservationDto>> searchReservations(@RequestParam(name = "userId", required = false) String userId,
+                                                                 @RequestParam(name = "bookId", required = false) String bookId,
+                                                                 @RequestParam(name = "bookTitle", required = false) String bookTitle,
+                                                                 @RequestParam(name = "status", required = false) String status,
+                                                                 @RequestParam(name = "page") int page,
+                                                                 @RequestParam(name = "amount") int amount) {
+        return reservationService.searchReservations(userId, bookId, bookTitle, status, page, amount);
+    }
+
 }

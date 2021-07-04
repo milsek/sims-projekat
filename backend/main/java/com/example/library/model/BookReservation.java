@@ -25,7 +25,7 @@ public class BookReservation extends Reservation {
 
     @ManyToOne
     @JoinColumn(name = "EDITION_ID")
-    @IndexedEmbedded(depth = 1)
+    @IndexedEmbedded(depth = 4)
     private Edition edition;
 
     @OneToOne

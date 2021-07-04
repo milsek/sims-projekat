@@ -3,6 +3,7 @@
     <Sidebar v-on:component-change="updateComponent" />
     <BookExchange v-if="currentComponent=='exchange'" class="md:ml-80"/>
     <BookReservations v-if="currentComponent=='reservations'" class="md:ml-80"/>
+    <BookSearch v-if="currentComponent=='search'" class="md:ml-80" />
     <CheckReview v-if="currentComponent=='reviews'" class="md:ml-80" />
     <RegisterNew v-if="currentComponent=='register'" class="md:ml-80"/>
     <AccountSettings v-if="currentComponent=='settings'" class="md:ml-80"/>
@@ -16,10 +17,11 @@ import RegisterNew from '~/components/admin/registration/RegisterNew'
 import AccountSettings from '~/components/admin/AccountSettings'
 import BookReservations from "~/components/admin/reservations/BookReservations"
 import CheckReview from "~/components/admin/reviews/CheckReview"
+import BookSearch from '../components/admin/search/BookSearch.vue'
 
 export default {
   layout: "admin",
-  components: { Sidebar, BookExchange, BookReservations, RegisterNew, AccountSettings, CheckReview },
+  components: { Sidebar, BookExchange, BookSearch, BookReservations, RegisterNew, AccountSettings, CheckReview },
   data () {
     return {
       currentComponent: 'exchange'

@@ -2,6 +2,10 @@ package com.example.library.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.FieldBridge;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.bridge.builtin.LongBridge;
 
 import javax.persistence.*;
 import java.lang.reflect.Method;
@@ -9,12 +13,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Indexed
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Field(name = "book_id")
+    @FieldBridge(impl = LongBridge.class)
     @Column(name = "BOOK_ID")
-    private long id;
+    private Long id;
 
     public Book() {
     }

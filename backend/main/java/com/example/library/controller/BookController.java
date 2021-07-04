@@ -25,17 +25,10 @@ public class BookController {
         return bookService.findBookById(id);
     }
 
-    @PostMapping(path = "/return-book/")
-    @ResponseBody
-    public SelectedBookDto returnBook(@RequestParam(name = "id") String id) {
-        return bookService.returnBook(id);
-    }
-
     @PostMapping("/change-placement")
     @ResponseBody
     public String changeBookPlacement(@RequestBody BookChangePlacementDto dto, @RequestParam Long bookId) {
         return bookService.changeBookPlacement(dto, bookId);
     }
-
 
 }

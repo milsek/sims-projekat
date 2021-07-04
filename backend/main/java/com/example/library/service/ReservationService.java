@@ -1,6 +1,7 @@
 package com.example.library.service;
 
 import com.example.library.model.*;
+import com.example.library.model.dto.BookReservationDto;
 import com.example.library.model.dto.ReservationRequestDto;
 import com.example.library.repository.BookReservationRepository;
 import com.example.library.repository.MemberRepository;
@@ -11,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationService {
@@ -78,10 +82,12 @@ public class ReservationService {
         Edition edition = editionRepository.findById(editionId).get();
         Member member = memberRepository.findById(userId).get();
         BookReservation bookReservation = new BookReservation(null,null,
-                ReservationState.NEW,LocalDate.now(),null,edition);
+                ReservationState.NEW, LocalDate.now(),null, edition);
         member.addReservation(bookReservation);
+        bookReservation.setUser(member);
         bookReservationRepository.save(bookReservation);
-        memberRepository.save(member);
+        memberRepository.saveAndFlush(member);
+
         return bookReservation.getId();
     }
 
@@ -105,7 +111,7 @@ public class ReservationService {
         Book book = bookRepository.findById(bookId).get();
         Long reservationId = reservationRepository.findByUserIdAndStateAndBookId(userId,"APPROVED", bookId);
         if(reservationId == null) {
-            reservationId = reserveEdition(userId,book.getEdition().getId());
+            reservationId = reserveEdition(userId, book.getEdition().getId());
             boolean possible = reserveBook(reservationId,bookId);
             if(!possible){
                 return false;
@@ -124,7 +130,7 @@ public class ReservationService {
         return bookReservationRepository.findByUser_IdAndEdition_IdAndReservationState(memberId, editionId, state);
     }
 
-    public BookReservation getReservationByMemberIdAndEditionId(Long memberId, Long editionId) {
+    public List<BookReservation> getReservationByMemberIdAndEditionId(Long memberId, Long editionId) {
         return bookReservationRepository.findByUser_IdAndEdition_Id(memberId, editionId);
     }
 
@@ -144,4 +150,53 @@ public class ReservationService {
     }
 
 
+    public Map<Long, List<BookReservationDto>> searchReservations(String userId, String bookId, String bookTitle, String status, int page, int amount) {
+        Map<Long, List<BookReservation>> mapa = bookReservationRepository.searchReservations(userId, bookId, bookTitle, status, page, amount);
+        List<BookReservation> lista = mapa.get(mapa.keySet().toArray()[0]);
+        List<BookReservationDto> listaDto = lista.stream().map(x -> {return modelMapper.map(x, BookReservationDto.class);}).collect(Collectors.toList());
+        Map<Long,List<BookReservationDto>> mapaDto = new HashMap<Long,List<BookReservationDto>>();
+        mapaDto.put((Long)mapa.keySet().toArray()[0], listaDto);
+        return mapaDto;
+    }
+
+    public BookReservation getReservationByEditionAndStateOrderByDate(Edition edition, ReservationState state) {
+        List<BookReservation> reservations = bookReservationRepository.findByEdition_IdAndReservationStateOrderByReservationDateAsc(edition.getId(), state);
+        if (reservations.isEmpty())
+            return null;
+        return reservations.get(0);
+    }
+
+    public String returnBook(Long reservationId) {
+        String message;
+
+        try {
+            if (!bookReservationRepository.existsById(reservationId))
+                return "Reservation doesn't exist.";
+
+            BookReservation bookReservation = bookReservationRepository.getById(reservationId);
+            bookReservation.setReservationState(ReservationState.RETURNED);
+
+            Edition edition = bookReservation.getEdition();
+            Book book = bookReservation.getBook();
+
+            BookReservation queuedReservation = getReservationByEditionAndStateOrderByDate(edition, ReservationState.NEW);
+            if (queuedReservation != null) {
+                queuedReservation.setReservationState(ReservationState.APPROVED);
+                queuedReservation.setBook(book);
+                book.setBookState(BookState.RESERVED);
+
+                bookReservationRepository.save(queuedReservation);
+                message = "Book returned and first reservation in queue approved.";
+            } else {
+                book.setBookState(BookState.IN_STOCK);
+                message = "Book returned.";
+            }
+
+            bookRepository.save(book);
+            bookReservationRepository.save(bookReservation);
+        } catch (Exception e) {
+            return "An error occurred.";
+        }
+        return message;
+    }
 }

@@ -25,9 +25,9 @@ public interface BookReservationRepository extends JpaRepository<BookReservation
     @Query(value = "select r.user_id from reservation r where r.id=?1", nativeQuery = true)
     public Long findUserIdForReservation(long reservationId);
 
-    public Map<Long, List<BookReservation>> searchReservations(String text, int page, int amount);
+    public Map<Long, List<BookReservation>> searchReservations(String userId, String bookId, String bookTitle, String text, int page, int amount);
 
-    public BookReservation findByUser_IdAndEdition_Id(Long userId, Long editionId);
+    public List<BookReservation> findByUser_IdAndEdition_Id(Long userId, Long editionId);
 
     public BookReservation findByUser_IdAndEdition_IdAndReservationState(Long memberId, Long editionId, ReservationState state);
 
@@ -43,4 +43,5 @@ public interface BookReservationRepository extends JpaRepository<BookReservation
             "(r.state=?4 or ?4 is null)", nativeQuery = true)
     public List<ReservationRequestDto> findBookReservationByUserIdAndBookIdAndBookTitleAndState(String userId, String bookId, String bookTitle, String reservationState);
 
+    List<BookReservation> findByEdition_IdAndReservationStateOrderByReservationDateAsc(Long editionId, ReservationState state);
 }

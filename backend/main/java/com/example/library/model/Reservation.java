@@ -3,7 +3,11 @@ package com.example.library.model;
 import com.example.library.config.ReservationStateConverter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.FieldBridge;
 import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.bridge.StringBridge;
+import org.hibernate.search.bridge.builtin.IntegerBridge;
 
 import javax.persistence.*;
 import java.lang.reflect.Method;
@@ -28,10 +32,13 @@ public abstract class Reservation {
     private LocalDate dateReturned;
 
     @Column(name = "state")
+    @Field
+    @FieldBridge(impl = IntegerBridge.class)
     @Convert(converter = ReservationStateConverter.class)
     protected ReservationState reservationState;
 
     @ManyToOne
+    @IndexedEmbedded(depth = 1)
     @JoinColumn(name = "user_id")
     protected User user;
 

@@ -35,15 +35,20 @@ public class ReviewService {
 
             System.out.println(reviewSubmissionDto.getBookReservationMemberId());
             System.out.println(editionId);
-            BookReservation bookReservation = reservationService.getReservationByMemberIdAndEditionId(reviewSubmissionDto.getBookReservationMemberId(), editionId);
+            List<BookReservation> bookReservation = reservationService.getReservationByMemberIdAndEditionId(reviewSubmissionDto.getBookReservationMemberId(), editionId);
             if (bookReservation == null)
                 return "Reservation doesn't exist.";
 
             Review review = modelMapper.map(reviewSubmissionDto, Review.class);
             review.setEdition(edition);
-            review.setBookReservation(bookReservation);
+            review.setBookReservation(bookReservation.get(0));
             review.setId(null);
-
+            for (BookReservation reservation: bookReservation) {
+                if(reservation.getReservationState() == ReservationState.RETURNED) {
+                    reservation.setReview(review);
+                    break;
+                }
+            }
             reviewRepository.saveAndFlush(review);
         } catch (Exception e) {
             return "An error occurred.";
@@ -71,10 +76,15 @@ public class ReviewService {
     }
 
     public Boolean userCanReview(Long userId, Long editionId) {
-        boolean reservationExist = reservationService.getReservationByMemberIdAndEditionId(userId, editionId) != null;
         boolean reviewExist = reviewRepository.findByMemberIdAndEditionId(userId, editionId) != null;
-
-        return (reservationExist && !reviewExist);
+        boolean wasReturned = false;
+        for (Reservation res: reservationService.getReservationByMemberIdAndEditionId(userId, editionId) ) {
+            if (res.getReservationState() == ReservationState.RETURNED) {
+                wasReturned = true;
+                break;
+            }
+        }
+        return (wasReturned && !reviewExist);
     }
 
     public List<ReviewDisplayDto> getReviewsByEditionId(Long editionId) {
