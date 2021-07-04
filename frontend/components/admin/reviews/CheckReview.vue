@@ -25,7 +25,6 @@ export default {
           axios
           .get("/api/unchecked-reviews")
           .then(x => {
-            console.log(x);
             this.reviews = x.data;
           })
           .catch()

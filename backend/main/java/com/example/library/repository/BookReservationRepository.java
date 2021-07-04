@@ -44,4 +44,6 @@ public interface BookReservationRepository extends JpaRepository<BookReservation
     public List<ReservationRequestDto> findBookReservationByUserIdAndBookIdAndBookTitleAndState(String userId, String bookId, String bookTitle, String reservationState);
 
     List<BookReservation> findByEdition_IdAndReservationStateOrderByReservationDateAsc(Long editionId, ReservationState state);
+
+    BookReservation findByBook_IdAndReservationState(Long bookId, ReservationState state);
 }

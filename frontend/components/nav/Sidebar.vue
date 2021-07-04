@@ -53,7 +53,7 @@
 
 
     <!-- MOBILE NAVBAR -->
-    <div class="z-40 h-screen absolute bg-gray-100 shadow md:h-full flex-col
+    <div class="h-screen fixed z-50 bg-gray-100 shadow md:h-full flex-col
      justify-between md:hidden transition duration-150 ease-in-out" id="mobile-nav">
         <div v-if="!sidebarOpen" class="h-10 w-10 bg-gray-800 absolute
         right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br
@@ -85,26 +85,28 @@
             </svg>
         </div>
 
-        <div class="w-80 p-6 h-full">
-          <div class="uppercase text-xs font-medium text-gray-400 tracking-wide pb-1
-          border-b border-solid border-gray-300 truncate">
-            {{$store.state.session.email}}
-          </div>
-        <!-- -------------------------------------------------------------------------------- -->
-          <div class="mt-6 space-y-1">
-            <div v-for="option in menuOptions" :key="option.text" @click="handleChoice(option.name)"
-            :class="[currentActive == option.name ? 'bg-gray-200 text-gray-800' : 'text-gray-500',
-            'flex text-lg px-4 py-2 tracking-wide rounded-lg cursor-pointer hover:bg-gray-300 hover:text-gray-800']">
-              <span class='icon is-left w-8'>
-                <font-awesome-icon :icon="['fas', option.icon]"/>
-              </span>
-              <div>{{option.text}}</div>
+        <div class="w-80 p-6 h-full top-0 bottom-0 overflow-y-scroll overflow-x-hidden no-scrollbar ">
+          <div class="pb-6 border-b border-solid border-gray-300">
+            <div class="uppercase text-xs font-medium text-gray-400 tracking-wide pb-1
+            border-b border-solid border-gray-300 truncate">
+              {{$store.state.session.email}}
+            </div>
+            <!-- -------------------------------------------------------------------------------- -->
+            <div class="mt-6 space-y-1">
+              <div v-for="option in menuOptions" :key="option.text" @click="handleChoice(option.name)"
+              :class="[currentActive == option.name ? 'bg-gray-200 text-gray-800' : 'text-gray-500',
+              'flex text-lg px-4 py-2 tracking-wide rounded-lg cursor-pointer hover:bg-gray-300 hover:text-gray-800']">
+                <span class='icon is-left w-8'>
+                  <font-awesome-icon :icon="['fas', option.icon]"/>
+                </span>
+                <div>{{option.text}}</div>
+              </div>
             </div>
           </div>
           <!-- -------------------------------------------------------------------------------- -->
-          <div class="absolute bottom-6 space-y-1 ">
+          <div class="mt-6 space-y-1">
 
-            <div @click="handleChoice('settings')"  :class="[currentActive == 'settings' ? 'bg-gray-200 text-gray-800' : 'text-gray-500',
+            <div @click="handleChoice('settings')" :class="[currentActive == 'settings' ? 'bg-gray-200 text-gray-800' : 'text-gray-500',
             'flex text-lg px-4 py-2 tracking-wide rounded-lg cursor-pointer hover:bg-gray-300 hover:text-gray-800']">
               <span class='icon is-left w-8'>
                 <font-awesome-icon :icon="['fas', 'user-cog']"/>
