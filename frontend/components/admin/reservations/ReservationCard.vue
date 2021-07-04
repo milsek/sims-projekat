@@ -1,9 +1,9 @@
 <template>
   <div class="flex z-0 rounded-xl border border-dashed border-gray-300 p-3 relative">
 
-    <div class="flex flex-col text-center absolute opacity-0 hover:opacity-100 bg-opacity-80 justify-center
+    <div v-if="data.state === 'APPROVED'"  class="flex flex-col text-center absolute opacity-0 hover:opacity-100 bg-opacity-80 justify-center
     inset-0 z-50 rounded-xl bg-gray-900">
-      <div v-if="data.state === 'APPROVED'" class="my-auto align-middle">
+      <div class="my-auto align-middle">
         <button
           @click="lendBook"
           class="h-9 my-auto align-middle px-8 md:px-6 bg-white hover:bg-gray-200
