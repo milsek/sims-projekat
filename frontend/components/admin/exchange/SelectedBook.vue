@@ -66,7 +66,7 @@
       <div v-if="justReturned">
         <BookReturnedModal
           @close-modal="closeReturnedModal"
-          v-bind:id="data.id"
+          :id="data.id" :isle="data.lineIsleName" :row="data.lineNumber"
         />
       </div>
     </div>

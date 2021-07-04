@@ -65,12 +65,12 @@ import axios from 'axios';
 import InputField from '../registration/InputField.vue';
 export default {
   components: { InputField },
-  props: ["confirm", "id"],
+  props: ['id', 'isle', 'row'],
   data () {
 	return {
 		fields : [
-			{ name: "islename", text: "Isle name", placeholder: "Isle name", query: ''  },
-			{ name: "rownumber", text: "Row number", placeholder: "Row number", query: '' },
+			{ name: "islename", text: "Isle name", placeholder: this.isle, query: ''  },
+			{ name: "rownumber", text: "Row number", placeholder: this.row, query: '' },
 		],
 		reservationComponent: false,
 		isReserved: false
@@ -78,17 +78,19 @@ export default {
   },
   methods: {
 	confirmAction() {
+    let isleN = this.isle
+    let rowN = this.row
 
-		console.log({
-		  isleName: this.fields[0]['query'],
-		  lineNumber: this.fields[1]['query'],
-	  	});
+		if (this.fields[0]['query'] && this.fields[1]['query']) {
+      isleN = this.fields[0]['query']
+      rowN = this.fields[1]['query']
+    }
 		
 		axios
 		.post("/api/change-placement?bookId=" + this.id, 
 		{
-			isleName: this.fields[0]['query'],
-			lineNumber: this.fields[1]['query'],
+			isleName: isleN,
+			lineNumber: rowN,
 		})
 		.then(x => {
 			console.log(x);
@@ -96,6 +98,8 @@ export default {
 		.catch(x => {
 			console.log(x);
 		});
+
+		this.closeModal()
 	
 	},
 	closeModal () {
