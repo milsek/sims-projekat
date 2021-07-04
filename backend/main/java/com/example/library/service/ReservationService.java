@@ -164,6 +164,7 @@ public class ReservationService {
 
     public Map<Long, List<BookReservationDto>> searchReservations(String userId, String bookId, String bookTitle, String status, int page, int amount) {
         Map<Long, List<BookReservation>> mapa = bookReservationRepository.searchReservations(userId, bookId, bookTitle, status, page, amount);
+        if((Long)mapa.keySet().toArray()[0] == 0L) return null;
         List<BookReservation> lista = mapa.get(mapa.keySet().toArray()[0]);
         List<BookReservationDto> listaDto = lista.stream().map(x -> {return modelMapper.map(x, BookReservationDto.class);}).collect(Collectors.toList());
         Map<Long,List<BookReservationDto>> mapaDto = new HashMap<Long,List<BookReservationDto>>();

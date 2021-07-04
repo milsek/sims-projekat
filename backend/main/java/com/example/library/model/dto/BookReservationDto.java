@@ -9,13 +9,25 @@ public class BookReservationDto {
 
     private String userSurname;
 
-    private String reservationState;
+    private String state;
 
     private String editionTitleTitle;
 
     private LocalDate dateTaken;
 
     private LocalDate dateReturned;
+
+    private String editionImageLarge;
+
+    private int bookLineNumber;
+
+    private String bookLineIsleName;
+
+    private Long bookId;
+
+    private Long id;
+
+    private Long editionId;
 
     public Long getUserId() {
         return userId;
@@ -41,14 +53,6 @@ public class BookReservationDto {
         this.userSurname = userSurname;
     }
 
-    public String getReservationState() {
-        return reservationState;
-    }
-
-    public void setReservationState(String reservationState) {
-        this.reservationState = reservationState;
-    }
-
     public String getEditionTitleTitle() {
         return editionTitleTitle;
     }
@@ -71,5 +75,61 @@ public class BookReservationDto {
 
     public void setDateReturned(LocalDate dateReturned) {
         this.dateReturned = dateReturned;
+    }
+
+    public String getEditionImageLarge() {
+        return editionImageLarge;
+    }
+
+    public void setEditionImageLarge(String editionImageLarge) {
+        this.editionImageLarge = editionImageLarge;
+    }
+
+    public int getBookLineNumber() {
+        return bookLineNumber;
+    }
+
+    public void setBookLineNumber(int bookLineNumber) {
+        this.bookLineNumber = bookLineNumber;
+    }
+
+    public String getBookLineIsleName() {
+        return bookLineIsleName;
+    }
+
+    public void setBookLineIsleName(String bookLineIsleName) {
+        this.bookLineIsleName = bookLineIsleName;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Long getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getEditionId() {
+        return editionId;
+    }
+
+    public void setEditionId(Long editionId) {
+        this.editionId = editionId;
     }
 }

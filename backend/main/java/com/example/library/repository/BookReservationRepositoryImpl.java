@@ -3,6 +3,7 @@ package com.example.library.repository;
 import com.example.library.model.BookReservation;
 import com.example.library.model.Edition;
 import org.apache.lucene.search.Query;
+import org.hibernate.search.exception.SearchException;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.FullTextQuery;
 import org.hibernate.search.jpa.Search;
@@ -42,13 +43,18 @@ public class BookReservationRepositoryImpl{
         for (BooleanJunction b: queries) {
             bj.must(b.createQuery()).must(bj.createQuery());
         }
-        luceneQuery = queryBuilder.bool().must(bj.createQuery()).createQuery();
-        FullTextQuery jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, BookReservation.class)
-                .setFirstResult((page - 1) * amount)
-                .setMaxResults(amount);
-        List<BookReservation> result = jpaQuery.getResultList();
         HashMap<Long, List<BookReservation>> retVal = new HashMap<>();
-        retVal.put((long) jpaQuery.getResultSize(), result);
+        try {
+            luceneQuery = queryBuilder.bool().must(bj.createQuery()).createQuery();
+            FullTextQuery jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, BookReservation.class)
+                    .setFirstResult((page - 1) * amount)
+                    .setMaxResults(amount);
+            List<BookReservation> result = jpaQuery.getResultList();
+            retVal.put((long) jpaQuery.getResultSize(), result);
+        } catch (SearchException se) {
+            se.printStackTrace();
+            retVal.put(0L, null);
+        }
         return retVal;
     }
 }

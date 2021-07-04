@@ -40,11 +40,14 @@ export default {
     };
   },
   mounted () {
+    console.log(this.data);
     this.getReservations()
     this.showPagination = true
   },
   methods: {
     getReservations () {
+      this.reservations = [];
+      console.log(this.getRequestText());
       axios.get(this.getRequestText())
       .then(response => {
         this.totalReservations = Object.keys(response.data)[0]
@@ -63,14 +66,14 @@ export default {
       const userId = this.data.userId ? "userId=" + this.data.userId.trim() + '&': ''
       const bookId = this.data.bookId ? "bookId=" + this.data.bookId.trim() + '&': ''
       const bookTitle = this.data.bookTitle ? "bookTitle=" + this.data.bookTitle.trim() + '&': ''
-      const reservationState = this.data.reservationState ? "reservationState=" + this.data.reservationState.trim() + '&': ''
+      const reservationState = this.data.reservationState ? "status=" + this.data.reservationState.trim().toLowerCase() + '&': ''
       const requestText = `/api/search-reservations?page=${this.pageIndex + 1}&amount=24&${userId}${bookId}${bookTitle}${reservationState}`
 
       return requestText.slice(0, -1)
     },
     showMore(page) {
       this.pageIndex = page - 1
-      this.getBooks()
+      this.getReservations()
     },
     refreshPagination() {
       this.pageIndex = 0

@@ -14,24 +14,25 @@
     </div>
 
     <div class="flex-shrink-0">
-      <img :src="data.imageLarge" alt="" class="text-left rounded-md
+      <img :src="data.editionImageLarge" alt="" class="text-left rounded-md
       w-28 h-40 object-fill" draggable="false"/>
     </div>
 
     <div class="pl-4 text-left">
       <div class="text-sm font-bold text-blue-900 opacity-90
       line-clamp-2">
-        {{ data.title }}
+        {{ data.editionTitleTitle }}
       </div>
 
       <div class="mt-2 text-sm font-medium tracking-wide text-gray-500 ">
-        <div class="line-clamp-2">Reservation ID: {{ data.bookReservationId }}</div>
-        <div class="line-clamp-2">Book ID: {{ data.id }}</div>
-        <div class="line-clamp-2">
-          Isle: {{ data.isleName }} - Row: {{ data.lineNumber }}
+        <div class="line-clamp-2">Reservation ID: {{ data.id }}</div>
+        <div class="line-clamp-2">Edition ID: {{ data.editionId }}</div>
+        <div class="line-clamp-2" v-if="data.bookId" >Book ID: {{ data.bookId }}</div>
+        <div class="line-clamp-2" v-if="data.bookLineIsleName" >
+          Isle: {{ data.bookLineIsleName }} - Row: {{ data.bookLineNumber }}
         </div>
         <div class="line-clamp-2">State: {{ data.state }}</div>
-        <div class="line-clamp-2">Member: {{ data.name }} {{ data.surname }}, {{data.userId}}</div>
+        <div class="line-clamp-2">Member: {{ data.userName }} {{ data.userSurname }}, {{data.userId}}</div>
       </div>
 
     </div>
