@@ -25,4 +25,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             nativeQuery = true
     )
     List<Book> searchBook(String id, String title, String author, String status);
+
+    Book findBookById(Long bookId);
 }

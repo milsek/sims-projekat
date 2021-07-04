@@ -45,8 +45,14 @@ public class ReservationController {
 
     @PostMapping(path = "/return-book/")
     @ResponseBody
-    public String returnBook(@RequestParam(name = "id") Long reservationId) {
-        return reservationService.returnBook(reservationId);
+    public String returnBook(@RequestParam(name = "id") Long bookId) {
+        return reservationService.returnBook(bookId);
+    }
+
+    @PostMapping(path = "/assign-book-to-reservation")
+    @ResponseBody
+    public String assignBookToReservation(@RequestParam(name = "id") Long bookId) {
+        return reservationService.assignBookToReservation(bookId);
     }
 
     @GetMapping(path = "/active-reservation")

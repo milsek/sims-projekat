@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -166,38 +167,26 @@ public class ReservationService {
         return reservations.get(0);
     }
 
-    public String returnBook(Long reservationId) {
-        String message;
-
+    public String returnBook(Long bookId) {
         try {
-            if (!bookReservationRepository.existsById(reservationId))
+            BookReservation bookReservation = bookReservationRepository.findByBook_IdAndReservationState(bookId, ReservationState.SEIZED);
+            Book book = bookRepository.findBookById(bookId);
+
+            if (bookReservation == null)
                 return "Reservation doesn't exist.";
+            if (book == null)
+                return "Book doesn't exist.";
 
-            BookReservation bookReservation = bookReservationRepository.getById(reservationId);
             bookReservation.setReservationState(ReservationState.RETURNED);
-
-            Edition edition = bookReservation.getEdition();
-            Book book = bookReservation.getBook();
-
-            BookReservation queuedReservation = getReservationByEditionAndStateOrderByDate(edition, ReservationState.NEW);
-            if (queuedReservation != null) {
-                queuedReservation.setReservationState(ReservationState.APPROVED);
-                queuedReservation.setBook(book);
-                book.setBookState(BookState.RESERVED);
-
-                bookReservationRepository.save(queuedReservation);
-                message = "Book returned and first reservation in queue approved.";
-            } else {
-                book.setBookState(BookState.IN_STOCK);
-                message = "Book returned.";
-            }
+            book.setBookState(BookState.IN_STOCK);
 
             bookRepository.save(book);
             bookReservationRepository.save(bookReservation);
+
+            return "Book returned.";
         } catch (Exception e) {
             return "An error occurred.";
         }
-        return message;
     }
 
     public Boolean canUserReserveEdition(String userId, String editionId) {
@@ -208,5 +197,27 @@ public class ReservationService {
             }
         }
         return true;
+    }
+
+    public String assignBookToReservation(Long bookId) {
+        try {
+            Book book = bookRepository.getById(bookId);
+            Edition edition = book.getEdition();
+
+            BookReservation queuedReservation = getReservationByEditionAndStateOrderByDate(edition, ReservationState.NEW);
+            if (queuedReservation != null) {
+                queuedReservation.setReservationState(ReservationState.APPROVED);
+                queuedReservation.setBook(book);
+                book.setBookState(BookState.RESERVED);
+
+                bookReservationRepository.save(queuedReservation);
+                bookRepository.save(book);
+                return "Book returned and first reservation in queue approved.";
+            } else {
+                return "No reservation found to assign chosen book to.";
+            }
+        } catch (Exception e) {
+            return "An error occurred.";
+        }
     }
 }
