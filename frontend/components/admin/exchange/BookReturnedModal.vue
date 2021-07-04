@@ -7,14 +7,13 @@
 	  <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl
 	   transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-11/12 sm:w-full">
 
-		<div class="flex space-x-2 justify-evenly my-4">
-			<div>
-				<InputField :what="rowWhat" />
-			</div>
-			<div>
-				<InputField :what="isleWhat" />
+		<div class="inline-block mx-auto mt-4 ml-4 space-x-4 justify-center">
+			<div v-for="i in fields" :key="i.name" class="inline-block space-x-4 justify-evenly">
+				<InputField @input-change="updateInput" :what="i"/>
 			</div>
 		</div>
+
+		
 
 		<div v-if="isReserved" class="text-gray-600 text-lg ml-4" >
 			Added to the reservation list!
@@ -69,15 +68,35 @@ export default {
   props: ["confirm", "id"],
   data () {
 	return {
-		isleWhat : { name: "Isle name", text: "Isle name", placeholder: "Isle name", query: ''  },
-		rowWhat : { name: "Row number", text: "Row number", placeholder: "Row number", query: '' },
+		fields : [
+			{ name: "islename", text: "Isle name", placeholder: "Isle name", query: ''  },
+			{ name: "rownumber", text: "Row number", placeholder: "Row number", query: '' },
+		],
 		reservationComponent: false,
 		isReserved: false
 	}
   },
   methods: {
 	confirmAction() {
-	  
+
+		console.log({
+		  isleName: this.fields[0]['query'],
+		  lineNumber: this.fields[1]['query'],
+	  	});
+		
+		axios
+		.post("/api/change-placement?bookId=" + this.id, 
+		{
+			isleName: this.fields[0]['query'],
+			lineNumber: this.fields[1]['query'],
+		})
+		.then(x => {
+			console.log(x);
+		})
+		.catch(x => {
+			console.log(x);
+		});
+	
 	},
 	closeModal () {
 		this.$emit('close-modal')
@@ -85,10 +104,22 @@ export default {
 	markAsReserved () {
 		this.isReserved = true;
 		this.reservationComponent = false;
+		axios
+		.post("/api/assign-book-to-reservation/?id=" + this.id)
+		.then(x => { 
+			console.log(x.data);
+			if(x.data == true) {
+				this.reservationComponent = false;
+			}
+	  	})
+	  	.catch();
 	},
 	hideReservation () {
 		this.reservationComponent = false;
 	},
+    updateInput (field, text) {
+        this.fields.filter((f) => {if (f.name===field) return f})[0]['query'] = text;
+    },
 
   
   },
