@@ -94,8 +94,8 @@ export default {
       closeModal() {
         this.modal = false;
       },
-      somethingChanged() {
-        this.$emit("values-changed");
+      somethingChanged(id) {
+        this.$emit("values-changed", id);
       }
 	}
 }

@@ -5,7 +5,7 @@
       <div class="font-medium text-gray-500 mt-2">Approve/Decline reviews</div>
     </div>
     <div v-for="review in reviews" :key="review.id" class="p-4 xl:px-14 pb-1">
-      <ReviewCard @values-changed="getReviews" v-bind:review="review" />
+      <ReviewCard @values-changed="removeReview" v-bind:review="review" />
     </div>
     
     <div class="text-center mx-auto mt-8">
@@ -35,25 +35,33 @@ export default {
         }
     },
     methods: {
-        getReviews() {
-          axios
-          .get("/api/unchecked-reviews?page=" + this.pageIndex + "&amount=" + this.resultsPerPage)
-          .then(x => {
-            this.reviews.push(...x.data["content"]);
-            this.totalPages = x.data["totalPages"];
-          })
-          .catch()
-        },
-        showMore() {
-          if (this.pageIndex + 1 == this.totalPages) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            this.reviews = this.reviews.slice(0, this.resultsPerPage);
-            this.pageIndex = 1;
-          } else {
-            this.pageIndex++;
-            this.getReviews();
-          }
+      getReviews() {
+        axios
+        .get("/api/unchecked-reviews?page=" + this.pageIndex + "&amount=" + this.resultsPerPage)
+        .then(x => {
+          this.reviews.push(...x.data["content"]);
+          this.totalPages = x.data["totalPages"];
+        })
+        .catch()
+      },
+      showMore() {
+        if (this.pageIndex + 1 == this.totalPages) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          this.reviews = this.reviews.slice(0, this.resultsPerPage);
+          this.pageIndex = 1;
+        } else {
+          this.pageIndex++;
+          this.getReviews();
         }
+      },
+      removeReview (id) {
+        console.log(id)
+        console.log("BEFORE")
+        console.log(this.reviews)
+        this.reviews = this.reviews.filter(review => review.id != id)
+        console.log("AFTER")
+        console.log(this.reviews)
+      }
     },
     mounted() {
       this.getReviews();

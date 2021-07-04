@@ -42,8 +42,8 @@ export default {
       let that = this;
       axios
       .post("/api/mark-review?allowed=" + this.confirm + "&reviewId=" + this.id)
-      .then(x => { console.log(x); that.closeModal(); that.$emit('values-changed'); })
-      .catch(x => { that.closeModal(); that.$emit('values-changed'); });
+      .then(x => { console.log(x); that.closeModal(); that.$emit('values-changed', that.id); })
+      .catch(x => { that.closeModal(); that.$emit('values-changed', that.id); });
       
     },
     closeModal () {
