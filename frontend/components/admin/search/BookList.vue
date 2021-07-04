@@ -1,7 +1,8 @@
 <template>
     <div>
         <div v-if="books.length > 0">
-            <div class="block min-h-screen mt-2 mx-auto w-full lg:w-11/12 xl:w-2/3">
+            <div class="inline-grid w-full items-stretch grid-flow-row grid-cols-1 lg:grid-cols-2 xl:grid-cols-3
+      gap-x-4 gap-y-4">
                 <div v-for="book in books" :key="book.id">
                     <BookCard :data="book" />
                 </div>
@@ -27,7 +28,7 @@ export default {
             data: { 'bookId': this.nesto[0].query, 'title': this.nesto[1].query,
                 'author': this.nesto[2].query, 'bookStatus': this.nesto[3].query },
             pageIndex: 0,
-            resultsPerPage: 5,
+            resultsPerPage: 12,
             showPagination: false,
             totalPages: 1,
             totalReservations: 1,
