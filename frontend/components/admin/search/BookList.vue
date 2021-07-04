@@ -1,6 +1,6 @@
 <template>
   <div v-if="books.length > 0">
-      <div class="block min-h-screen mt-2">
+      <div class="block min-h-screen mt-2 mx-auto w-full lg:w-11/12 xl:w-2/3">
         <div v-for="book in books" :key="book.id">
           <BookCard :data="book" />
         </div>
