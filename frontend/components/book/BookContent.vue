@@ -131,6 +131,7 @@ export default {
   },
   methods: {
     checkUserCanReview() {
+      console.log("/api/user-can-review?editionId=" + this.data.id + "&userId=" + this.userId);
       axios
       .get("/api/user-can-review?editionId=" + this.data.id + "&userId=" + this.userId)
       .then(response => { this.userCanReview = response.data; console.log(response.data); })
