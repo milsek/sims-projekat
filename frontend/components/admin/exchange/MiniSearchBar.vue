@@ -39,7 +39,6 @@ export default {
   },
   methods:{
     doSearch() {
-      console.log("/api/admin/" + this.how + "/?id=" + this.query);
       if(this.query.length == 0){ 
         this.suggestions = [];
         return;

@@ -31,7 +31,7 @@
         </button>
       </div>
       
-      <ReservationList v-if="showList" :data="inputData" ref="reservationList"/>
+      <ReservationList v-if="showList" :data="inputData" ref="reservationList" class="mt-10"/>
 
     </div>
   </div>
