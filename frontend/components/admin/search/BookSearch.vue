@@ -4,9 +4,24 @@
       <div class="text-4xl tracking-tight text-blue-900 opacity-70">Book search</div>
       <div class="font-medium text-gray-500 mt-2">Find books in library</div>
 
-      <div class="grid grid-cols-3 grid-flow-row text-left mt-10 gap-y-4 gap-x-4 xl:gap-x-4 sm:px-4 md:px-0 xl:px-24">
+      <div class="grid grid-cols-4 grid-flow-row text-left mt-10 gap-y-4 gap-x-4 xl:gap-x-4 sm:px-4 md:px-0 xl:px-24">
         <div v-for="i in fields" :key="i.name" class="col-span-4 sm:col-span-2 lg:col-span-1">
           <InputField @input-change="updateInput" :what="i"/>
+        </div>
+      
+
+      <div class="block col-span-4 sm:col-span-2 lg:col-span-1">
+          <div class="text-sm text-gray-500 font-medium pl-2">Book Status</div>
+          <select name="status" id="reservation-status-select" v-model="bookStatus"
+          class="block rounded-md border text-gray-600 border-solid border-gray-200 text-lg
+          mt-1 py-1 px-4 focus:outline-none focus:border-gray-300 w-full">
+            <option value="">-- Status --</option>
+            <option value="IN_STOCK">In stock</option>
+            <option value="MISSING">Missing</option>
+            <option value="TAKEN">Taken</option>
+            <option value="REFURBISHMENT">Refursbishment</option>
+            <option value="RESERVED">Reserved</option>
+          </select>
         </div>
       </div>
 
@@ -17,7 +32,7 @@
         </button>
       </div>
 
-      <BookList v-if="showList" :nesto="fields" />
+      <BookList :key="br" v-if="showList" :nesto="newFields" />
       
     </div>
   </div>
@@ -35,7 +50,10 @@ export default {
                 {text: 'Book Title', placeholder: 'Book Title', name: 'title', query: ''},
                 {text: 'Author', placeholder: 'Author', name: 'author', query: ''},
             ],
-        showList: false
+        showList: false,
+        bookStatus: '',
+        newFields: '',
+        br : 0
       }
   },
   methods : {
@@ -43,13 +61,19 @@ export default {
         this.fields.filter((f) => {if (f.name===field) return f})[0]['query'] = text
     },
     getBooks() {
-        this.showList = true;
-    },
-    computed: {
-        inputData () {
-        return { 'bookId': this.fields[0].query, 'title': this.fields[1].query,
-                'author': this.fields[2].query }
+        this.newFields = [];
+        for(let a in this.fields) {
+          this.newFields.push(this.fields[a]);
         }
+
+        console.log(this.bookStatus);
+        const that = this.bookStatus;
+        console.log(that)
+        this.newFields.push({text: 'Book status', name : 'bookStatus', query: that});
+        console.log(this.newFields[4]);
+        console.log(this.newFields);
+        this.br++;
+        this.showList = true;
     }
   }
   

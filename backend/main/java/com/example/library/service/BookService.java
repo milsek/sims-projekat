@@ -85,8 +85,9 @@ public class BookService {
         return "Book placement changed.";
     }
 
-    public List<SelectedBookDto> searchBook(String id, String title, String author) {
-        return bookRepository.searchBook(id, title, author)
+    public List<SelectedBookDto> searchBook(String id, String title, String author, String status) {
+        String stSearch = status == null ? null :  String.valueOf(BookState.valueOf(status).ordinal());
+        return bookRepository.searchBook(id, title, author, stSearch)
                 .stream()
                 .map(x -> modelMapper.map(x, SelectedBookDto.class))
                 .collect(Collectors.toList());

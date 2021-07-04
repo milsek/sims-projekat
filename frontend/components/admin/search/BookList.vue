@@ -1,13 +1,10 @@
 <template>
   <div v-if="books.length > 0">
-      <div class="block min-h-screen">
+      <div class="block min-h-screen mt-2">
         <div v-for="book in books" :key="book.id">
           <BookCard :data="book" />
         </div>
       </div>
-      <Pagination :maxVisibleButtons="maxVisibleButtons" :totalPages="totalPages" :total="totalReservations"
-      :perPage="resultsPerPage" :currentPage="pageIndex + 1" :hasMorePages="hasMorePages"
-        @pagechanged="showMore" class="pt-12 pb-16"/>
     </div>
 </template>
 
@@ -21,7 +18,7 @@ export default {
         return {
             books: [],
             data: { 'bookId': this.nesto[0].query, 'title': this.nesto[1].query,
-                'author': this.nesto[2].query }
+                'author': this.nesto[2].query, 'bookStatus': this.nesto[3].query }
 
         }
     },
@@ -31,7 +28,8 @@ export default {
     },
     methods : {
         searchBooks() {
-            console.log("RADIM PRETRAGU");
+            this.books = [];
+            console.log(this.getRequestText());
             axios
             .get(this.getRequestText())
             .then( x => { this.books = x.data; console.log(x); })
@@ -41,7 +39,8 @@ export default {
             const bookId = this.data.bookId ? "bookId=" + this.data.bookId.trim() + '&': ''
             const title = this.data.title ? "title=" + this.data.title.trim() + '&': ''
             const author = this.data.author ? "author=" + this.data.author.trim() + '&': ''
-            const requestText = `/api/search-book?${bookId}${title}${author}`
+            const bState = this.data.bookStatus ? "status=" + this.data.bookStatus.trim() + '&' : ''
+            const requestText = `/api/search-book?${bookId}${title}${author}${bState}`
             return requestText.slice(0, -1)
         },
     }

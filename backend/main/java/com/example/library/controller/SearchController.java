@@ -64,10 +64,11 @@ public class SearchController {
     @GetMapping("search-book")
     @ResponseBody
     public List<SelectedBookDto> searchBook(
-            @RequestParam(name = "id", required = false) String id,
+            @RequestParam(name = "bookId", required = false) String id,
             @RequestParam(name = "title", required = false) String title,
-            @RequestParam(name = "author", required = false) String author) {
-        return bookService.searchBook(id, title, author);
+            @RequestParam(name = "author", required = false) String author,
+            @RequestParam(name = "status", required = false) String status) {
+        return bookService.searchBook(id, title, author, status);
     }
 
     @GetMapping(path = "search-reservations")
