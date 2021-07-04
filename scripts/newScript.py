@@ -107,7 +107,12 @@ for i in range(150):
     tables.RESERVATION(random.choice(tables.MEMBER.instances))
 
 for reservation in tables.RESERVATION.instances[:-3]:
-    tables.BOOK_RESERVATION(random.choice(tables.BOOK.instances), '2021-01-01', reservation)
+    if reservation.state_name not in ['NEW', 'DENIED']:
+        choosen_book = random.choice(tables.BOOK.instances);
+    else:
+        choosen_book = 'null'
+    
+    tables.BOOK_RESERVATION(choosen_book, '2021-01-01', reservation)
 
 for reservation in tables.RESERVATION.instances[-3:]:
     tables.PICTURE_BOOK_RESRVATION(reservation)

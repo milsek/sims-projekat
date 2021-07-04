@@ -306,7 +306,7 @@ class BOOK_RESERVATION:
         BOOK_RESERVATION.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO BOOK_RESERVATION(reservation_date, id, book_id, edition_id, review_id) VALUES(PARSEDATETIME('{self.date}', 'yyyy-mm-dd'), {self.id}, {self.book_id}, {self.edition_id}, null);"
+        return f"INSERT INTO BOOK_RESERVATION(reservation_date, id, book_id, edition_id, review_id) VALUES(PARSEDATETIME('{self.date}', 'yyyy-MM-dd'), {self.id}, {self.book_id}, {self.edition_id}, null);"
 
 
 class PICTURE_BOOK_RESRVATION:
@@ -335,7 +335,7 @@ class RESERVATION:
         RESERVATION.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO RESERVATION VALUES({self.id}, PARSEDATETIME('{self.date_returned}', 'yyyy-mm-dd'), PARSEDATETIME('{self.date_taken}', 'yyyy-mm-dd'), '{self.state_name}', {self.member_id});"
+        return f"INSERT INTO RESERVATION VALUES({self.id}, PARSEDATETIME('{self.date_returned}', 'yyyy-MM-dd'), PARSEDATETIME('{self.date_taken}', 'yyyy-MM-dd'), '{self.state_name}', {self.member_id});"
 
 
 
@@ -365,7 +365,7 @@ class USER:
         USER.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO USER VALUES(0, {self.id}, PARSEDATETIME('{self.birthdate}', 'yyyy-mm-dd'), '{self.name}', '{self.surname}', {self.account_id}, {self.library_id});"
+        return f"INSERT INTO USER VALUES(0, {self.id}, PARSEDATETIME('{self.birthdate}', 'yyyy-MM-dd'), '{self.name}', '{self.surname}', {self.account_id}, {self.library_id});"
 
 
 class ACCOUNT:
@@ -397,7 +397,7 @@ class MEMBERSHIP:
         MEMBERSHIP.instances.append(self)
     
     def toSql(self):
-        return f"INSERT INTO MEMBERSHIP VALUES({self.id}, PARSEDATETIME('{self.end}', 'yyyy-mm-dd'), PARSEDATETIME('{self.start}', 'yyyy-mm-dd'), {self.price_id}, {self.user_id});"        
+        return f"INSERT INTO MEMBERSHIP VALUES({self.id}, PARSEDATETIME('{self.end}', 'yyyy-MM-dd'), PARSEDATETIME('{self.start}', 'yyyy-MM-dd'), {self.price_id}, {self.user_id});"        
 
 
 
@@ -532,7 +532,7 @@ class PRICE:
         PRICE.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO PRICE VALUES({self.id}, PARSEDATETIME('{self.end}', 'yyyy-mm-dd'), {self.price}, PARSEDATETIME('{self.start}', 'yyyy-mm-dd'), {self.category_id});"
+        return f"INSERT INTO PRICE VALUES({self.id}, PARSEDATETIME('{self.end}', 'yyyy-MM-dd'), {self.price}, PARSEDATETIME('{self.start}', 'yyyy-MM-dd'), {self.category_id});"
 
 
 class LIBRARIAN:
@@ -560,7 +560,7 @@ class DAILY_TRANSACTION:
         DAILY_TRANSACTION.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO DAILY_TRANSACTION VALUES({self.id}, PARSEDATETIME('{self.date}', 'yyyy-mm-dd'), {self.librarian_id}, {self.membership_id}, {self.library_id});"
+        return f"INSERT INTO DAILY_TRANSACTION VALUES({self.id}, PARSEDATETIME('{self.date}', 'yyyy-MM-dd'), {self.librarian_id}, {self.membership_id}, {self.library_id});"
 
 class REVIEW:
     instances = []
