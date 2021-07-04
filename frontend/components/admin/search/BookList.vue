@@ -23,13 +23,11 @@ export default {
         }
     },
     mounted() {
-        console.log(this.data);
         this.searchBooks();
     },
     methods : {
         searchBooks() {
             this.books = [];
-            console.log(this.getRequestText());
             axios
             .get(this.getRequestText())
             .then( x => { this.books = x.data; console.log(x); })

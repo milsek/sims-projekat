@@ -7,7 +7,7 @@
           <ReservationCard :data="reservation" class="h-full w-full"/>
         </div>
       </div>
-      
+
       <Pagination :maxVisibleButtons="maxVisibleButtons" :totalPages="totalPages" :total="totalReservations"
       :perPage="resultsPerPage" :currentPage="pageIndex + 1" :hasMorePages="hasMorePages"
         @pagechanged="showMore" class="pt-12 pb-16"/>
@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       pageIndex: 0,
-      resultsPerPage: 10,
+      resultsPerPage: 24,
       showPagination: false,
       totalPages: 1,
       totalReservations: 1,
@@ -40,22 +40,18 @@ export default {
     };
   },
   mounted () {
-    console.log(this.data)
     this.getReservations()
     this.showPagination = true
   },
   methods: {
     getReservations () {
-      console.log(this.getRequestText())
-      axios.post(this.getRequestText())
+      axios.get(this.getRequestText())
       .then(response => {
-
-        // this.totalReservations = response.data.hitCount
-        // this.totalPages = Math.ceil(this.totalReservations/this.resultsPerPage)
-        
-        this.reservations = response.data
+        this.totalReservations = Object.keys(response.data)[0]
+        this.totalPages = Math.ceil(this.totalReservations/this.resultsPerPage)
+        this.reservations = response.data[this.totalReservations]
         console.log(this.reservations)
-        let that = this;
+        let that = this
         setTimeout(function() {
           if (that.reservations.length == 0) {
             that.loadMessage = 'No results.'
@@ -68,7 +64,8 @@ export default {
       const bookId = this.data.bookId ? "bookId=" + this.data.bookId.trim() + '&': ''
       const bookTitle = this.data.bookTitle ? "bookTitle=" + this.data.bookTitle.trim() + '&': ''
       const reservationState = this.data.reservationState ? "reservationState=" + this.data.reservationState.trim() + '&': ''
-      const requestText = `/api/request-reservation?${userId}${bookId}${bookTitle}${reservationState}`
+      const requestText = `/api/search-reservations?page=${this.pageIndex + 1}&amount=24&${userId}${bookId}${bookTitle}${reservationState}`
+
       return requestText.slice(0, -1)
     },
     showMore(page) {
