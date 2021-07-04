@@ -199,4 +199,14 @@ public class ReservationService {
         }
         return message;
     }
+
+    public Boolean canUserReserveEdition(String userId, String editionId) {
+        List<BookReservation> reservations = bookReservationRepository.findByUser_IdAndEdition_Id(Long.valueOf(userId), Long.valueOf(editionId));
+        for (BookReservation reservation: reservations) {
+            if (reservation.getReservationState().equals(ReservationState.NEW) || reservation.getReservationState().equals(ReservationState.SEIZED)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

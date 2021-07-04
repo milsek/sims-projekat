@@ -69,4 +69,13 @@ public class ReservationController {
                                                            @RequestParam(name = "reservationState", required = false) String reservationState) {
         return reservationService.reservationsRequest(userId, bookId, bookTitle, reservationState);
     }
+
+
+    @GetMapping(path = "/can-user-reserve")
+    @ResponseBody
+    public Boolean canUserReserveEdition(@RequestParam(name = "userId") String userId,
+                                         @RequestParam(name = "editionId") String editionId) {
+        return reservationService.canUserReserveEdition(userId, editionId);
+    }
+
 }
