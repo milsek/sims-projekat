@@ -3,13 +3,18 @@ package com.example.library.service;
 import com.example.library.model.*;
 import com.example.library.model.dto.ReviewDisplayDto;
 import com.example.library.model.dto.ReviewSubmissionDto;
+import com.example.library.model.dto.SelectedBookDto;
 import com.example.library.repository.ReviewRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -103,8 +108,8 @@ public class ReviewService {
         return reviewDtos;
     }
 
-    public List<ReviewDisplayDto> getUncheckedReviews() {
-        //return new ArrayList<ReviewDisplayDto>();
-        return reviewRepository.findByCheckedFalse().stream().map(x -> modelMapper.map(x, ReviewDisplayDto.class)).collect(Collectors.toList());
+    public Page<ReviewDisplayDto> getUncheckedReviews(Pageable paging) {
+        Page<Review> reviewPage = reviewRepository.findByCheckedFalse(paging);
+        return reviewPage.map(review -> modelMapper.map(review, ReviewDisplayDto.class));
     }
 }
