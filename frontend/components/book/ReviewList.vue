@@ -34,7 +34,6 @@ export default {
         if (this.data.reviews.length) {
           this.showReviews = true;
         }
-        console.log(response.data)
       })
       .catch()
     }

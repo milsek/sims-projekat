@@ -138,11 +138,11 @@ export default {
     sendReview (stars, text) {
       console.log('Stars: ', stars, '\nText: ', text)
       //if success
-      
+      console.log(this.userId)
       axios
-      .post("/api/reserve-edition?editionId=" + this.data.id + "&userId=" + this.userId, {
+      .post("/api/review?editionId=" + this.data.id, {
         content: text.trim(),
-        bookReservationMemberId: user_id,
+        bookReservationMemberId: this.userId,
         rating: stars
       })
       .then(x => { this.showReviewConfirmation = true; console.log(x); })
