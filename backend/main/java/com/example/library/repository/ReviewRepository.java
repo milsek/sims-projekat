@@ -1,7 +1,8 @@
 package com.example.library.repository;
 
 import com.example.library.model.Review;
-import com.example.library.model.dto.ReviewDisplayDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -11,9 +12,9 @@ import java.util.List;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-    public List<Review> findByEdition_Id(Long editionId);
+    List<Review> findByEdition_Id(Long editionId);
 
-    List<Review> findByCheckedFalse();
+    Page<Review> findByCheckedFalse(Pageable paging);
 
     List<Review> findByEdition_IdAndAllowedTrue(Long editionId);
 
