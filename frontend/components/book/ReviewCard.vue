@@ -1,8 +1,8 @@
 <template>
   <div class="block rounded-xl border border-dashed border-gray-300 p-4 md:p-6">
-    <div class="flex flex-shrink-0">
+    <div class="flex">
       
-      <div class="align-middle object-fill">
+      <div class="align-middle flex-shrink-0 object-cover">
         <img :src="'https://i.pravatar.cc/150?u=' + review.fullName" class="w-12 h-12 rounded-md">
       </div>
       

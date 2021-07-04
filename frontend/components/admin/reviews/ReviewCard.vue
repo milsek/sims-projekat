@@ -2,23 +2,23 @@
   <div class="block rounded-xl border border-dashed border-gray-300 p-4 md:p-6">
     <div class="flex flex-shrink-0 justify-between">
 
-      <div class="flex  w-full">
-          <div class="align-middle object-fill">
+      <div class="flex w-full">
+          <div class="align-middle flex-shrink-0 object-cover">
             <img :src="'https://i.pravatar.cc/150?u=' + review.fullName" class="w-12 h-12 rounded-md">
           </div>
       
-          <div class="block pl-4">
-            <div class="-mt-1 text-base sm:text-lg md:text-xl font-bold text-blue-900 opacity-90
+          <div class="block px-4 overflow-hidden">
+            <div class="-mt-1 text-lg md:text-base lg:text-xl font-bold text-blue-900 opacity-90
             line-clamp-2 ">
-            <span> 
-              {{review.fullName}} 
-            </span>
-            <span class="text-base text-gray-400">
-              on
-            </span>
-            <span class="text-lg text-gray-600">
-                {{review.editionTitleTitle}}
-            </span>
+              <span> 
+                {{review.fullName}} 
+              </span>
+              <span class="text-gray-400">
+                on
+              </span>
+              <span class="text-gray-600">
+                  {{review.editionTitleTitle}}
+              </span>
             </div>
 
 
