@@ -46,18 +46,27 @@ export default {
   },
   methods: {
     getReservations () {
-      this.reservations = [];
+      if (this.allFieldsEmpty()) {
+        this.loadMessage = 'No results. Make sure you fill at least one field.'
+        this.reservations = []
+        return
+      } else {
+        this.loadMessage = ''
+      }
       console.log(this.getRequestText());
       axios.get(this.getRequestText())
       .then(response => {
         this.totalReservations = Object.keys(response.data)[0]
         this.totalPages = Math.ceil(this.totalReservations/this.resultsPerPage)
         this.reservations = response.data[this.totalReservations]
-        console.log(this.reservations)
+        
+        if (!this.reservations) this.reservations = []  
         let that = this
         setTimeout(function() {
           if (that.reservations.length == 0) {
             that.loadMessage = 'No results.'
+          } else {
+            that.loadMessage = ''
           }
         }, 1500);
       })
@@ -77,6 +86,11 @@ export default {
     },
     refreshPagination() {
       this.pageIndex = 0
+    },
+    allFieldsEmpty() {
+      if (!this.data.userId && !this.data.bookId && !this.data.bookTitle && !this.data.reservationState)
+        return true
+      return false
     }
   },
   computed: {

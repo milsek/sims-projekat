@@ -61,6 +61,7 @@ export default {
       if (!this.showList) {
         this.showList = true
       } else {
+        this.$refs.reservationList.refreshPagination()
         this.$refs.reservationList.getReservations()
       }
     }
