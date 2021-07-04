@@ -43,6 +43,12 @@ public class ReservationController {
         return reservationService.takeBook(userId, bookId);
     }
 
+    @PostMapping(path = "/return-book/")
+    @ResponseBody
+    public String returnBook(@RequestParam(name = "id") Long reservationId) {
+        return reservationService.returnBook(reservationId);
+    }
+
     @GetMapping(path = "/active-reservation")
     @ResponseBody
     public Boolean activeReservation(@RequestParam(name = "bookId") String bookId) {

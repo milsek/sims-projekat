@@ -55,19 +55,6 @@ public class BookService {
         return modelMapper.map(book, AutocompleteBookDto.class);
     }
 
-    public SelectedBookDto returnBook(String id) {
-        Optional<Book> book = bookRepository.findById(Long.valueOf(id));
-        if(book.isEmpty()) {
-            return null;
-        }
-        Book b = book.get();
-        b.setBookState(BookState.IN_STOCK);
-        bookRepository.saveAndFlush(b);
-        reservationService.reservationReturned(b);
-        b = bookRepository.findById(Long.valueOf(id)).get();
-        return modelMapper.map(b, SelectedBookDto.class);
-    }
-
     public String changeBookPlacement(BookChangePlacementDto dto, Long bookId) {
         try {
             Book book = bookRepository.getById(bookId);
