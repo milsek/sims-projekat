@@ -6,6 +6,7 @@ import com.example.library.model.Member;
 import com.example.library.model.dto.AutocompleteBookDto;
 import com.example.library.model.dto.AutocompleteUserDto;
 import com.example.library.model.dto.SearchEditionDto;
+import com.example.library.model.dto.SelectedBookDto;
 import com.example.library.service.BookService;
 import com.example.library.service.BookTitleService;
 import com.example.library.service.EditionService;
@@ -62,4 +63,14 @@ public class SearchController {
     private Set<Edition> searchByGenre(@RequestParam(name = "id") String id) {
         return bookTitleService.getEditionsByGenreId(Long.valueOf(id));
     }
+
+    @GetMapping("search-book")
+    @ResponseBody
+    public List<SelectedBookDto> searchBook(
+            @RequestParam(name = "id", required = false) String id,
+            @RequestParam(name = "title", required = false) String title,
+            @RequestParam(name = "author", required = false) String author) {
+        return bookService.searchBook(id, title, author);
+    }
+
 }

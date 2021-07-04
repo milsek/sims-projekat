@@ -1,12 +1,10 @@
 package com.example.library.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.search.annotations.Indexed;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,7 +12,7 @@ import java.util.List;
 @Indexed
 public class Member extends User {
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<Reservation> reservations;
 

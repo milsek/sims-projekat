@@ -37,5 +37,4 @@ public class BookController {
         return bookService.changeBookPlacement(dto, bookId);
     }
 
-
 }

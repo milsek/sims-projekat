@@ -78,10 +78,12 @@ public class ReservationService {
         Edition edition = editionRepository.findById(editionId).get();
         Member member = memberRepository.findById(userId).get();
         BookReservation bookReservation = new BookReservation(null,null,
-                ReservationState.NEW,LocalDate.now(),null,edition);
+                ReservationState.NEW, LocalDate.now(),null, edition);
         member.addReservation(bookReservation);
+        bookReservation.setUser(member);
         bookReservationRepository.save(bookReservation);
-        memberRepository.save(member);
+        memberRepository.saveAndFlush(member);
+
         return bookReservation.getId();
     }
 
@@ -105,7 +107,7 @@ public class ReservationService {
         Book book = bookRepository.findById(bookId).get();
         Long reservationId = reservationRepository.findByUserIdAndStateAndBookId(userId,"APPROVED", bookId);
         if(reservationId == null) {
-            reservationId = reserveEdition(userId,book.getEdition().getId());
+            reservationId = reserveEdition(userId, book.getEdition().getId());
             boolean possible = reserveBook(reservationId,bookId);
             if(!possible){
                 return false;

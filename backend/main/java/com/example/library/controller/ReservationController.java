@@ -40,7 +40,7 @@ public class ReservationController {
     @ResponseBody
     public Boolean takeBook(@RequestParam(name = "userId", required = false) Long userId,
                          @RequestParam(name = "bookId", required = false) Long bookId) {
-        return reservationService.takeBook(userId,bookId);
+        return reservationService.takeBook(userId, bookId);
     }
 
     @GetMapping(path = "/active-reservation")
