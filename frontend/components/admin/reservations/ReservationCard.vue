@@ -52,7 +52,6 @@ export default {
     lendBook() {
       this.justReturned = false;
       let that = this;
-      console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
       console.log(this.data.bookId + "&userId=" + this.data.userId);
       axios
         .post("/api/take-book?bookId=" + this.data.bookId + "&userId=" + this.data.userId)

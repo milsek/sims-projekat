@@ -1,10 +1,16 @@
 <template>
-  <div v-if="books.length > 0">
-      <div class="block min-h-screen mt-2 mx-auto w-full lg:w-11/12 xl:w-2/3">
-        <div v-for="book in books" :key="book.id">
-          <BookCard :data="book" />
+    <div>
+        <div v-if="books.length > 0">
+            <div class="block min-h-screen mt-2 mx-auto w-full lg:w-11/12 xl:w-2/3">
+                <div v-for="book in books" :key="book.id">
+                    <BookCard :data="book" />
+                </div>
+            </div>
         </div>
-      </div>
+
+        <Pagination :maxVisibleButtons="maxVisibleButtons" :totalPages="totalPages" :total="totalReservations"
+        :perPage="resultsPerPage" :currentPage="pageIndex + 1" :hasMorePages="hasMorePages"
+        @pagechanged="showMore" class="pt-12 pb-16"/>
     </div>
 </template>
 
@@ -18,8 +24,15 @@ export default {
         return {
             books: [],
             data: { 'bookId': this.nesto[0].query, 'title': this.nesto[1].query,
-                'author': this.nesto[2].query, 'bookStatus': this.nesto[3].query }
-
+                'author': this.nesto[2].query, 'bookStatus': this.nesto[3].query },
+            pageIndex: 0,
+            resultsPerPage: 24,
+            showPagination: false,
+            totalPages: 1,
+            totalReservations: 1,
+            maxVisibleButtons: 3,
+            reservations: [],
+            loadMessage: 'Loading...'
         }
     },
     mounted() {
@@ -41,6 +54,28 @@ export default {
             const requestText = `/api/search-book?${bookId}${title}${author}${bState}`
             return requestText.slice(0, -1)
         },
+        showMore(page) {
+            this.pageIndex = page - 1
+            this.getBooks()
+        },
+        refreshPagination() {
+            this.pageIndex = 0
+        },
+        allFieldsEmpty() {
+            if (true)
+                return true
+            return false
+        }
+    },
+    computed: {
+        hasMorePages () {
+        if (this.pageIndex < this.totalPages-1) {
+            return true
+        }
+        else {
+            return false
+        }
+        }
     }
 }
 </script>

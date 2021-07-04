@@ -67,7 +67,6 @@ public class ReservationService {
         boolean possible = isReservationPossibleByMemberId(userId);
         Book book = bookRepository.findById(bookId).get();
         bookReservation.setBook(book);
-        System.out.println("THIS IS POSSIBLE: " + possible);
         if(!possible) {
             bookReservation.setReservationState(ReservationState.DENIED);
         }
@@ -89,16 +88,13 @@ public class ReservationService {
         bookReservation.setUser(member);
         bookReservationRepository.save(bookReservation);
         memberRepository.saveAndFlush(member);
-
         return bookReservation.getId();
     }
 
     public Boolean isReservationPossibleByMemberId(Long id){
         long booksTakenOrReserved = reservationRepository.countBooksTakenOrReservedByUserId(id);
         System.out.println(LocalDate.now().toString());
-        System.out.println("^^^^^^^^^");
         Long mem = membershipRepository.getMembershipIdByUserId(id, LocalDate.now().toString());
-        System.out.println("OVO DOBIJEM " + mem);
         if(mem == null) {
             return false;
         }
@@ -111,13 +107,9 @@ public class ReservationService {
     }
 
     public Boolean takeBook(long userId, long bookId){
-        System.out.println(userId + "++++++++++++");
-        System.out.println(bookId + "++++++++++++");
         if(!bookRepository.existsById(bookId) || !memberRepository.existsById(userId)) {
             return false;
         }
-        System.out.println("MJAU");
-        System.out.println(bookId + "++++++++++++");
         Book book = bookRepository.findById(bookId).get();
         Long reservationId = reservationRepository.findByUserIdAndStateAndBookId(userId,"APPROVED", bookId);
         if(reservationId == null) {
@@ -127,9 +119,6 @@ public class ReservationService {
                 return false;
             }
         }
-        System.out.println(userId + "++++++++++++");
-        System.out.println(bookId + "++++++++++++");
-        System.out.println(reservationId + "++++++++++++");
         BookReservation bookReservation = bookReservationRepository.findById(reservationId).get();
         bookReservation.setDateTaken(LocalDate.now());
         bookReservation.setReservationState(ReservationState.SEIZED);
