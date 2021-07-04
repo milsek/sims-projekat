@@ -16,17 +16,18 @@
 
 <script>
 import BookCard from '~/components/admin/search/BookCard';
+import Pagination from "~/components/search/Pagination"
 import axios from 'axios';
 export default {
     props : ["nesto"],
-    components : {BookCard},
+    components : {BookCard, Pagination},
     data() {
         return {
             books: [],
             data: { 'bookId': this.nesto[0].query, 'title': this.nesto[1].query,
                 'author': this.nesto[2].query, 'bookStatus': this.nesto[3].query },
             pageIndex: 0,
-            resultsPerPage: 24,
+            resultsPerPage: 5,
             showPagination: false,
             totalPages: 1,
             totalReservations: 1,
@@ -41,22 +42,32 @@ export default {
     methods : {
         searchBooks() {
             this.books = [];
+            console.log("This is it!!");
+            console.log();
+            console.log(this.getRequestText());
+            let requestText = `/api/search-book?page=`+this.pageIndex + 
+            "&amount="+this.resultsPerPage+`&` + this.getRequestText();
             axios
-            .get(this.getRequestText())
-            .then( x => { this.books = x.data; console.log(x); })
+            .get(requestText)
+            .then( x => { 
+                this.books = x.data["content"]; 
+                this.totalPages = x.data["totalPages"];
+                console.log(x); 
+            })
             .catch( x => { console.log(x); })
+            
         },
         getRequestText() {
             const bookId = this.data.bookId ? "bookId=" + this.data.bookId.trim() + '&': ''
             const title = this.data.title ? "title=" + this.data.title.trim() + '&': ''
             const author = this.data.author ? "author=" + this.data.author.trim() + '&': ''
             const bState = this.data.bookStatus ? "status=" + this.data.bookStatus.trim() + '&' : ''
-            const requestText = `/api/search-book?${bookId}${title}${author}${bState}`
+            const requestText = `${bookId}${title}${author}${bState}`
             return requestText.slice(0, -1)
         },
         showMore(page) {
             this.pageIndex = page - 1
-            this.getBooks()
+            this.searchBooks()
         },
         refreshPagination() {
             this.pageIndex = 0

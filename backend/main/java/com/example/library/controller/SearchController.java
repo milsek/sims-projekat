@@ -71,8 +71,8 @@ public class SearchController {
             @RequestParam(name = "title", required = false) String title,
             @RequestParam(name = "author", required = false) String author,
             @RequestParam(name = "status", required = false) String status,
-            @RequestParam(name = "page") int page,
-            @RequestParam(name = "amount") int amount) {
+            @RequestParam(name = "page") Integer page,
+            @RequestParam(name = "amount") Integer amount) {
         Pageable paging = PageRequest.of(page, amount);
         return bookService.searchBook(id, title, author, status, paging);
     }
