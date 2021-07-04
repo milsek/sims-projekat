@@ -141,7 +141,10 @@ export default {
       .then(response => { this.userCanReview = response.data; console.log(response.data); })
     },
     checkUserCanReserve() {
-      this.userCanReserve = (this.$store.state.session.role === '0')
+      // this.userCanReserve = (this.$store.state.session.role === '0')
+      axios
+      .get("/api/can-user-reserve?editionId=" + this.data.id + "&userId=" + this.userId)
+      .then(response => { this.userCanReserve = response.data; console.log(response.data); })
     },
     sendReview (stars, text) {
       axios

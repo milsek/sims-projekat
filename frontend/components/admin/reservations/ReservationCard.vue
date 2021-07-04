@@ -55,10 +55,13 @@ export default {
       console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
       console.log(this.data.bookId + "&userId=" + this.data.userId);
       axios
-        .post("/api/take-book?bookId=" + this.data.id + "&userId=" + this.data.userId)
+        .post("/api/take-book?bookId=" + this.data.bookId + "&userId=" + this.data.userId)
         .then(x => {
-          that.data.state = "SEIZED";
-          console.log("Book is taken.");
+          console.log(x.data)
+          if (x.data) {
+            that.data.state = "SEIZED";
+            console.log("Book is taken.");
+          }
         })
         .catch(error => {
           console.log(error);
