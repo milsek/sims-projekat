@@ -166,14 +166,14 @@ public class ReservationService {
         return reservations.get(0);
     }
 
-    public String returnBook(Long reservationId) {
+    public String returnBook(Long bookId) {
         String message;
 
         try {
-            if (!bookReservationRepository.existsById(reservationId))
+            BookReservation bookReservation = bookReservationRepository.findByBook_IdAndReservationState(bookId, ReservationState.SEIZED);
+            if (bookReservation == null)
                 return "Reservation doesn't exist.";
 
-            BookReservation bookReservation = bookReservationRepository.getById(reservationId);
             bookReservation.setReservationState(ReservationState.RETURNED);
 
             Edition edition = bookReservation.getEdition();
