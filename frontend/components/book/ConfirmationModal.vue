@@ -8,7 +8,7 @@
        transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-11/12 sm:w-full">
 
         <div class="mx-auto my-auto text-center text-lg md:text-xl pt-6 px-4 text-gray-600 font-medium ">
-            Your review has been sent for review *wink*
+           {{msg}}
         </div>
         <div class="bg-gray-100 px-4 py-5 mt-8 sm:px-6 flex justify-center md:justify-end">
           <button @click="closeModal" type="button" class="rounded-md shadow-sm px-6
@@ -26,7 +26,7 @@
 <script>
 export default {
   components: { },
-  props: ["confirm", "id"],
+  props: ["msg"],
   data () {
     return {
     }

@@ -24,7 +24,7 @@
                 <div :class="[data.availableCopies > 0 ? 'text-green-700' : 'text-red-600', 'mt-1']">
                   Books available: {{data.availableCopies}}
                 </div>
-                <div v-if="$store.state.session.role === '0'" class="pt-2">
+                <div v-if="userCanReserve" class="pt-2">
                   <button @click="sendReservation" class="h-8 mt-4 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 
                   bg-indigo-800 hover:bg-indigo-900 text-white text-center text-lg md:text-base
                   lg:text-lg shadow-md focus:outline-none rounded-lg">
@@ -54,7 +54,7 @@
           <div :class="[data.availableCopies > 0 ? 'text-green-700' : 'text-red-600', 'mt-1']">
             Books available: {{data.availableCopies}}
           </div>
-          <div v-if="$store.state.session.role === '0'" class="pt-2">
+          <div v-if="userCanReserve" class="pt-2">
             <button @click="sendReservation" class="w-full h-8 mt-4 md:h-7 lg:h-8 px-6 sm:px-4 lg:px-6 pb-1 
             bg-indigo-800 hover:bg-indigo-900 text-white  text-center text-lg md:text-base
             lg:text-lg shadow-md focus:outline-nonerounded-lg">
@@ -88,7 +88,8 @@
     <RelatedEditions />
 
     <LeaveReview v-if="userCanReview" @send-review="sendReview" />
-    <ReviewConfirmationModal v-if="showReviewConfirmation" @close-modal="closeReviewConfirmationModal" />
+
+    <ConfirmationModal v-if="showConfirmation" @close-modal="closeModal" :msg="confirmationMsg"/>
 
     <ReviewList :data="data"/>
 
@@ -101,19 +102,22 @@ import Details from '~/components/book/Details'
 import RelatedEditions from '~/components/book/RelatedEditions'
 import ReviewList from '~/components/book/ReviewList'
 import LeaveReview from '~/components/book/LeaveReview'
-import ReviewConfirmationModal from '~/components/book/ReviewConfirmationModal.vue'
+import ConfirmationModal from '~/components/book/ConfirmationModal.vue'
 import axios from 'axios'
 export default {
   props: ["data"],
-  components: { Details, RelatedEditions, ReviewList, LeaveReview, ReviewConfirmationModal },
+  components: { Details, RelatedEditions, ReviewList, LeaveReview, ConfirmationModal },
   data () {
     return {
       showMore: false,
-      showReviewConfirmation: false,
+      showConfirmation: false,
+      confirmationMsg: '',
       userCanReview: false,
+      userCanReserve: false
     }
   },
   mounted() {
+    this.checkUserCanReserve()
     if (this.userId) this.checkUserCanReview()
   },
   computed: {
@@ -136,6 +140,9 @@ export default {
       .get("/api/user-can-review?editionId=" + this.data.id + "&userId=" + this.userId)
       .then(response => { this.userCanReview = response.data; console.log(response.data); })
     },
+    checkUserCanReserve() {
+      this.userCanReserve = (this.$store.state.session.role === '0')
+    },
     sendReview (stars, text) {
       console.log('Stars: ', stars, '\nText: ', text)
       //if success
@@ -146,17 +153,26 @@ export default {
         bookReservationMemberId: this.userId,
         rating: stars
       })
-      .then(x => { this.showReviewConfirmation = true; console.log(x); })
+      .then(x => {
+        this.showConfirmation = true;
+        this.confirmationMsg = 'Your review has been sent for review *wink*';
+        console.log(x);
+      })
       .catch()
     },
     sendReservation () {
       axios
       .post("/api/reserve-edition?userId=" + this.userId + "&editionId=" + this.data.id)
-      .then(x => { this.showReviewConfirmation = true; console.log(x); })
+      .then(x => {
+        this.showConfirmation = true;
+        this.confirmationMsg = 'Reservation has been sent for review.';
+        this.userCanReserve = false;
+        console.log(x);
+      })
       .catch()
     },
-    closeReviewConfirmationModal() {
-      this.showReviewConfirmation = false
+    closeModal() {
+      this.showConfirmation = false
     },
   }
 };

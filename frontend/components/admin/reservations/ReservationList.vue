@@ -7,6 +7,7 @@
           <ReservationCard :data="reservation" class="h-full w-full"/>
         </div>
       </div>
+      
       <Pagination :maxVisibleButtons="maxVisibleButtons" :totalPages="totalPages" :total="totalReservations"
       :perPage="resultsPerPage" :currentPage="pageIndex + 1" :hasMorePages="hasMorePages"
         @pagechanged="showMore" class="pt-12 pb-16"/>
