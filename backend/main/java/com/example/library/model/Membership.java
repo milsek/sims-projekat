@@ -51,4 +51,5 @@ public class Membership {
     public void setPrice(Price price) {
         this.price = price;
     }
+
 }

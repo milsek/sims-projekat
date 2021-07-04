@@ -67,10 +67,11 @@ public class ReservationService {
         boolean possible = isReservationPossibleByMemberId(userId);
         Book book = bookRepository.findById(bookId).get();
         bookReservation.setBook(book);
-        if(!possible){
+        System.out.println("THIS IS POSSIBLE: " + possible);
+        if(!possible) {
             bookReservation.setReservationState(ReservationState.DENIED);
         }
-        else{
+        else {
             bookReservation.setReservationState(ReservationState.APPROVED);
             book.setBookState(BookState.RESERVED);
         }
@@ -94,30 +95,41 @@ public class ReservationService {
 
     public Boolean isReservationPossibleByMemberId(Long id){
         long booksTakenOrReserved = reservationRepository.countBooksTakenOrReservedByUserId(id);
-        Membership mem = membershipRepository.getMembershipIdByUserId(id, LocalDate.now().toString());
-        if(mem == null){
+        System.out.println(LocalDate.now().toString());
+        System.out.println("^^^^^^^^^");
+        Long mem = membershipRepository.getMembershipIdByUserId(id, LocalDate.now().toString());
+        System.out.println("OVO DOBIJEM " + mem);
+        if(mem == null) {
             return false;
         }
+        Membership membership = membershipRepository.findById(mem).get();
         System.out.println(booksTakenOrReserved);
-        CategoryRules categoryRules = mem.getPrice().getCategory();
+        CategoryRules categoryRules = membership.getPrice().getCategory();
         int allowedNumberOfBooks = categoryRules.getNumOfBooks();
         System.out.println(allowedNumberOfBooks);
         return booksTakenOrReserved < allowedNumberOfBooks;
     }
 
     public Boolean takeBook(long userId, long bookId){
+        System.out.println(userId + "++++++++++++");
+        System.out.println(bookId + "++++++++++++");
         if(!bookRepository.existsById(bookId) || !memberRepository.existsById(userId)) {
             return false;
         }
+        System.out.println("MJAU");
+        System.out.println(bookId + "++++++++++++");
         Book book = bookRepository.findById(bookId).get();
         Long reservationId = reservationRepository.findByUserIdAndStateAndBookId(userId,"APPROVED", bookId);
         if(reservationId == null) {
             reservationId = reserveEdition(userId, book.getEdition().getId());
-            boolean possible = reserveBook(reservationId,bookId);
-            if(!possible){
+            boolean possible = reserveBook(reservationId, bookId);
+            if(!possible) {
                 return false;
             }
         }
+        System.out.println(userId + "++++++++++++");
+        System.out.println(bookId + "++++++++++++");
+        System.out.println(reservationId + "++++++++++++");
         BookReservation bookReservation = bookReservationRepository.findById(reservationId).get();
         bookReservation.setDateTaken(LocalDate.now());
         bookReservation.setReservationState(ReservationState.SEIZED);
