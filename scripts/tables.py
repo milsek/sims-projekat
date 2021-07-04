@@ -100,6 +100,8 @@ class EDITION:
         if None in [self.description, self.genre_names, self.author_names, self.publisher_name]:
             return
 
+        self.image_large = None
+
         identifiers = info.get('industryIdentifiers')
         if not identifiers:
             return
@@ -110,6 +112,10 @@ class EDITION:
                     self.image_large = f"http://covers.openlibrary.org/b/isbn/{isbn}-L.jpg"
                     self.image_small = f"http://covers.openlibrary.org/b/isbn/{isbn}-M.jpg"
                     break
+
+        if not self.image_large:
+            print("[-] Nou kaver :(")
+            return
         
         if len(requests.get(self.image_large).content) == 807:
             print("[-] Nou kaver :(")
@@ -295,18 +301,30 @@ class GENRE:
 class BOOK_RESERVATION:
     instances = []
 
-    def __init__(self, book, date, reservation):
+    def __init__(self, book, edition_id, date, reservation):
         self.id = reservation.id
         self.date = date
-        self.book_id = book.id
-        self.edition_id = book.edition_id
+
+        if book:
+            self.book_id = book.id
+        else:
+            self.book_id = 'null'
+
+        self.edition_id = edition_id
 
         self.reservation = reservation
 
         BOOK_RESERVATION.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO BOOK_RESERVATION(reservation_date, id, book_id, edition_id, review_id) VALUES(PARSEDATETIME('{self.date}', 'yyyy-MM-dd'), {self.id}, {self.book_id}, {self.edition_id}, null);"
+        sql = f"INSERT INTO BOOK_RESERVATION(reservation_date, id, book_id, edition_id, review_id) VALUES(PARSEDATETIME('{self.date}', 'yyyy-MM-dd'), {self.id}, {self.book_id}, {self.edition_id}, null);"
+        
+        if self.book_id != 'null':
+            if self.reservation.state_name == 'APPROVED':
+                sql += f"\nUPDATE BOOK SET STATE='RESERVED' WHERE book_id={self.book_id};"
+            elif self.reservation.state_name == 'SEIZED':
+                sql += f"\nUPDATE BOOK SET STATE='TAKEN' WHERE book_id={self.book_id};"
+        return sql
 
 
 class PICTURE_BOOK_RESRVATION:
@@ -406,8 +424,8 @@ class BOOK:
 
     def __init__(self, edition):
         self.id = len(BOOK.instances)
-        self.condition = random.choice([0,0,0,1,1,1,1,2,2,3])
-        self.state_name = 0 # TODO: Other states
+        self.condition = random.choice(['PERFECT','PERFECT','PERFECT','PERFECT','PERFECT','WORN_OUT','WORN_OUT','DAMAGED','UNUSABLE'])
+        self.state_name = random.choice(['IN_STOCK', 'IN_STOCK', 'IN_STOCK', 'IN_STOCK', 'IN_STOCK', 'MISSING', 'REFURBISHMENT'])
         self.edition_id = edition.id
         self.line_id = random.choice(LINE.instances).id
 
@@ -415,7 +433,7 @@ class BOOK:
 
     def toSql(self):
         # TODO: Check order of values
-        return f"INSERT INTO BOOK(book_id, condition, state, edition_id, line_id) VALUES({self.id}, {self.condition}, {self.state_name}, {self.edition_id}, {self.line_id});"
+        return f"INSERT INTO BOOK(book_id, condition, state, edition_id, line_id) VALUES({self.id}, '{self.condition}', '{self.state_name}', {self.edition_id}, {self.line_id});"
 
 
 class LINE:   
@@ -581,7 +599,8 @@ class REVIEW:
         REVIEW.instances.append(self)
 
     def toSql(self):
-        return f"INSERT INTO REVIEW(id, content, rating, book_reservation_id, edition_id, allowed, checked) VALUES({self.id}, '{self.content}', {self.rating}, {self.book_reservation_id}, {self.edition_id}, {self.allowed}, {self.checked});"
+        return f"INSERT INTO REVIEW(id, content, rating, book_reservation_id, edition_id, allowed, checked) VALUES({self.id}, '{self.content}', {self.rating}, {self.book_reservation_id}, {self.edition_id}, {self.allowed}, {self.checked});\n " \
+        f"UPDATE BOOK_RESERVATION SET review_id={self.id} WHERE id={self.book_reservation_id};"
 
 
 def escape(string):

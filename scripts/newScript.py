@@ -107,12 +107,13 @@ for i in range(150):
     tables.RESERVATION(random.choice(tables.MEMBER.instances))
 
 for reservation in tables.RESERVATION.instances[:-3]:
-    if reservation.state_name not in ['NEW', 'DENIED']:
-        choosen_book = random.choice(tables.BOOK.instances);
-    else:
-        choosen_book = 'null'
+    choosen_book = random.choice(tables.BOOK.instances);
+    choosen_edition = choosen_book.edition_id
+
+    if reservation.state_name in ['NEW', 'DENIED']:
+        choosen_book = None
     
-    tables.BOOK_RESERVATION(choosen_book, '2021-01-01', reservation)
+    tables.BOOK_RESERVATION(choosen_book, choosen_edition, '2021-01-01', reservation)
 
 for reservation in tables.RESERVATION.instances[-3:]:
     tables.PICTURE_BOOK_RESRVATION(reservation)
@@ -189,6 +190,6 @@ for membership in tables.MEMBERSHIP.instances:
     file.write(membership.toSql() + '\n')
 for transaction in tables.DAILY_TRANSACTION.instances:
     file.write(transaction.toSql() + '\n')
-
+file.write("UPDATE USER SET USER_TYPE=1 WHERE ID=0;\n")
 
 file.close()
