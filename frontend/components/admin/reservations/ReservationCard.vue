@@ -56,8 +56,11 @@ export default {
       axios
         .post("/api/take-book?bookId=" + this.data.bookId + "&userId=" + this.data.userId)
         .then(x => {
-          that.data.state = "SEIZED";
-          console.log("Book is taken.");
+          console.log(x.data)
+          if (x.data) {
+            that.data.state = "SEIZED";
+            console.log("Book is taken.");
+          }
         })
         .catch(error => {
           console.log(error);
