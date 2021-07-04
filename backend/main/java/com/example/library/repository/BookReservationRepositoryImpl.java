@@ -20,9 +20,8 @@ public class BookReservationRepositoryImpl{
 
     @PersistenceContext
     private EntityManager entityManager;
-
     @Transactional
-    public Map<Long, List<BookReservation>> searchReservations(String text, int page, int amount) {
+    public Map<Long, List<BookReservation>> searchReservations(String userId,String  bookId,String  bookTitle,String  status, int page, int amount) {
 
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
         QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
@@ -30,18 +29,12 @@ public class BookReservationRepositoryImpl{
                 .forEntity(BookReservation.class)
                 .get();
         org.apache.lucene.search.Query luceneQuery;
-        if (text.isEmpty())
-        {
-            luceneQuery = queryBuilder.all().createQuery();
-        }
-        else {
-            luceneQuery = queryBuilder
-                    .keyword()
-                    .onFields("book.id", "book.edition.title.title", "dateTaken", "dateReturned")
-                    .boostedTo(5f)
-                    .matching(text)
-                    .createQuery();
-        }
+        luceneQuery = queryBuilder.bool()
+                .should( queryBuilder.keyword().onField("user.member_id").matching(userId).createQuery() )
+                .should( queryBuilder.keyword().onField("book.book_id").matching(bookId).createQuery() )
+                .should( queryBuilder.keyword().onField("edition.title.title").matching(bookTitle).createQuery() )
+                .should( queryBuilder.keyword().onField("reservationState").matching(status).createQuery() )
+                .createQuery();
 
         FullTextQuery jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, BookReservation.class)
                 .setFirstResult((page - 1) * amount)

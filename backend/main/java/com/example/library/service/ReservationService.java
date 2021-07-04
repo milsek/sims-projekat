@@ -1,6 +1,7 @@
 package com.example.library.service;
 
 import com.example.library.model.*;
+import com.example.library.model.dto.BookReservationDto;
 import com.example.library.model.dto.ReservationRequestDto;
 import com.example.library.repository.BookReservationRepository;
 import com.example.library.repository.MemberRepository;
@@ -11,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationService {
@@ -146,4 +150,12 @@ public class ReservationService {
     }
 
 
+    public Map<Long, List<BookReservationDto>> searchReservations(String userId, String bookId, String bookTitle, String status, int page, int amount) {
+        Map<Long, List<BookReservation>> mapa = bookReservationRepository.searchReservations(userId, bookId, bookTitle, status, page, amount);
+        List<BookReservation> lista = mapa.get(mapa.keySet().toArray()[0]);
+        List<BookReservationDto> listaDto = lista.stream().map(x -> {return modelMapper.map(x, BookReservationDto.class);}).collect(Collectors.toList());
+        Map<Long,List<BookReservationDto>> mapaDto = new HashMap<Long,List<BookReservationDto>>();
+        mapaDto.put((Long)mapa.keySet().toArray()[0], listaDto);
+        return mapaDto;
+    }
 }

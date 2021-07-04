@@ -25,7 +25,7 @@ public interface BookReservationRepository extends JpaRepository<BookReservation
     @Query(value = "select r.user_id from reservation r where r.id=?1", nativeQuery = true)
     public Long findUserIdForReservation(long reservationId);
 
-    public Map<Long, List<BookReservation>> searchReservations(String text, int page, int amount);
+    public Map<Long, List<BookReservation>> searchReservations(String userId, String bookId, String bookTitle, String text, int page, int amount);
 
     public BookReservation findByUser_IdAndEdition_Id(Long userId, Long editionId);
 
